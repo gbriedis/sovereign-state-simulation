@@ -15,17 +15,18 @@ Natural layers must not be generated as independent decorative noise. Each layer
 should derive as much as practical from prior physical conditions, and later
 layers should remain explainable through those dependencies.
 
-The working causal direction is:
+The current working causal direction begins with:
 
 ```text
-geological history
-→ bedrock and parent material
-→ topography
-→ hydrology
-→ climate interaction
-→ soils
-→ vegetation and ecology
-→ resources, hazards, and engineering conditions
+planet
+→ lithospheric plates
+→ plate motion
+→ boundary-relative motion
+→ tectonic interaction
+→ tectonic structures / geological provinces
+→ rock history + broad elevation tendencies
+→ later surface processes
+→ present-day terrain
 ```
 
 This is a design dependency model, not yet a final scientific algorithm or
@@ -36,6 +37,11 @@ layers that do not follow from the world around them.
 The first focused abstraction within geological history is documented in
 [Tectonic Plates](world-generation/TECTONIC_PLATES.md). It establishes causal
 plate properties and interactions without committing to a full geophysics model.
+
+The next accepted conceptual layer is documented in
+[Tectonic Structures and Geological Provinces](world-generation/TECTONIC_STRUCTURES_AND_PROVINCES.md).
+It preserves tectonic history and broad tendencies without treating them as
+final terrain.
 
 ## In scope
 
