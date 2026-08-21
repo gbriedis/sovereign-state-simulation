@@ -72,6 +72,12 @@ crust formed
 This sequence is illustrative only. It does not establish the final geological-
 event vocabulary or require every world to contain these events.
 
+Events and their spatial effects are distinct. An event records what happened;
+one or more reusable operations modify the inherited surfaces, bodies, and
+contacts in the canonical 3D state. This accepted relationship is documented in
+[Geological Geometry Operators](GEOLOGICAL_GEOMETRY_OPERATORS.md), without
+settling the event taxonomy or geometry implementation.
+
 The purpose of retained history is causal reuse. Later systems should be able to
 ask which processes and sequences affected a region instead of relying on
 unrelated random placement. For example, future resource logic may need evidence

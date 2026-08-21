@@ -27,9 +27,12 @@ These examples establish the kinds of spatial truth the model must eventually
 express; they are not a final taxonomy or geometry model.
 
 Later geological events must be able to act on inherited three-dimensional
-structure. Conceptually, an event may cut, displace, truncate, bury, intrude,
-erode, or otherwise modify earlier surfaces and bodies. The exact topology,
-contact rules, overlap semantics, and event algorithms remain unresolved.
+structure. The accepted
+[Geological Geometry Operators](GEOLOGICAL_GEOMETRY_OPERATORS.md) model separates
+the historical event from the reusable operations that cut, displace, truncate,
+bury, intrude, erode, or otherwise modify earlier surfaces and bodies. The exact
+topology, contact rules, overlap semantics, mathematics, and event algorithms
+remain unresolved.
 
 ## Map-first presentation
 
