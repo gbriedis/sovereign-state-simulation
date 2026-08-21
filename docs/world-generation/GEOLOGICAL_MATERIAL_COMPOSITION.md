@@ -98,7 +98,10 @@ geological body
 
 This is illustrative only. It does not settle ownership, storage layout, cell
 references, continuous fields, interpolation, or spatial variation within a
-body.
+body. The accepted spatial direction is documented in
+[Sparse 3D Geological World](SPARSE_3D_GEOLOGICAL_WORLD.md): bodies and contact
+surfaces contribute to three-dimensional geological truth beneath map queries,
+without fixing their geometry representation.
 
 ## Minimal Rust-facing vocabulary
 

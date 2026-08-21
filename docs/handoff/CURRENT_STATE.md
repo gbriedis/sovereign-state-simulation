@@ -44,12 +44,19 @@
 - Geological material is not divided into exclusive rock, magma, sediment, and
   fluid types. Coexisting solid, melt, and fluid fractions describe phase state;
   coherent or unconsolidated structure describes consolidation.
+- Geological truth is sparse and three-dimensional beneath the map-first
+  interface. Surfaces and bounded bodies preserve subsurface structure and
+  inherited relationships without requiring a uniform voxel world or final
+  geometry representation.
 - A compact history of important geological events and periods persists after
   generation. Geological age records when formation or change occurred rather
   than serving as decorative metadata.
 - Spatial detail is lazy, chunked, and proportional to attention.
 - Singleplayer and eventual multiplayer share one authority model.
-- The eventual multiplayer server is authoritative.
+- The eventual multiplayer server generates and owns canonical world truth;
+  clients receive relevant subsets and do not independently generate
+  authoritative geology. Authoritative world generation is separated from
+  client play cost.
 
 ## Current target
 
@@ -62,6 +69,7 @@ The accepted physical-world conceptual chain is currently documented in
 `../world-generation/GEOLOGICAL_PREHISTORY.md`,
 `../world-generation/GEOLOGICAL_MATERIAL_COMPOSITION.md`,
 `../world-generation/GEOLOGICAL_MATERIAL_STATE.md`,
+`../world-generation/SPARSE_3D_GEOLOGICAL_WORLD.md`,
 `../world-generation/TECTONIC_PLATES.md`, and
 `../world-generation/TECTONIC_STRUCTURES_AND_PROVINCES.md`. These define domain
 intent and illustrative Rust-facing vocabulary only; temporal representation,
@@ -86,6 +94,10 @@ algorithms, taxonomies, and storage remain open.
   and human systems.
 - Do not extend geological material state into a full rock cycle, final process
   enum, phase-equilibrium solver, poromechanics, or surface/resource systems.
+- Do not turn sparse 3D geological truth into a commitment to uniform voxels,
+  final meshes, topology, coordinates, precision, storage, or refinement rules.
+- Do not design renderer internals, network protocols, databases, or downstream
+  subsurface gameplay from the authority and 3D-world decisions.
 
 ## Recommended next actions
 

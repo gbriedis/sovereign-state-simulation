@@ -1,7 +1,7 @@
 # Open Architecture Decisions
 
 - **Status:** Unresolved
-- **Last reviewed:** 2026-08-21
+- **Last reviewed:** 2026-08-22
 
 Items in this file are not accepted architecture. When one is resolved, record
 the decision and rationale in the architecture overview (or a dedicated decision
@@ -12,6 +12,24 @@ record) and remove it from this list.
 - Final cell size and chunk dimensions
 - Coordinate system and world projection
 - Representation and simulation cadence at each level of detail
+
+### Sparse 3D geological representation
+
+- Exact representation of geological surfaces, bounded bodies, and volumes
+- Topology and contact relationships between bodies, surfaces, and faults
+- Fault displacement and the cutting, overlap, nesting, truncation, burial,
+  intrusion, and erosion of inherited geometry
+- Three-dimensional spatial indexing and cross-section or volume-query models
+- Coordinate system, precision, and depth representation for subsurface truth
+- Relationship between provisional 500 m surface cells and subsurface structure
+
+### Geological detail and refinement
+
+- Which geological state is generated eagerly, lazily, or through a hybrid
+- Hierarchy and levels of detail for surfaces, bodies, properties, and history
+- Deterministic local refinement consistent with canonical coarse state
+- Cache invalidation when canonical state or generator versions change
+- Which refined detail is persisted and which may be regenerated
 
 ## Natural-world generation
 
@@ -124,6 +142,10 @@ record) and remove it from this list.
 - Persistence format
 - Generator migration strategy
 - Save-compatibility policy
+- Persistence model for canonical geological state and compact history
+- Architecture of authoritative world-creation jobs
+- World-generation checkpoints, recovery, and acceptable creation duration
+- Server memory and storage budgets for hierarchical geological detail
 
 ## Networking
 
@@ -131,6 +153,11 @@ record) and remove it from this list.
 - Synchronization cadence
 - Rollback model
 - Anti-cheat strategy
+- Streaming and serialization of relevant geological subsets or derived views
+- Client caching and invalidation of authority-provided world data
+- Boundary between canonical geometry/state and renderer-ready data
+- Whether any canonical detail is deterministically materialized on demand by
+  the authority
 
 ## Player interface
 

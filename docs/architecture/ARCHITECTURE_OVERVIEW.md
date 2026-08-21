@@ -2,13 +2,18 @@
 
 - **Status:** Living / accepted direction
 - **Scope:** Initial architecture
-- **Last reviewed:** 2026-08-21
+- **Last reviewed:** 2026-08-22
 
 ## Experience boundary
 
 The world map dominates the game window. Players pan, zoom, select geography,
 and inspect or govern through contextual overlays. Lines, polygons, cells,
 symbols, and procedural geometry form the core visual language.
+
+The map is a presentation and query surface over a genuinely three-dimensional
+physical world. Sparse geological surfaces and bounded bodies preserve
+subsurface truth without requiring a uniform planet-sized voxel grid. The
+renderer and interface do not define that truth; the simulation/world core does.
 
 ## Runtime and simulation core
 
@@ -66,6 +71,10 @@ Detail is chunked, lazy, and multi-resolution:
   according to focus and relevance.
 
 The architecture must not require every cell of every nation to exist at once.
+Nor does canonical world state require maximum-resolution geology to exist
+everywhere at once. Coarse summaries and deterministic refinement may represent
+the same world at different levels of attention, subject to unresolved
+consistency and persistence rules.
 
 ## Continents and country allocation
 
@@ -76,9 +85,25 @@ Exact capacity and allocation rules remain open.
 
 ## Authority and multiplayer
 
-The eventual multiplayer model is server-authoritative. The server owns canonical
-simulation state, validates commands, and distributes an appropriate level of
-state to each client.
+The eventual multiplayer model is server-authoritative. The authority generates
+and owns the canonical physical world and simulation state, validates commands,
+and distributes an appropriate subset or derived view to each client. Clients
+handle presentation, camera, input, caching, and any later prediction around
+received state; they do not independently generate authoritative geology or
+reconstruct the whole planet.
+
+```text
+seed and compatible ruleset
+→ authoritative geological-prehistory generation
+→ canonical physical world and compact history
+→ persistent authority-owned state
+→ relevant subsets and views delivered to clients
+```
+
+**Authoritative world generation is separated from client play cost.** Expensive
+generation may occur during world creation. This does not decide whether
+canonical detail is eagerly generated, lazily materialized, hierarchically
+summarized, cached, or persisted.
 
 Singleplayer follows the same model locally: a local authority runs the world and
 simulation. Networking is not required for the first prototype, but commands and

@@ -63,6 +63,11 @@ can later be derived rather than assigned as arbitrary primitive labels.
 coexisting solid, melt, and fluid fractions plus coherent or unconsolidated
 structure without defining a full rock-cycle engine.
 
+[Sparse 3D Geological World](world-generation/SPARSE_3D_GEOLOGICAL_WORLD.md)
+establishes how those causes occupy physical space: geological truth is
+three-dimensional and history-bearing beneath the map-first interface, without
+committing to uniform voxels or a final geometry and refinement model.
+
 ## In scope
 
 - Land shape, regions, coastlines, and elevation
