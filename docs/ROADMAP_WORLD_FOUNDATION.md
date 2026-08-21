@@ -59,6 +59,10 @@ in [Geological Material Composition](world-generation/GEOLOGICAL_MATERIAL_COMPOS
 Bulk composition and trace inventories are preserved so minerals and named rocks
 can later be derived rather than assigned as arbitrary primitive labels.
 
+[Geological Material State](world-generation/GEOLOGICAL_MATERIAL_STATE.md) adds
+coexisting solid, melt, and fluid fractions plus coherent or unconsolidated
+structure without defining a full rock-cycle engine.
+
 ## In scope
 
 - Land shape, regions, coastlines, and elevation

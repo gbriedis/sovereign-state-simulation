@@ -98,6 +98,21 @@ record) and remove it from this list.
   interpolation strategy
 - Performance implications of composition and history tracking
 
+### Geological material state
+
+- Exact representation of solid, melt, and fluid phase fractions
+- Conservation and normalization rules
+- Phase-change thresholds and tractable approximations
+- Whether porosity becomes explicit
+- Whether structural and consolidation state is binary, continuous, or derived
+- Representation of cohesion, packing, grain size, and texture
+- How fluids occupy pores, fractures, and geological bodies
+- When material bodies split, merge, or transform
+- Representation and transport of mobile fluid composition
+- Performance implications of tracking multi-phase material state
+- Interaction between phase/structural state, geological-body ownership, and
+  spatial resolution
+
 ## Territory allocation
 
 - Territory-slot count and capacity

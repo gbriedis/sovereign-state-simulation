@@ -110,6 +110,7 @@ struct GeologicalMaterial {
     bulk_composition: BulkComposition,
     volatile_state: VolatileState,
     trace_inventory: TraceInventory,
+    material_state: GeologicalMaterialStateRef,
     history: GeologicalHistoryRef,
 }
 
@@ -123,6 +124,12 @@ struct GeologicalBody {
 
 All referenced types are intentionally undefined. Mineral assemblages and named
 rock classifications are omitted because their derivation is not yet designed.
+
+Solid, melt, and fluid coexistence and coherent versus unconsolidated structure
+are documented separately in
+[Geological Material State](GEOLOGICAL_MATERIAL_STATE.md). That state extends the
+composition model without turning rock, magma, sediment, and fluid into mutually
+exclusive primitive types.
 
 ## Scope boundary
 
