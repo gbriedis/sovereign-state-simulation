@@ -41,6 +41,9 @@
   with trace material kept separate. Mineral assemblages and named rocks are
   derived from composition, physical conditions, formation process, and history
   through a future tractable approximation.
+- Geological material is not divided into exclusive rock, magma, sediment, and
+  fluid types. Coexisting solid, melt, and fluid fractions describe phase state;
+  coherent or unconsolidated structure describes consolidation.
 - A compact history of important geological events and periods persists after
   generation. Geological age records when formation or change occurred rather
   than serving as decorative metadata.
@@ -58,6 +61,7 @@ The accepted physical-world conceptual chain is currently documented in
 `../world-generation/EARTH_LIKE_PHYSICAL_FRAMEWORK.md`,
 `../world-generation/GEOLOGICAL_PREHISTORY.md`,
 `../world-generation/GEOLOGICAL_MATERIAL_COMPOSITION.md`,
+`../world-generation/GEOLOGICAL_MATERIAL_STATE.md`,
 `../world-generation/TECTONIC_PLATES.md`, and
 `../world-generation/TECTONIC_STRUCTURES_AND_PROVINCES.md`. These define domain
 intent and illustrative Rust-facing vocabulary only; temporal representation,
@@ -80,6 +84,8 @@ algorithms, taxonomies, and storage remain open.
 - Do not extend geological material composition into final mineral/rock
   taxonomies, full thermodynamics, ore generation, resources, or later surface
   and human systems.
+- Do not extend geological material state into a full rock cycle, final process
+  enum, phase-equilibrium solver, poromechanics, or surface/resource systems.
 
 ## Recommended next actions
 
