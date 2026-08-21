@@ -22,6 +22,10 @@
 - Geography is generated before political territories.
 - Physical layers are generated causally rather than independently; political
   territories reference physical space instead of owning its cells.
+- Tectonic plates are the earliest useful physical-world abstraction. They
+  represent moving lithosphere and provide broad physical properties, crustal
+  character, and boundary interactions without attempting mantle convection,
+  planetary accretion, or full geophysics.
 - Spatial detail is lazy, chunked, and proportional to attention.
 - Singleplayer and eventual multiplayer share one authority model.
 - The eventual multiplayer server is authoritative.
@@ -32,12 +36,19 @@ Implement the scoped map prototype in
 `../architecture/PROTOTYPE_V0.1.md`. The 500 m cell size is a measurement target,
 not a final commitment.
 
+The first physical-layer design note is
+`../world-generation/TECTONIC_PLATES.md`. It defines domain intent and an
+illustrative Rust-facing vocabulary only; its algorithms and representations
+remain open.
+
 ## Important boundaries
 
 - Do not start human civilization or economic simulation in the current phase.
 - Do not couple simulation data to Bevy or egui types.
 - Do not treat open questions as accepted decisions.
 - Do not let optional Web3 ideas shape foundational simulation design.
+- Do not extend the tectonic-plate note into downstream geology, landforms,
+  hydrology, soils, resources, political areas, or human systems.
 
 ## Recommended next actions
 

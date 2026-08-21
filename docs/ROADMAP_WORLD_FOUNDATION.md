@@ -33,6 +33,10 @@ strict one-way pipeline. Feedback between systems may be necessary. Its purpose
 is to prevent arbitrary soils, disconnected rivers, random forests, and other
 layers that do not follow from the world around them.
 
+The first focused abstraction within geological history is documented in
+[Tectonic Plates](world-generation/TECTONIC_PLATES.md). It establishes causal
+plate properties and interactions without committing to a full geophysics model.
+
 ## In scope
 
 - Land shape, regions, coastlines, and elevation
