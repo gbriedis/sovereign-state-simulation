@@ -27,8 +27,9 @@ Each plate likely needs the following meaningful properties:
 
 - **Shape** — the area of physical space occupied by the plate and the edges it
   shares with neighbouring plates.
-- **Crust type** — at minimum, the broad distinction between oceanic and
-  continental crust, or a representation capable of expressing that distinction.
+- **Crust material character** — a reference to or broad description of the
+  underlying composition and material state from which continental-like or
+  oceanic-like classifications may be derived.
 - **Motion direction** — the plate's broad movement relative to the world or a
   defined reference frame.
 - **Motion speed** — the magnitude of that movement in a real or clearly mapped
@@ -51,7 +52,7 @@ not necessarily independently generated or permanently stored fields.
 ## Interactions
 
 Relative motion matters more than a plate's motion in isolation. Where plates
-meet, their directions, speeds, lithospheric and crustal character, age,
+meet, their directions, speeds, lithospheric and crustal material, age,
 thickness, and buoyancy tendency create different geological histories.
 
 ### Collision
@@ -63,9 +64,9 @@ behavior and retain which plates participate and how strongly they converge.
 ### Subduction
 
 At some convergent boundaries, one plate tends to descend beneath another.
-Relative density, buoyancy, age, thickness, and crust type are relevant to that
-tendency. Subduction should arise from plate properties and relative motion, not
-from an unrelated random boundary label.
+Relative density, buoyancy, age, thickness, crust composition, and material state
+are relevant to that tendency. Subduction should arise from material properties
+and relative motion, not from an unrelated random boundary label.
 
 ### Divergence
 
@@ -117,17 +118,12 @@ final implementation.
 struct TectonicPlate {
     id: PlateId,
     shape: PlateShape,
-    crust: CrustType,
+    material: LithosphereMaterialRef,
     motion: PlateMotion,
     age: LithosphereAge,
     thickness: LithosphereThickness,
     density: Density,
     buoyancy: BuoyancyTendency,
-}
-
-enum CrustType {
-    Oceanic,
-    Continental,
 }
 
 struct PlateMotion {
@@ -151,10 +147,12 @@ enum BoundaryInteraction {
 }
 ```
 
-`PlateShape`, `BoundaryPath`, physical units, numeric precision, spatial
-variation, and whether interaction type is stored or derived are intentionally
-undefined. Stable interiors are regions inferred from plate geometry and
-boundary influence, not a boundary enum variant.
+`PlateShape`, `LithosphereMaterialRef`, `BoundaryPath`, physical units, numeric
+precision, spatial variation, and whether interaction type is stored or derived
+are intentionally undefined. A material reference does not decide whether a
+plate, geological body, field, or another structure owns composition. Stable
+interiors are regions inferred from plate geometry and boundary influence, not a
+boundary enum variant.
 
 ## Scope boundary
 

@@ -80,6 +80,24 @@ record) and remove it from this list.
   playable-era date
 - Storage and query model for compact regional and geological-body histories
 
+### Geological material composition
+
+- Exact major-component basis
+- Oxide fractions, elemental fractions, or another bulk representation
+- Treatment of total iron and iron oxidation state
+- Volatile vocabulary, state, and representation
+- Trace-element vocabulary and storage
+- Composition ownership by geological body, material parcel, field, or a hybrid
+- Spatial variation within geological bodies
+- Method for deriving tractable mineral assemblages from composition, pressure,
+  temperature, volatiles, formation process, and history
+- How texture, grain size, cooling rate, and deformation later participate in
+  rock classification
+- Precision, normalization, and conservation rules
+- Rock-body storage layout, spatial references, continuous fields, and
+  interpolation strategy
+- Performance implications of composition and history tracking
+
 ## Territory allocation
 
 - Territory-slot count and capacity
