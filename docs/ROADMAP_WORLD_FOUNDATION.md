@@ -54,6 +54,11 @@ The next accepted conceptual layer is documented in
 It preserves tectonic history and broad tendencies without treating them as
 final terrain.
 
+The material causes inherited and modified through that history are documented
+in [Geological Material Composition](world-generation/GEOLOGICAL_MATERIAL_COMPOSITION.md).
+Bulk composition and trace inventories are preserved so minerals and named rocks
+can later be derived rather than assigned as arbitrary primitive labels.
+
 ## In scope
 
 - Land shape, regions, coastlines, and elevation

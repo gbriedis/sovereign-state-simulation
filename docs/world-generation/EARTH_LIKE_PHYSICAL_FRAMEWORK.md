@@ -54,7 +54,7 @@ World generation varies physical state and history within the fixed framework.
 Relevant generated state currently includes:
 
 - lithosphere geometry;
-- composition and material state;
+- [geological composition and material state](GEOLOGICAL_MATERIAL_COMPOSITION.md);
 - thermal state;
 - volatile state where it matters to current geological reasoning;
 - plate motion;

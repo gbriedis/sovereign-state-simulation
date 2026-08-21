@@ -37,6 +37,10 @@
   context is fixed where variation is not part of the game; geology, physical
   state, and history are generated. Causes and history are stored while
   consequences and classifications are derived wherever practical.
+- Ordinary geological material uses compact bulk composition as causal state,
+  with trace material kept separate. Mineral assemblages and named rocks are
+  derived from composition, physical conditions, formation process, and history
+  through a future tractable approximation.
 - A compact history of important geological events and periods persists after
   generation. Geological age records when formation or change occurred rather
   than serving as decorative metadata.
@@ -53,6 +57,7 @@ not a final commitment.
 The accepted physical-world conceptual chain is currently documented in
 `../world-generation/EARTH_LIKE_PHYSICAL_FRAMEWORK.md`,
 `../world-generation/GEOLOGICAL_PREHISTORY.md`,
+`../world-generation/GEOLOGICAL_MATERIAL_COMPOSITION.md`,
 `../world-generation/TECTONIC_PLATES.md`, and
 `../world-generation/TECTONIC_STRUCTURES_AND_PROVINCES.md`. These define domain
 intent and illustrative Rust-facing vocabulary only; temporal representation,
@@ -72,6 +77,9 @@ algorithms, taxonomies, and storage remain open.
   geological, surface, resource, continent, political, or human algorithm.
 - Do not turn the Earth-like framework into a generic planet, atmosphere,
   climate, hydrology, or ocean simulator.
+- Do not extend geological material composition into final mineral/rock
+  taxonomies, full thermodynamics, ore generation, resources, or later surface
+  and human systems.
 
 ## Recommended next actions
 
