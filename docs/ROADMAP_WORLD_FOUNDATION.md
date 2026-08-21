@@ -9,6 +9,30 @@
 Create the coherent physical foundation that every later political, economic,
 social, and infrastructure system must respect.
 
+## Causal generation model
+
+Natural layers must not be generated as independent decorative noise. Each layer
+should derive as much as practical from prior physical conditions, and later
+layers should remain explainable through those dependencies.
+
+The working causal direction is:
+
+```text
+geological history
+→ bedrock and parent material
+→ topography
+→ hydrology
+→ climate interaction
+→ soils
+→ vegetation and ecology
+→ resources, hazards, and engineering conditions
+```
+
+This is a design dependency model, not yet a final scientific algorithm or
+strict one-way pipeline. Feedback between systems may be necessary. Its purpose
+is to prevent arbitrary soils, disconnected rivers, random forests, and other
+layers that do not follow from the world around them.
+
 ## In scope
 
 - Land shape, regions, coastlines, and elevation
@@ -27,7 +51,7 @@ social, and infrastructure system must respect.
 
 Version `0.1.0` is complete when the land exists as a coherent natural system,
 even if humanity never appears, and local conditions can be explained through
-underlying physical causes.
+underlying physical causes and dependencies between generated layers.
 
 ## Out of scope for this phase
 

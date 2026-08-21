@@ -30,17 +30,25 @@ and inputs.
 
 ```text
 world seed
-└── continents
-    └── physical regions
-        └── country territories / settlement slots
-            └── chunks
-                └── cells
+└── physical world
+    └── continents and physical regions
+        └── chunks
+            └── cells
+
+political allocation
+└── country territories / settlement slots
+    └── references to areas of the physical world
 ```
 
 Natural geography is generated before political borders. Coastlines, elevation,
 drainage, rivers, climate, and biomes establish physical regions. Territories and
 country slots are fitted to that geography rather than forcing geography into
 arbitrary borders.
+
+Cells and chunks belong to the physical world, not to countries. Political
+territories reference physical space and may change without regenerating it. A
+river, watershed, geological formation, ecosystem, or hazard can cross any
+number of political boundaries and must not terminate at a territory edge.
 
 ## Spatial scale and levels of detail
 

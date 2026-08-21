@@ -10,11 +10,18 @@
 
 - The game simulates an autonomous sovereign nation; the player influences rather
   than directly controls all actors.
+- Major domestic actors can initiate development, accumulate power, and pursue
+  strategies independently; the ruler responds through sovereign authority,
+  policy, negotiation, and opposition.
 - Systems should preserve meaningful real-world causes and constraints.
+- The nation itself is the progression display; prefer meaningful real
+  measurements over invented levels and ratings.
 - The map is the primary player experience.
 - Bevy handles runtime and rendering; a pure-Rust core owns simulation/world logic.
 - World generation is seed-based and versioned for reproducibility.
 - Geography is generated before political territories.
+- Physical layers are generated causally rather than independently; political
+  territories reference physical space instead of owning its cells.
 - Spatial detail is lazy, chunked, and proportional to attention.
 - Singleplayer and eventual multiplayer share one authority model.
 - The eventual multiplayer server is authoritative.
