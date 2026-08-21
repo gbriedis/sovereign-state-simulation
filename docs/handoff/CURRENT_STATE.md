@@ -33,6 +33,10 @@
 - Physical-world generation is a geological prehistory simulation. Events act on
   inherited state across coarse geological time, and the accumulated result
   becomes the starting physical world when the civilization era begins.
+- Generated worlds share a fixed Earth-like physical framework. Planetary
+  context is fixed where variation is not part of the game; geology, physical
+  state, and history are generated. Causes and history are stored while
+  consequences and classifications are derived wherever practical.
 - A compact history of important geological events and periods persists after
   generation. Geological age records when formation or change occurred rather
   than serving as decorative metadata.
@@ -47,6 +51,7 @@ Implement the scoped map prototype in
 not a final commitment.
 
 The accepted physical-world conceptual chain is currently documented in
+`../world-generation/EARTH_LIKE_PHYSICAL_FRAMEWORK.md`,
 `../world-generation/GEOLOGICAL_PREHISTORY.md`,
 `../world-generation/TECTONIC_PLATES.md`, and
 `../world-generation/TECTONIC_STRUCTURES_AND_PROVINCES.md`. These define domain
@@ -65,6 +70,8 @@ algorithms, taxonomies, and storage remain open.
   do not extend them into continents or later surface systems yet.
 - Do not extend geological prehistory into a final event taxonomy or any
   geological, surface, resource, continent, political, or human algorithm.
+- Do not turn the Earth-like framework into a generic planet, atmosphere,
+  climate, hydrology, or ocean simulator.
 
 ## Recommended next actions
 

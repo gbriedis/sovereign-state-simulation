@@ -15,6 +15,11 @@ accumulated output becomes the initial physical state of the eventual playable
 civilization era. Geological time is coarse and meaningful rather than one tick
 per year, and its exact representation remains open.
 
+This prehistory runs within a fixed
+[Earth-Like Physical Framework](world-generation/EARTH_LIKE_PHYSICAL_FRAMEWORK.md).
+Fundamental planetary context is held constant while geology, physical state,
+and history vary between generated worlds.
+
 ## Causal generation model
 
 Natural layers must not be generated as independent decorative noise. Each layer
