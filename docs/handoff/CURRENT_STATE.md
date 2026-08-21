@@ -48,6 +48,10 @@
   interface. Surfaces and bounded bodies preserve subsurface structure and
   inherited relationships without requiring a uniform voxel world or final
   geometry representation.
+- Geological events describe history while a small, composable language of
+  geometric operators modifies inherited 3D surfaces, bodies, and contacts.
+  Chronology determines cross-cutting and inheritance relationships; the final
+  primitives, mathematics, and geometry engine remain unresolved.
 - A compact history of important geological events and periods persists after
   generation. Geological age records when formation or change occurred rather
   than serving as decorative metadata.
@@ -70,6 +74,7 @@ The accepted physical-world conceptual chain is currently documented in
 `../world-generation/GEOLOGICAL_MATERIAL_COMPOSITION.md`,
 `../world-generation/GEOLOGICAL_MATERIAL_STATE.md`,
 `../world-generation/SPARSE_3D_GEOLOGICAL_WORLD.md`,
+`../world-generation/GEOLOGICAL_GEOMETRY_OPERATORS.md`,
 `../world-generation/TECTONIC_PLATES.md`, and
 `../world-generation/TECTONIC_STRUCTURES_AND_PROVINCES.md`. These define domain
 intent and illustrative Rust-facing vocabulary only; temporal representation,
@@ -98,6 +103,8 @@ algorithms, taxonomies, and storage remain open.
   final meshes, topology, coordinates, precision, storage, or refinement rules.
 - Do not design renderer internals, network protocols, databases, or downstream
   subsurface gameplay from the authority and 3D-world decisions.
+- Do not turn the geological-operator vocabulary into a final enum, geometry
+  engine, deformation algorithm, event taxonomy, or volumetric-physics model.
 
 ## Recommended next actions
 

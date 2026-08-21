@@ -2,7 +2,7 @@
 
 - **Status:** Focused design direction; taxonomy and algorithms unresolved
 - **Layer:** After lithospheric plates and their relative interactions
-- **Last reviewed:** 2026-08-21
+- **Last reviewed:** 2026-08-22
 
 ## Purpose
 
@@ -42,6 +42,12 @@ planet
 This dependency model operates within the generated timeline described in
 [Geological Prehistory](GEOLOGICAL_PREHISTORY.md). It does not commit to a fixed
 timestep, event algorithm, or other temporal representation.
+
+Tectonic episodes may eventually apply compositions of the reusable operations
+described in [Geological Geometry Operators](GEOLOGICAL_GEOMETRY_OPERATORS.md).
+For example, rifting can involve extension, faulting, subsidence, and possible
+intrusion, while collision can involve compression, folding, faulting, and
+uplift. These are causal compositions, not final algorithms or event categories.
 
 ## Boundary-relative motion
 

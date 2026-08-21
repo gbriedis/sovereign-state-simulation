@@ -68,6 +68,11 @@ establishes how those causes occupy physical space: geological truth is
 three-dimensional and history-bearing beneath the map-first interface, without
 committing to uniform voxels or a final geometry and refinement model.
 
+[Geological Geometry Operators](world-generation/GEOLOGICAL_GEOMETRY_OPERATORS.md)
+establishes how events change that inherited 3D state through a small,
+composable operator language. It preserves chronology and cross-cutting
+relationships without choosing a geometry engine or full volumetric physics.
+
 ## In scope
 
 - Land shape, regions, coastlines, and elevation

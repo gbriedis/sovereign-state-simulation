@@ -31,6 +31,24 @@ record) and remove it from this list.
 - Cache invalidation when canonical state or generator versions change
 - Which refined detail is persisted and which may be regenerated
 
+### Geological geometry operators
+
+- Final primitive operator set
+- Which candidate operators are true primitives and which are compositions
+- Mathematical representation of deformation
+- Parameterization of extension, compression, uplift, and subsidence
+- Fault-surface representation and associated displacement fields
+- Fold and warp representation
+- Generation of erosion and truncation surfaces
+- Representation of deposition and accommodation space
+- Generation of intrusion geometry
+- Geological-body split and merge behavior
+- Storage of chronology, inheritance, and cross-cutting relationships
+- Deterministic replay of operator sequences
+- Local refinement of previously applied operations
+- Interaction between overlapping or concurrent geological events
+- Performance implications of event-driven 3D geometry changes
+
 ## Natural-world generation
 
 - Terrain-generation algorithms
