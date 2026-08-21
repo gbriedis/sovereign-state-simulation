@@ -97,6 +97,10 @@ The plate layer should produce causes and history, not directly generate every
 later physical feature. This note does not define continents, landforms, rivers,
 soils, resources, political areas, or human systems.
 
+Plate state and motion participate in the generated timeline described in
+[Geological Prehistory](GEOLOGICAL_PREHISTORY.md). How plate motion changes over
+that time remains unresolved.
+
 ## Minimal Rust-facing model
 
 The following types express the minimum domain vocabulary currently implied by

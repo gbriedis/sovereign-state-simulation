@@ -1,6 +1,6 @@
 # Current State and Handoff
 
-- **Snapshot date:** 2026-08-21
+- **Snapshot date:** 2026-08-22
 - **Project phase:** Natural-world foundation (`0.0.1`–`0.1.0`)
 - **Immediate milestone:** Prototype v0.1
 - **Implementation status:** No source code or completed implementation is
@@ -30,6 +30,12 @@
   persistent tectonic structures and geological provinces rather than final
   terrain. Tectonics creates structures; time and later surface processes shape
   the landscape eventually seen.
+- Physical-world generation is a geological prehistory simulation. Events act on
+  inherited state across coarse geological time, and the accumulated result
+  becomes the starting physical world when the civilization era begins.
+- A compact history of important geological events and periods persists after
+  generation. Geological age records when formation or change occurred rather
+  than serving as decorative metadata.
 - Spatial detail is lazy, chunked, and proportional to attention.
 - Singleplayer and eventual multiplayer share one authority model.
 - The eventual multiplayer server is authoritative.
@@ -41,10 +47,11 @@ Implement the scoped map prototype in
 not a final commitment.
 
 The accepted physical-world conceptual chain is currently documented in
-`../world-generation/TECTONIC_PLATES.md` and
-`../world-generation/TECTONIC_STRUCTURES_AND_PROVINCES.md`. Both define domain
-intent and illustrative Rust-facing vocabulary only; their algorithms,
-taxonomies, and representations remain open.
+`../world-generation/GEOLOGICAL_PREHISTORY.md`,
+`../world-generation/TECTONIC_PLATES.md`, and
+`../world-generation/TECTONIC_STRUCTURES_AND_PROVINCES.md`. These define domain
+intent and illustrative Rust-facing vocabulary only; temporal representation,
+algorithms, taxonomies, and storage remain open.
 
 ## Important boundaries
 
@@ -56,6 +63,8 @@ taxonomies, and representations remain open.
   hydrology, soils, resources, political areas, or human systems.
 - Do not treat tectonic structures or geological provinces as final terrain, and
   do not extend them into continents or later surface systems yet.
+- Do not extend geological prehistory into a final event taxonomy or any
+  geological, surface, resource, continent, political, or human algorithm.
 
 ## Recommended next actions
 

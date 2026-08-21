@@ -9,6 +9,12 @@
 Create the coherent physical foundation that every later political, economic,
 social, and infrastructure system must respect.
 
+World generation is a simulation of
+[Geological Prehistory](world-generation/GEOLOGICAL_PREHISTORY.md). Its
+accumulated output becomes the initial physical state of the eventual playable
+civilization era. Geological time is coarse and meaningful rather than one tick
+per year, and its exact representation remains open.
+
 ## Causal generation model
 
 Natural layers must not be generated as independent decorative noise. Each layer
