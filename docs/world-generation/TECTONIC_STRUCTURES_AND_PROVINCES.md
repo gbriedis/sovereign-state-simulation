@@ -71,8 +71,7 @@ recognized by the design include:
 - continental rifts;
 - mid-ocean ridges;
 - transform fault zones;
-- sedimentary basins;
-- stable cratons and ancient continental interiors.
+- sedimentary basins.
 
 This list preserves known concepts, not a final or exhaustive taxonomy. A
 structure may reflect more than one interaction or geological episode, and not
@@ -89,6 +88,11 @@ Provinces may preserve evidence of active boundaries, past boundaries, stable
 interiors, or several overprinting episodes. Their history may later influence
 rock character and broad elevation tendencies while remaining distinct from the
 terrain ultimately visible at the surface.
+
+Cratons are examples of stable lithospheric and geological provinces. Shields
+are the exposed regions of their ancient crystalline interiors. They belong to
+the province and accumulated-history concept, not to the tectonic-structure
+example list above.
 
 Geological provinces may later contribute to continent formation. This note does
 not define, identify, or generate continents.
@@ -121,7 +125,6 @@ enum TectonicOrigin {
     Convergent(ConvergentOutcome),
     Divergent,
     Transform,
-    StableInterior,
     MultiStage,
 }
 
