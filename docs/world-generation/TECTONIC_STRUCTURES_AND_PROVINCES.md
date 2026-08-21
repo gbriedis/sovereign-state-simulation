@@ -39,8 +39,9 @@ planet
 → present-day terrain
 ```
 
-This is a dependency model, not a commitment to a time-stepped geological
-simulation or a particular generation algorithm.
+This dependency model operates within the generated timeline described in
+[Geological Prehistory](GEOLOGICAL_PREHISTORY.md). It does not commit to a fixed
+timestep, event algorithm, or other temporal representation.
 
 ## Boundary-relative motion
 

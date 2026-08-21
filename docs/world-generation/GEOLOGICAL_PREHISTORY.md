@@ -1,0 +1,127 @@
+# Geological Prehistory
+
+- **Status:** Accepted temporal direction; representation unresolved
+- **Scope:** Physical-world generation before the playable era
+- **Last reviewed:** 2026-08-22
+
+## Core decision
+
+> **The physical world has a generated geological timeline. The present-day
+> world is the accumulated result of that history. Civilization begins only
+> after geological world generation reaches the designated playable era.**
+
+World generation is a simulation whose output becomes the starting map and
+physical state of the playable civilization simulation. It is not a sequence of
+independent generators that paint unrelated final layers.
+
+The causal framing is:
+
+```text
+initial planetary / lithospheric state
+→ geological time begins
+→ tectonic and geological events occur
+→ world state changes
+→ later events act on inherited state
+→ accumulated geological history
+→ present-day physical world
+→ civilization begins
+```
+
+## Geological time
+
+Generation may cover hundreds of millions of years, but it does not simulate
+every individual year or perform hundreds of millions of ticks. Geological time
+advances through meaningful events, epochs, suitably coarse intervals, or some
+combination of these.
+
+The exact time representation, total duration, year numbering, and date of the
+playable era remain unresolved. Any candidate duration is illustrative until a
+decision is recorded.
+
+## Prehistory and play
+
+- **Geological prehistory** is generated before play and establishes the
+  inherited physical world.
+- **Civilization and human simulation** belong to the eventual playable era and
+  begin only after the designated end of geological generation.
+
+This boundary does not require geological processes to become irrelevant during
+play. It defines which history is generated to create the initial world; the
+behavior of geology during the playable era is not decided here.
+
+## Persistent geological history
+
+Generation must not discard all history after calculating the final physical
+state. The world retains a compact record of important events and periods rather
+than every timestep.
+
+A region or geological body may eventually preserve a history resembling:
+
+```text
+crust formed
+→ rifting
+→ marine sedimentation
+→ subduction-related magmatism
+→ continental collision
+→ metamorphism
+→ erosion
+→ renewed sedimentation
+→ glaciation
+```
+
+This sequence is illustrative only. It does not establish the final geological-
+event vocabulary or require every world to contain these events.
+
+The purpose of retained history is causal reuse. Later systems should be able to
+ask which processes and sequences affected a region instead of relying on
+unrelated random placement. For example, future resource logic may need evidence
+of past heat, fluids, faults, burial, magmatism, sedimentation, or metamorphism.
+This note does not design resource generation.
+
+## Age is causal
+
+Geological age refers to when something formed or changed during generated
+prehistory. It is not decorative random metadata.
+
+Concepts that may carry causal age include:
+
+- lithosphere formation or modification;
+- rock-body formation;
+- tectonic events;
+- sedimentary deposition periods;
+- metamorphic events.
+
+The exact age model and the objects that store age remain unresolved.
+
+## Minimal Rust-facing vocabulary
+
+The following types illustrate only the minimum temporal concepts. They are not
+accepted schemas, storage layouts, or a final event model.
+
+```rust
+struct GeologicalEvent {
+    start_age: GeologicalAge,
+    end_age: GeologicalAge,
+    affected_region: RegionRef,
+    process: GeologicalProcess,
+}
+
+struct GeologicalHistory {
+    events: Vec<GeologicalEvent>,
+}
+```
+
+`GeologicalAge`, `RegionRef`, and `GeologicalProcess` are intentionally
+undefined. In particular, `GeologicalProcess` must not become a final enum until
+the event vocabulary is deliberately designed.
+
+## Scope boundary
+
+This note accepts the temporal architecture of world generation and nothing
+more. It does not define:
+
+- the geological-event taxonomy;
+- plate-motion or geological-process algorithms;
+- rock, mineral, erosion, sedimentation, volcanism, or resource systems;
+- hydrology, climate, soils, or ecosystems;
+- continents, political territories, civilization, or human systems.

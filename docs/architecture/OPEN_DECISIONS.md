@@ -30,8 +30,7 @@ record) and remove it from this list.
 - Whether boundary interaction is stored, derived from relative motion and plate
   properties, or represented by a combination of both
 - How interactions vary along a shared boundary and weaken into plate interiors
-- Whether generation produces only a present-day state, a compact geological
-  history, or any time-stepped plate motion
+- How plate motion and plate properties change through geological time
 - Calibration and validation criteria for deciding whether the abstraction is
   sufficiently coherent for later geology
 
@@ -52,6 +51,22 @@ record) and remove it from this list.
 - How later modification preserves, weakens, or obscures tectonic inheritance
 - Elevation, erosion, sedimentation, weathering, glaciation, volcanism, and
   rock-generation algorithms
+
+### Geological prehistory
+
+- Fixed-timestep, event-driven, or hybrid temporal representation
+- Whether and how timestep size varies across geological time and processes
+- Analytical long-duration processing versus iterative simulation
+- How plate motion changes through time
+- How geological events begin, evolve, and end
+- Geological-event representation and final process vocabulary
+- Amount and granularity of historical detail retained after generation
+- Generator performance and scaling strategy
+- Total generated geological duration
+- Geological year or age numbering
+- Mapping between geological age and the eventual civilization calendar and
+  playable-era date
+- Storage and query model for compact regional and geological-body histories
 
 ## Territory allocation
 
