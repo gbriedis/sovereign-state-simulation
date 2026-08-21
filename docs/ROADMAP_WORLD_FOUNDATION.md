@@ -1,0 +1,40 @@
+# World-Foundation Roadmap
+
+- **Version range:** `0.0.1`–`0.1.0`
+- **Status:** Current phase
+- **Theme:** The world before human civilization
+
+## Purpose
+
+Create the coherent physical foundation that every later political, economic,
+social, and infrastructure system must respect.
+
+## In scope
+
+- Land shape, regions, coastlines, and elevation
+- Bedrock, geology, and parent materials
+- Soils and their practical properties
+- Rivers, lakes, groundwater, wetlands, and drainage
+- Temperature, rainfall, wind, seasonality, and other climate properties
+- Forests, grasslands, vegetation, and ecosystems
+- Minerals and other natural resources
+- Natural energy potential
+- Flooding, erosion, landslides, and related hazards
+- Engineering conditions such as bearing capacity and drainage
+- Harbour and infrastructure suitability
+
+## Definition of complete
+
+Version `0.1.0` is complete when the land exists as a coherent natural system,
+even if humanity never appears, and local conditions can be explained through
+underlying physical causes.
+
+## Out of scope for this phase
+
+- Human civilization, settlements, politics, and economies
+- Detailed technology, industry, military, and trade systems
+- Final multiplayer architecture
+- Web3 mechanics
+- A comprehensive game design document
+- Simulation of every aspect of Earth science
+- Arbitrary progression systems for future content
