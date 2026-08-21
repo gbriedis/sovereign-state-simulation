@@ -19,6 +19,23 @@ properties instead of labels such as “Level 5.”
 
 Where practical, advanced systems should emerge from underlying causes.
 
+The nation itself is the progression display. Change should be legible through
+real capabilities and outcomes over time, not through an external ruler level,
+industry tier, or experience-point track.
+
+## Prefer meaningful measurements
+
+When reality already provides an understandable and useful measurement, use it
+instead of inventing a game abstraction.
+
+A police station is better described by officer count, vehicle availability,
+budget, response time, and clearance rate than by “Level 4.” A road is better
+described by construction, surface, capacity, condition, maintenance, terrain,
+and drainage than by “Road Quality 7.”
+
+Not every real measurement deserves simulation. Include measurements that create
+meaningful causes, constraints, choices, or feedback for governing the nation.
+
 ## Spatial presence
 
 The map is the primary game surface. Player-facing systems should reinforce the
@@ -30,6 +47,10 @@ dashboard.
 People, companies, institutions, and major actors have their own incentives and
 constraints. Player intent influences them but does not directly determine every
 outcome.
+
+Major actors may initiate development, accumulate power, and pursue their own
+strategies. The ruler governs their activity through sovereign tools and
+negotiation rather than manually originating every investment or institution.
 
 ## Technical design laws
 
