@@ -26,6 +26,10 @@
   represent moving lithosphere and provide broad physical properties, crustal
   character, and boundary interactions without attempting mantle convection,
   planetary accretion, or full geophysics.
+- Boundary-relative motion produces tectonic interactions, which create
+  persistent tectonic structures and geological provinces rather than final
+  terrain. Tectonics creates structures; time and later surface processes shape
+  the landscape eventually seen.
 - Spatial detail is lazy, chunked, and proportional to attention.
 - Singleplayer and eventual multiplayer share one authority model.
 - The eventual multiplayer server is authoritative.
@@ -36,10 +40,11 @@ Implement the scoped map prototype in
 `../architecture/PROTOTYPE_V0.1.md`. The 500 m cell size is a measurement target,
 not a final commitment.
 
-The first physical-layer design note is
-`../world-generation/TECTONIC_PLATES.md`. It defines domain intent and an
-illustrative Rust-facing vocabulary only; its algorithms and representations
-remain open.
+The accepted physical-world conceptual chain is currently documented in
+`../world-generation/TECTONIC_PLATES.md` and
+`../world-generation/TECTONIC_STRUCTURES_AND_PROVINCES.md`. Both define domain
+intent and illustrative Rust-facing vocabulary only; their algorithms,
+taxonomies, and representations remain open.
 
 ## Important boundaries
 
@@ -49,6 +54,8 @@ remain open.
 - Do not let optional Web3 ideas shape foundational simulation design.
 - Do not extend the tectonic-plate note into downstream geology, landforms,
   hydrology, soils, resources, political areas, or human systems.
+- Do not treat tectonic structures or geological provinces as final terrain, and
+  do not extend them into continents or later surface systems yet.
 
 ## Recommended next actions
 

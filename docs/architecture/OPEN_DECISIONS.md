@@ -35,6 +35,24 @@ record) and remove it from this list.
 - Calibration and validation criteria for deciding whether the abstraction is
   sufficiently coherent for later geology
 
+### Tectonic structures and geological provinces
+
+- Final taxonomy of tectonic structures and provinces
+- Rules that derive collision, subduction, divergence, transform-dominated, and
+  oblique interactions from relative plate motion and plate properties
+- Representation of changing and mixed interaction along one boundary
+- Storage layout and precise geometry representation for structures and provinces
+- Whether structures and provinces overlap, nest, merge, or record multiple
+  overprinting geological episodes
+- Relationship between boundary interactions, structures, province identity, and
+  accumulated geological history
+- Representation of geological age and time without committing to a full
+  time-stepped simulation
+- Meaning, units, and calibration of broad physical and elevation tendencies
+- How later modification preserves, weakens, or obscures tectonic inheritance
+- Elevation, erosion, sedimentation, weathering, glaciation, volcanism, and
+  rock-generation algorithms
+
 ## Territory allocation
 
 - Territory-slot count and capacity
