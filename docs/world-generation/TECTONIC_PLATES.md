@@ -42,6 +42,12 @@ These properties describe broad tendencies. They do not imply that every point
 on a plate is identical or that the final model must store each property as one
 uniform scalar. The required spatial variation remains unresolved.
 
+Under the [Earth-Like Physical Framework](EARTH_LIKE_PHYSICAL_FRAMEWORK.md),
+density, buoyancy, effective thickness, and crust classification should be
+derived from physical causes and history wherever practical. Their appearance in
+the illustrative vocabulary below means they are available domain quantities,
+not necessarily independently generated or permanently stored fields.
+
 ## Interactions
 
 Relative motion matters more than a plate's motion in isolation. Where plates

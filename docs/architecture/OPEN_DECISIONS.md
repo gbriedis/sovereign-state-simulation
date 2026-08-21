@@ -18,13 +18,25 @@ record) and remove it from this list.
 - Terrain-generation algorithms
 - Exact river and drainage model
 
+### Earth-like physical framework
+
+- Exact standard Earth reference values, precision, and units used by the
+  versioned ruleset
+- Minimum mantle reference conditions required by the lithosphere abstraction
+- Whether a surface-pressure datum is required before later atmospheric work
+- Minimum water and volatile reference assumptions required by current geology
+- Equations and approximations used to derive pressure, density, buoyancy,
+  melting tendency, strength, rheology, and effective lithosphere thickness
+- Which derived values are calculated on demand, cached, summarized, or persisted
+- Criteria for deriving continental-like and oceanic-like crust classifications
+
 ### Tectonic plate layer
 
 - Plate-count and plate-size distributions
 - Planar, spherical, or projected representation of plate geometry
 - Representation of plate shapes, shared boundaries, and topology
-- Whether crust type remains categorical or supports mixed/spatially varying
-  composition
+- Representation of generated crust composition and spatial variation from which
+  continental-like or oceanic-like classifications may be derived
 - Representation and units for lithospheric age, thickness, speed, density, and
   buoyancy
 - Whether boundary interaction is stored, derived from relative motion and plate
