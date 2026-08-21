@@ -18,6 +18,22 @@ record) and remove it from this list.
 - Terrain-generation algorithms
 - Exact river and drainage model
 
+### Tectonic plate layer
+
+- Plate-count and plate-size distributions
+- Planar, spherical, or projected representation of plate geometry
+- Representation of plate shapes, shared boundaries, and topology
+- Whether crust type remains categorical or supports mixed/spatially varying
+  composition
+- Representation and units for age, thickness, speed, density, and buoyancy
+- Whether boundary interaction is stored, derived from relative motion and plate
+  properties, or represented by a combination of both
+- How interactions vary along a shared boundary and weaken into plate interiors
+- Whether generation produces only a present-day state, a compact geological
+  history, or any time-stepped plate motion
+- Calibration and validation criteria for deciding whether the abstraction is
+  sufficiently coherent for later geology
+
 ## Territory allocation
 
 - Territory-slot count and capacity
