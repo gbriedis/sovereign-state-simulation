@@ -23,8 +23,9 @@
 - Physical layers are generated causally rather than independently; political
   territories reference physical space instead of owning its cells.
 - Tectonic plates are the earliest useful physical-world abstraction. They
-  provide broad crustal properties, motion, and boundary interactions without
-  attempting mantle convection, planetary accretion, or full geophysics.
+  represent moving lithosphere and provide broad physical properties, crustal
+  character, and boundary interactions without attempting mantle convection,
+  planetary accretion, or full geophysics.
 - Spatial detail is lazy, chunked, and proportional to attention.
 - Singleplayer and eventual multiplayer share one authority model.
 - The eventual multiplayer server is authoritative.

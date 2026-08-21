@@ -7,13 +7,14 @@
 ## Purpose
 
 Tectonic plates provide the earliest useful physical history for world
-generation. They divide the world's crust into large, coherent moving regions
-whose properties and interactions can later explain broad geological structure.
+generation. They divide the world's lithosphere into large, coherent moving
+regions whose properties and interactions can later explain broad geological
+structure.
 
 A plate is not merely a visual polygon. It represents a connected section of
-crust with a shared broad motion and physical character. Its shape, material
-tendency, and relationship to neighbouring plates supply causes from which later
-geology may be derived.
+lithosphere—the crust and rigid uppermost mantle—with a shared broad motion and
+physical character. Its shape, material tendency, and relationship to
+neighbouring plates supply causes from which later geology may be derived.
 
 This is a reality-first abstraction, not a full geophysics simulation. The game
 does **not** simulate mantle convection, planetary accretion, or the complete
@@ -32,10 +33,10 @@ Each plate likely needs the following meaningful properties:
   defined reference frame.
 - **Motion speed** — the magnitude of that movement in a real or clearly mapped
   unit.
-- **Age and thickness** — enough crustal history to distinguish younger, thinner
-  material from older or thicker material where that difference matters.
+- **Age and thickness** — enough lithospheric history to distinguish younger,
+  thinner material from older or thicker material where that difference matters.
 - **Density or buoyancy tendency** — a practical indication of how readily the
-  plate tends to ride above or descend beneath neighbouring crust.
+  plate tends to ride above or descend beneath neighbouring lithosphere.
 
 These properties describe broad tendencies. They do not imply that every point
 on a plate is identical or that the final model must store each property as one
@@ -44,14 +45,14 @@ uniform scalar. The required spatial variation remains unresolved.
 ## Interactions
 
 Relative motion matters more than a plate's motion in isolation. Where plates
-meet, their directions, speeds, crustal character, age, thickness, and buoyancy
-tendency create different geological histories.
+meet, their directions, speeds, lithospheric and crustal character, age,
+thickness, and buoyancy tendency create different geological histories.
 
 ### Collision
 
-Plates moving toward one another compress crust. The interaction must be able to
-distinguish broad collision behavior from other boundary behavior and retain
-which plates participate and how strongly they converge.
+Plates moving toward one another compress and deform lithosphere. The interaction
+must be able to distinguish broad collision behavior from other boundary
+behavior and retain which plates participate and how strongly they converge.
 
 ### Subduction
 
@@ -87,8 +88,8 @@ that variation is an open decision.
 The tectonic layer should preserve enough information for later geological work
 to answer questions such as:
 
-- Which crustal regions share a broad origin and motion?
-- Where has crust broadly converged, separated, or moved laterally?
+- Which lithospheric regions share a broad origin and motion?
+- Where has lithosphere broadly converged, separated, or moved laterally?
 - Which side of a convergent boundary tends toward subduction, and why?
 - Which regions are close to active boundaries and which lie in stable interiors?
 
@@ -108,8 +109,9 @@ struct TectonicPlate {
     shape: PlateShape,
     crust: CrustType,
     motion: PlateMotion,
-    age: CrustAge,
-    thickness: CrustThickness,
+    age: LithosphereAge,
+    thickness: LithosphereThickness,
+    density: Density,
     buoyancy: BuoyancyTendency,
 }
 
