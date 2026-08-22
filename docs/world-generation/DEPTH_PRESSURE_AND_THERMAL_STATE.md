@@ -282,6 +282,8 @@ material moves
 ↓
 conserved thermal content is remapped consistently
 ↓
+modeled mechanical work and other energy exchanges are applied where relevant
+↓
 temperature is reconstructed from thermal content + material state
 ↓
 thermal relaxation in the new configuration
@@ -289,8 +291,10 @@ thermal relaxation in the new configuration
 
 Isostatic, flexural, and other broad vertical deformation follows this same
 contract: affected 3D material and conserved thermal content remap together;
-temperature is then reconstructed in the changed material state before thermal
-relaxation continues. The deformation representation remains outside this note.
+non-rigid deformation may then exchange mechanical and internal or thermal
+energy through explicitly modeled work before temperature is reconstructed and
+thermal relaxation continues. The deformation and work representations remain
+outside this note.
 
 Literal temperature values therefore need not be copied unchanged with displaced
 material. Materials with different density or heat capacity can store different
@@ -302,10 +306,11 @@ treatment remain unresolved.
 
 > **Thermal remapping and refinement must conserve total energy except for
 > explicitly modeled energy sources, sinks, or transport across the chosen
-> control-volume boundary. Phase transformations may exchange sensible and
-> latent energy internally but do not create or destroy total energy.**
+> control-volume boundary. Phase transformations and mechanical work may
+> exchange energy between represented forms but do not create or destroy total
+> energy.**
 
-These are three distinct parts of thermal accounting:
+These are four distinct parts of coupled energy accounting:
 
 ```text
 radiogenic decay
@@ -317,6 +322,10 @@ boundary heat flux / advection
 phase transition
 → energy changes internal form
 → total energy remains conserved
+
+compression / expansion / friction
+→ mechanical work exchanges energy with internal or thermal state
+→ total coupled energy remains conserved
 ```
 
 Source and sink terms add or remove energy within the selected control volume.
@@ -337,6 +346,13 @@ remain internally energy-conserving. This establishes the accounting principle,
 not an enthalpy implementation, latent-heat equation, phase-transition
 algorithm, control-volume discretization, numerical conservation scheme, or
 continuously coupled thermo-mechanical solver.
+
+Non-rigid deformation may also perform mechanical work on material or allow
+material to perform work. Compression, expansion, inelastic deformation, and
+fault friction may therefore change internal or thermal energy without acting as
+unaccounted sources or sinks. A future approximation may neglect a work term
+only when the promised canonical accuracy permits it. The work calculation,
+constitutive behavior, and coupling fidelity remain unresolved.
 
 ## Feedback and numerical evaluation
 

@@ -181,8 +181,12 @@ architectural requirement, not a selected thermodynamic variable, conservation
 scheme, or commitment to continuous thermo-mechanical coupling.
 
 Broad vertical deformation follows this same thermal-remapping contract:
-material and conserved thermal content transform together before temperature is
-reconstructed and thermal relaxation continues.
+material and conserved thermal content transform together; modeled mechanical
+work updates internal or thermal state where relevant before temperature is
+reconstructed and thermal relaxation continues. Compression, expansion,
+inelastic deformation, and friction may exchange mechanical and internal energy
+without creating or destroying total coupled energy. Exact work terms,
+constitutive behavior, and coupling fidelity remain open.
 
 ## Representation independence
 

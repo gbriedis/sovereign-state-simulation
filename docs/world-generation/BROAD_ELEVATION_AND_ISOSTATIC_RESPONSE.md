@@ -253,12 +253,18 @@ remapping contract:
 ↓
 material and conserved thermal content remap together
 ↓
+modeled mechanical work updates internal / thermal state where relevant
+↓
 temperature reconstructed in changed material state
 ↓
 thermal relaxation continues
 ```
 
-The thermodynamic details remain in
+Rigid or near-rigid displacement may require little work coupling, while
+compaction, distributed strain, compression, expansion, or friction may exchange
+mechanical and internal energy. Such exchange must participate in total-energy
+accounting when it matters to canonical truth; it is not an untracked thermal
+source or sink. The thermodynamic details remain in
 [Depth, Pressure, and Thermal State](DEPTH_PRESSURE_AND_THERMAL_STATE.md); this
 note does not select them.
 

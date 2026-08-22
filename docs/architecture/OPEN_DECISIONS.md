@@ -129,6 +129,10 @@ record) and remove it from this list.
 - Treatment of latent heat in future phase changes
 - Strategy for combining background state and overlapping thermal anomalies
 - Thermal-state mapping during geometric deformation
+- Mechanical-work exchange with internal or thermal state during compression,
+  expansion, compaction, inelastic deformation, and fault friction
+- Criteria for neglecting deformation-work heating or cooling at a promised
+  canonical accuracy level
 - Local versus broader regional recomputation after major events
 - Numerical stability across long geological intervals
 
@@ -159,6 +163,7 @@ record) and remove it from this list.
 - Mapping of fault and contact geometry
 - Treatment of compaction versus volume-preserving deformation
 - Remapping of material properties and thermal content
+- Mechanical-work and total-energy accounting during non-rigid broad response
 - Coarse/fine deformation-boundary compatibility
 - Deformation of partially resolved regions
 - Interaction between broad vertical response and later local refinement
