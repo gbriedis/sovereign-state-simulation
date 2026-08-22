@@ -2,16 +2,21 @@
 
 - **Status:** Accepted
 - **Date:** 2026-08-22
-- **Decision owner:** World Generation Lead
+- **Decision owner:** Product Owner
 - **DRI:** WG-002 specification DRI
 - **Scope:** Level 0 world-generation meaning and downstream boundary conditions
 - **Art / Technical Art impact:** Consulted
-- **Consulted:** Systems Architecture; Art & Technical Art
-- **Informed:** Product Owner; Project Steward; Bevy Client; Marketing
+- **Consulted:** World Generation; Systems Architecture; Art & Technical Art
+- **Informed:** Project Steward; Bevy Client; Marketing
 - **Supersedes:** None
 - **Related work:** `WG-002`
 
 ## Context
+
+The Product Owner accepted the Level 0 Earth-like planetary-contract direction
+in the WG-002 brief on 2026-08-22. This record preserves that product boundary;
+World Generation owns its physical and semantic interpretation but does not own
+the decision to expand world-creation variation beyond one fixed baseline.
 
 The existing Earth-like physical framework fixed the minimal context needed by
 geological prehistory but did not distinguish invariant physical rules from
@@ -39,6 +44,7 @@ which parameters remain permanently fixed are unresolved.
 
 | Team or lane | Route | Required action or consequence |
 | --- | --- | --- |
+| Product Owner | Action required | Accepted the Level 0 product boundary in the WG-002 brief on 2026-08-22. |
 | World Generation | Action required | Own causal meaning, limits, and later domain specifications. |
 | Systems Architecture | Consulted | Confirm the contract remains an upstream input rather than an outcome generator. |
 | World Core | Action required | Acknowledge that a later versioned input contract is implementable without deriving outcomes directly; implementation remains separately scoped. |

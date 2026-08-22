@@ -138,8 +138,7 @@ future server may expose causal tendencies such as:
 
 - drier / baseline / wetter water inventory;
 - cooler / baseline / warmer internal thermal tendency;
-- mild / baseline / stronger seasonal forcing tendency;
-- maritime / baseline / continental-scale tendency.
+- mild / baseline / stronger seasonal forcing tendency.
 
 These are illustrative directions, not accepted settings, ranges, or guaranteed
 outcomes. A named tendency must map to underlying causes rather than directly

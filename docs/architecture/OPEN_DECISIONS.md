@@ -192,6 +192,23 @@ question here. Preserve the decision's rationale and consequences in the ADR.
 - Which derived values are calculated on demand, cached, summarized, or persisted
 - Criteria for deriving continental-like and oceanic-like crust classifications
 
+### Earth-like planetary contract
+
+- Exact supported Earth-like parameter ranges and correlations
+- Stellar profile or type abstraction needed for incoming-energy queries
+- Supported orbital variation and whether orbital cycles participate in
+  geological prehistory
+- Supported rotation-rate and axial-tilt variation
+- Total water-inventory range and representation
+- Volatile-inventory representation
+- Starting atmospheric-potential abstraction
+- Planetary parameters that remain permanently fixed rather than profile-driven
+- Server profile selection, voting, or other future customization model
+- Versioning and serialization of the selected planetary profile
+- Starting geological epoch and its compatible initial state
+- Whether slow stellar evolution participates in geological prehistory
+- Propagation of planetary-contract causes into a future climate model
+
 ### Tectonic plate layer
 
 - Plate-count and plate-size distributions
