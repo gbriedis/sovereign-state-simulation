@@ -57,8 +57,9 @@ coordinator card's resume procedure.
 
 ## Explicit Git operations
 
-Do not stage or commit automatically. Only when the current user explicitly asks
-for Git inspection, staging, or a local commit, read
+Do not stage, commit, reconcile, or push automatically. Only when the current
+user explicitly asks for Git inspection, staging, a local commit, publication,
+or branch reconciliation, read
 `docs/governance/roles/REPOSITORY_GIT_STEWARD.md` and invoke a separate worker
 through that card's exact role envelope. A request to finish, finalize, or make
 work ready is not Git authorization.
@@ -73,6 +74,20 @@ reset exactly to `idle`. Pass the accepted manifest path and ID so the steward
 can verify worktree, index, commit, and post-commit state. The steward never
 replaces the developer, reviewer, or coordinator and must never be invoked
 merely because a workflow completed.
+
+A push assignment must identify one exact remote name, secret-safe URL and URL
+fingerprint, local branch,
+remote branch, expected local commit, expected remote commit, and normal
+non-force refspec. The steward may fetch only that target ref for preflight. It
+must not push when the local branch is behind, diverged, or unrelated. Diverged
+governed histories use a deterministic Git-private assessment packet. The
+developer integrates content, the reviewer accepts the exact manifest and tree,
+and only then may the steward record that tree as one two-parent commit with the
+packet's local parent first and remote parent second. The steward never merges,
+resolves, or self-approves content. Publication remains a fresh separate action.
+Before any fetch, remote query, or push, the steward must pass the deterministic
+pre-transport check defined by its role card; validating after transport is too
+late.
 
 ## Ordinary implementation and analysis
 

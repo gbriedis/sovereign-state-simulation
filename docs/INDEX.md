@@ -4,7 +4,7 @@ type: document-index
 status: accepted
 scope: Active repository documents
 authority: Owns the inventory and routing of active project documentation
-last_reviewed: 2026-08-22
+last_reviewed: 2026-08-23
 ---
 
 # Document Index
@@ -66,4 +66,4 @@ governs how agents add and revise concepts.
 | `AGENT-COORDINATOR` | [Knowledge Workflow Coordinator](governance/roles/KNOWLEDGE_WORKFLOW_COORDINATOR.md) | Fresh-task activation, orchestration, persistence, and final handoff |
 | `AGENT-DEVELOPER` | [Systems Knowledge Developer](governance/roles/SYSTEMS_KNOWLEDGE_DEVELOPER.md) | Material knowledge development and revision |
 | `AGENT-REVIEWER` | [Systems Coherence Reviewer](governance/roles/SYSTEMS_COHERENCE_REVIEWER.md) | Independent read-only coherence review |
-| `AGENT-GIT-STEWARD` | [Repository Git Steward](governance/roles/REPOSITORY_GIT_STEWARD.md) | User-authorized safe staging and local commit execution |
+| `AGENT-GIT-STEWARD` | [Repository Git Steward](governance/roles/REPOSITORY_GIT_STEWARD.md) | User-authorized repository inspection, exact staging and local commits, reviewed reconciliation recording, and non-force publication |

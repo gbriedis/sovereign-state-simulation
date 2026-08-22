@@ -139,12 +139,46 @@ including its expected idle checkpoint. Any byte, path, mode, addition, or
 deletion change invalidates it. The coordinator may only record the accepted
 outcome, materialize the manifest's exact idle checkpoint, and run validation.
 
-If the current user also explicitly requested staging or a local commit, invoke
-the [Repository Git Steward](REPOSITORY_GIT_STEWARD.md) only after the exact idle
+If the current user explicitly requested staging or a local commit, invoke the
+[Repository Git Steward](REPOSITORY_GIT_STEWARD.md) only after the exact idle
 reset and final validation. Supply the user's authorization, exact authorized
 paths, workflow ID, accepted manifest path, and accepted manifest ID in the
-steward envelope. Do not invoke it for ordinary completion, and do
-not treat a steward commit as knowledge approval.
+steward envelope. Do not invoke it for ordinary completion, and do not treat a
+steward commit as knowledge approval.
+
+If the current user explicitly requested a push, use a separate `push` steward
+assignment after the authorized commit exists. Supply the exact remote name,
+secret-safe URL and its exact SHA-256 fingerprint, local and remote branches,
+full expected local and remote commits, and the
+single normal non-force branch refspec. The steward may fetch only that target
+ref as preflight. If the target is already an ancestor of the local commit, the
+steward may publish and must verify the remote result. If the local branch is
+behind, diverged, or unrelated, persist the complete `GIT_STEWARD_HANDOFF`; do
+not push or overwrite. Unrelated history is a distinct blocked topology.
+
+For related divergence, invoke the steward's read-only
+`assess-reconciliation` action. Verify the resulting assessment packet with
+`scripts/reconciliation-packet.ps1 -Action VerifyAssessment`, record its exact
+path and ID under **Input artifacts**, and include the complete packet in a new
+developer assignment. The packet under Git-private
+`codex/reconciliation-packets/` survives task boundaries but is not committed.
+
+During that workflow, require the developer to integrate both histories while
+HEAD remains the packet's local parent. The reviewer accepts the exact candidate
+manifest and schema-2 candidate tree; neither worker commits. On acceptance and
+before materializing idle state, invoke packet `BindCandidate`. It verifies the
+finalizing state, exact manifest and baseline, ordered parents, candidate tree,
+evidence, paths, and authorized merge message, then returns a new immutable
+reviewed-candidate packet.
+
+After the idle reset and final validation, invoke the steward's
+`record-reviewed-merge` action with that packet, the manifest, exact manifest
+paths, candidate tree, workflow ID, and the packet's exact safe remote URL and
+fingerprint. The steward may only record the accepted tree as one
+commit with the pre-reconciliation local parent first and exact fetched remote
+parent second. It cannot edit or resolve content. Verify the resulting commit
+against both packet and manifest. Then issue a fresh `push` assignment using the
+new merge commit and the packet remote parent; require `fast-forward-push`.
 
 ## Resume behavior in a fresh task
 
@@ -233,7 +267,9 @@ The manifest is transient Git metadata under
 `.git/codex/accepted-change-manifests/`; do not add it to the project. Its
 payload fingerprints additions, modifications, deletions, and move path-state
 as delete-plus-add, records raw worktree SHA-256 values, and records Git modes
-and blob IDs. It also contains the exact expected idle checkpoint bytes. The
+and blob IDs. Schema 2 also owns the exact candidate Git tree OID used by a
+reviewed reconciliation packet. It contains the exact expected idle checkpoint
+bytes. The
 temporary-index snapshot commands use a command-scoped empty hooks path and an
 isolated temporary object directory; they do not execute repository hooks or
 write objects into the real database. The reviewer verifies the review snapshot; the steward later verifies worktree,

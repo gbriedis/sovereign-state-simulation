@@ -14,8 +14,8 @@ review_outcome: none
 change_manifest_path: none
 change_manifest_id: none
 change_manifest_baseline: none
-last_completed_workflow_id: KW-20260822-002
-updated: 2026-08-22
+last_completed_workflow_id: KW-20260822-003
+updated: 2026-08-23
 last_reviewed: 2026-08-22
 ---
 
@@ -23,4 +23,4 @@ last_reviewed: 2026-08-22
 
 No material knowledge workflow is active.
 
-Last completed workflow: `KW-20260822-002`.
+Last completed workflow: `KW-20260822-003`.

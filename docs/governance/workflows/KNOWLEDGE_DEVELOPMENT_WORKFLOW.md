@@ -4,7 +4,7 @@ type: collaboration-protocol
 status: accepted
 scope: Development and independent review of durable project knowledge
 authority: Owns the two-role workflow used to create or materially change authoritative documentation
-last_reviewed: 2026-08-22
+last_reviewed: 2026-08-23
 ---
 
 # Knowledge Development Workflow
@@ -196,14 +196,60 @@ not in the committed project, and remains available after the checkpoint reset.
 If any accepted byte, Git mode, path, addition, deletion, or move state changes,
 the coordinator must create a new manifest and request another review.
 
+Manifest schema 2 also records the candidate Git tree OID. That identity is
+required when an accepted candidate will be recorded as a two-parent
+reconciliation commit.
+
 ## Git recording is separate
 
 The [Repository Git Steward](../roles/REPOSITORY_GIT_STEWARD.md) is not a third
-knowledge-development role and cannot approve documentation. Invoke it only when
-the current user explicitly requests staging or a local commit. For material
-knowledge, invocation occurs only after reviewer acceptance, the exact idle
-checkpoint reset, final validation, and a successful manifest worktree check.
-The coordinator passes the accepted manifest path and ID to the steward. The
-steward verifies the worktree before staging, the index after staging, the
-created commit, and the post-commit worktree. A hook-induced mismatch blocks
-success. Completing this workflow does not by itself authorize any Git mutation.
+knowledge-development role and cannot approve documentation. Invoke it only for
+the exact Git action explicitly authorized by the current user: inspection,
+staging, local commit, publication, or reconciliation. For material knowledge,
+invocation occurs only after reviewer acceptance, the exact idle checkpoint
+reset, final validation, and a successful manifest worktree check. The
+coordinator passes the accepted manifest path and ID to the steward. The steward
+verifies the worktree before staging, the index after staging, the created
+commit, and the post-commit worktree. A hook-induced mismatch blocks success.
+Before status inspection, manifest snapshotting, staging, reconciliation, or
+recording, the steward must also pass the executable Git-policy guard. The guard
+rejects inherited repository, worktree, common-directory, index, object,
+alternate-object, namespace, shallow, graft, replacement, discovery,
+configuration, and attribute routing before starting Git, including
+`GIT_ATTR_SOURCE`. After resolving effective configuration, it rejects every
+configured `attr.tree` value before attribute-sensitive work and verifies the
+resolved repository identity. An active filesystem monitor or selected custom
+clean/process filter also blocks the action before its command can execute;
+support requires a separately reviewed authorization contract.
+
+Publication is a separate `push` action with one exact secret-safe remote URL
+and fingerprint, local branch, remote branch, full expected local and remote
+commits, and normal non-force refspec. A deterministic pre-transport check must
+pass before fetch, remote query, or push. Its preflight may fetch only the target
+remote ref. It publishes only
+when the remote target is already an ancestor of the local commit and verifies
+the exact remote result afterward. Behind, divergent, and unrelated branches
+are not pushable.
+
+Related divergence begins with the steward's read-only assessment and a
+deterministic packet stored below Git-private
+`codex/reconciliation-packets/`. Its fingerprint covers exact ordered parents,
+topology, merge base, configuration-neutralized changed path states,
+conflict/governed paths, structurally detected accepted upstream knowledge, safe
+remote identity, isolated built-in-only merge policy, and merge-tree evidence.
+The verified packet
+becomes an input artifact of a new developer/reviewer workflow.
+
+The developer integrates both accepted histories while HEAD remains the exact
+local parent. The reviewer accepts an immutable manifest whose schema 2 owns the
+candidate Git tree OID. After acceptance, the coordinator binds that manifest,
+tree, workflow, authorized message, and assessment into a new immutable
+reviewed-candidate packet. After the idle reset, the steward stages only the
+manifest paths and records exactly that tree as one commit with local parent
+first and fetched remote parent second. It does not run a content merge, resolve
+conflicts, edit files, or approve knowledge.
+
+The two-parent commit is verified against the packet and manifest and is never
+pushed by the recording action. A fresh push assignment must classify the remote
+parent as an ancestor and use a normal fast-forward push. Completing a knowledge
+workflow alone authorizes no Git mutation or network publication.

@@ -18,6 +18,9 @@ $repositoryRootPath = if ([string]::IsNullOrWhiteSpace($RepositoryRoot)) {
 }
 $workflowStateRelativePath = 'docs/operations/KNOWLEDGE_WORKFLOW_STATE.md'
 $workflowStatePath = Join-Path $repositoryRootPath $workflowStateRelativePath
+$policyGuardScript = Join-Path $PSScriptRoot 'check-git-executable-policy.ps1'
+$emptyAttributesPath = Join-Path ([System.IO.Path]::GetTempPath()) ('codex-empty-attributes-' + [guid]::NewGuid().ToString('N'))
+[System.IO.File]::WriteAllText($emptyAttributesPath, '', [System.Text.UTF8Encoding]::new($false))
 
 function Invoke-GitText {
     param(
@@ -27,6 +30,7 @@ function Invoke-GitText {
     )
 
     $previousIndex = $env:GIT_INDEX_FILE
+    $previousAttrNoSystem = $env:GIT_ATTR_NOSYSTEM
     $stderrPath = Join-Path ([System.IO.Path]::GetTempPath()) ('codex-git-stderr-' + [guid]::NewGuid().ToString('N'))
     try {
         if ([string]::IsNullOrWhiteSpace($IndexFile)) {
@@ -37,6 +41,11 @@ function Invoke-GitText {
         $gitArguments = [System.Collections.Generic.List[string]]::new()
         $gitArguments.Add('-C')
         $gitArguments.Add($repositoryRootPath)
+        $gitArguments.Add('-c')
+        $gitArguments.Add('core.fsmonitor=false')
+        $gitArguments.Add('-c')
+        $gitArguments.Add("core.attributesFile=$emptyAttributesPath")
+        $env:GIT_ATTR_NOSYSTEM = '1'
         if (-not [string]::IsNullOrWhiteSpace($HooksPath)) {
             $gitArguments.Add('-c')
             $gitArguments.Add("core.hooksPath=$HooksPath")
@@ -56,7 +65,15 @@ function Invoke-GitText {
         } else {
             $env:GIT_INDEX_FILE = $previousIndex
         }
+        if ($null -eq $previousAttrNoSystem) { Remove-Item Env:GIT_ATTR_NOSYSTEM -ErrorAction SilentlyContinue } else { $env:GIT_ATTR_NOSYSTEM = $previousAttrNoSystem }
         Remove-Item -LiteralPath $stderrPath -Force -ErrorAction SilentlyContinue
+    }
+}
+
+function Assert-ExecutableGitPolicy {
+    $output = & pwsh -NoProfile -File $policyGuardScript -RepositoryRoot $repositoryRootPath 2>&1 | Out-String
+    if ($LASTEXITCODE -ne 0 -or $output -notmatch '(?m)^authorization_safe: yes\r?$') {
+        throw 'Executable Git policy is outside the accepted-change manifest authorization.'
     }
 }
 
@@ -156,11 +173,11 @@ function New-Snapshot {
     $previousAlternateObjectDirectories = $env:GIT_ALTERNATE_OBJECT_DIRECTORIES
     $temporaryHooksDirectory = $null
     try {
-        if ($Target -in @('Review', 'Worktree', 'Commit')) {
+        if ($Target -in @('Review', 'Worktree', 'Index', 'Commit')) {
             $temporaryHooksDirectory = Join-Path ([System.IO.Path]::GetTempPath()) ('codex-manifest-hooks-' + [guid]::NewGuid().ToString('N'))
             $null = New-Item -ItemType Directory -Path $temporaryHooksDirectory -Force
         }
-        if ($Target -in @('Review', 'Worktree')) {
+        if ($Target -in @('Review', 'Worktree', 'Index')) {
             $realObjectDirectory = (Invoke-GitText -Arguments @('rev-parse', '--path-format=absolute', '--git-path', 'objects') -IndexFile $null -HooksPath $temporaryHooksDirectory).Trim()
             $temporaryObjectDirectory = Join-Path ([System.IO.Path]::GetTempPath()) ('codex-manifest-objects-' + [guid]::NewGuid().ToString('N'))
             $null = New-Item -ItemType Directory -Path $temporaryObjectDirectory -Force
@@ -173,11 +190,17 @@ function New-Snapshot {
             $env:GIT_ALTERNATE_OBJECT_DIRECTORIES = [string]::Join([System.IO.Path]::PathSeparator, $alternateDirectories)
         }
 
-        if ($Target -in @('Review', 'Worktree', 'Commit')) {
+        if ($Target -in @('Review', 'Worktree', 'Index', 'Commit')) {
             $temporaryIndex = Join-Path ([System.IO.Path]::GetTempPath()) ('codex-manifest-index-' + [guid]::NewGuid().ToString('N'))
             $indexFile = $temporaryIndex
             if ($Target -eq 'Commit') {
                 $null = Invoke-GitText -Arguments @('read-tree', $TargetCommit) -IndexFile $indexFile -HooksPath $temporaryHooksDirectory
+            } elseif ($Target -eq 'Index') {
+                $realIndex = (Invoke-GitText -Arguments @('rev-parse', '--path-format=absolute', '--git-path', 'index') -IndexFile $null -HooksPath $temporaryHooksDirectory).Trim()
+                if (-not (Test-Path -LiteralPath $realIndex -PathType Leaf)) {
+                    throw 'VerifyIndex requires an existing real Git index.'
+                }
+                Copy-Item -LiteralPath $realIndex -Destination $temporaryIndex
             } else {
                 $null = Invoke-GitText -Arguments @('read-tree', $BaselineCommit) -IndexFile $indexFile -HooksPath $temporaryHooksDirectory
                 $null = Invoke-GitText -Arguments @('add', '-A', '--', '.') -IndexFile $indexFile -HooksPath $temporaryHooksDirectory
@@ -238,10 +261,20 @@ function New-Snapshot {
             })
         }
 
+        $candidateTreeOid = if ($Target -eq 'Commit') {
+            (Invoke-GitText -Arguments @('rev-parse', "$TargetCommit^{tree}") -IndexFile $null -HooksPath $temporaryHooksDirectory).Trim()
+        } else {
+            (Invoke-GitText -Arguments @('write-tree') -IndexFile $indexFile -HooksPath $temporaryHooksDirectory).Trim()
+        }
+        if ($candidateTreeOid -notmatch '^(?:[0-9a-f]{40}|[0-9a-f]{64})$') {
+            throw 'Git did not return a full candidate tree object ID.'
+        }
+
         $sortedEntries = @($entries | Sort-Object -Property path)
         $treeLines = @($sortedEntries | ForEach-Object { "$($_.status)`t$($_.path)`t$($_.mode)`t$($_.blob_oid)" })
         $rawLines = @($sortedEntries | ForEach-Object { "$($_.status)`t$($_.path)`t$($_.mode)`t$($_.blob_oid)`t$($_.worktree_sha256)" })
         return [ordered]@{
+            candidate_tree_oid = $candidateTreeOid
             tree_fingerprint = Get-Sha256Text -Text ([string]::Join("`n", $treeLines))
             worktree_fingerprint = if ($Target -in @('Review', 'Worktree')) { Get-Sha256Text -Text ([string]::Join("`n", $rawLines)) } else { 'not-applicable' }
             final_workflow_state_base64 = $idleStateBase64
@@ -289,8 +322,11 @@ function Read-VerifiedManifest {
     param([string]$Path)
 
     $document = Get-Content -Raw -LiteralPath $Path | ConvertFrom-Json
-    if ($document.schema_version -ne 1 -or [string]::IsNullOrWhiteSpace($document.manifest_id) -or $null -eq $document.payload) {
+    if ($document.schema_version -notin @(1, 2) -or [string]::IsNullOrWhiteSpace($document.manifest_id) -or $null -eq $document.payload) {
         throw 'Accepted-change manifest has an unsupported or incomplete schema.'
+    }
+    if ($document.schema_version -eq 2 -and $document.payload.candidate_tree_oid -notmatch '^(?:[0-9a-f]{40}|[0-9a-f]{64})$') {
+        throw 'Accepted-change manifest schema 2 requires a full candidate tree object ID.'
     }
     $payloadJson = $document.payload | ConvertTo-Json -Depth 8 -Compress
     $computedId = Get-Sha256Text -Text $payloadJson
@@ -300,6 +336,8 @@ function Read-VerifiedManifest {
     return $document
 }
 
+try {
+Assert-ExecutableGitPolicy
 $headCommit = (Invoke-GitText -Arguments @('rev-parse', 'HEAD') -IndexFile $null).Trim()
 
 if ($Action -eq 'Create') {
@@ -322,6 +360,7 @@ if ($Action -eq 'Create') {
         baseline_commit = $headCommit
         final_workflow_state_path = $workflowStateRelativePath
         final_workflow_state_base64 = $snapshot.final_workflow_state_base64
+        candidate_tree_oid = $snapshot.candidate_tree_oid
         tree_fingerprint = $snapshot.tree_fingerprint
         worktree_fingerprint = $snapshot.worktree_fingerprint
         entries = $snapshot.entries
@@ -329,7 +368,7 @@ if ($Action -eq 'Create') {
     $payloadJson = $payload | ConvertTo-Json -Depth 8 -Compress
     $manifestId = Get-Sha256Text -Text $payloadJson
     $document = [ordered]@{
-        schema_version = 1
+        schema_version = 2
         manifest_id = $manifestId
         payload = $payload
     }
@@ -342,6 +381,7 @@ if ($Action -eq 'Create') {
     Write-Output "manifest_path: $manifestDisplayPath"
     Write-Output "manifest_id: $manifestId"
     Write-Output "baseline_commit: $headCommit"
+    Write-Output "candidate_tree_oid: $($snapshot.candidate_tree_oid)"
     Write-Output "changed_entries: $($snapshot.entries.Count)"
     exit 0
 }
@@ -374,6 +414,9 @@ $snapshot = switch ($Action) {
 if ($snapshot.tree_fingerprint -ne $payload.tree_fingerprint) {
     throw "Accepted-change tree fingerprint mismatch for $Action. Expected $($payload.tree_fingerprint), got $($snapshot.tree_fingerprint)."
 }
+if ($manifest.schema_version -eq 2 -and $snapshot.candidate_tree_oid -ne $payload.candidate_tree_oid) {
+    throw "Accepted-change candidate tree mismatch for $Action. Expected $($payload.candidate_tree_oid), got $($snapshot.candidate_tree_oid)."
+}
 if ($Action -in @('VerifyReview', 'VerifyWorktree') -and $snapshot.worktree_fingerprint -ne $payload.worktree_fingerprint) {
     throw "Accepted-change raw-byte fingerprint mismatch for $Action. Expected $($payload.worktree_fingerprint), got $($snapshot.worktree_fingerprint)."
 }
@@ -384,5 +427,9 @@ Write-Output "workflow_id: $($payload.workflow_id)"
 Write-Output "manifest_path: $ManifestPath"
 Write-Output "manifest_id: $($manifest.manifest_id)"
 Write-Output "baseline_commit: $($payload.baseline_commit)"
+Write-Output "candidate_tree_oid: $($snapshot.candidate_tree_oid)"
 Write-Output "changed_entries: $($snapshot.entries.Count)"
 Write-Output 'verified: yes'
+} finally {
+    Remove-Item -LiteralPath $emptyAttributesPath -Force -ErrorAction SilentlyContinue
+}

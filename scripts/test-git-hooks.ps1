@@ -13,6 +13,25 @@ function Invoke-TestGit {
     }
 }
 
+function Initialize-IsolatedTestRepository {
+    $template = Join-Path ([System.IO.Path]::GetTempPath()) ('codex-empty-template-' + [guid]::NewGuid().ToString('N'))
+    $previousTemplate = $env:GIT_TEMPLATE_DIR
+    try {
+        $null = New-Item -ItemType Directory -Path $template -Force
+        if (@([System.IO.Directory]::EnumerateFileSystemEntries($template)).Count -ne 0) { throw 'Hook test template is not empty.' }
+        Remove-Item Env:GIT_TEMPLATE_DIR -ErrorAction SilentlyContinue
+        $output = @(& git -c init.templateDir= init -q "--template=$template" $temporaryRepository 2>&1)
+        if ($LASTEXITCODE -ne 0) { throw "Could not initialize isolated hook test repository.`n$($output -join "`n")" }
+        if ((Test-Path -LiteralPath (Join-Path $temporaryRepository '.git/info/attributes')) -or
+            ((Test-Path -LiteralPath (Join-Path $temporaryRepository '.git/hooks')) -and @([System.IO.Directory]::EnumerateFileSystemEntries((Join-Path $temporaryRepository '.git/hooks'))).Count -ne 0)) {
+            throw 'Hook test initialization inherited attributes or hooks.'
+        }
+    } finally {
+        if ($null -eq $previousTemplate) { Remove-Item Env:GIT_TEMPLATE_DIR -ErrorAction SilentlyContinue } else { $env:GIT_TEMPLATE_DIR = $previousTemplate }
+        Remove-Item -LiteralPath $template -Recurse -Force -ErrorAction SilentlyContinue
+    }
+}
+
 function Invoke-HookFixture {
     param(
         [string]$Name,
@@ -35,7 +54,7 @@ function Invoke-HookFixture {
 
 try {
     $null = New-Item -ItemType Directory -Path $temporaryRepository -Force
-    Invoke-TestGit -Arguments @('init', '-q')
+    Initialize-IsolatedTestRepository
     Invoke-HookFixture -Name 'default sample hooks only' -ShouldPass $true
 
     Invoke-TestGit -Arguments @('config', 'core.hooksPath', '.custom-hooks')
@@ -53,8 +72,34 @@ try {
         )
     }
     Invoke-HookFixture -Name 'active pre-commit hook blocks authorization' -ShouldPass $false
+
+    Remove-Item -LiteralPath $activeHook -Force
+    $prePushHook = Join-Path $customHooks 'pre-push'
+    [System.IO.File]::WriteAllText($prePushHook, "#!/bin/sh`nexit 0`n", [System.Text.UTF8Encoding]::new($false))
+    if (-not $IsWindows) {
+        [System.IO.File]::SetUnixFileMode($prePushHook, [System.IO.UnixFileMode]::UserRead -bor [System.IO.UnixFileMode]::UserWrite -bor [System.IO.UnixFileMode]::UserExecute)
+    }
+    Invoke-HookFixture -Name 'active pre-push hook blocks authorization' -ShouldPass $false
+
+    Remove-Item -LiteralPath $prePushHook -Force
+    $postMergeHook = Join-Path $customHooks 'post-merge'
+    [System.IO.File]::WriteAllText($postMergeHook, "#!/bin/sh`nexit 0`n", [System.Text.UTF8Encoding]::new($false))
+    if (-not $IsWindows) {
+        [System.IO.File]::SetUnixFileMode($postMergeHook, [System.IO.UnixFileMode]::UserRead -bor [System.IO.UnixFileMode]::UserWrite -bor [System.IO.UnixFileMode]::UserExecute)
+    }
+    Invoke-HookFixture -Name 'active post-merge hook blocks authorization' -ShouldPass $false
+
+    Remove-Item -LiteralPath $postMergeHook -Force
+    $queryFsmonitorHook = Join-Path $customHooks 'query-fsmonitor'
+    [System.IO.File]::WriteAllText($queryFsmonitorHook, "#!/bin/sh`nexit 0`n", [System.Text.UTF8Encoding]::new($false))
+    if (-not $IsWindows) {
+        [System.IO.File]::SetUnixFileMode($queryFsmonitorHook, [System.IO.UnixFileMode]::UserRead -bor [System.IO.UnixFileMode]::UserWrite -bor [System.IO.UnixFileMode]::UserExecute)
+    }
+    Invoke-HookFixture -Name 'active query-fsmonitor hook blocks authorization' -ShouldPass $false
 } finally {
     Remove-Item -LiteralPath $temporaryRepository -Recurse -Force -ErrorAction SilentlyContinue
 }
 
-Write-Host "Git hook preflight tests passed: $checksPassed/3." -ForegroundColor Green
+$expectedChecks = 6
+if ($checksPassed -ne $expectedChecks) { throw "Git hook preflight test count changed: expected $expectedChecks, got $checksPassed." }
+Write-Host "Git hook preflight tests passed: $checksPassed/$expectedChecks." -ForegroundColor Green

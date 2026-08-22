@@ -59,16 +59,20 @@ $hooksSettingResult = Invoke-GitText -Arguments @('config', '--path', '--get', '
 $hooksSetting = if ($hooksSettingResult.ExitCode -eq 0) { $hooksSettingResult.Text.Trim() } else { 'unset' }
 $effectiveHooksPath = (Invoke-GitText -Arguments @('rev-parse', '--path-format=absolute', '--git-path', 'hooks')).Text.Trim()
 
-$commitLifecycleHooks = @(
+$gitLifecycleHooks = @(
+    'query-fsmonitor',
     'post-index-change',
     'pre-commit',
+    'pre-merge-commit',
     'prepare-commit-msg',
     'commit-msg',
     'reference-transaction',
-    'post-commit'
+    'post-commit',
+    'post-merge',
+    'pre-push'
 )
 $activeHooks = [System.Collections.Generic.List[string]]::new()
-foreach ($hookName in $commitLifecycleHooks) {
+foreach ($hookName in $gitLifecycleHooks) {
     $hookPath = Join-Path $effectiveHooksPath $hookName
     if (Test-HookExecutable -Path $hookPath) {
         $activeHooks.Add([System.IO.Path]::GetFullPath($hookPath))
@@ -79,10 +83,10 @@ Write-Output 'GIT_HOOK_PREFLIGHT'
 Write-Output "repository_root: $repositoryRootPath"
 Write-Output "core_hooks_path: $hooksSetting"
 Write-Output "effective_hooks_path: $effectiveHooksPath"
-Write-Output "active_commit_lifecycle_hooks: $(if ($activeHooks.Count -eq 0) { 'None' } else { [string]::Join('; ', $activeHooks) })"
+Write-Output "active_git_lifecycle_hooks: $(if ($activeHooks.Count -eq 0) { 'None' } else { [string]::Join('; ', $activeHooks) })"
 if ($activeHooks.Count -gt 0) {
     Write-Output 'authorization_safe: no'
-    Write-Output 'blocked_reason: Active commit-lifecycle hooks can execute effects outside the authorized path-specific staging and commit contract.'
+    Write-Output 'blocked_reason: Active Git lifecycle hooks can execute effects outside the authorized staging, commit, reconciliation, fetch, or push contract.'
     exit 1
 }
 
