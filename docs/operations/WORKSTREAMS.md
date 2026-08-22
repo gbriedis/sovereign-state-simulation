@@ -170,6 +170,52 @@ record is a Steward task; it is never silently treated as current.
   through Dev Review.
 - **Blocker:** None.
 
+## WG-002 — Establish the Earth-like planetary contract
+
+- **Type:** Packet
+- **DRI:** World Generation specification DRI
+- **State:** Integration
+- **Priority:** P1
+- **Updated:** 2026-08-22
+- **Outcome:** Level 0 supplies bounded Earth-like causes and boundary
+  conditions while generated history supplies downstream consequences.
+- **Done when:** The focused contract, ADR-0002, architecture and roadmap links,
+  open questions, and concise handoff pointer are canonical on `main`; required
+  domain reviews and governance checks pass; affected owners are informed; and
+  the exact merged branch and worktree are safely retired.
+- **Base:** Began at `main@127fa07`; synchronized through canonical
+  `main@c8434a4` before integration.
+- **Branch / worktree:**
+  [`docs/WG-002-earth-like-planetary-contract`](https://github.com/gbriedis/state-of-consequence/pull/21)
+  in the isolated WG-002 task worktree.
+- **Write scope:** `docs/world-generation/EARTH_LIKE_PLANETARY_CONTRACT.md`,
+  `docs/world-generation/EARTH_LIKE_PHYSICAL_FRAMEWORK.md`,
+  `docs/architecture/ARCHITECTURE_OVERVIEW.md`,
+  `docs/architecture/OPEN_DECISIONS.md`,
+  `docs/ROADMAP_WORLD_FOUNDATION.md`,
+  `docs/decisions/ADR-0002-earth-like-planetary-contract.md`, and assigned
+  decision-index, current-state, and workstream propagation.
+- **Dependencies:** Product Owner acceptance recorded in
+  [ADR-0002](../decisions/ADR-0002-earth-like-planetary-contract.md); OPS-001 and
+  repository-rename registry correction are canonical.
+- **Review gate:** Product Owner accepted the product boundary; Systems
+  Architecture, World Core, and Art & Technical Art returned `Accept`; Dev
+  Review approved the submitted world-contract diff and must confirm the final
+  synchronized registry-only delta before merge.
+- **Art / Technical Art impact:** Consulted — accepted. Future visual profiles
+  remain derived from canonical causes and cannot become world truth.
+- **Routing:** Action required — Product Owner, World Core, Dev Review, and
+  Project Steward; Consulted — Systems Architecture and Art & Technical Art;
+  Informed — Bevy Client and Marketing after merge.
+- **Evidence:** [PR #21](https://github.com/gbriedis/state-of-consequence/pull/21)
+  records the exact review findings and resolutions. Local and hosted project
+  governance passed; impact-aware CI correctly classified the change as
+  documentation-only.
+- **Next action:** Project Steward validates the final synchronized head,
+  squash-merges PR #21, confirms post-merge checks, sends targeted notices, and
+  retires the task branch and worktree.
+- **Blocker:** None.
+
 ## CORE-001 — Implement deterministic prototype spatial mapping
 
 - **Type:** Packet
