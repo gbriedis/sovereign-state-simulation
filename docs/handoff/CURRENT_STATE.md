@@ -40,6 +40,7 @@ artifacts and handoff records.
 | Product intent and boundaries | `../PROJECT_VISION.md` |
 | Governing design laws | `../DESIGN_PRINCIPLES.md` |
 | Current natural-world phase | `../ROADMAP_WORLD_FOUNDATION.md` |
+| Level 0 planetary boundary | `../world-generation/EARTH_LIKE_PLANETARY_CONTRACT.md` |
 | Accepted technical direction | `../architecture/ARCHITECTURE_OVERVIEW.md` |
 | Prototype outcome and success criteria | `../architecture/PROTOTYPE_V0.1.md` |
 | Unscoped architecture questions | `../architecture/OPEN_DECISIONS.md` |
@@ -51,6 +52,12 @@ The accepted physical-world conceptual chain is documented in the focused notes
 under `../world-generation/`. Those documents define domain intent and
 constraints; their unresolved algorithms, numerical methods, taxonomies, and
 storage choices are not accepted implementation decisions.
+
+World histories begin inside the accepted Level 0 Earth-like planetary
+contract: common physical rules plus bounded Earth-like causal variation supply
+boundary conditions for geological prehistory. This does not authorize a
+generic planet generator or move geological, climate, surface, biological, or
+civilization outcomes into Level 0.
 
 ## Implemented foundation
 
