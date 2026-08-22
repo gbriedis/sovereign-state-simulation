@@ -1,18 +1,11 @@
-# Open Architecture Question Inventory
+# Open Architecture Decisions
 
-- **Status:** Discovery inventory; not accepted architecture or committed work
-- **Accountable owner:** Systems Architecture
+- **Status:** Unresolved
 - **Last reviewed:** 2026-08-22
 
-This file preserves unresolved questions discovered during design. It is not the
-active work queue, a priority order, or permission to choose an implementation.
-Active choices appear in `../operations/WORKSTREAMS.md` with an owner,
-dependencies, review gate, and acceptance target.
-
-When a question becomes actionable, assign a work ID and create a decision record
-using `../decisions/ADR_TEMPLATE.md`. After acceptance, update the relevant
-architecture/domain document with current truth and remove or link the resolved
-question here. Preserve the decision's rationale and consequences in the ADR.
+Items in this file are not accepted architecture. When one is resolved, record
+the decision and rationale in the architecture overview (or a dedicated decision
+record) and remove it from this list.
 
 ## Spatial model
 
@@ -191,23 +184,6 @@ question here. Preserve the decision's rationale and consequences in the ADR.
   melting tendency, strength, rheology, and effective lithosphere thickness
 - Which derived values are calculated on demand, cached, summarized, or persisted
 - Criteria for deriving continental-like and oceanic-like crust classifications
-
-### Earth-like planetary contract
-
-- Exact supported Earth-like parameter ranges and correlations
-- Stellar profile or type abstraction needed for incoming-energy queries
-- Supported orbital variation and whether orbital cycles participate in
-  geological prehistory
-- Supported rotation-rate and axial-tilt variation
-- Total water-inventory range and representation
-- Volatile-inventory representation
-- Starting atmospheric-potential abstraction
-- Planetary parameters that remain permanently fixed rather than profile-driven
-- Server profile selection, voting, or other future customization model
-- Versioning and serialization of the selected planetary profile
-- Starting geological epoch and its compatible initial state
-- Whether slow stellar evolution participates in geological prehistory
-- Propagation of planetary-contract causes into a future climate model
 
 ### Tectonic plate layer
 

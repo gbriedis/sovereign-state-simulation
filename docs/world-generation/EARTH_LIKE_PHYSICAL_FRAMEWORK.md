@@ -6,19 +6,16 @@
 
 ## Core rule
 
-The game generates Earth-like worlds under a common Earth-like physical
-framework. It is not a generic planet simulator. The broader Level 0 boundary
-is defined by the
-[Earth-Like Planetary Contract](EARTH_LIKE_PLANETARY_CONTRACT.md).
+The game generates Earth-like worlds under a fixed Earth-like physical
+framework. It is not a generic planet simulator.
 
 > **Fix the physics of the world where the game is not trying to create
 > variation; procedurally generate the geology and history that are meant to
 > differ between worlds.**
 
-The framework fixes physical rules where variation is not part of the game. A
-world-creation profile may also select bounded Earth-like planetary causes
-before geological history begins. Generated geology varies within that selected
-context rather than randomizing fundamental physics.
+The fixed framework provides common physical context. World seeds vary the
+planet's geological state and prehistory within that context rather than
+randomizing fundamental planetary physics.
 
 > **Store causes and history; derive consequences and classifications wherever
 > practical.**
@@ -28,11 +25,9 @@ lithosphere thickness, and classifications should follow from the fixed context,
 generated state, and accumulated history wherever the abstraction supports it.
 They should not be unrelated random values.
 
-## Planetary context consumed by geology
+## Fixed planetary context
 
-The current geological-prehistory layer needs only a minimal Earth-like
-context. Values come from the compatible ruleset and selected planetary
-contract:
+The current geological-prehistory layer needs only a minimal Earth-like baseline:
 
 - **Planet radius and curvature** — establish the world's scale and curved
   geometry for absolute position and contextual depth relationships. The exact
@@ -46,16 +41,15 @@ contract:
   full mantle model.
 - **Surface pressure baseline** — a reference datum if a later absolute-pressure
   query requires it.
-- **Basic water and volatile assumptions** — the inventories and physical
-  reference behavior needed by current geological reasoning, such as effects on
-  density, melting, or material state; not their final surface distribution or
-  a hydrological, atmospheric, or ocean model.
+- **Basic water and volatile assumptions** — only physical reference behavior
+  needed by current geological reasoning, such as effects on density, melting,
+  or material state; not a hydrological, atmospheric, or ocean model.
 
-Some values may be fixed versioned baselines; others may vary within the bounded
-Earth-like contract. Which values vary, their exact ranges, correlations,
-precision, and implementation types remain unresolved. Standard Earth reference
-values may be used when needed, but must be identified as baseline or
-configurable constants rather than hidden assumptions.
+These are fixed or versioned baseline constants for a compatible ruleset, not
+per-world procedural variables. Exact values, precision, and implementation
+types are unresolved. Standard Earth reference values may be used when needed,
+but must be identified as baseline/configurable constants rather than hidden
+assumptions.
 
 ## Generated physical state
 
@@ -101,11 +95,11 @@ deep horizon is not an additional physical planetary boundary.
 
 ## Scope boundary
 
-This note defines the minimal Earth-like context used by current geological
-reasoning, not a planetary-science specification. It does not define:
+This note defines a fixed Earth-like context for current geological reasoning,
+not a planetary-science specification. It does not define:
 
 - configurable planet types or non-Earth-like physics;
-- final atmospheric composition, climate, seasons, or surface water
-  distribution;
+- full atmospheric composition, solar irradiance, axial tilt, seasons, or
+  climate constants;
 - hydrology, ocean circulation, soils, ecosystems, or resources;
 - continents, political territories, or human systems.
