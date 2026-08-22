@@ -17,6 +17,7 @@ world that later political, economic, and social systems must respect.
 | --- | --- |
 | Understand the enduring game idea | [Project vision](docs/PROJECT_VISION.md) |
 | Use the accepted name, positioning, and voice | [Brand foundation](docs/brand/BRAND_FOUNDATION.md) |
+| Understand Marketing ownership and workflow | [Marketing department](docs/marketing/MARKETING_DEPARTMENT.md) |
 | Understand the rules guiding design | [Design principles](docs/DESIGN_PRINCIPLES.md) |
 | Understand the current development phase | [World-foundation roadmap](docs/ROADMAP_WORLD_FOUNDATION.md) |
 | Understand the technical structure | [Architecture overview](docs/architecture/ARCHITECTURE_OVERVIEW.md) |
@@ -40,7 +41,7 @@ The repository pins its Rust toolchain and keeps renderer-independent world code
 separate from the Bevy client.
 
 ```powershell
-cargo run -p state-of-consequence-client
+cargo run -p sovereign-client
 cargo test --workspace --locked
 cargo clippy --workspace --all-targets --locked -- -D warnings
 ```

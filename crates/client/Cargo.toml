@@ -1,12 +1,12 @@
 [package]
-name = "state-of-consequence-client"
+name = "sovereign-client"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
 publish = false
 
 [[bin]]
-name = "state-of-consequence-client"
+name = "sovereign-client"
 path = "src/main.rs"
 
 [dependencies]

@@ -9,10 +9,12 @@ is authoritative without reconstructing context from chat history.
 1. **Vision** — enduring product intent and boundaries.
 2. **Principles** — rules used to judge designs and implementations.
 3. **Brand** — accepted public identity, positioning, voice, and messaging.
-4. **Roadmaps** — milestone scope and definitions of completion.
-5. **Architecture** — accepted technical structure and constraints.
-6. **Open decisions** — questions that are explicitly unresolved.
-7. **Handoffs** — concise snapshots of present work and next actions.
+4. **Marketing operations** — department ownership, evidence standards, and
+   external-communication workflow.
+5. **Roadmaps** — milestone scope and definitions of completion.
+6. **Architecture** — accepted technical structure and constraints.
+7. **Open decisions** — questions that are explicitly unresolved.
+8. **Handoffs** — concise snapshots of present work and next actions.
 
 When documents conflict, prefer the more specific document. If two documents at
 the same level conflict, do not guess: record the conflict in the current-state
@@ -24,6 +26,8 @@ handoff and resolve it before implementation.
 - Change `DESIGN_PRINCIPLES.md` only when a governing design rule changes.
 - Change `brand/BRAND_FOUNDATION.md` only when the accepted public identity or
   messaging system changes.
+- Change `marketing/MARKETING_DEPARTMENT.md` only when Marketing ownership,
+  decision rights, or operating workflow changes.
 - Update roadmap files when milestone scope or completion criteria change.
 - Put accepted technical decisions in the architecture overview.
 - Keep undecided matters in `OPEN_DECISIONS.md`; move them out once resolved.
@@ -40,7 +44,8 @@ For a general task, read:
 3. `PROJECT_VISION.md` and `DESIGN_PRINCIPLES.md` when making design choices
 
 For naming, public copy, visual identity, community messaging, or other
-player-facing work, also read `brand/BRAND_FOUNDATION.md`.
+player-facing work, also read `brand/BRAND_FOUNDATION.md` and
+`marketing/MARKETING_DEPARTMENT.md`.
 
 Do not treat proposals, open questions, or long-term direction as implemented
 features.

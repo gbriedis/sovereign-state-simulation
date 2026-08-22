@@ -35,10 +35,10 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Lint renderer-independent world core
-        run: cargo clippy -p state-of-consequence-world --all-targets --locked -- -D warnings
+        run: cargo clippy -p sovereign-world --all-targets --locked -- -D warnings
 
       - name: Test renderer-independent world core
-        run: cargo test -p state-of-consequence-world --all-targets --locked
+        run: cargo test -p sovereign-world --all-targets --locked
 
       - name: Test world-core documentation
-        run: cargo test -p state-of-consequence-world --doc --locked
+        run: cargo test -p sovereign-world --doc --locked

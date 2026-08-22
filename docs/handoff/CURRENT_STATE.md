@@ -12,6 +12,10 @@
   category descriptor is **a living nation simulation**, and the primary
   tagline is **Govern what you cannot command.** Public messaging and visual
   direction are governed by `../brand/BRAND_FOUNDATION.md`.
+- Marketing operates as a lead plus three standing specialist desks: Brand
+  Steward, Audience Intelligence, and Visual Brand & Capture. Their ownership,
+  evidence rules, and handoffs are defined in
+  `../marketing/MARKETING_DEPARTMENT.md`.
 - The game simulates an autonomous sovereign nation; the player influences rather
   than directly controls all actors.
 - Major domestic actors can initiate development, accumulate power, and pursue

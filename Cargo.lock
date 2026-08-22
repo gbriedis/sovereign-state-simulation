@@ -4379,14 +4379,14 @@ dependencies = [
 ]
 
 [[package]]
-name = "state-of-consequence-client"
+name = "sovereign-client"
 version = "0.0.1"
 dependencies = [
  "bevy",
 ]
 
 [[package]]
-name = "state-of-consequence-world"
+name = "sovereign-world"
 version = "0.0.1"
 
 [[package]]

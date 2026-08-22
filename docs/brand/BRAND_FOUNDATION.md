@@ -168,9 +168,9 @@ the credibility engine beneath the game, not the headline genre.
   contexts where styling is unavailable.
 - Use “a living nation simulation” as the default category descriptor.
 - Retire “Sovereign-State Simulation” as the public working title.
-- Use `state-of-consequence-client` and `state-of-consequence-world` for the
-  internal Cargo package identifiers so project metadata remains aligned with
-  the public name.
+- Retain `sovereign-client` and `sovereign-world` as stable internal Cargo
+  package identifiers. Internal technical namespaces do not determine the
+  player-facing identity.
 
 ## Claims discipline
 
