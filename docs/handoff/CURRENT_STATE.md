@@ -1,7 +1,8 @@
 # Current State and Handoff
 
 - **Last verified:** 2026-08-22
-- **Control-plane work packet:** OPS-001
+- **Canonical repository:** https://github.com/gbriedis/state-of-consequence
+- **Control-plane work packets:** OPS-001 and OPS-002 — Done
 - **Project phase:** Natural-world foundation (`0.0.1`–`0.1.0`)
 - **Immediate product milestone:** Prototype v0.1
 - **Implementation state:** Rust workspace and initial Bevy map window exist;
@@ -28,6 +29,9 @@ artifacts and handoff records.
   triggers are defined in `../art/README.md`.
 - Routine Git synchronization, integration, recovery, and cleanup are agent
   responsibilities. The user is not the Git coordinator.
+- Protected `main` requires a current pull request, `project-governance`, the
+  impact-aware `rust-gate`, linear history, and resolved conversations. Only
+  squash merge is enabled; merged task branches are deleted automatically.
 
 ## Current product truth
 
@@ -62,8 +66,9 @@ civilization outcomes into Level 0.
   to the required 2D feature set.
 - `crates/world_core` is a renderer-independent Rust library boundary.
 - `crates/client` opens the prototype window with a 2D map camera.
-- Windows CI checks formatting, Clippy warnings, workspace tests, documentation
-  tests, and the committed lockfile.
+- When Rust, Cargo, toolchain, or Rust-action paths change, parallel Windows CI
+  checks formatting, Clippy warnings, workspace tests, documentation tests, and
+  the committed lockfile. Documentation-only changes skip Bevy compilation.
 - A core-only Linux CI job protects the renderer-independent portability
   boundary without building the client.
 - Project-governance validation checks the control-plane structure, Markdown
