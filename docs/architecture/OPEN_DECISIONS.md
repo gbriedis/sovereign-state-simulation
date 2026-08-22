@@ -110,6 +110,16 @@ record) and remove it from this list.
 - Compact history representation for pressure-temperature-time paths
 - Thermal quantities that must persist versus remain derived or cached
 - Future boundary coupling to climate and fluid heat transport
+- Convergence criteria for coupled thermal and material updates
+- Maximum-iteration policy
+- Behavior when convergence is poor
+- Error and tolerance scaling with refinement level
+- Treatment of temperature-dependent conductivity and other nonlinear properties
+- Conservation requirements across adaptive thermal boundaries
+- Strategy for combining background state and overlapping thermal anomalies
+- Thermal-state mapping during geometric deformation
+- Local versus broader regional recomputation after major events
+- Numerical stability across long geological intervals
 
 ### Earth-like physical framework
 

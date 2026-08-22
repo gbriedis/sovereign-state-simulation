@@ -79,6 +79,16 @@
   may not be reconstructible from present geometry. Geothermal gradient is a
   derived query, and stable background fields are distinct from transient
   thermal anomalies and future specialized thermo-fluid models.
+- Temperature is one continuous field across geological bodies and adaptive
+  domains. Bodies supply thermal properties rather than owning isolated
+  temperatures, and coarse/fine representations must share compatible thermal
+  boundary constraints.
+- Geometry-changing events map associated thermal state with displaced material
+  before relaxation. Background and overlapping anomalies feed a combined
+  solution rather than requiring unconditional linear addition.
+- Physical dependencies may contain feedback loops. Numerical evaluation may use
+  one-pass staging, bounded iteration, or future specialized treatment according
+  to how strongly coupling affects canonical truth.
 - Compact provenance may retain important pressure-temperature peaks and
   episodes without preserving every timestep or obsolete numerical field.
 - Singleplayer and eventual multiplayer share one authority model.
@@ -150,6 +160,9 @@ algorithms, taxonomies, and storage remain open.
 - Do not extend thermal state into final heat solvers, uniform geological
   timesteps, fluid-flow models, climate implementation, mineral transformations,
   melting, resource formation, or downstream human systems.
+- Do not store temperature independently per geological body, let adaptive
+  domain boundaries create thermal discontinuities, assume all anomalies combine
+  linearly, or freeze an evaluation/convergence workflow as implementation.
 
 ## Recommended next actions
 

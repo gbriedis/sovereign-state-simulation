@@ -86,7 +86,9 @@ refinement levels without creating artificial geological boundaries.
 [Depth, Pressure, and Thermal State](world-generation/DEPTH_PRESSURE_AND_THERMAL_STATE.md)
 defines absolute position before contextual depth, derives lithostatic pressure
 from actual overburden, and treats temperature as adaptive history-bearing state
-rather than a universal geothermal-gradient formula.
+rather than a universal geothermal-gradient formula. Material properties
+influence one continuous thermal field across bodies and adaptive domains, with
+controlled feedback fidelity rather than universal multiphysics coupling.
 
 ## In scope
 

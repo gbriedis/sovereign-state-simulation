@@ -98,6 +98,10 @@ tractable heat-production approximation. This direction does not define
 isotopes, equations, or thermal algorithms. See
 [Depth, Pressure, and Thermal State](DEPTH_PRESSURE_AND_THERMAL_STATE.md).
 
+Geological bodies supply spatially varying conductivity, heat capacity,
+radiogenic production, and future transport-property causes to a continuous
+thermal field. They do not independently own isolated temperature values.
+
 ## Geological bodies and space
 
 Bulk composition does not belong directly to every terrain-sampling cell. A

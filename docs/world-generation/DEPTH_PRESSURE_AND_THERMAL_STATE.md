@@ -158,11 +158,29 @@ geometry alone.
 > **Temperature is likely part of canonical present physical state because it
 > may not be uniquely reconstructible from present geometry alone.**
 
-This does not require per-cell or per-voxel storage. The canonical representation
-might eventually use a regional field, sparse anomaly fields, body-influenced
-field parameters, or another queryable continuous form. Heat crosses
-geological-body boundaries, so a body does not necessarily own one isolated
-temperature value.
+> **Temperature belongs to a continuous physical field across geological space.
+> Geological bodies influence that field through their material properties;
+> they do not each own an isolated temperature value.**
+
+```text
+geological geometry / material state
+        ↓ supplies
+
+conductivity field
+heat-capacity field
+radiogenic heat-production field
+other future transport properties
+
+        ↓ influence
+
+canonical temperature field T(x,y,z,t)
+```
+
+A sandstone-to-granite contact may change conductivity or heat production
+without creating an artificial temperature discontinuity. This does not require
+per-cell or per-voxel storage. A regional field, sparse anomaly representation,
+body-influenced parameters, or another queryable continuous form may eventually
+represent the same physical field. The exact representation remains open.
 
 > **Geothermal gradient is a derived query product of the thermal field, not the
 > fundamental state variable.**
@@ -199,6 +217,24 @@ intrusion, major rifting, rapid burial or exhumation, young-lithosphere
 formation, and other large thermal disturbances. A tractable model may use
 simplified conductive diffusion or another approximation; the method is open.
 
+Background and event-induced state are inputs to a combined solution or
+approximation, not necessarily independent values added linearly forever:
+
+```text
+background thermal state
++ event-induced perturbations
++ current material / geometry properties
+        ↓
+combined thermal solution or approximation
+        ↓
+canonical present thermal state
+```
+
+Weak perturbations may later permit linear superposition as an optimization.
+Strong overlap, temperature-dependent properties, or materially changed geology
+may require regional recomputation or bounded iteration. The method remains
+open.
+
 ### Specialized thermo-fluid systems
 
 Strong hydrothermal or advective heat transport may eventually require a
@@ -217,6 +253,86 @@ strong fluid heat transport
 
 This note does not design thermo-fluid simulation.
 
+## Geometry changes transport thermal state
+
+> **When geological material is displaced by a geometric event, its thermal
+> state must move consistently with the material before the changed
+> configuration thermally relaxes.**
+
+```text
+material + thermal state
+        ↓
+fault / uplift / folding / burial / exhumation / other geometry change
+        ↓
+material position changes
++ associated thermal state is advected / mapped with affected material
+        ↓
+thermal relaxation in the new configuration
+```
+
+This establishes event-driven state mapping, not a continuously coupled
+thermo-mechanical solver.
+
+## Feedback and numerical evaluation
+
+The physical dependency graph may contain feedback:
+
+```text
+temperature
+→ mineral / phase state
+→ density
+→ pressure
+→ material response
+
+temperature
+→ mineral / phase state
+→ conductivity
+→ heat transport
+→ temperature
+
+temperature
+→ melting / fluid generation
+→ transport properties
+→ thermal evolution
+```
+
+This note does not define those downstream transformations.
+
+> **Real physical feedback loops may require staged or iterative numerical
+> evaluation.**
+
+```text
+CAUSAL PHYSICS
+may contain feedback loops
+
+NUMERICAL EVALUATION
+must use a controlled ordering / iteration strategy
+```
+
+An illustrative future interval or event evaluation could begin with previous
+canonical geometry and material state, derive provisional properties and
+pressure, update thermal state, evaluate material response, refresh changed
+properties, repeat affected stages when significant, and commit after adequate
+convergence. This is not an implementation API or accepted sequence.
+
+> **Physical feedback loops may require iteration, but simulation fidelity
+> should scale with how strongly the feedback affects canonical truth.**
+
+```text
+weak coupling
+→ one-pass or inexpensive staged approximation
+
+moderate coupling
+→ bounded iteration
+
+strong / exceptional coupling
+→ more specialized future treatment
+```
+
+Every region does not require a tightly coupled nonlinear multiphysics solver.
+Use the coarsest representation and numerical treatment that preserves required
+canonical truth.
+
 ## Event- and scale-appropriate time
 
 > **Thermal evolution should use event- and scale-appropriate progression rather
@@ -226,7 +342,7 @@ Thermal systems may advance over meaningful intervals or use analytical or
 approximate relaxation where appropriate. They need not solve the entire planet
 for every small timestep. Exact numerical methods remain unresolved.
 
-Transient detail may simplify as its present effect decays:
+A transient anomaly may simplify as its present effect decays:
 
 ```text
 thermal event
@@ -237,14 +353,19 @@ cooling / diffusion
 ↓
 weak residual anomaly
 ↓
-effect becomes negligible
+residual effect falls below canonical significance at the relevant scale
 ↓
 collapse into simpler background representation
 ```
 
-This follows the canonical-state rule: retain present state that still matters
-and compact provenance, while temporary numerical detail may be discarded once
-it no longer affects present truth. Thresholds and collapse rules remain open.
+> **A transient thermal anomaly may collapse into a simpler background
+> representation once its remaining effect falls below the accuracy required by
+> canonical truth at the relevant scale.**
+
+Significance may depend on refinement and simulation relevance. A residual that
+is negligible for a coarse distant region may remain meaningful at a future
+geothermal-site query. Retain present state that still matters and compact
+provenance; thresholds and collapse rules remain open.
 
 ## Adaptive thermal detail
 
@@ -257,6 +378,24 @@ treatment.
 
 No universal thermal resolution applies to the planet. Coarse and fine thermal
 representations must remain compatible across their boundaries.
+
+> **Computational domain boundaries must not create artificial thermal
+> boundaries.**
+
+```text
+coarse domain
+      ↕
+shared thermal boundary contract
+      ↕
+fine domain
+```
+
+The future contract may need compatible temperature, heat flux, transport-
+relevant material properties, and parent thermal constraints. Interpolation and
+flux-conservation methods remain open.
+
+> **Different thermal resolutions may coexist, but they must describe one
+> compatible canonical thermal state.**
 
 ## Surface boundary condition
 
