@@ -40,17 +40,24 @@ The primary player experience remains a map. A surface cell, map layer,
 cross-section, or local inspection is a query or projection of relevant
 three-dimensional truth.
 
+> **Cells sample geological truth; they do not contain or define it.**
+
+Geological features retain continuous canonical identity across computational
+domains. Chunks provide locality, and sampling grids provide system-specific
+views; neither creates geological boundaries. See
+[Adaptive Spatial Partitioning](ADAPTIVE_SPATIAL_PARTITIONING.md).
+
 The renderer, camera, and interface do not define physical reality. The
 simulation/world core owns that reality independently of presentation so it can
 support headless authority and more than one future view without changing the
 underlying geological meaning.
 
-## Detail follows attention
+## Detail follows need
 
-Three-dimensional truth does not imply maximum resolution everywhere. Distant
-or inactive regions may remain coarse summaries; important regions may retain
-richer structure; the player's nation may receive higher detail; and a small
-local area may later be refined further when a relevant query requires it.
+Three-dimensional truth does not imply maximum resolution everywhere. Simple
+regions may remain coarse; geological complexity or simulation relevance may
+require richer structure; and observation may trigger additional local
+refinement.
 
 Coarse state may contain both established facts and constrained unresolved
 detail. Refinement must preserve established truth and remain compatible with

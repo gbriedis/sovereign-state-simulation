@@ -78,6 +78,11 @@ separates authoritative present truth from compact provenance and disposable
 presentation data. Unmaterialized detail remains constrained and can be refined
 deterministically without rewriting established geology.
 
+[Adaptive Spatial Partitioning](world-generation/ADAPTIVE_SPATIAL_PARTITIONING.md)
+separates continuous geological identity from computational domains and
+system-specific sampling cells. Different regions may use different compatible
+refinement levels without creating artificial geological boundaries.
+
 ## In scope
 
 - Land shape, regions, coastlines, and elevation

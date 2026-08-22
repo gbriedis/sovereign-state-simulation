@@ -58,11 +58,14 @@ negotiation rather than manually originating every investment or institution.
    renderer or graphical client.
 2. **Geography precedes politics.** Natural processes shape land before
    territories divide it.
-3. **Detail follows attention.** Compute and memory scale with relevance, not the
-   total theoretical world size.
+3. **Detail follows need.** Compute and memory scale with physical complexity,
+   simulation relevance, and observation or gameplay needs—not the total
+   theoretical world size.
 4. **One authority model.** Singleplayer and multiplayer share simulation
    concepts; only the location of authority changes.
 5. **Seeds are durable identities.** Results are reproducible within an explicitly
    versioned generator and ruleset.
 6. **Resolution must earn its cost.** Finer detail is adopted only when it enables
    meaningful simulation or interaction.
+7. **Resolution belongs to representation.** Geological continuity, computational
+   partitioning, and sampling resolution remain distinct concepts.
