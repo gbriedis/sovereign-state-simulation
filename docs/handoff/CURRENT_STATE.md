@@ -1,6 +1,7 @@
 # Current State and Handoff
 
 - **Last verified:** 2026-08-22
+- **Canonical repository:** https://github.com/gbriedis/state-of-consequence
 - **Control-plane work packets:** OPS-001 and OPS-002 — Done
 - **Project phase:** Natural-world foundation (`0.0.1`–`0.1.0`)
 - **Immediate product milestone:** Prototype v0.1
