@@ -73,6 +73,11 @@ establishes how events change that inherited 3D state through a small,
 composable operator language. It preserves chronology and cross-cutting
 relationships without choosing a geometry engine or full volumetric physics.
 
+[Canonical Geological State and Refinement](world-generation/CANONICAL_GEOLOGICAL_STATE_AND_REFINEMENT.md)
+separates authoritative present truth from compact provenance and disposable
+presentation data. Unmaterialized detail remains constrained and can be refined
+deterministically without rewriting established geology.
+
 ## In scope
 
 - Land shape, regions, coastlines, and elevation

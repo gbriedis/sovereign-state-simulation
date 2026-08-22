@@ -55,7 +55,16 @@
 - A compact history of important geological events and periods persists after
   generation. Geological age records when formation or change occurred rather
   than serving as decorative metadata.
-- Spatial detail is lazy, chunked, and proportional to attention.
+- History generates the world; present geological state then becomes
+  authoritative for normal queries. Compact history remains as causal
+  provenance rather than requiring prehistory replay.
+- Canonical truth includes both established facts and constraints over
+  unresolved detail. Authority-driven deterministic refinement narrows those
+  constraints, preserves parent truth, and promotes materially relevant results
+  to stable canonical state; observation does not physically create geology.
+- Renderer meshes, sampled map layers, LODs, client caches, and other query
+  products are derived and disposable rather than canonical world truth.
+- Spatial detail is hierarchical, chunked, and proportional to attention.
 - Singleplayer and eventual multiplayer share one authority model.
 - The eventual multiplayer server generates and owns canonical world truth;
   clients receive relevant subsets and do not independently generate
@@ -75,6 +84,7 @@ The accepted physical-world conceptual chain is currently documented in
 `../world-generation/GEOLOGICAL_MATERIAL_STATE.md`,
 `../world-generation/SPARSE_3D_GEOLOGICAL_WORLD.md`,
 `../world-generation/GEOLOGICAL_GEOMETRY_OPERATORS.md`,
+`../world-generation/CANONICAL_GEOLOGICAL_STATE_AND_REFINEMENT.md`,
 `../world-generation/TECTONIC_PLATES.md`, and
 `../world-generation/TECTONIC_STRUCTURES_AND_PROVINCES.md`. These define domain
 intent and illustrative Rust-facing vocabulary only; temporal representation,
@@ -105,6 +115,11 @@ algorithms, taxonomies, and storage remain open.
   subsurface gameplay from the authority and 3D-world decisions.
 - Do not turn the geological-operator vocabulary into a final enum, geometry
   engine, deformation algorithm, event taxonomy, or volumetric-physics model.
+- Do not equate canonical geology with renderer data, eager maximum-resolution
+  storage, or replay of geological prehistory during normal queries.
+- Do not let refinement rewrite established truth, reroll on observation, or
+  become an implementation of storage, serialization, procedural noise,
+  meshing, networking, or downstream subsurface gameplay.
 
 ## Recommended next actions
 

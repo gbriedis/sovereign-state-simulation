@@ -38,6 +38,13 @@ The exact time representation, total duration, year numbering, and date of the
 playable era remain unresolved. Any candidate duration is illustrative until a
 decision is recorded.
 
+> **History generates the world; current state becomes authoritative.**
+
+Generation produces a persistent present state plus compact causal provenance.
+Normal gameplay and simulation queries operate on that present state rather
+than replaying geological prehistory. The distinction is documented in
+[Canonical Geological State and Refinement](CANONICAL_GEOLOGICAL_STATE_AND_REFINEMENT.md).
+
 ## Prehistory and play
 
 - **Geological prehistory** is generated before play and establishes the

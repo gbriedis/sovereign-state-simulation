@@ -21,6 +21,12 @@ For geological material, composition, physical conditions, volatiles, formation
 process, and history are deeper truths than a primitive label such as
 `rock_type = Granite`.
 
+Under the
+[canonical present-state model](CANONICAL_GEOLOGICAL_STATE_AND_REFINEMENT.md),
+this principle does not make every consequence a stored field. The causes needed
+to define present truth or future evolution may be canonical while reliable
+consequences remain derived or cached. The exact boundary remains unresolved.
+
 ## Bulk composition
 
 Ordinary rock-forming chemistry uses a compact geochemical basis similar in
