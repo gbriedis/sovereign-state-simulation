@@ -52,9 +52,14 @@ or inactive regions may remain coarse summaries; important regions may retain
 richer structure; the player's nation may receive higher detail; and a small
 local area may later be refined further when a relevant query requires it.
 
-Refinement must preserve compatibility with canonical history and coarser
-state. Whether detail is generated eagerly, lazily, hierarchically, cached,
-persisted, or deterministically rematerialized is unresolved.
+Coarse state may contain both established facts and constrained unresolved
+detail. Refinement must preserve established truth and remain compatible with
+canonical history and parent constraints. Observation may trigger deterministic
+refinement, but it does not physically create geology or permit a reroll.
+
+[Canonical Geological State and Refinement](CANONICAL_GEOLOGICAL_STATE_AND_REFINEMENT.md)
+defines this accepted distinction. Exact levels, persistence, constraint
+representation, and refinement algorithms remain unresolved.
 
 ## Authority boundary
 
@@ -71,6 +76,10 @@ not require networking.
 Expensive generation may occur during world creation, while canonical state can
 still remain hierarchical, summarized, lazy, refined, or cached rather than
 fully materialized at maximum resolution.
+
+Normal authority queries use canonical present state; they do not replay the
+entire geological prehistory. Compact history remains as provenance and as an
+input or constraint for controlled refinement.
 
 ## Scope boundary
 

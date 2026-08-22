@@ -31,7 +31,8 @@ authoritative server without requiring a renderer.
 
 A seed is the root identity of a generated world. Compatible generator and
 ruleset versions must reproduce the same foundational world from the same seed
-and inputs.
+and inputs. Once materially relevant detail becomes canonical, persisted world
+truth takes precedence over silently regenerating it with changed algorithms.
 
 ```text
 world seed
@@ -55,6 +56,19 @@ territories reference physical space and may change without regenerating it. A
 river, watershed, geological formation, ecosystem, or hazard can cross any
 number of political boundaries and must not terminate at a territory edge.
 
+## Canonical state and provenance
+
+Geological history generates the world; canonical present state then becomes
+the authority for ordinary queries. It is the smallest persistent,
+presentation-independent representation sufficient to say what physically
+exists now without replaying geological prehistory.
+
+Canonical truth may contain resolved facts, constraints over unmaterialized
+detail, compact causal provenance, and active physical state needed for future
+evolution. Renderer meshes, rasters, LOD products, and client caches are derived
+and disposable. The complete accepted distinction is documented in
+[Canonical Geological State and Refinement](../world-generation/CANONICAL_GEOLOGICAL_STATE_AND_REFINEMENT.md).
+
 ## Spatial scale and levels of detail
 
 The initial measurement target is a **500 m × 500 m cell**. It is provisional,
@@ -67,14 +81,17 @@ Detail is chunked, lazy, and multi-resolution:
 - Visible or actively inspected areas receive detail on demand.
 - Distant states remain coarse summaries sufficient for cross-border systems
   such as diplomacy, trade, demographics, and military strength.
-- Detail may be materialized, cached, unloaded, or regenerated deterministically
-  according to focus and relevance.
+- Constrained unresolved detail may be materialized deterministically according
+  to focus and relevance, then promoted to stable canonical truth when required.
+- Derived presentation data may be cached, unloaded, or regenerated without
+  changing canonical truth.
 
 The architecture must not require every cell of every nation to exist at once.
 Nor does canonical world state require maximum-resolution geology to exist
 everywhere at once. Coarse summaries and deterministic refinement may represent
-the same world at different levels of attention, subject to unresolved
-consistency and persistence rules.
+the same world at different levels of attention. Child detail must remain
+compatible with parent constraints, subject to unresolved representation and
+persistence rules.
 
 ## Continents and country allocation
 
@@ -95,7 +112,7 @@ reconstruct the whole planet.
 ```text
 seed and compatible ruleset
 → authoritative geological-prehistory generation
-→ canonical physical world and compact history
+→ canonical present world, constraints, and compact provenance
 → persistent authority-owned state
 → relevant subsets and views delivered to clients
 ```

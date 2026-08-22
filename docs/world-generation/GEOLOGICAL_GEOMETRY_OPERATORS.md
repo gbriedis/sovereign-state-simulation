@@ -105,6 +105,11 @@ The resulting world must preserve relationships such as:
 This establishes causal chronology, not a full geological inference system or
 its storage representation.
 
+After geological prehistory, the resulting present state becomes authoritative.
+Compact provenance retains the meaningful event and transformation history, but
+normal queries do not replay the full operator sequence. See
+[Canonical Geological State and Refinement](CANONICAL_GEOLOGICAL_STATE_AND_REFINEMENT.md).
+
 ## Composition
 
 Higher-level geological episodes should generally compose reusable operators

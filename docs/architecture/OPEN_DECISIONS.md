@@ -23,13 +23,22 @@ record) and remove it from this list.
 - Coordinate system, precision, and depth representation for subsurface truth
 - Relationship between provisional 500 m surface cells and subsurface structure
 
-### Geological detail and refinement
+### Canonical geological state and refinement
 
-- Which geological state is generated eagerly, lazily, or through a hybrid
-- Hierarchy and levels of detail for surfaces, bodies, properties, and history
-- Deterministic local refinement consistent with canonical coarse state
-- Cache invalidation when canonical state or generator versions change
-- Which refined detail is persisted and which may be regenerated
+- Exact canonical geological-state schema
+- Which canonical state is generated eagerly, lazily, or through a hybrid
+- Geometry and topology that must be persisted versus regenerated
+- Persisted versus derived physical properties
+- Treatment of active present geological-process state
+- Representation of canonical uncertainty and constraints
+- Refinement hierarchy, levels, spatial partitions, and ownership
+- Propagation of constraints from parent to child refinement
+- Validation of refined state against established parent truth
+- Deterministic seed derivation by region and target refinement level
+- Point at which refined detail becomes permanently persisted canonical state
+- Storage and performance trade-offs
+- Cache invalidation for non-canonical derived and materialized data
+- Coexistence and querying of coarse and fine canonical representations
 
 ### Geological geometry operators
 
@@ -158,11 +167,16 @@ record) and remove it from this list.
 ## Persistence and compatibility
 
 - Persistence format
-- Generator migration strategy
 - Save-compatibility policy
 - Persistence model for canonical geological state and compact history
+- Generator-version compatibility for deterministic refinement
+- Migration rules for still-unresolved regions
+- Migration rules for already-resolved or interacted-with regions
+- Whether old generator versions must remain executable
+- What canonical detail may be deterministically regenerated
 - Architecture of authoritative world-creation jobs
-- World-generation checkpoints, recovery, and acceptable creation duration
+- World-generation and refinement checkpointing and recovery strategy
+- Acceptable world-creation duration
 - Server memory and storage budgets for hierarchical geological detail
 
 ## Networking
