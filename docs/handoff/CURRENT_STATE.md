@@ -45,6 +45,10 @@ artifacts and handoff records.
 | Prototype outcome and success criteria | `../architecture/PROTOTYPE_V0.1.md` |
 | Unscoped architecture questions | `../architecture/OPEN_DECISIONS.md` |
 | In-game visual and technical-art ownership | `../art/README.md` |
+| Accepted in-game visual foundation | `../art/ART_DIRECTION.md` |
+| Accepted map and camera foundation | `../art/MAP_AND_CAMERA_LANGUAGE.md` |
+| Accepted technical-art pipeline foundation | `../art/TECHNICAL_ART_PIPELINE.md` |
+| Open Art and Technical Art decisions | `../art/ART_OPEN_DECISIONS.md` |
 | Accepted public identity and claims | `../brand/BRAND_FOUNDATION.md` |
 | Marketing ownership and workflow | `../marketing/MARKETING_DEPARTMENT.md` |
 
@@ -58,6 +62,12 @@ contract: common physical rules plus bounded Earth-like causal variation supply
 boundary conditions for geological prehistory. This does not authorize a
 generic planet generator or move geological, climate, surface, biological, or
 civilization outcomes into Level 0.
+
+ART-001 establishes accepted requirements for semantic honesty, accessibility,
+cross-scale continuity, reproducible camera evidence, provenance, and
+source/export/runtime separation. It does not demonstrate runtime visual
+behavior or decide the open projection, camera tuning, palette, layer, asset,
+tooling, format, or performance-budget choices.
 
 ## Implemented foundation
 
@@ -84,6 +94,10 @@ The next product work remains the scoped map prototype in
 `../architecture/PROTOTYPE_V0.1.md`. Its 500 m cells are provisional sampling
 units for prototype validation, not the ontology of physical or geological
 truth.
+
+`CLIENT-001` is active and must satisfy the accepted map and camera foundation,
+including cursor-anchor, cancellation, accessibility, continuity, and
+reproducible-evidence requirements, before Art accepts its implementation.
 
 Current work packets, including coordination work and their dependency order,
 must be read from `../operations/WORKSTREAMS.md` rather than copied here.
@@ -116,11 +130,10 @@ must be checked before implementation.
 1. Define versioned seed inputs and explicitly provisional coordinate, domain,
    and sampling identifiers through an accepted specification or decision.
 2. Implement and test prototype coordinate-to-domain-to-sample mapping.
-3. Establish the first accepted world-generation visual and technical-art
-   contract.
-4. Add smooth map panning and cursor-centered zooming under Art visual review.
-5. Build the seeded, non-canonical prototype landmass render.
-6. Measure the provisional sampling and spatial-domain choices without promoting
+3. Complete smooth map panning and cursor-centered zooming under the accepted
+   map/camera contract and Art visual review.
+4. Build the seeded, non-canonical prototype landmass render.
+5. Measure the provisional sampling and spatial-domain choices without promoting
    them into geological ontology.
 
 ## Before continuing work

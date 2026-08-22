@@ -258,7 +258,7 @@ record is a Steward task; it is never silently treated as current.
 
 - **Type:** Packet
 - **DRI:** Art / Technical Art Lead
-- **State:** Ready
+- **State:** Done
 - **Priority:** P0
 - **Updated:** 2026-08-22
 - **Outcome:** The prototype has an accepted, semantically honest in-game visual
@@ -271,9 +271,13 @@ record is a Steward task; it is never silently treated as current.
   semantic honesty, Systems Architecture and Bevy Client accept feasibility,
   Marketing accepts the external-visual boundary, and Dev Review clears
   blocking findings.
-- **Base:** Record current canonical `main` when claimed.
-- **Branch / worktree:** DRI creates
-  `docs/ART-001-worldgen-visual-foundation` in the Art task worktree.
+- **Base:** Began at `main@c8434a4`; synchronized through `main@66b5d4f`
+  before integration.
+- **Branch / worktree:** Integrated by
+  [PR #24](https://github.com/gbriedis/state-of-consequence/pull/24);
+  exact submitted head `52fdfa6` was squash-merged as `8f3ca26`. The hosted
+  task branch was deleted, and no local branch or registered worktree remains
+  at the submitted head.
 - **Write scope:** The four new `docs/art/` files named in `Done when` only;
   Project Steward alone updates the shared ledger and decision index.
 - **Dependencies:** [Art & Technical Art Team API](../art/README.md),
@@ -282,26 +286,38 @@ record is a Steward task; it is never silently treated as current.
   [Prototype v0.1](../architecture/PROTOTYPE_V0.1.md), accepted architecture,
   relevant World Generation documents, and the
   [Brand Foundation](../brand/BRAND_FOUNDATION.md).
-- **Review gate:** Art & Technical Art acceptance; World Generation semantic
-  check; Systems Architecture and Bevy Client feasibility; Marketing boundary
-  check; independent Dev Review.
-- **Art / Technical Art impact:** Action required — this packet establishes
-  accepted in-game visual contracts and technical-art pipeline requirements.
-- **Routing:** Action required — Art & Technical Art, Bevy Client, and Dev
-  Review; Consulted — World Generation, Systems Architecture, World Core, Rust
-  Platform, and Marketing; Informed — Project Steward.
-- **Evidence:** The [Art Team API](../art/README.md) records the standing review
-  triggers and the previously missing producer/consumer boundary.
-- **Next action:** Art / Technical Art Lead claims a current base, creates the
-  named branch, and drafts only the four foundation artifacts before routing
-  them through the listed semantic, feasibility, boundary, and review gates.
+- **Review gate:** Passed — independent Art & Technical Art accepted; World
+  Generation accepted semantic honesty; Systems Architecture, Bevy Client, and
+  Rust Platform accepted feasibility; Marketing accepted the external-visual
+  boundary; independent Dev Review returned `Approve` with no findings.
+- **Art / Technical Art impact:** Action required — Accepted; this packet
+  establishes the in-game visual-contract and technical-art-pipeline
+  foundations while leaving `ART-D001` through `ART-D013` open.
+- **Routing:** Action required — Art & Technical Art (Accepted), Bevy Client
+  (foundation feasible; consume it through `CLIENT-001`), and Dev Review
+  (`Approve`); Consulted — World Generation (semantic honesty Accepted),
+  Systems Architecture (feasibility Accepted), World Core (no implementation
+  required now), Rust Platform (Accepted; no toolchain change), and Marketing
+  (external-visual boundary Accepted); Informed — Project Steward.
+- **Evidence:** [Art direction](../art/ART_DIRECTION.md),
+  [map and camera language](../art/MAP_AND_CAMERA_LANGUAGE.md),
+  [technical-art pipeline](../art/TECHNICAL_ART_PIPELINE.md), and
+  [open decisions](../art/ART_OPEN_DECISIONS.md) are canonical.
+  [PR #24](https://github.com/gbriedis/state-of-consequence/pull/24) added
+  exactly those four files. Hosted and post-merge governance and `rust-gate`
+  checks passed. Submitted head `52fdfa6` and squash `8f3ca26` share exact tree
+  `4a5cf9d`; current canonical `main` descends from that merge and retains the
+  submitted artifacts unchanged.
+- **Next action:** Project Steward retains this `Done` record for one review
+  cycle, then removes it from the live ledger while Git and PR #24 preserve
+  history.
 - **Blocker:** None.
 
 ## CLIENT-001 — Deliver smooth map panning and cursor-centered zoom
 
 - **Type:** Packet
 - **DRI:** Bevy Client lane lead
-- **State:** Ready
+- **State:** Active
 - **Priority:** P0
 - **Updated:** 2026-08-22
 - **Outcome:** The existing map window supports responsive mouse panning and
@@ -309,16 +325,17 @@ record is a Steward task; it is never silently treated as current.
 - **Done when:** Interaction behavior meets the prototype criteria, focused tests
   cover extractable camera math, manual behavior is recorded, and no simulation
   type depends on Bevy.
-- **Base:** Record latest canonical `main` when work begins.
-- **Branch / worktree:** DRI creates
-  `feat/CLIENT-001-map-camera-navigation` in one task worktree.
+- **Base:** Claimed at `main@9578f28`; synchronized through
+  `main@089924f` during implementation.
+- **Branch / worktree:** `feat/CLIENT-001-map-camera-navigation` in the Bevy
+  Client task worktree.
 - **Write scope:** `crates/client/`; no `world_core`, root manifest, lockfile, or
   CI edits without a newly routed scope.
 - **Dependencies:** Existing Bevy window and
   [Prototype v0.1](../architecture/PROTOTYPE_V0.1.md); independent of final
-  geological and sampling choices. `ART-001` must reach at least `Review` before
-  this packet integrates so its camera evidence can be checked against the
-  emerging visual contract.
+  geological and sampling choices. `ART-001` is `Done`; this packet must satisfy
+  the accepted [map and camera contract](../art/MAP_AND_CAMERA_LANGUAGE.md) and
+  obtain Art acceptance before integration.
 - **Review gate:** Art & Technical Art visual acceptance, Dev Review, and Systems
   Architecture boundary check.
 - **Art / Technical Art impact:** Action required — camera, panning, zoom, and
@@ -328,9 +345,12 @@ record is a Steward task; it is never silently treated as current.
   Platform only if a build contract changes; Informed — Marketing after behavior
   is demonstrable and capture-safe.
 - **Evidence:** [Current State](../handoff/CURRENT_STATE.md) confirms the window
-  exists and lists smooth panning and zooming as a next action.
-- **Next action:** Bevy Client DRI claims a current base and implements this
-  bounded interaction packet in parallel with `WG-001`.
+  exists. The named task branch is active and clean with a coherent camera
+  navigation implementation commit; ART-001 supplies its canonical evidence
+  and acceptance contract.
+- **Next action:** Bevy Client DRI completes automated and manual camera
+  evidence, then routes the exact implementation head through Art, independent
+  Dev Review, and Systems Architecture before integration.
 - **Blocker:** None.
 
 ## MKT-001 — Coordinate claims evidence and private capture readiness
