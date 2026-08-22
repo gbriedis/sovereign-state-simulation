@@ -3,11 +3,15 @@
 - **Snapshot date:** 2026-08-22
 - **Project phase:** Natural-world foundation (`0.0.1`–`0.1.0`)
 - **Immediate milestone:** Prototype v0.1
-- **Implementation status:** No source code or completed implementation is
-  documented in this workspace
+- **Implementation status:** Rust workspace and initial Bevy map window are
+  bootstrapped; world generation and map interaction are not implemented
 
 ## Settled direction
 
+- The accepted public product name is **State of Consequence**, the default
+  category descriptor is **a living nation simulation**, and the primary
+  tagline is **Govern what you cannot command.** Public messaging and visual
+  direction are governed by `../brand/BRAND_FOUNDATION.md`.
 - The game simulates an autonomous sovereign nation; the player influences rather
   than directly controls all actors.
 - Major domestic actors can initiate development, accumulate power, and pursue
@@ -140,6 +144,22 @@ Implement the scoped map prototype in
 `../architecture/PROTOTYPE_V0.1.md`. Its 500 m cells are provisional prototype
 sampling units, not a final scale or the ontology of world truth.
 
+## Implemented foundation
+
+- Rust `1.97.1`, rustfmt, and Clippy are pinned in `rust-toolchain.toml`.
+- Bevy `0.19.1` is the only direct external dependency and is limited to its 2D
+  feature set for the current map prototype.
+- `crates/world_core` establishes a renderer-independent library boundary.
+- `crates/client` opens the prototype window with a 2D map camera.
+- Windows CI checks formatting, Clippy warnings, workspace tests, documentation
+  tests, and the committed dependency lockfile. A core-only Linux job protects
+  the renderer-independent portability boundary without building the client.
+
+No world-generation algorithm, coordinate system, domain size, sampling scale,
+spatial index, persistence format, or final player-facing UI approach beyond the
+accepted map-first boundary was selected by this bootstrap. The current window
+size, theme, background color, and presentation settings are provisional.
+
 The accepted physical-world conceptual chain is currently documented in
 `../world-generation/EARTH_LIKE_PHYSICAL_FRAMEWORK.md`,
 `../world-generation/GEOLOGICAL_PREHISTORY.md`,
@@ -224,11 +244,11 @@ algorithms, taxonomies, and storage remain open.
 
 ## Recommended next actions
 
-1. Create the Rust workspace with separate simulation/world and Bevy application
-   crates or modules.
-2. Define versioned seed inputs and prototype coordinate/domain/sampling IDs.
-3. Implement and test prototype coordinate-to-domain-to-sample mapping.
-4. Build the seeded landmass render and map camera controls.
+1. Define versioned seed inputs and explicitly provisional
+   coordinate/domain/sampling IDs.
+2. Implement and test prototype coordinate-to-domain-to-sample mapping.
+3. Add smooth map panning and cursor-centered zooming.
+4. Build the seeded, non-canonical prototype landmass render.
 5. Measure the provisional sampling and spatial-domain choices without treating
    them as geological ontology.
 

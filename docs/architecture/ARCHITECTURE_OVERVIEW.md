@@ -27,6 +27,15 @@ renderer and interface do not define that truth; the simulation/world core does.
 This boundary keeps the simulation testable, portable, and suitable for a future
 authoritative server without requiring a renderer.
 
+The Cargo workspace establishes the first part of this boundary with two crates:
+
+- `crates/world_core` contains renderer-independent world and simulation code.
+- `crates/client` contains the Bevy application and presentation code.
+
+The intended dependency direction points from the client toward the world core,
+never from the world core toward Bevy. More crates should be introduced only when
+they establish a real ownership or dependency boundary.
+
 ## Deterministic world generation
 
 A seed is the root identity of a generated world. Compatible generator and

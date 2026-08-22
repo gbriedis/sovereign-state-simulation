@@ -1,0 +1,13 @@
+[package]
+name = "state-of-consequence-client"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish = false
+
+[[bin]]
+name = "state-of-consequence-client"
+path = "src/main.rs"
+
+[dependencies]
+bevy.workspace = true

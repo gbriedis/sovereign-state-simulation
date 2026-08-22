@@ -8,10 +8,11 @@ is authoritative without reconstructing context from chat history.
 
 1. **Vision** — enduring product intent and boundaries.
 2. **Principles** — rules used to judge designs and implementations.
-3. **Roadmaps** — milestone scope and definitions of completion.
-4. **Architecture** — accepted technical structure and constraints.
-5. **Open decisions** — questions that are explicitly unresolved.
-6. **Handoffs** — concise snapshots of present work and next actions.
+3. **Brand** — accepted public identity, positioning, voice, and messaging.
+4. **Roadmaps** — milestone scope and definitions of completion.
+5. **Architecture** — accepted technical structure and constraints.
+6. **Open decisions** — questions that are explicitly unresolved.
+7. **Handoffs** — concise snapshots of present work and next actions.
 
 When documents conflict, prefer the more specific document. If two documents at
 the same level conflict, do not guess: record the conflict in the current-state
@@ -21,6 +22,8 @@ handoff and resolve it before implementation.
 
 - Change `PROJECT_VISION.md` only when the agreed product vision changes.
 - Change `DESIGN_PRINCIPLES.md` only when a governing design rule changes.
+- Change `brand/BRAND_FOUNDATION.md` only when the accepted public identity or
+  messaging system changes.
 - Update roadmap files when milestone scope or completion criteria change.
 - Put accepted technical decisions in the architecture overview.
 - Keep undecided matters in `OPEN_DECISIONS.md`; move them out once resolved.
@@ -35,6 +38,9 @@ For a general task, read:
 1. `handoff/CURRENT_STATE.md`
 2. The task-relevant roadmap or architecture document
 3. `PROJECT_VISION.md` and `DESIGN_PRINCIPLES.md` when making design choices
+
+For naming, public copy, visual identity, community messaging, or other
+player-facing work, also read `brand/BRAND_FOUNDATION.md`.
 
 Do not treat proposals, open questions, or long-term direction as implemented
 features.
