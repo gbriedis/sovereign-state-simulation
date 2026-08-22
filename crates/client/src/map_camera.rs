@@ -469,26 +469,33 @@ mod tests {
     }
 
     #[test]
-    fn cursor_anchor_is_invariant_at_center_edges_and_corners_at_all_scales() {
+    fn cursor_anchor_is_invariant_across_viewports_edges_corners_and_scales() {
         let center = Vec2::new(160.0, -90.0);
-        let screen_offsets = [
-            Vec2::ZERO,
-            Vec2::new(620.0, 0.0),
-            Vec2::new(-620.0, 0.0),
-            Vec2::new(0.0, 340.0),
-            Vec2::new(0.0, -340.0),
-            Vec2::new(620.0, 340.0),
-            Vec2::new(-620.0, 340.0),
-            Vec2::new(620.0, -340.0),
-            Vec2::new(-620.0, -340.0),
-        ];
+        for viewport_size in [
+            Vec2::new(800.0, 600.0),
+            Vec2::new(1280.0, 720.0),
+            Vec2::new(1920.0, 1080.0),
+        ] {
+            let near_corner = viewport_size / 2.0 - Vec2::splat(20.0);
+            let screen_offsets = [
+                Vec2::ZERO,
+                Vec2::new(near_corner.x, 0.0),
+                Vec2::new(-near_corner.x, 0.0),
+                Vec2::new(0.0, near_corner.y),
+                Vec2::new(0.0, -near_corner.y),
+                near_corner,
+                Vec2::new(-near_corner.x, near_corner.y),
+                Vec2::new(near_corner.x, -near_corner.y),
+                -near_corner,
+            ];
 
-        for (old_scale, new_scale) in [(0.125, 0.2), (1.0, 0.75), (16.0, 8.0)] {
-            for screen_offset in screen_offsets {
-                let anchor = center + screen_offset * old_scale;
-                let new_center = camera_center_after_zoom(center, anchor, old_scale, new_scale);
-                let new_screen_offset = (anchor - new_center) / new_scale;
-                assert_vec2_close(new_screen_offset, screen_offset);
+            for (old_scale, new_scale) in [(0.125, 0.2), (1.0, 0.75), (16.0, 8.0)] {
+                for screen_offset in screen_offsets {
+                    let anchor = center + screen_offset * old_scale;
+                    let new_center = camera_center_after_zoom(center, anchor, old_scale, new_scale);
+                    let new_screen_offset = (anchor - new_center) / new_scale;
+                    assert_vec2_close(new_screen_offset, screen_offset);
+                }
             }
         }
     }
