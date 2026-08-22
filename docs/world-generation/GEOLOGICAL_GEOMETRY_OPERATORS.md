@@ -140,10 +140,14 @@ geometry, material, and history rather than becoming unrelated operator labels.
 Their accepted causal role is documented in
 [Depth, Pressure, and Thermal State](DEPTH_PRESSURE_AND_THERMAL_STATE.md).
 
-When an operator displaces geological material, associated thermal state must
-move or be mapped consistently with that material before thermal relaxation in
-the changed configuration. This is an event-driven architectural requirement,
-not a commitment to continuous thermo-mechanical coupling.
+When an operator displaces geological material, physically appropriate thermal
+content must be remapped conservatively before temperature is reconstructed
+from that content and the changed material state, then allowed to relax in the
+new configuration. This need not mean copying temperature values unchanged.
+Remapping and refinement must not create or remove thermal energy without a
+modeled source or sink. This is an event-driven architectural requirement, not
+a selected thermodynamic variable, conservation scheme, or commitment to
+continuous thermo-mechanical coupling.
 
 ## Representation independence
 

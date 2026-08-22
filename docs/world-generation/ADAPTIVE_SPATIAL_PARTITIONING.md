@@ -257,11 +257,14 @@ established truth.
 
 Thermal representation follows the same adaptive rule. Stable ancient regions
 may use a coarse background field, while young intrusive or active regions may
-need finer spatial or temporal state. Coarse and fine thermal representations
-must describe one continuous canonical field. Their shared boundary contract may
-eventually constrain temperature, heat flux, transport-relevant material
-properties, and parent thermal state without making domain edges physical
-thermal boundaries. Interpolation and conservation methods remain open. See
+need finer spatial or temporal state. Coarse and fine representations must
+describe one compatible canonical thermal state. Their shared boundary contract
+may eventually constrain temperature, heat flux, transport-relevant material
+properties, and parent thermal state without making computational edges physical
+thermal boundaries. Remapping and refinement must conserve thermal energy except
+for justified modeled sources or sinks. Ordinary contacts must not create
+artificial discontinuities, while future modeled interface physics may justify
+specialized behavior. Interpolation and conservation methods remain open. See
 [Depth, Pressure, and Thermal State](DEPTH_PRESSURE_AND_THERMAL_STATE.md).
 
 ## Preferred overall model

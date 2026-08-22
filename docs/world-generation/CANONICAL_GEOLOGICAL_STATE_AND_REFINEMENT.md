@@ -128,15 +128,19 @@ For current geology, absolute position belongs to canonical geometry, while
 depth is contextual and lithostatic pressure is normally derived from gravity
 and the actual overlying material column. Temperature is likely canonical
 present state because geological thermal history can leave information that
-present geometry alone cannot reconstruct. It is one continuous physical field
-across bodies and adaptive computational domains; bodies supply material
-properties rather than owning isolated temperatures. The exact pressure cache,
-field representation, and coarse/fine boundary contract remain open; see
+present geometry alone cannot reconstruct. It is spatial query state across
+bodies and adaptive computational domains; bodies supply material properties
+rather than owning isolated temperatures. Conservative remapping may operate on
+thermal content rather than literal temperature, and ordinary contacts must not
+create artificial discontinuities unless modeled interface physics justifies
+specialized behavior. The exact pressure cache, field representation, and
+coarse/fine boundary contract remain open; see
 [Depth, Pressure, and Thermal State](DEPTH_PRESSURE_AND_THERMAL_STATE.md).
 
-Transient thermal detail may simplify into a background representation once its
-residual no longer affects present truth. Compact provenance remains even when
-temporary numerical detail is discarded.
+Transient thermal detail may simplify only when all information promised to the
+finest future canonical query class remains recoverable. A small but meaningful
+signal may persist as constrained residual state or sufficient compact
+provenance even when explicit transient detail is discarded.
 
 ## Canonical unresolved detail
 

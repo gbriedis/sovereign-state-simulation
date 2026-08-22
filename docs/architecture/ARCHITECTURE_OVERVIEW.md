@@ -83,12 +83,14 @@ datum; depth is a contextual query relative to local ground, sea level, or
 another reference. Lithostatic pressure normally derives from gravity, geometry,
 and the actual material overburden rather than a universal depth formula.
 
-Temperature is likely canonical history-bearing state represented as a
-continuous queryable field across geological bodies and computational domains;
-bodies influence it through material properties rather than owning independent
-temperatures. Geothermal gradient is derived. Stable regions may use a coarse
-conductive background and significant events may retain adaptive transient
-state, with compatible thermal boundaries between resolutions.
+Temperature is likely canonical history-bearing query state represented through
+a spatial field; bodies influence it through material properties rather than
+owning independent temperatures. Conservative remapping may operate on thermal
+energy, enthalpy, or another suitable quantity and reconstruct temperature from
+material state. Geothermal gradient is derived. Stable regions may use a coarse
+conductive background and significant events may retain adaptive transient or
+constrained residual state, with conservative compatible boundaries between
+resolutions and no artificial discontinuities at ordinary contacts.
 
 Physical dependencies may contain feedback loops, while numerical evaluation
 uses controlled staging or iteration whose fidelity scales with canonical

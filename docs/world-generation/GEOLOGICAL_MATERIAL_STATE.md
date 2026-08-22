@@ -43,8 +43,13 @@ documented without a poromechanics or heat solver in
 [Depth, Pressure, and Thermal State](DEPTH_PRESSURE_AND_THERMAL_STATE.md).
 
 Material state influences spatial thermal properties, but canonical temperature
-belongs to a continuous field across bodies and contacts rather than to one
-independent value stored by each body.
+belongs to a spatial field rather than to one independent value stored by each
+body. Ordinary contacts must not create artificial thermal discontinuities;
+future explicitly modeled interface physics may justify specialized behavior.
+Conservative remapping may operate on energy, enthalpy, or another suitable
+quantity because heat capacity, density, transformation, and phase state can
+affect how stored thermal content relates to temperature. The final variable and
+latent-heat treatment remain open.
 
 ## Phase fractions
 
