@@ -1,8 +1,16 @@
-# Adaptive Spatial Partitioning
+---
+id: WG-008
+type: world-generation-specification
+status: accepted
+scope: Geological continuity, computational locality, and system-specific sampling
+authority: Owns the separation and boundary rules for geological features, spatial domains, and sampling cells
+implementation: unresolved
+concept_state: accepted
+coverage: partial
+last_reviewed: 2026-08-22
+---
 
-- **Status:** Accepted architectural direction; hierarchy and indexing unresolved
-- **Scope:** Geological continuity, computational locality, and sampling
-- **Last reviewed:** 2026-08-22
+# Adaptive Spatial Partitioning
 
 ## Core direction
 

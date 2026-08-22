@@ -1,0 +1,35 @@
+name: Documentation validation
+
+on:
+  pull_request:
+  push:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-documentation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate documentation system
+        shell: pwsh
+        run: ./scripts/test-docs-workflow-validator.ps1
+
+      - name: Validate accepted-change manifests
+        shell: pwsh
+        run: ./scripts/test-change-manifest.ps1
+
+      - name: Validate Git hook preflight
+        shell: pwsh
+        run: ./scripts/test-git-hooks.ps1
+
+      - name: Validate document taxonomy
+        shell: pwsh
+        run: ./scripts/test-docs-taxonomy.ps1
+
+      - name: Validate documentation content
+        shell: pwsh
+        run: ./scripts/check-docs.ps1

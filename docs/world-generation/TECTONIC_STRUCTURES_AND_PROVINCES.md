@@ -1,8 +1,16 @@
-# Tectonic Structures and Geological Provinces
+---
+id: WG-012
+type: world-generation-specification
+status: accepted
+scope: Persistent tectonic structures and geological provinces created by tectonic history
+authority: Owns the distinction between boundary-relative motion, interaction, tectonic structure, geological province, and final terrain
+implementation: unresolved
+concept_state: accepted
+coverage: partial
+last_reviewed: 2026-08-22
+---
 
-- **Status:** Focused design direction; taxonomy and algorithms unresolved
-- **Layer:** After lithospheric plates and their relative interactions
-- **Last reviewed:** 2026-08-22
+# Tectonic Structures and Geological Provinces
 
 ## Purpose
 

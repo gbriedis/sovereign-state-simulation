@@ -1,8 +1,16 @@
-# Geological Material Composition
+---
+id: WG-003
+type: world-generation-specification
+status: accepted
+scope: Geological material composition during generated prehistory
+authority: Owns bulk composition, trace inventory, and derived mineral and rock classification principles
+implementation: unresolved
+concept_state: accepted
+coverage: partial
+last_reviewed: 2026-08-22
+---
 
-- **Status:** Accepted material architecture; basis and algorithms unresolved
-- **Scope:** Geological material during generated prehistory
-- **Last reviewed:** 2026-08-22
+# Geological Material Composition
 
 ## Core principle
 
@@ -30,8 +38,7 @@ consequences remain derived or cached. The exact boundary remains unresolved.
 ## Bulk composition
 
 Ordinary rock-forming chemistry uses a compact geochemical basis similar in
-spirit to real whole-rock analysis. A candidate major-component basis may
-include:
+spirit to real whole-rock analysis. An illustrative major-component basis is:
 
 ```text
 SiO₂  Al₂O₃  FeO / total iron  MgO  CaO  Na₂O  K₂O  TiO₂  P₂O₅

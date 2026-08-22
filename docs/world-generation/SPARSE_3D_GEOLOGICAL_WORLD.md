@@ -1,8 +1,16 @@
-# Sparse 3D Geological World
+---
+id: WG-005
+type: world-generation-specification
+status: accepted
+scope: Geological space beneath the map-first interface
+authority: Owns the sparse three-dimensional geological truth model and its separation from presentation
+implementation: unresolved
+concept_state: accepted
+coverage: partial
+last_reviewed: 2026-08-22
+---
 
-- **Status:** Accepted architectural direction; representation unresolved
-- **Scope:** Geological space beneath the map-first interface
-- **Last reviewed:** 2026-08-22
+# Sparse 3D Geological World
 
 ## Core decision
 
@@ -68,7 +76,7 @@ views; neither creates geological boundaries. See
 [Adaptive Spatial Partitioning](ADAPTIVE_SPATIAL_PARTITIONING.md).
 
 The renderer, camera, and interface do not define physical reality. The
-simulation/world core owns that reality independently of presentation so it can
+world core owns that reality independently of presentation so it can
 support headless authority and more than one future view without changing the
 underlying geological meaning.
 

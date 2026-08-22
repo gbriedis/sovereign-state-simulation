@@ -1,8 +1,16 @@
-# Tectonic Plates
+---
+id: WG-011
+type: world-generation-specification
+status: accepted
+scope: Tectonic plates as the earliest useful evolving lithospheric abstraction
+authority: Owns plate identity, broad physical properties, motion, and boundary-interaction concepts
+implementation: unresolved
+concept_state: accepted
+coverage: partial
+last_reviewed: 2026-08-22
+---
 
-- **Status:** Focused design direction; algorithms unresolved
-- **Layer:** First physical-world abstraction
-- **Last reviewed:** 2026-08-21
+# Tectonic Plates
 
 ## Purpose
 
@@ -14,7 +22,7 @@ structure.
 A plate is not merely a visual polygon. It represents a connected section of
 lithosphere—the crust and rigid uppermost mantle—with a shared broad motion and
 physical character. Its shape, material tendency, and relationship to
-neighbouring plates supply causes from which later geology may be derived.
+neighboring plates supply causes from which later geology may be derived.
 
 This is a reality-first abstraction, not a full geophysics simulation. The game
 does **not** simulate mantle convection, planetary accretion, or the complete
@@ -23,10 +31,11 @@ causal structure exists to give the later physical world a coherent history.
 
 ## Plate properties
 
-Each plate likely needs the following meaningful properties:
+The conceptual plate model requires access to the following meaningful domain
+quantities. Their storage and spatial representation remain open:
 
 - **Shape** — the area of physical space occupied by the plate and the edges it
-  shares with neighbouring plates.
+  shares with neighboring plates.
 - **Crust material character** — a reference to or broad description of the
   underlying composition and material state from which continental-like or
   oceanic-like classifications may be derived.
@@ -37,7 +46,7 @@ Each plate likely needs the following meaningful properties:
 - **Age and thickness** — enough lithospheric history to distinguish younger,
   thinner material from older or thicker material where that difference matters.
 - **Density or buoyancy tendency** — a practical indication of how readily the
-  plate tends to ride above or descend beneath neighbouring lithosphere.
+  plate tends to ride above or descend beneath neighboring lithosphere.
 
 These properties describe broad tendencies. They do not imply that every point
 on a plate is identical or that the final model must store each property as one

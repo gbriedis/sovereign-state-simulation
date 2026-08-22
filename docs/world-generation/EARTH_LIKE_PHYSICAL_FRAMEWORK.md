@@ -1,8 +1,16 @@
-# Earth-Like Physical Framework
+---
+id: WG-001
+type: world-generation-specification
+status: accepted
+scope: Minimal fixed planetary context for geological prehistory
+authority: Owns which planetary conditions are fixed, generated, and derived
+implementation: unresolved
+concept_state: accepted
+coverage: partial
+last_reviewed: 2026-08-22
+---
 
-- **Status:** Accepted foundational rule; numerical details unresolved
-- **Scope:** Minimal planetary context for geological prehistory
-- **Last reviewed:** 2026-08-22
+# Earth-Like Physical Framework
 
 ## Core rule
 

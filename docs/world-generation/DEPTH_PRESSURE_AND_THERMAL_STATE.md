@@ -1,8 +1,16 @@
-# Depth, Pressure, and Thermal State
+---
+id: WG-009
+type: world-generation-specification
+status: accepted
+scope: Geological position, contextual depth, overburden pressure, and multiscale thermal state
+authority: Owns position, depth, lithostatic pressure, pore-fluid pressure separation, and canonical thermal-state principles
+implementation: unresolved
+concept_state: accepted
+coverage: partial
+last_reviewed: 2026-08-22
+---
 
-- **Status:** Accepted conceptual model; representation and numerics unresolved
-- **Scope:** Geological position, overburden pressure, and multiscale heat state
-- **Last reviewed:** 2026-08-22
+# Depth, Pressure, and Thermal State
 
 ## Position before depth
 
@@ -161,8 +169,9 @@ geometry alone.
 
 ## Canonical thermal state and derived queries
 
-> **Temperature is likely part of canonical present physical state because it
-> may not be uniquely reconstructible from present geometry alone.**
+> **Temperature belongs to canonical present physical state when present
+> geometry and retained provenance cannot reconstruct the thermal truth promised
+> to future queries.**
 
 > **Temperature is a canonical/query thermodynamic state variable represented
 > through a spatial field. Geological bodies influence that field through their

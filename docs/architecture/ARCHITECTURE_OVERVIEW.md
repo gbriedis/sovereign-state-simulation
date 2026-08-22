@@ -1,197 +1,154 @@
+---
+id: ARCH-001
+type: architecture-overview
+status: accepted
+scope: Software boundaries, world authority, persistence, and presentation-independent architecture
+authority: Owns accepted cross-cutting software and runtime architecture
+implementation: not-started
+last_reviewed: 2026-08-22
+---
+
 # Architecture Overview
 
-- **Status:** Living / accepted direction
-- **Scope:** Initial architecture
-- **Last reviewed:** 2026-08-22
+## Decision
 
-## Experience boundary
+The project separates authoritative world and simulation logic from presentation.
+The same authority model supports local singleplayer and eventual multiplayer;
+only the location of the authority changes.
 
-The world map dominates the game window. Players pan, zoom, select geography,
-and inspect or govern through contextual overlays. Lines, polygons, cells,
-symbols, and procedural geometry form the core visual language.
+The [World-Generation Source of Truth](../world-generation/README.md) owns the
+accepted physical-world concepts. This document owns how software authority,
+persistence, and presentation interact with those concepts.
 
-The map is a presentation and query surface over a genuinely three-dimensional
-physical world. Sparse geological surfaces and bounded bodies preserve
-subsurface truth without requiring a uniform planet-sized voxel grid. The
-renderer and interface do not define that truth; the simulation/world core does.
+## Player experience boundary
 
-## Runtime and simulation core
+The world map is the primary player surface. Players pan, zoom, select geography,
+and govern through contextual map interactions. Lines, polygons, sampling cells,
+symbols, and procedural geometry form the main visual language.
 
-- **Bevy** provides windowing, cameras, input, meshes, picking, shaders, and
+The map presents and queries the physical world. It does not define physical
+truth. Geological reality remains genuinely three-dimensional even when the
+player views it through maps, sections, rasters, or meshes.
+
+## Runtime boundaries
+
+- **Bevy application:** windowing, cameras, input, meshes, picking, shaders, and
   presentation.
-- The **simulation and world core** is pure Rust, deterministic where practical,
-  and independent of Bevy types and lifecycle.
-- **egui** is limited to development tools: inspectors, generation controls,
-  profiling, and diagnostics. It is not the main player interface.
+- **World core:** presentation-independent Rust code that owns physical-world
+  generation, canonical world truth, and world queries.
+- **Simulation core:** presentation-independent Rust code that evolves gameplay
+  simulation state.
+- **Development interface:** egui inspectors, generation controls, profiling,
+  and diagnostics. egui is not the primary player interface.
 
-This boundary keeps the simulation testable, portable, and suitable for a future
-authoritative server without requiring a renderer.
+Neither the world core nor the simulation core may depend on Bevy or egui types
+or lifecycle. They must remain testable without a renderer.
 
-## Deterministic world generation
+## Deterministic generation and persistence
 
-A seed is the root identity of a generated world. Compatible generator and
-ruleset versions must reproduce the same foundational world from the same seed
-and inputs. Once materially relevant detail becomes canonical, persisted world
-truth takes precedence over silently regenerating it with changed algorithms.
+A seed is the root identity of a generated world. The same seed, inputs, and
+compatible generator/ruleset version must reproduce the same foundational world.
 
-```text
-world seed
-└── canonical geological world
-    ├── continuous feature identities and topology
-    ├── resolved present state and constraints
-    └── compact provenance
-
-computational spatial hierarchy
-└── domains reference local representations of canonical features
-
-system-specific sampling grids
-└── cells query canonical physical truth
-
-political allocation
-└── country territories / settlement slots
-    └── references to areas of the physical world
-```
-
-Natural geography is generated before political borders. Coastlines, elevation,
-drainage, rivers, climate, and biomes establish physical regions. Territories and
-country slots are fitted to that geography rather than forcing geography into
-arbitrary borders.
-
-Spatial domains and sampling cells belong to world infrastructure, not to
-countries. Political territories reference physical space and may change
-without regenerating it. A river, watershed, geological formation, ecosystem,
-or hazard can cross any number of political boundaries and must not terminate
-at a territory edge.
-
-## Canonical state and provenance
-
-Geological history generates the world; canonical present state then becomes
-the authority for ordinary queries. It is the smallest persistent,
-presentation-independent representation sufficient to say what physically
-exists now without replaying geological prehistory.
-
-Canonical truth may contain resolved facts, constraints over unmaterialized
-detail, compact causal provenance, and active physical state needed for future
-evolution. Renderer meshes, rasters, LOD products, and client caches are derived
-and disposable. The complete accepted distinction is documented in
-[Canonical Geological State and Refinement](../world-generation/CANONICAL_GEOLOGICAL_STATE_AND_REFINEMENT.md).
-
-## Position, pressure, and thermal state
-
-Canonical geometry records absolute physical position relative to a planetary
-datum; depth is a contextual query relative to local ground, sea level, or
-another reference. Lithostatic pressure normally derives from gravity, geometry,
-and the actual material overburden rather than a universal depth formula.
-
-Temperature is likely canonical history-bearing query state represented through
-a spatial field; bodies influence it through material properties rather than
-owning independent temperatures. Conservative remapping may operate on thermal
-energy, enthalpy, or another suitable quantity and reconstruct temperature from
-material state. Geothermal gradient is derived. Stable regions may use a coarse
-conductive background and significant events may retain adaptive transient or
-constrained residual state, with conservative compatible boundaries between
-resolutions and no artificial discontinuities at ordinary contacts.
-
-Physical dependencies may contain feedback loops, while numerical evaluation
-uses controlled staging or iteration whose fidelity scales with canonical
-significance. Exact coordinates, pressure queries, fields, caches, coupling, and
-thermal numerics remain open. See
-[Depth, Pressure, and Thermal State](../world-generation/DEPTH_PRESSURE_AND_THERMAL_STATE.md).
-
-## Broad elevation and physical surface
-
-Elevation is not an independent canonical heightmap. Canonical 3D solid-Earth
-geometry supplies a semantic ground-material boundary from which physical ground
-or seafloor is queried. It is not merely the highest point containing solid
-matter and need not be a single-valued height function. Water, ice, atmosphere,
-vegetation, structures, and other overlying domains remain conceptually
-distinct. Elevation rasters and terrain meshes are derived query and
-presentation products.
-
-Broad geometry responds causally to whole-lithosphere density and thermal
-structure, loads, regional strength, tectonic forcing, and time-dependent
-disequilibrium. Column buoyancy is compared with a versioned Earth-like
-asthenospheric reference, while flexural support distributes response
-regionally. The sea-level datum, buoyancy reference, and deep computational
-horizon remain distinct. Full mantle convection, equations, mechanics, and
-terrain generation are not selected. See
-[Broad Elevation and Isostatic Response](../world-generation/BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md).
-
-## Spatial scale and levels of detail
-
-> **Resolution is a property of a representation, not of physical reality.**
-
-The prototype uses **500 m × 500 m sampling cells** to validate mapping and
-interaction. This is a provisional prototype scale, not a fundamental unit of
-world or geological truth.
-
-Geological features provide continuous physical identity. Spatial domains or
-chunks provide computational locality. Cells are system-specific samples or
-analysis units that query canonical truth. These three concepts need not align
-or share a resolution.
-
-Representations and derived detail are partitioned, lazy, and multi-resolution:
-
-- Physical and geological complexity can require finer canonical detail.
-- Simulation relevance can require finer detail even without direct inspection.
-- Observation and gameplay needs may trigger deterministic refinement.
-- Distant states remain coarse summaries sufficient for cross-border systems
-  such as diplomacy, trade, demographics, and military strength.
-- Constrained unresolved detail may be materialized deterministically according
-  to focus and relevance, then promoted to stable canonical truth when required.
-- Derived presentation data may be cached, unloaded, or regenerated without
-  changing canonical truth.
-
-The architecture must not require every possible sampling cell across the world
-to exist at once.
-Nor does canonical world state require maximum-resolution geology to exist
-everywhere at once. Coarse summaries and deterministic refinement may represent
-the same world at different levels according to need. Child detail must remain
-compatible with parent constraints, subject to unresolved representation and
-persistence rules.
-
-Geological entities may cross many domains, and domains may contain partial
-representations of many entities. Shared canonical features constrain every
-intersecting coarse or fine representation. The accepted ownership and boundary
-laws are documented in
-[Adaptive Spatial Partitioning](../world-generation/ADAPTIVE_SPATIAL_PARTITIONING.md).
-
-## Continents and country allocation
-
-Continents provide a bounded allocation layer inspired by Ikariam. Each continent
-contains a designed or generated set of country territories or slots. A player
-occupies a slot and receives a sovereign territory shaped by physical geography.
-Exact capacity and allocation rules remain open.
-
-## Authority and multiplayer
-
-The eventual multiplayer model is server-authoritative. The authority generates
-and owns the canonical physical world and simulation state, validates commands,
-and distributes an appropriate subset or derived view to each client. Clients
-handle presentation, camera, input, caching, and any later prediction around
-received state; they do not independently generate authoritative geology or
-reconstruct the whole planet.
+Once materially relevant detail becomes canonical, persisted truth takes
+precedence over regeneration. A later algorithm version must not silently alter
+resolved or interacted-with geology. Still-unresolved detail may use a compatible
+new generator only when it preserves all established constraints.
 
 ```text
-seed and compatible ruleset
-→ authoritative geological-prehistory generation
-→ canonical present world, constraints, and compact provenance
-→ persistent authority-owned state
-→ relevant subsets and views delivered to clients
+seed + generator/ruleset version + declared inputs
+→ authoritative geological prehistory
+→ canonical present world + constraints + compact provenance
+→ persisted authority-owned state
+→ relevant queries and derived views
 ```
 
-**Authoritative world generation is separated from client play cost.** Expensive
-generation may occur during world creation. This does not decide whether
-canonical detail is eagerly generated, lazily materialized, hierarchically
-summarized, cached, or persisted.
+## Canonical and derived data
 
-Singleplayer follows the same model locally: a local authority runs the world and
-simulation. Networking is not required for the first prototype, but commands and
-state boundaries must not assume direct UI ownership.
+Canonical present state is the smallest presentation-independent authority
+sufficient to describe what physically exists now and continue relevant
+evolution without replaying all geological prehistory.
 
-## Architectural consequences
+Canonical truth may include resolved facts, constraints over unresolved detail,
+compact provenance, and active physical state. Renderer meshes, GPU buffers,
+rasters, sampled layers, level-of-detail products, and client caches are derived
+and disposable.
 
-This direction requires early discipline in deterministic generation, spatial
-indexing, and simulation/render separation. It enables a detailed personal
-nation, large worlds, focused resource use, headless simulation, and a credible
-path from local singleplayer to authoritative multiplayer.
+The detailed ownership and refinement rules are defined by `WG-005` through
+`WG-010` in the [world-generation index](../world-generation/README.md).
+
+## Spatial model
+
+Geological features, computational spatial domains, and sampling cells are
+different concepts:
+
+- A geological feature has continuous canonical identity.
+- A spatial domain supplies computational locality, indexing, loading, or
+  refinement.
+- A sampling cell queries canonical truth for one system or presentation.
+
+Political territories also reference physical space; they do not own natural
+features, spatial domains, or sampling cells. Borders may change without
+regenerating geography. Rivers, watersheds, geological formations, ecosystems,
+and hazards may cross any number of political territories.
+
+The `500 m × 500 m` sampling cells in `PROTO-001` are provisional measurements,
+not a fundamental unit of world truth.
+
+## Detail and refinement
+
+Representation cost follows geological complexity, simulation relevance, and
+declared query needs. The architecture must not require every possible sampling
+cell or maximum-resolution geological representation to exist at once.
+
+Refinement must preserve established canonical truth and shared constraints.
+Observation may trigger refinement, but it does not physically create geology
+or permit a reroll. Different regions may hold compatible levels of resolved
+detail without creating artificial physical discontinuities.
+
+## Authority model
+
+The authority owns canonical world and simulation state, validates commands, and
+performs authoritative generation and refinement.
+
+- In singleplayer, the authority runs locally.
+- In multiplayer, the authority runs on the server.
+- Clients own presentation, input, local caches, and any later prediction around
+  received state.
+- Clients do not independently generate authoritative geology or reconstruct the
+  complete world.
+
+Expensive world creation is separate from client play cost. This decision does
+not select eager or lazy generation, persistence granularity, database design,
+or a network protocol.
+
+## Geography before politics
+
+Natural geography is generated before political allocation. Coastlines,
+elevation, drainage, rivers, climate, biomes, and other physical conditions
+establish the world that later political territories must respect.
+
+Continents may later provide bounded allocation areas containing country slots.
+A player may occupy a slot and receive a political territory shaped by physical
+geography. Capacity, allocation rules, and the final continent model remain open.
+
+## Consequences
+
+- Seed inputs and generator/ruleset versions must be explicit.
+- Coordinate, spatial-domain, and sampling-cell mappings must be testable.
+- Presentation code must query world/simulation APIs rather than own simulation
+  truth.
+- Persistence must distinguish canonical state from derived caches.
+- Cross-domain features and refinement boundaries must preserve continuity.
+- Implementation choices listed in
+  [Open Architecture Decisions](OPEN_DECISIONS.md) remain unresolved until an
+  accepted decision record resolves them.
+
+## Out of scope
+
+This overview does not select:
+
+- coordinate systems, projections, spatial indexes, or domain dimensions;
+- geological geometry, topology, numerical solvers, or refinement algorithms;
+- terrain-generation, hydrology, climate, soil, ecosystem, or resource models;
+- renderer internals, databases, serialization formats, or network protocols;
+- country-slot capacity or political-allocation rules.
