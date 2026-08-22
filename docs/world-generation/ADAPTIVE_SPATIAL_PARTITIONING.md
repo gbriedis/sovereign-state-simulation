@@ -261,10 +261,12 @@ need finer spatial or temporal state. Coarse and fine representations must
 describe one compatible canonical thermal state. Their shared boundary contract
 may eventually constrain temperature, heat flux, transport-relevant material
 properties, and parent thermal state without making computational edges physical
-thermal boundaries. Remapping and refinement must conserve thermal energy except
-for justified modeled sources or sinks. Ordinary contacts must not create
-artificial discontinuities, while future modeled interface physics may justify
-specialized behavior. Interpolation and conservation methods remain open. See
+thermal boundaries. Remapping and refinement must conserve total energy except
+for explicitly modeled sources, sinks, or transport across the chosen
+control-volume boundary; internal phase transformations may change energy form
+but not total energy. Ordinary contacts must not create artificial
+discontinuities, while future modeled interface physics may justify specialized
+behavior. Interpolation and conservation methods remain open. See
 [Depth, Pressure, and Thermal State](DEPTH_PRESSURE_AND_THERMAL_STATE.md).
 
 ## Preferred overall model

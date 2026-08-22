@@ -276,18 +276,45 @@ thermal relaxation in the new configuration
 
 Literal temperature values therefore need not be copied unchanged with displaced
 material. Materials with different density or heat capacity can store different
-thermal energy at the same temperature; phase changes may consume or release
-latent heat; and transformations may change the relationship between stored
-thermal energy and temperature. The conserved quantity, representation,
-reconstruction, and future latent-heat treatment remain unresolved.
+thermal energy at the same temperature; phase changes may exchange energy
+between sensible and latent or internal phase state; and transformations may
+change the relationship between stored thermal energy and temperature. The
+conserved quantity, representation, reconstruction, and future latent-heat
+treatment remain unresolved.
 
-> **Thermal remapping and refinement must not introduce or remove thermal energy
-> except where a modeled physical source or sink justifies it.**
+> **Thermal remapping and refinement must conserve total energy except for
+> explicitly modeled energy sources, sinks, or transport across the chosen
+> control-volume boundary. Phase transformations may exchange sensible and
+> latent energy internally but do not create or destroy total energy.**
 
-Possible future sources and sinks include radiogenic heating, magmatic heat
-input, conductive flux through boundaries, advective fluid transport,
-phase-change latent heat, and surface or deep boundary flux. This establishes
-event-driven conservative remapping, not a numerical conservation scheme or a
+These are three distinct parts of thermal accounting:
+
+```text
+radiogenic decay
+→ energy source
+
+boundary heat flux / advection
+→ energy crosses control-volume boundary
+
+phase transition
+→ energy changes internal form
+→ total energy remains conserved
+```
+
+Sources and sinks genuinely add or remove energy from the modeled system or
+control volume. Examples may include radiogenic heat production, imposed
+surface or deep boundary heat exchange, and magmatic thermal energy when it is
+treated as entering the selected domain from outside.
+
+Conductive heat flux, advective or fluid heat transport, and material transport
+move existing energy across a selected control-volume boundary. They are not
+energy creation or destruction.
+
+Melting, crystallization, and other future phase transformations may redistribute
+energy between sensible thermal state and latent or internal phase energy. They
+remain internally energy-conserving. This establishes the accounting principle,
+not an enthalpy implementation, latent-heat equation, phase-transition
+algorithm, control-volume discretization, numerical conservation scheme, or
 continuously coupled thermo-mechanical solver.
 
 ## Feedback and numerical evaluation
@@ -418,8 +445,10 @@ fine domain
 
 The future contract may need compatible temperature, heat flux, transport-
 relevant material properties, and parent thermal constraints. Remapping and
-refinement must conserve thermal energy except for justified modeled sources or
-sinks. Interpolation and conservation methods remain open.
+refinement must conserve total energy except for explicitly modeled sources,
+sinks, or transport across the chosen control-volume boundary. Internal phase
+transformations may change energy form but not total energy. Interpolation and
+conservation methods remain open.
 
 > **Different thermal resolutions may coexist, but they must describe one
 > compatible canonical thermal state.**
