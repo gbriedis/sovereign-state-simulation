@@ -47,7 +47,7 @@ record is a Steward task; it is never silently treated as current.
 
 - **Type:** Packet
 - **DRI:** Project Steward
-- **State:** Integration
+- **State:** Done
 - **Priority:** P0
 - **Updated:** 2026-08-22
 - **Outcome:** Repository-native ownership, routing, decision, handoff, review,
@@ -56,8 +56,10 @@ record is a Steward task; it is never silently treated as current.
   and initial records are canonical on `main`; links and metadata validate; all
   departments are informed.
 - **Base:** `main@127fa07`.
-- **Branch / worktree:** `ops/project-control-plane` in the primary integration
-  checkout.
+- **Branch / worktree:** Integrated by
+  [PR #20](https://github.com/gbriedis/sovereign-state-simulation/pull/20);
+  exact submitted head `fc35db3` was squash-merged as `9578f28`, and both task
+  branches were retired after proof.
 - **Write scope:** `docs/operations/`, `docs/decisions/`, repository agent
   guidance, governance automation, and the required-check orchestration in
   `.github/workflows/`, with one writer per file.
@@ -78,9 +80,13 @@ record is a Steward task; it is never silently treated as current.
   Architecture accepted splitting lint and tests into parallel gates. The
   required `rust-gate` now skips hosted compilation for documentation-only work
   and waits for every Rust gate when code, Cargo, or toolchain paths change.
-- **Next action:** Project Steward completes review, runs repository validation,
-  publishes the canonical result, briefs every department, and closes this
-  packet.
+  [PR #20](https://github.com/gbriedis/sovereign-state-simulation/pull/20)
+  passed `project-governance` and `rust-gate`, auto-merged under protected-main
+  rules, and triggered successful post-merge workflows. Eleven targeted
+  department/lane handoffs were delivered.
+- **Next action:** Project Steward retains this `Done` record for one review
+  cycle, then removes it from the live ledger while Git and ADR-0001 preserve
+  history.
 - **Blocker:** None — Art & Technical Art accepted the corrected standing
   contract, routes, packet, templates, and enforcement on 2026-08-22.
 
@@ -88,7 +94,7 @@ record is a Steward task; it is never silently treated as current.
 
 - **Type:** Packet
 - **DRI:** Project Steward
-- **State:** Integration
+- **State:** Done
 - **Priority:** P0
 - **Updated:** 2026-08-22
 - **Outcome:** Every worktree and unique commit has an owner and disposition;
@@ -97,9 +103,8 @@ record is a Steward task; it is never silently treated as current.
   branch, obsolete clean worktrees are safely removed, metadata is pruned,
   canonical validation passes, and the remote contains the intended baseline.
 - **Base:** `main@127fa07` at the 2026-08-22 inventory; re-inspect before acting.
-- **Branch / worktree:** Project Steward coordinates from the primary integration
-  checkout; Git-state work does not edit product files unless rescued work
-  becomes a separately scoped packet.
+- **Branch / worktree:** Closed through `ops/close-project-control-plane` in a
+  dedicated closure worktree; no active department worktree was deleted.
 - **Write scope:** Git refs, upstream state, and worktree registrations only.
 - **Dependencies:** Active packet owners must finish or hand off before their
   worktrees are removed.
@@ -111,17 +116,16 @@ record is a Steward task; it is never silently treated as current.
 - **Routing:** Action required — owners of dirty or unique work; Consulted —
   integration DRI for conflicting valid changes; Informed — all agents when the
   canonical baseline changes.
-- **Evidence:** On 2026-08-22 the Steward published the two valid local commits
-  and verified `main@127fa07` equals `origin/main`. Six clean detached Codex
-  worktrees are owned by pinned department tasks: World Core, Bevy Client, and
-  Rust Platform are one canonical commit behind; Brand Steward, Audience
-  Intelligence, and Visual Brand & Capture are aligned. None contains a unique
-  commit, and none is an obsolete cleanup target while its task remains active.
-- **Next action:** After `OPS-001` merges, the Steward sends each owning task the
-  canonical control-plane handoff; each owner synchronizes its clean worktree to
-  current `origin/main`, preserves any newly discovered work first, and confirms
-  its packet disposition. The Steward then verifies alignment and closes this
-  packet without deleting active task worktrees.
+- **Evidence:** `main@9578f28` equals `origin/main`; PR #20's exact task head and
+  squash merge were proven; the remote task branch and verified local branch
+  were retired. World Core, Bevy Client, Rust Platform, Brand Steward, Audience
+  Intelligence, and Visual Brand & Capture each re-inspected and synchronized
+  its clean detached worktree to `9578f28`. All six remained clean, owned, and
+  free of unique commits; they were preserved because their pinned tasks remain
+  active. Post-merge `Rust` and `Project Governance` workflows passed.
+- **Next action:** Each active owner creates its packet branch in its preserved
+  worktree when work begins. Project Steward retains this `Done` record for one
+  review cycle, then removes it from the live ledger.
 - **Blocker:** None.
 
 ## WG-001 — Close the prototype seed and spatial contract
