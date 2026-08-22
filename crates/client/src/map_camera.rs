@@ -14,6 +14,7 @@ impl Plugin for MapCameraPlugin {
     fn build(&self, app: &mut App) {
         app.init_resource::<MapCameraSettings>()
             .init_resource::<MapCameraInputGate>()
+            .init_resource::<MapPanGesture>()
             .add_systems(Startup, spawn_map_camera)
             .add_systems(PostStartup, log_diagnostic_context)
             .add_systems(Update, (navigate_map_camera, draw_diagnostic_fixture));
@@ -58,6 +59,13 @@ impl Default for MapCameraInputGate {
     }
 }
 
+/// Client-owned drag state prevents stale platform button state from reviving a
+/// gesture after focus, pointer, or UI ownership has been lost.
+#[derive(Resource, Default)]
+struct MapPanGesture {
+    active: bool,
+}
+
 fn spawn_map_camera(mut commands: Commands) {
     commands.spawn((Camera2d, MapCamera));
 }
@@ -94,9 +102,13 @@ fn navigate_map_camera(
     mut cursor_moved: MessageReader<CursorMoved>,
     mut mouse_wheel: MessageReader<MouseWheel>,
     mouse_buttons: Res<ButtonInput<MouseButton>>,
-    settings: Res<MapCameraSettings>,
-    input_gate: Res<MapCameraInputGate>,
+    control: (
+        Res<MapCameraSettings>,
+        Res<MapCameraInputGate>,
+        ResMut<MapPanGesture>,
+    ),
 ) {
+    let (settings, input_gate, mut pan_gesture) = control;
     let (window_entity, window) = *primary_window;
     let cursor_delta = cursor_moved
         .read()
@@ -110,19 +122,20 @@ fn navigate_map_camera(
         .sum::<f32>();
 
     let pointer_position = window.cursor_position();
-    let input_is_available =
-        pointer_input_is_available(input_gate.enabled, window.focused, pointer_position);
     let (camera, camera_global, mut transform, mut projection) = map_camera.into_inner();
     let Projection::Orthographic(orthographic) = &mut *projection else {
         return;
     };
+    let pointer_is_in_map = pointer_input_is_available(
+        input_gate.enabled,
+        window.focused,
+        pointer_position,
+        camera.logical_viewport_rect(),
+    );
 
-    if input_is_available
+    if pointer_is_in_map
         && zoom_intent != 0.0
         && let Some(cursor_position) = pointer_position
-        && camera
-            .logical_viewport_rect()
-            .is_some_and(|viewport| viewport.contains(cursor_position))
         && let Ok(anchor_world) = camera.viewport_to_world_2d(camera_global, cursor_position)
     {
         let old_scale = orthographic.scale;
@@ -145,9 +158,16 @@ fn navigate_map_camera(
         transform.translation.y = new_center.y;
     }
 
-    let drag_is_active = input_is_available
-        && mouse_buttons.pressed(settings.pan_button)
-        && !mouse_buttons.just_pressed(settings.pan_button);
+    let button_is_pressed = mouse_buttons.pressed(settings.pan_button);
+    let button_was_just_pressed = mouse_buttons.just_pressed(settings.pan_button);
+    pan_gesture.active = next_drag_state(
+        pan_gesture.active,
+        pointer_is_in_map,
+        button_is_pressed,
+        button_was_just_pressed,
+        mouse_buttons.just_released(settings.pan_button),
+    );
+    let drag_is_active = pan_gesture.active && !button_was_just_pressed;
     let accepted_drag = accepted_drag_delta(cursor_delta, drag_is_active);
     let new_center = camera_center_after_drag(
         transform.translation.xy(),
@@ -177,8 +197,34 @@ fn bounded_zoom_intent(intent: f32, maximum_magnitude: f32) -> f32 {
     intent.clamp(-maximum_magnitude, maximum_magnitude)
 }
 
-fn pointer_input_is_available(enabled: bool, focused: bool, pointer: Option<Vec2>) -> bool {
-    enabled && focused && pointer.is_some_and(Vec2::is_finite)
+fn pointer_input_is_available(
+    enabled: bool,
+    focused: bool,
+    pointer: Option<Vec2>,
+    viewport: Option<Rect>,
+) -> bool {
+    enabled
+        && focused
+        && pointer.is_some_and(Vec2::is_finite)
+        && pointer
+            .zip(viewport)
+            .is_some_and(|(pointer, viewport)| viewport.contains(pointer))
+}
+
+fn next_drag_state(
+    was_active: bool,
+    pointer_is_in_map: bool,
+    button_is_pressed: bool,
+    button_was_just_pressed: bool,
+    button_was_just_released: bool,
+) -> bool {
+    if !pointer_is_in_map || !button_is_pressed || button_was_just_released {
+        false
+    } else if button_was_just_pressed {
+        true
+    } else {
+        was_active
+    }
 }
 
 fn accepted_drag_delta(cursor_delta: Vec2, drag_is_active: bool) -> Vec2 {
@@ -319,7 +365,7 @@ mod tests {
     }
 
     #[test]
-    fn inactive_drag_covers_release_focus_or_pointer_cancellation() {
+    fn inactive_or_invalid_drag_rejects_pointer_delta() {
         assert_eq!(accepted_drag_delta(Vec2::new(4.0, 5.0), false), Vec2::ZERO);
         assert_eq!(accepted_drag_delta(Vec2::NAN, true), Vec2::ZERO);
         assert_eq!(
@@ -331,12 +377,42 @@ mod tests {
     #[test]
     fn pointer_input_requires_gate_focus_and_a_finite_position() {
         let pointer = Some(Vec2::new(320.0, 180.0));
+        let viewport = Some(Rect::from_corners(Vec2::ZERO, Vec2::new(1280.0, 720.0)));
 
-        assert!(pointer_input_is_available(true, true, pointer));
-        assert!(!pointer_input_is_available(false, true, pointer));
-        assert!(!pointer_input_is_available(true, false, pointer));
-        assert!(!pointer_input_is_available(true, true, None));
-        assert!(!pointer_input_is_available(true, true, Some(Vec2::NAN)));
+        assert!(pointer_input_is_available(true, true, pointer, viewport));
+        assert!(!pointer_input_is_available(false, true, pointer, viewport));
+        assert!(!pointer_input_is_available(true, false, pointer, viewport));
+        assert!(!pointer_input_is_available(true, true, None, viewport));
+        assert!(!pointer_input_is_available(
+            true,
+            true,
+            Some(Vec2::NAN),
+            viewport
+        ));
+        assert!(!pointer_input_is_available(
+            true,
+            true,
+            Some(Vec2::new(1281.0, 360.0)),
+            viewport
+        ));
+        assert!(!pointer_input_is_available(true, true, pointer, None));
+    }
+
+    #[test]
+    fn drag_cancels_and_stale_button_state_cannot_rearm() {
+        let armed = next_drag_state(false, true, true, true, false);
+        assert!(armed);
+        assert!(next_drag_state(armed, true, true, false, false));
+
+        for cancelled in [
+            next_drag_state(armed, true, true, false, true),
+            next_drag_state(armed, false, true, false, false),
+            next_drag_state(armed, true, false, false, false),
+        ] {
+            assert!(!cancelled);
+            assert!(!next_drag_state(cancelled, true, true, false, false));
+            assert!(next_drag_state(cancelled, true, true, true, false));
+        }
     }
 
     #[test]
@@ -393,27 +469,27 @@ mod tests {
     }
 
     #[test]
-    fn cursor_anchor_is_invariant_at_center_edges_and_corners() {
+    fn cursor_anchor_is_invariant_at_center_edges_and_corners_at_all_scales() {
         let center = Vec2::new(160.0, -90.0);
-        let old_scale = 2.0;
-        let new_scale = 0.75;
-        let anchors = [
-            center,
-            center + Vec2::new(640.0, 0.0),
-            center + Vec2::new(-640.0, 0.0),
-            center + Vec2::new(0.0, 360.0),
-            center + Vec2::new(0.0, -360.0),
-            center + Vec2::new(620.0, 340.0),
-            center + Vec2::new(-620.0, 340.0),
-            center + Vec2::new(620.0, -340.0),
-            center + Vec2::new(-620.0, -340.0),
+        let screen_offsets = [
+            Vec2::ZERO,
+            Vec2::new(620.0, 0.0),
+            Vec2::new(-620.0, 0.0),
+            Vec2::new(0.0, 340.0),
+            Vec2::new(0.0, -340.0),
+            Vec2::new(620.0, 340.0),
+            Vec2::new(-620.0, 340.0),
+            Vec2::new(620.0, -340.0),
+            Vec2::new(-620.0, -340.0),
         ];
 
-        for anchor in anchors {
-            let new_center = camera_center_after_zoom(center, anchor, old_scale, new_scale);
-            let old_screen_offset = (anchor - center) / old_scale;
-            let new_screen_offset = (anchor - new_center) / new_scale;
-            assert_vec2_close(new_screen_offset, old_screen_offset);
+        for (old_scale, new_scale) in [(0.125, 0.2), (1.0, 0.75), (16.0, 8.0)] {
+            for screen_offset in screen_offsets {
+                let anchor = center + screen_offset * old_scale;
+                let new_center = camera_center_after_zoom(center, anchor, old_scale, new_scale);
+                let new_screen_offset = (anchor - new_center) / new_scale;
+                assert_vec2_close(new_screen_offset, screen_offset);
+            }
         }
     }
 
@@ -430,6 +506,29 @@ mod tests {
             (anchor - new_center) / new_scale,
             (anchor - center) / old_scale,
         );
+    }
+
+    #[test]
+    fn repeated_input_holds_each_bound_and_can_reverse_away() {
+        let mut scale = 1.0;
+        let zoom_in = bounded_zoom_intent(1000.0, 4.0);
+        for _ in 0..128 {
+            scale = zoomed_scale(scale, zoom_in, 1.2, 0.125, 16.0);
+            assert!(scale.is_finite() && (0.125..=16.0).contains(&scale));
+        }
+        assert_eq!(scale, 0.125);
+        assert_eq!(zoomed_scale(scale, zoom_in, 1.2, 0.125, 16.0), 0.125);
+        assert!(zoomed_scale(scale, -1.0, 1.2, 0.125, 16.0) > 0.125);
+
+        scale = 1.0;
+        let zoom_out = bounded_zoom_intent(-1000.0, 4.0);
+        for _ in 0..128 {
+            scale = zoomed_scale(scale, zoom_out, 1.2, 0.125, 16.0);
+            assert!(scale.is_finite() && (0.125..=16.0).contains(&scale));
+        }
+        assert_eq!(scale, 16.0);
+        assert_eq!(zoomed_scale(scale, zoom_out, 1.2, 0.125, 16.0), 16.0);
+        assert!(zoomed_scale(scale, 1.0, 1.2, 0.125, 16.0) < 16.0);
     }
 
     #[test]
