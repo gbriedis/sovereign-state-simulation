@@ -16,14 +16,18 @@ world that later political, economic, and social systems must respect.
 | Need | Document |
 | --- | --- |
 | Understand the enduring game idea | [Project vision](docs/PROJECT_VISION.md) |
+| Catch up on current work and blockers | [Current state](docs/handoff/CURRENT_STATE.md) |
+| Understand ownership, handoffs, and agent autonomy | [Operating model](docs/operations/OPERATING_MODEL.md) |
+| See active work packets and integration order | [Workstreams](docs/operations/WORKSTREAMS.md) |
+| See significant decisions and rationale | [Decision index](docs/decisions/README.md) |
+| Understand in-game visual and technical-art authority | [Art & Technical Art](docs/art/README.md) |
 | Use the accepted name, positioning, and voice | [Brand foundation](docs/brand/BRAND_FOUNDATION.md) |
 | Understand Marketing ownership and workflow | [Marketing department](docs/marketing/MARKETING_DEPARTMENT.md) |
 | Understand the rules guiding design | [Design principles](docs/DESIGN_PRINCIPLES.md) |
 | Understand the current development phase | [World-foundation roadmap](docs/ROADMAP_WORLD_FOUNDATION.md) |
 | Understand the technical structure | [Architecture overview](docs/architecture/ARCHITECTURE_OVERVIEW.md) |
 | Build the first proof of concept | [Prototype v0.1](docs/architecture/PROTOTYPE_V0.1.md) |
-| See unresolved technical choices | [Open decisions](docs/architecture/OPEN_DECISIONS.md) |
-| Catch up before continuing work | [Current state](docs/handoff/CURRENT_STATE.md) |
+| See unresolved technical discovery questions | [Open decisions](docs/architecture/OPEN_DECISIONS.md) |
 
 The [documentation guide](docs/README.md) explains ownership and update rules.
 
@@ -33,7 +37,7 @@ The [documentation guide](docs/README.md) explains ownership and update rules.
 - **Architecture:** Pure-Rust world core with a separate Bevy client
 - **Implementation:** Rust workspace and initial map window are bootstrapped
 - **Immediate target:** Prototype spatial mapping and map-camera navigation
-- **Last documentation reorganization:** 2026-08-21
+- **Project control plane established:** 2026-08-22
 
 ## Development
 
@@ -44,6 +48,7 @@ separate from the Bevy client.
 cargo run -p sovereign-client
 cargo test --workspace --locked
 cargo clippy --workspace --all-targets --locked -- -D warnings
+pwsh -File tools/project-governance.ps1 -Mode Validate
 ```
 
 The first build downloads and compiles Bevy and its rendering dependencies.

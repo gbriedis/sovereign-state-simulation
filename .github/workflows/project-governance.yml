@@ -1,0 +1,21 @@
+name: Project Governance
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  project-governance:
+    name: project-governance
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Validate project governance
+        shell: pwsh
+        run: ./tools/project-governance.ps1 -Mode Validate -StrictMetadata
