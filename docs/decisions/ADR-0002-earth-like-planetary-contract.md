@@ -1,13 +1,13 @@
 # ADR-0002: Adopt an Earth-like planetary contract
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-22
 - **Decision owner:** World Generation Lead
 - **DRI:** WG-002 specification DRI
 - **Scope:** Level 0 world-generation meaning and downstream boundary conditions
 - **Art / Technical Art impact:** Consulted
 - **Consulted:** Systems Architecture; Art & Technical Art
-- **Informed:** Product Owner; Project Steward; World Core; Bevy Client; Marketing
+- **Informed:** Product Owner; Project Steward; Bevy Client; Marketing
 - **Supersedes:** None
 - **Related work:** `WG-002`
 
@@ -41,7 +41,7 @@ which parameters remain permanently fixed are unresolved.
 | --- | --- | --- |
 | World Generation | Action required | Own causal meaning, limits, and later domain specifications. |
 | Systems Architecture | Consulted | Confirm the contract remains an upstream input rather than an outcome generator. |
-| World Core | Action required | Treat a future versioned contract as authoritative input; do not implement this ADR alone. |
+| World Core | Action required | Acknowledge that a later versioned input contract is implementable without deriving outcomes directly; implementation remains separately scoped. |
 | Art & Technical Art | Consulted | Keep visual encoding derived from canonical causes and history; presentation cannot become world truth. |
 | Project Steward | Informed | Record WG-002 status and route acknowledgements. |
 | Bevy Client and Marketing | Informed | Do not present unresolved profiles as implemented behavior or demonstrated claims. |
