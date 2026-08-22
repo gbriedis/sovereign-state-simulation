@@ -1,8 +1,12 @@
-# Sovereign-State Simulation
+# State of Consequence
 
-A reality-first sovereign-state simulation in which the player governs a living,
-autonomous nation rather than directly controlling every person, company, or
-building.
+**A living nation simulation.**
+
+> Govern what you cannot command.
+
+*State of Consequence* is a reality-grounded strategy simulation in which the
+player governs a living, autonomous nation rather than directly controlling
+every person, company, or building.
 
 The project is currently in its world-foundation phase: building the natural
 world that later political, economic, and social systems must respect.
@@ -12,6 +16,7 @@ world that later political, economic, and social systems must respect.
 | Need | Document |
 | --- | --- |
 | Understand the enduring game idea | [Project vision](docs/PROJECT_VISION.md) |
+| Use the accepted name, positioning, and voice | [Brand foundation](docs/brand/BRAND_FOUNDATION.md) |
 | Understand the rules guiding design | [Design principles](docs/DESIGN_PRINCIPLES.md) |
 | Understand the current development phase | [World-foundation roadmap](docs/ROADMAP_WORLD_FOUNDATION.md) |
 | Understand the technical structure | [Architecture overview](docs/architecture/ARCHITECTURE_OVERVIEW.md) |

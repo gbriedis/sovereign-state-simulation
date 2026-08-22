@@ -8,6 +8,10 @@
 
 ## Settled direction
 
+- The accepted public product name is **State of Consequence**, the default
+  category descriptor is **a living nation simulation**, and the primary
+  tagline is **Govern what you cannot command.** Public messaging and visual
+  direction are governed by `../brand/BRAND_FOUNDATION.md`.
 - The game simulates an autonomous sovereign nation; the player influences rather
   than directly controls all actors.
 - Major domestic actors can initiate development, accumulate power, and pursue
