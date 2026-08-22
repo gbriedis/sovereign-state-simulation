@@ -21,6 +21,13 @@ query derived from that geometry, not the stored meaning of one coordinate.
 Datum and coordinate choices remain open; see
 [Depth, Pressure, and Thermal State](DEPTH_PRESSURE_AND_THERMAL_STATE.md).
 
+The uppermost boundary of canonical solid geological material against water,
+ice, atmosphere, or another overlying non-solid domain is the physical ground
+or seafloor surface. Elevation is queried from this boundary relative to the
+datum. Heightmaps, sampled elevation fields, and terrain meshes derive from it;
+they do not replace the canonical 3D geometry. See
+[Broad Elevation and Isostatic Response](BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md).
+
 ## Geological surfaces and bodies
 
 Surfaces may represent ground, contacts between units, the top or bottom of a

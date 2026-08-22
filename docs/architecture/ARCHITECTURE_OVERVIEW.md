@@ -98,6 +98,22 @@ significance. Exact coordinates, pressure queries, fields, caches, coupling, and
 thermal numerics remain open. See
 [Depth, Pressure, and Thermal State](../world-generation/DEPTH_PRESSURE_AND_THERMAL_STATE.md).
 
+## Broad elevation and physical surface
+
+Elevation is not an independent canonical heightmap. Canonical 3D solid-Earth
+geometry, including its uppermost boundary against water, ice, atmosphere, or
+another non-solid domain, defines the physical ground or seafloor. Elevation
+rasters and terrain meshes are derived queries and presentation products.
+
+Broad geometry responds causally to whole-lithosphere density and thermal
+structure, loads, regional strength, tectonic forcing, and time-dependent
+disequilibrium. Column buoyancy is compared with a versioned Earth-like
+asthenospheric reference, while flexural support distributes response
+regionally. The sea-level datum, buoyancy reference, and deep computational
+horizon remain distinct. Full mantle convection, equations, mechanics, and
+terrain generation are not selected. See
+[Broad Elevation and Isostatic Response](../world-generation/BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md).
+
 ## Spatial scale and levels of detail
 
 > **Resolution is a property of a representation, not of physical reality.**

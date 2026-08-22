@@ -24,6 +24,11 @@ depth below local surface: 1200 m
 These describe different relationships. The final planetary coordinate system
 and datum definition remain unresolved.
 
+The local physical surface is the uppermost boundary of canonical solid
+geological material, not an independently generated height field. Its elevation
+and its role in contextual depth queries are documented in
+[Broad Elevation and Isostatic Response](BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md).
+
 ## Lithostatic pressure follows overburden
 
 > **Depth is geometry. Lithostatic pressure is a consequence of gravity and the
@@ -257,6 +262,13 @@ strong fluid heat transport
 ```
 
 This note does not design thermo-fluid simulation.
+
+Thermal state also contributes causally to density, lithospheric buoyancy, and
+effective strength. Heating during rifting may temporarily support broad relief;
+later cooling and densification may contribute to subsidence. These are inputs
+to the broad vertical-response model, not fixed event-label bonuses or a thermal
+elevation formula. See
+[Broad Elevation and Isostatic Response](BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md).
 
 ## Geometry changes remap thermal content
 
