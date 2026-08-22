@@ -174,7 +174,7 @@ record is a Steward task; it is never silently treated as current.
 
 - **Type:** Packet
 - **DRI:** World Generation specification DRI
-- **State:** Integration
+- **State:** Done
 - **Priority:** P1
 - **Updated:** 2026-08-22
 - **Outcome:** Level 0 supplies bounded Earth-like causes and boundary
@@ -185,9 +185,10 @@ record is a Steward task; it is never silently treated as current.
   the exact merged branch and worktree are safely retired.
 - **Base:** Began at `main@127fa07`; synchronized through canonical
   `main@c8434a4` before integration.
-- **Branch / worktree:**
-  [`docs/WG-002-earth-like-planetary-contract`](https://github.com/gbriedis/state-of-consequence/pull/21)
-  in the isolated WG-002 task worktree.
+- **Branch / worktree:** Integrated by
+  [PR #21](https://github.com/gbriedis/state-of-consequence/pull/21);
+  exact submitted head `b9aa7c1` was squash-merged as `66b5d4f`. The remote and
+  verified local task branches and the clean task worktree were retired.
 - **Write scope:** `docs/world-generation/EARTH_LIKE_PLANETARY_CONTRACT.md`,
   `docs/world-generation/EARTH_LIKE_PHYSICAL_FRAMEWORK.md`,
   `docs/architecture/ARCHITECTURE_OVERVIEW.md`,
@@ -200,20 +201,22 @@ record is a Steward task; it is never silently treated as current.
   repository-rename registry correction are canonical.
 - **Review gate:** Product Owner accepted the product boundary; Systems
   Architecture, World Core, and Art & Technical Art returned `Accept`; Dev
-  Review approved the submitted world-contract diff and must confirm the final
-  synchronized registry-only delta before merge.
+  Review approved both the world-contract diff and final synchronized head
+  `b9aa7c1`.
 - **Art / Technical Art impact:** Consulted — accepted. Future visual profiles
   remain derived from canonical causes and cannot become world truth.
 - **Routing:** Action required — Product Owner, World Core, Dev Review, and
   Project Steward; Consulted — Systems Architecture and Art & Technical Art;
-  Informed — Bevy Client and Marketing after merge.
+  Informed — Bevy Client and Marketing through the merged canonical record and
+  PR handoff.
 - **Evidence:** [PR #21](https://github.com/gbriedis/state-of-consequence/pull/21)
   records the exact review findings and resolutions. Local and hosted project
   governance passed; impact-aware CI correctly classified the change as
-  documentation-only.
-- **Next action:** Project Steward validates the final synchronized head,
-  squash-merges PR #21, confirms post-merge checks, sends targeted notices, and
-  retires the task branch and worktree.
+  documentation-only. Post-merge `Rust` and `Project Governance` workflows
+  passed on `main@66b5d4f`.
+- **Next action:** Project Steward retains this `Done` record for one review
+  cycle, then removes it from the live ledger while Git and ADR-0002 preserve
+  history.
 - **Blocker:** None.
 
 ## CORE-001 — Implement deterministic prototype spatial mapping
