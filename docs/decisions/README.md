@@ -66,3 +66,4 @@ external consequence.
 | ADR | Status | Decision | Decision owner | Related work |
 | --- | --- | --- | --- | --- |
 | [ADR-0001](ADR-0001-project-control-plane.md) | Accepted | Adopt an autonomous repository-native project control plane | Product Owner | `OPS-001` |
+| [ADR-0002](ADR-0002-earth-like-planetary-contract.md) | Accepted | Adopt an Earth-like planetary contract | Product Owner | `WG-002` |
