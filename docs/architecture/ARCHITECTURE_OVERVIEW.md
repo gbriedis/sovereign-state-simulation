@@ -76,6 +76,20 @@ evolution. Renderer meshes, rasters, LOD products, and client caches are derived
 and disposable. The complete accepted distinction is documented in
 [Canonical Geological State and Refinement](../world-generation/CANONICAL_GEOLOGICAL_STATE_AND_REFINEMENT.md).
 
+## Position, pressure, and thermal state
+
+Canonical geometry records absolute physical position relative to a planetary
+datum; depth is a contextual query relative to local ground, sea level, or
+another reference. Lithostatic pressure normally derives from gravity, geometry,
+and the actual material overburden rather than a universal depth formula.
+
+Temperature is likely canonical history-bearing state represented as a
+queryable field, while geothermal gradient is derived. Stable regions may use a
+coarse conductive background and significant thermal events may retain adaptive
+transient anomalies. Exact coordinates, pressure queries, fields, caches, and
+thermal numerics remain open. See
+[Depth, Pressure, and Thermal State](../world-generation/DEPTH_PRESSURE_AND_THERMAL_STATE.md).
+
 ## Spatial scale and levels of detail
 
 > **Resolution is a property of a representation, not of physical reality.**

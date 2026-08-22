@@ -86,6 +86,18 @@ formation-process rules, or validated lookup and interpolation data. The final
 method is unresolved, and the game does not require a full thermodynamic
 equilibrium solver.
 
+## Thermal causes
+
+Thermal conductivity should derive from bulk composition, mineral or phase
+state, and relevant porosity or fluid state where practical rather than being an
+unrelated random property.
+
+Radiogenic heat production should likewise connect to relevant chemistry. U and
+Th abundance and K-bearing composition may provide causal inputs to a future
+tractable heat-production approximation. This direction does not define
+isotopes, equations, or thermal algorithms. See
+[Depth, Pressure, and Thermal State](DEPTH_PRESSURE_AND_THERMAL_STATE.md).
+
 ## Geological bodies and space
 
 Bulk composition does not belong directly to every terrain-sampling cell. A

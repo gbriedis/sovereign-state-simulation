@@ -255,6 +255,13 @@ Once materially relevant fine detail becomes canonical, it remains stable.
 Derived caches and presentation products may still be unloaded without deleting
 established truth.
 
+Thermal representation follows the same adaptive rule. Stable ancient regions
+may use a coarse background field, while young intrusive or active regions may
+need finer spatial or temporal state. Coarse and fine thermal representations
+must agree at shared boundaries, but no universal thermal resolution is
+required. See
+[Depth, Pressure, and Thermal State](DEPTH_PRESSURE_AND_THERMAL_STATE.md).
+
 ## Preferred overall model
 
 ```text
