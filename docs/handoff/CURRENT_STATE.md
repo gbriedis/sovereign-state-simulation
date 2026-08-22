@@ -89,7 +89,9 @@
   literal temperature need not be copied unchanged. Remapping and refinement
   conserve total energy except for modeled sources, sinks, or transport across
   the chosen control-volume boundary. Phase transformations may redistribute
-  sensible and latent or internal energy but do not create or destroy it.
+  sensible and latent or internal energy, while non-rigid deformation may
+  exchange mechanical and internal or thermal energy through modeled work;
+  neither creates or destroys total coupled energy.
 - Thermal anomalies may collapse only if the finest promised future canonical
   query remains supportable. Otherwise, small signals survive as constrained
   residual state, compact parameters, or sufficient provenance.
@@ -118,7 +120,10 @@
 - Broad vertical response transforms affected canonical 3D bodies, contacts,
   faults, topology, material state, mass or volume accounting, thermal content,
   and provenance consistently before a new ground-material boundary and
-  elevation are queried. It is not a surface-only offset.
+  elevation are queried. It is not a surface-only offset. When significant,
+  mechanical work from compression, expansion, compaction, inelastic
+  deformation, or friction participates in energy accounting before temperature
+  is reconstructed.
 - Regional deformation may cross domains and refinement levels. Shared mapping
   constraints must prevent seams or inconsistent material displacement while
   preserving feature identity, topology, mass/load balance, and thermal
