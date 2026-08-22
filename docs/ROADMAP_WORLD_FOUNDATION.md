@@ -38,7 +38,7 @@ planet
 → inherited 3D material / thermal / density structure
 → lithospheric buoyancy + loading
 → regional flexural target + vertical relaxation
-→ broad solid-Earth geometry / physical surface
+→ broad solid-Earth geometry / semantic ground-boundary query
 → later surface processes
 → present-day terrain
 ```
@@ -98,10 +98,10 @@ remain open.
 
 [Broad Elevation and Isostatic Response](world-generation/BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md)
 derives first-order solid-Earth geometry from whole-lithosphere buoyancy, loads,
-regional strength, tectonic forcing, and time-dependent disequilibrium. The
-uppermost solid boundary defines ground and seafloor; heightmaps and terrain
-meshes remain derived. It does not implement terrain generation or full
-geodynamics.
+regional strength, tectonic forcing, and time-dependent disequilibrium. Ground
+and seafloor are semantic boundary queries over the transformed 3D domain;
+heightmaps and terrain meshes remain derived. It does not implement terrain
+generation or full geodynamics.
 
 ## In scope
 

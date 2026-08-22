@@ -13,7 +13,7 @@
 ```text
 canonical 3D geology
 ↓
-uppermost solid boundary
+upper boundary of the ground-material domain
 ↓
 ground / seafloor surface
 ↓
@@ -22,12 +22,27 @@ sampled elevation field
 map raster / terrain mesh
 ```
 
-The physical surface is the upper boundary of canonical solid geological
-material against atmosphere, water, ice, or another overlying non-solid domain.
-At a location, surface elevation is derived from where the canonical solid Earth
-ends relative to the elevation datum. A heightmap, sampled elevation field, or
-Bevy terrain mesh is derived query or presentation data, not canonical physical
-truth. The exact surface-query representation remains open.
+> **The physical ground or seafloor is queried from the upper boundary of the
+> canonical solid-Earth / ground-material domain.**
+
+The ground-material domain may later include coherent rock, unconsolidated
+sediment, regolith, and soil where those materials are accepted. Domain
+semantics determine whether material counts as ground; the query must not merely
+select the highest point containing any nonzero solid fraction.
+
+Water, ice or glaciers, atmosphere, vegetation, artificial structures, and
+suspended sediment may occupy separate overlying domains. Their final ownership
+and surface relationships remain open.
+
+> **Ground-surface queries depend on domain semantics, not merely on the highest
+> spatial point containing solid matter.**
+
+Canonical geometry is not required to be a single-valued height function. Caves,
+overhangs, cliffs, voids, and multiple solid/void intersections along a vertical
+line remain possible. A map layer may later select one elevation according to a
+defined query policy, but that policy is unresolved. A heightmap, sampled
+elevation field, or Bevy terrain mesh remains derived query or presentation
+data, not canonical physical truth.
 
 ## Broad relief precedes detailed geomorphology
 
@@ -176,6 +191,76 @@ collision
 ```
 
 unless an additional independent forcing is intentionally represented.
+
+## Broad response transforms the 3D world
+
+> **Isostatic, flexural, and other broad vertical responses must transform the
+> affected canonical 3D geological state consistently; they must not merely
+> move the visible surface.**
+
+```text
+buoyancy / loading / flexural response
+↓
+regional displacement or deformation field
+↓
+affected canonical 3D geology transforms
+↓
+new ground-material boundary
+↓
+derived elevation
+```
+
+The architecture must not establish `surface elevation += response` while
+leaving subsurface geometry unchanged. A broad response eventually maps the
+relevant geological bodies, contacts and bounding surfaces, faults and their
+relationships, topology and continuity, material state, mass or volume
+accounting, thermal content, canonical provenance relationships, and geometry
+across adaptive spatial domains as appropriate.
+
+> **Regional vertical response should be expressible as a spatial
+> displacement/deformation mapping over the affected 3D domain.**
+
+```text
+D(x, y, z) → displaced / deformed position
+```
+
+This direction does not choose displacement grids, implicit transforms, finite-
+element methods, elastic-plate equations, mesh deformation, or another numerical
+representation.
+
+Vertical response is also not synonymous with uniform translation. Future
+processes may imply rigid or near-rigid translation, regional elastic-style
+bending, distributed strain, compaction, thickening, thinning, fault-related
+displacement, or another deformation mode. These transformations may affect
+geometry and material volumes differently; their equations and final taxonomy
+remain open.
+
+> **Broad-response remapping must not accidentally create or destroy geological
+> material, break body continuity, or corrupt topology unless the modeled
+> physical process itself justifies such a change.**
+
+Simple flexural bending must not accidentally stretch a body to an impossible
+volume, detach contacts, create overlaps, erase a fault relationship, or sever
+continuity. Compaction or distributed strain may legitimately change local
+volume only through the modeled process. Exact mass, volume, topology, and
+constitutive rules remain unresolved.
+
+Thermal state follows the transformed material under the existing conservative
+remapping contract:
+
+```text
+3D geological deformation
+↓
+material and conserved thermal content remap together
+↓
+temperature reconstructed in changed material state
+↓
+thermal relaxation continues
+```
+
+The thermodynamic details remain in
+[Depth, Pressure, and Thermal State](DEPTH_PRESSURE_AND_THERMAL_STATE.md); this
+note does not select them.
 
 ## Regional support and flexure
 
@@ -345,17 +430,21 @@ note does not implement or otherwise define dynamic topography.
 
 ## Canonical and adaptive state
 
-The actual broad solid-Earth geometry is canonical. Its uppermost solid boundary
-defines the physical ground or seafloor surface. Elevation samples, heightmaps,
-rasters, and terrain meshes are derived. Preferred response and vertical
-disequilibrium may also need canonical active state when they are necessary to
-determine later geometry; the persisted-versus-derived split remains open.
+The actual broad solid-Earth geometry is canonical. The semantic upper boundary
+of its ground-material domain supplies physical ground or seafloor queries.
+Elevation samples, heightmaps, rasters, and terrain meshes are derived.
+Preferred response and vertical disequilibrium may also need canonical active
+state when they are necessary to determine later geometry; the
+persisted-versus-derived split remains open.
 
 Regional flexural response can cross geological and computational boundaries.
 Adaptive refinement must preserve established broad geometry, total relevant
-loads, shared response constraints, and compatibility with coarser regional
-support. Refining a local surface must not silently change its regional mass
-balance or create an elevation seam. Exact adaptive representation remains open.
+loads, shared displacement or deformation constraints, canonical feature
+identity, topology, thermal accounting, and compatibility with coarser regional
+support. A regional field must cross computational boundaries without geometric
+seams or inconsistent material displacement. Refining a local domain must not
+silently change regional mass balance. Exact boundary interpolation and adaptive
+representation remain open.
 
 ## Preferred causal chain
 
@@ -383,7 +472,7 @@ regional flexural target
 actual broad solid-Earth geometry
 
 ↓
-uppermost solid boundary
+upper boundary of canonical ground-material domain
 ↓
 proto-surface elevation
 ```
@@ -393,7 +482,10 @@ Later surface processes may modify that physical boundary.
 ## Scope boundary
 
 This note does not define full mantle convection, finite-element plate
-mechanics, a viscoelastic lithosphere solver, final flexure equations, dynamic
-topography, terrain meshing, erosion, rivers or drainage, weathering, sediment
-transport, glaciation, volcanism, climate, soils, resources, ecosystems,
-continents as a generated system, political territories, or human systems.
+mechanics, a viscoelastic lithosphere or displacement solver, final flexure
+equations, constitutive laws, mass-conservation algorithms, dynamic topography,
+mesh deformation, terrain generation, cave generation or surface-query policy,
+erosion, rivers or drainage, weathering, sediment transport, glaciation, water
+simulation, volcanism, climate, soils, resources, ecosystems, continents as a
+generated system, artificial construction, political territories, or human
+systems.

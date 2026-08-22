@@ -24,9 +24,10 @@ depth below local surface: 1200 m
 These describe different relationships. The final planetary coordinate system
 and datum definition remain unresolved.
 
-The local physical surface is the uppermost boundary of canonical solid
-geological material, not an independently generated height field. Its elevation
-and its role in contextual depth queries are documented in
+The local physical ground or seafloor is queried from the semantic upper
+boundary of the canonical ground-material domain, not from an independently
+generated height field or merely the highest point containing solid matter. Its
+elevation and its role in contextual depth queries are documented in
 [Broad Elevation and Isostatic Response](BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md).
 
 ## Lithostatic pressure follows overburden
@@ -285,6 +286,11 @@ temperature is reconstructed from thermal content + material state
 ↓
 thermal relaxation in the new configuration
 ```
+
+Isostatic, flexural, and other broad vertical deformation follows this same
+contract: affected 3D material and conserved thermal content remap together;
+temperature is then reconstructed in the changed material state before thermal
+relaxation continues. The deformation representation remains outside this note.
 
 Literal temperature values therefore need not be copied unchanged with displaced
 material. Materials with different density or heat capacity can store different

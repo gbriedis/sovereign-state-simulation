@@ -98,9 +98,12 @@
   to how strongly coupling affects canonical truth.
 - Compact provenance may retain important pressure-temperature peaks and
   episodes without preserving every timestep or obsolete numerical field.
-- Elevation is derived from the uppermost boundary of canonical 3D solid-Earth
-  geometry, not generated as an independent canonical heightmap. Sampled
-  elevation, rasters, and terrain meshes are query or presentation data.
+- Elevation is derived from a semantic query over the upper boundary of the
+  canonical solid-Earth or ground-material domain, not generated as an
+  independent canonical heightmap or selected merely as the highest point with
+  solid matter. Sampled elevation, rasters, and terrain meshes are query or
+  presentation data. Canonical geometry may contain caves, overhangs, voids,
+  and multiple vertical intersections.
 - Broad relief responds to density and thermal structure across both crust and
   lithospheric mantle, relative to a versioned asthenospheric reference. Loads
   and causally derived lithospheric strength produce a regional flexural target;
@@ -112,6 +115,14 @@
 - Sea-level datum, buoyancy reference state, and deep computational evaluation
   horizon are separate concepts. Full mantle convection is not required;
   optional deep-mantle support remains a separate future coarse field.
+- Broad vertical response transforms affected canonical 3D bodies, contacts,
+  faults, topology, material state, mass or volume accounting, thermal content,
+  and provenance consistently before a new ground-material boundary and
+  elevation are queried. It is not a surface-only offset.
+- Regional deformation may cross domains and refinement levels. Shared mapping
+  constraints must prevent seams or inconsistent material displacement while
+  preserving feature identity, topology, mass/load balance, and thermal
+  accounting.
 - Singleplayer and eventual multiplayer share one authority model.
 - The eventual multiplayer server generates and owns canonical world truth;
   clients receive relevant subsets and do not independently generate
@@ -197,6 +208,14 @@ algorithms, taxonomies, and storage remain open.
   by thickening or another represented process, or turn broad vertical response
   into mantle convection, final flexure mechanics, terrain meshing, or later
   surface-process algorithms.
+- Do not apply broad response only to a rendered or queried surface while
+  leaving canonical subsurface geometry unchanged, assume every response is a
+  uniform vertical translation, or choose a deformation-field representation,
+  constitutive law, mass-conservation algorithm, or solver prematurely.
+- Do not define canonical ground as the highest point containing any solid
+  fraction, force it into a single-valued height function, or collapse ground,
+  seafloor, ice, water, vegetation, structures, and rendered terrain into one
+  unresolved surface concept.
 
 ## Recommended next actions
 
