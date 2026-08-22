@@ -301,14 +301,17 @@ phase transition
 → total energy remains conserved
 ```
 
-Sources and sinks genuinely add or remove energy from the modeled system or
-control volume. Examples may include radiogenic heat production, imposed
-surface or deep boundary heat exchange, and magmatic thermal energy when it is
-treated as entering the selected domain from outside.
+Source and sink terms add or remove energy within the selected control volume.
+Radiogenic heat production is an example of a volumetric source. Any future
+sink term must likewise represent an explicit modeled process rather than
+unaccounted numerical loss.
 
-Conductive heat flux, advective or fluid heat transport, and material transport
-move existing energy across a selected control-volume boundary. They are not
-energy creation or destruction.
+Conductive surface or deep heat flux, advective or fluid heat transport, and
+material transport move existing energy across a selected control-volume
+boundary. Magma entering or leaving that volume normally belongs to this
+transport accounting. These terms are not energy creation or destruction,
+although a coarser model may deliberately approximate documented boundary
+transport as an equivalent source or sink.
 
 Melting, crystallization, and other future phase transformations may redistribute
 energy between sensible thermal state and latent or internal phase energy. They
