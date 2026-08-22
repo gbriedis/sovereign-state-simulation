@@ -1,0 +1,226 @@
+name: Work packet
+description: Define and hand off one bounded piece of work with one accountable owner.
+title: "[WORK] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this when a packet needs an issue-level execution record. `docs/operations/WORKSTREAMS.md` remains the canonical cross-agent status ledger; link this issue there and supply updates to the Project Steward at state changes and handoffs. A bounded PR-only task does not need a duplicate issue. Keep entries short, link canonical artifacts, and update the closeout section before handing work on.
+
+  - type: input
+    id: work_id
+    attributes:
+      label: Work ID
+      description: Use the stable work identifier already reserved by the Project Steward in `docs/operations/WORKSTREAMS.md`; do not choose a concurrent "next" ID here.
+      placeholder: CORE-042
+    validations:
+      required: true
+
+  - type: input
+    id: owner
+    attributes:
+      label: Accountable owner
+      description: One agent or person owns progress, coordination, and handoff through integration.
+      placeholder: Name or agent role
+    validations:
+      required: true
+
+  - type: dropdown
+    id: delivery_status
+    attributes:
+      label: Delivery status
+      description: Keep this current as the packet moves through its lifecycle.
+      options:
+        - Proposed
+        - Ready
+        - Active
+        - Blocked
+        - Review
+        - Integration
+        - Done
+        - Cancelled
+    validations:
+      required: true
+
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Outcome and acceptance
+      description: Describe the bounded result and the observable conditions that mean it is done.
+      placeholder: |
+        Outcome:
+        - ...
+
+        Accepted when:
+        - ...
+    validations:
+      required: true
+
+  - type: input
+    id: base_sha
+    attributes:
+      label: Base SHA
+      description: Full commit SHA used as the starting baseline.
+      placeholder: 40-character commit SHA
+    validations:
+      required: true
+
+  - type: input
+    id: head_sha
+    attributes:
+      label: Current head SHA
+      description: Update before each handoff. Use `TBD` only until a task branch exists.
+      placeholder: TBD at intake; full commit SHA at handoff
+    validations:
+      required: true
+
+  - type: input
+    id: branch_worktree
+    attributes:
+      label: Branch and worktree
+      description: Name the branch and logical task/worktree label without publishing a machine-local filesystem path, or explain why the packet is read-only.
+      placeholder: feat/CORE-042-example — WORLD CORE task
+    validations:
+      required: true
+
+  - type: textarea
+    id: write_set
+    attributes:
+      label: Declared write set
+      description: List the files or path globs this owner may change. Record `None - read-only` when appropriate.
+      placeholder: |
+        - docs/world-generation/**
+        - .github/ISSUE_TEMPLATE/work-packet.yml
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and sequencing
+      description: Link blocking work/decisions, name what this unblocks, and identify any shared high-contention files.
+      placeholder: |
+        Depends on: #...
+        Unblocks: #...
+        Shared/high-contention paths: None
+    validations:
+      required: true
+
+  - type: textarea
+    id: decisions
+    attributes:
+      label: Decisions
+      description: Link governing decisions and list any choice that must be resolved. Use `None` if no decision is involved.
+      placeholder: |
+        Governing decisions: ...
+        Decision needed: ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: departments
+    attributes:
+      label: Affected departments and lanes
+      description: For each affected group, mark Consulted, Informed, or Action required and name the requested response. Use `None - isolated change` if applicable.
+      placeholder: |
+        - World Design — Consulted — confirm causal rule
+        - World Core — Action required — update contract after merge
+        - Marketing — Informed — player-visible behavior changed
+    validations:
+      required: true
+
+  # ART-CONTRACT: IMPACT-DECLARATION
+  - type: textarea
+    id: art_technical_art_impact
+    attributes:
+      label: Art / Technical Art impact
+      description: Required. Begin with exactly `Action required`, `Consulted`, `Informed`, or `N/A — <nonempty rationale>`. Name affected visual contracts, asset schemas, render/capture behavior, tools, performance budgets, or art workflows. Bare `N/A` is invalid.
+      placeholder: |
+        Consulted — Technical Art must review terrain-material and capture-pipeline impact before acceptance.
+        N/A — Documentation-only wording change with no visual, asset, render, capture, tool, performance, or art-workflow effect.
+    validations:
+      required: true
+
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation plan and evidence
+      description: At intake, state planned checks. Before handoff, record exact commands/checks and results.
+      placeholder: |
+        - `cargo test --workspace` — planned
+        - Document link check — planned
+    validations:
+      required: true
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks, constraints, and recovery
+      description: Include compatibility, migration, uncertain assumptions, pre-existing local changes, and rollback. Use `None identified` when appropriate.
+      placeholder: |
+        Risks: ...
+        Recovery/rollback: ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reviewer_gates
+    attributes:
+      label: Reviewer gates
+      description: Name required reviewers for domain, architecture, implementation, public truth, and integration. Mark irrelevant gates `N/A - reason`.
+      placeholder: |
+        - Owning domain — @owner — pending
+        - Cross-boundary architecture — @architect — pending
+        - Implementation/maintainability — @reviewer — pending
+        - Public truth/marketing — N/A — no public claim change
+        - Integration — @integrator — pending
+    validations:
+      required: true
+
+  # ART-CONTRACT: REVIEW-GATE
+  - type: textarea
+    id: art_technical_art_reviewer_gate
+    attributes:
+      label: Art / Technical Art reviewer gate
+      description: Name the Art/Technical Art reviewer, routing status, and acceptance evidence when review is required. If no review gate applies, use `N/A — <nonempty rationale>` consistent with the impact declaration.
+      placeholder: Technical Art — @reviewer — pending review of asset/render/capture contract
+    validations:
+      required: true
+
+  - type: textarea
+    id: next_action
+    attributes:
+      label: Next owner and action
+      description: Keep this current. Name exactly who acts next and what they can do without further prompting.
+      placeholder: World Core owner — implement the accepted contract, then open a PR linked here.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: intake_checks
+    attributes:
+      label: Intake checks
+      options:
+        - label: The owner, baseline, write set, dependencies, and next action are explicit.
+          required: true
+        - label: The starting working tree is clean, or every pre-existing change is identified under risks.
+          required: true
+        - label: I checked active work for overlapping writers and coordinated any shared path.
+          required: true
+        - label: The Art / Technical Art impact uses an allowed prefix, any `N/A` has a specific rationale, and its reviewer/routing gate is named.
+          required: true
+
+  - type: checkboxes
+    id: closeout
+    attributes:
+      label: Autonomous handoff and closeout
+      description: Leave unchecked at intake; edit this issue as work moves through handoff and integration.
+      options:
+        - label: Head SHA and validation evidence are current.
+        - label: Write-set deviations, residual risks, and open decisions are explicit.
+        - label: Action-required groups have acknowledged or have a named follow-up owner.
+        - label: Reviewer gates and review conversations are complete.
+        - label: Required Art / Technical Art review and routing are complete.
+        - label: The final working tree is clean and unrelated user changes were preserved.
+        - label: Canonical status/decision records are updated and integration is confirmed.
+        - label: The task branch/worktree has been retired when safe.

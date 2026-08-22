@@ -1,263 +1,118 @@
 # Current State and Handoff
 
-- **Snapshot date:** 2026-08-22
+- **Last verified:** 2026-08-22
+- **Control-plane work packet:** OPS-001
 - **Project phase:** Natural-world foundation (`0.0.1`–`0.1.0`)
-- **Immediate milestone:** Prototype v0.1
-- **Implementation status:** Rust workspace and initial Bevy map window are
-  bootstrapped; world generation and map interaction are not implemented
+- **Immediate product milestone:** Prototype v0.1
+- **Implementation state:** Rust workspace and initial Bevy map window exist;
+  world generation and map interaction are not implemented
 
-## Settled direction
+This is the operational catch-up page, not a duplicate architecture document.
+Follow its links for canonical detail. The Project Steward refreshes
+this page after meaningful integrations; task agents update their own canonical
+artifacts and handoff records.
 
-- The accepted public product name is **State of Consequence**, the default
-  category descriptor is **a living nation simulation**, and the primary
-  tagline is **Govern what you cannot command.** Public messaging and visual
-  direction are governed by `../brand/BRAND_FOUNDATION.md`.
-- Marketing operates as a lead plus three standing specialist desks: Brand
-  Steward, Audience Intelligence, and Visual Brand & Capture. Their ownership,
-  evidence rules, and handoffs are defined in
-  `../marketing/MARKETING_DEPARTMENT.md`.
-- The game simulates an autonomous sovereign nation; the player influences rather
-  than directly controls all actors.
-- Major domestic actors can initiate development, accumulate power, and pursue
-  strategies independently; the ruler responds through sovereign authority,
-  policy, negotiation, and opposition.
-- Systems should preserve meaningful real-world causes and constraints.
-- The nation itself is the progression display; prefer meaningful real
-  measurements over invented levels and ratings.
-- The map is the primary player experience.
-- Bevy handles runtime and rendering; a pure-Rust core owns simulation/world logic.
-- World generation is seed-based and versioned for reproducibility.
-- Geography is generated before political territories.
-- Physical layers are generated causally rather than independently; political
-  territories reference physical space instead of owning geological features or
-  sampling cells.
-- Tectonic plates are the earliest useful physical-world abstraction. They
-  represent moving lithosphere and provide broad physical properties, crustal
-  character, and boundary interactions without attempting mantle convection,
-  planetary accretion, or full geophysics.
-- Boundary-relative motion produces tectonic interactions, which create
-  persistent tectonic structures and geological provinces rather than final
-  terrain. Tectonics creates structures; time and later surface processes shape
-  the landscape eventually seen.
-- Physical-world generation is a geological prehistory simulation. Events act on
-  inherited state across coarse geological time, and the accumulated result
-  becomes the starting physical world when the civilization era begins.
-- Generated worlds share a fixed Earth-like physical framework. Planetary
-  context is fixed where variation is not part of the game; geology, physical
-  state, and history are generated. Causes and history are stored while
-  consequences and classifications are derived wherever practical.
-- Ordinary geological material uses compact bulk composition as causal state,
-  with trace material kept separate. Mineral assemblages and named rocks are
-  derived from composition, physical conditions, formation process, and history
-  through a future tractable approximation.
-- Geological material is not divided into exclusive rock, magma, sediment, and
-  fluid types. Coexisting solid, melt, and fluid fractions describe phase state;
-  coherent or unconsolidated structure describes consolidation.
-- Geological truth is sparse and three-dimensional beneath the map-first
-  interface. Surfaces and bounded bodies preserve subsurface structure and
-  inherited relationships without requiring a uniform voxel world or final
-  geometry representation.
-- Geological events describe history while a small, composable language of
-  geometric operators modifies inherited 3D surfaces, bodies, and contacts.
-  Chronology determines cross-cutting and inheritance relationships; the final
-  primitives, mathematics, and geometry engine remain unresolved.
-- A compact history of important geological events and periods persists after
-  generation. Geological age records when formation or change occurred rather
-  than serving as decorative metadata.
-- History generates the world; present geological state then becomes
-  authoritative for normal queries. Compact history remains as causal
-  provenance rather than requiring prehistory replay.
-- Canonical truth includes both established facts and constraints over
-  unresolved detail. Authority-driven deterministic refinement narrows those
-  constraints, preserves parent truth, and promotes materially relevant results
-  to stable canonical state; observation does not physically create geology.
-- Renderer meshes, sampled map layers, LODs, client caches, and other query
-  products are derived and disposable rather than canonical world truth.
-- Resolution belongs to representations, not physical reality. Geological
-  features retain continuous identity across computational domains, while cells
-  are system-specific samples that query rather than own canonical geology.
-- Different regions may hold different compatible canonical refinement levels.
-  Required detail follows geological complexity, simulation relevance, and
-  observation or gameplay needs—not attention alone.
-- Canonical geometry uses absolute physical position relative to a planetary
-  datum; depth below local ground or another reference is derived context.
-- Lithostatic pressure normally derives from gravity and the actual material
-  column above a query point. It remains distinct from pore-fluid pressure.
-- Temperature is likely adaptive canonical present state because thermal history
-  may not be reconstructible from present geometry. Geothermal gradient is a
-  derived query, and stable background fields are distinct from transient
-  thermal anomalies and future specialized thermo-fluid models.
-- Temperature is canonical/query thermodynamic state represented through a
-  spatial field. Bodies supply thermal properties rather than owning isolated
-  temperatures. Ordinary contacts and computational boundaries must not create
-  artificial discontinuities, while modeled interface physics may later justify
-  specialized behavior.
-- Geometry-changing events conservatively remap physically appropriate thermal
-  content before reconstructing temperature and relaxing the new configuration;
-  literal temperature need not be copied unchanged. Remapping and refinement
-  conserve total energy except for modeled sources, sinks, or transport across
-  the chosen control-volume boundary. Phase transformations may redistribute
-  sensible and latent or internal energy, while non-rigid deformation may
-  exchange mechanical and internal or thermal energy through modeled work;
-  neither creates or destroys total coupled energy.
-- Thermal anomalies may collapse only if the finest promised future canonical
-  query remains supportable. Otherwise, small signals survive as constrained
-  residual state, compact parameters, or sufficient provenance.
-- Physical dependencies may contain feedback loops. Numerical evaluation may use
-  one-pass staging, bounded iteration, or future specialized treatment according
-  to how strongly coupling affects canonical truth.
-- Compact provenance may retain important pressure-temperature peaks and
-  episodes without preserving every timestep or obsolete numerical field.
-- Elevation is derived from a semantic query over the upper boundary of the
-  canonical solid-Earth or ground-material domain, not generated as an
-  independent canonical heightmap or selected merely as the highest point with
-  solid matter. Sampled elevation, rasters, and terrain meshes are query or
-  presentation data. Canonical geometry may contain caves, overhangs, voids,
-  and multiple vertical intersections.
-- Broad relief responds to density and thermal structure across both crust and
-  lithospheric mantle, relative to a versioned asthenospheric reference. Loads
-  and causally derived lithospheric strength produce a regional flexural target;
-  tectonic forcing, disequilibrium, and relaxation determine actual geometry.
-- Isostasy is a secondary response to changed geometry, density, temperature,
-  and loads—not a terrain operator. `Uplift / subside` remains a candidate but
-  may often be a response or composition; do not double-count represented
-  vertical causes.
-- Sea-level datum, buoyancy reference state, and deep computational evaluation
-  horizon are separate concepts. Full mantle convection is not required;
-  optional deep-mantle support remains a separate future coarse field.
-- Broad vertical response transforms affected canonical 3D bodies, contacts,
-  faults, topology, material state, mass or volume accounting, thermal content,
-  and provenance consistently before a new ground-material boundary and
-  elevation are queried. It is not a surface-only offset. When significant,
-  mechanical work from compression, expansion, compaction, inelastic
-  deformation, or friction participates in energy accounting before temperature
-  is reconstructed.
-- Regional deformation may cross domains and refinement levels. Shared mapping
-  constraints must prevent seams or inconsistent material displacement while
-  preserving feature identity, topology, mass/load balance, and thermal
-  accounting.
-- Singleplayer and eventual multiplayer share one authority model.
-- The eventual multiplayer server generates and owns canonical world truth;
-  clients receive relevant subsets and do not independently generate
-  authoritative geology. Authoritative world generation is separated from
-  client play cost.
+## Operating state
 
-## Current target
+- The repository is the durable project memory; chat history is temporary.
+- Project-wide agent behavior is governed by `../../AGENTS.md`.
+- Ownership, decision rights, review gates, and department boundaries are in
+  `../operations/OPERATING_MODEL.md`.
+- Active work, owners, branches, blockers, and merge order are in
+  `../operations/WORKSTREAMS.md`.
+- Cross-department dependencies and notification triggers are in
+  `../operations/DEPENDENCIES.md`.
+- Significant decisions and their rationale are indexed in
+  `../decisions/README.md`.
+- In-game visual meaning, technical-art boundaries, and mandatory Art review
+  triggers are defined in `../art/README.md`.
+- Routine Git synchronization, integration, recovery, and cleanup are agent
+  responsibilities. The user is not the Git coordinator.
 
-Implement the scoped map prototype in
-`../architecture/PROTOTYPE_V0.1.md`. Its 500 m cells are provisional prototype
-sampling units, not a final scale or the ontology of world truth.
+## Current product truth
+
+| Concern | Canonical source |
+| --- | --- |
+| Product intent and boundaries | `../PROJECT_VISION.md` |
+| Governing design laws | `../DESIGN_PRINCIPLES.md` |
+| Current natural-world phase | `../ROADMAP_WORLD_FOUNDATION.md` |
+| Accepted technical direction | `../architecture/ARCHITECTURE_OVERVIEW.md` |
+| Prototype outcome and success criteria | `../architecture/PROTOTYPE_V0.1.md` |
+| Unscoped architecture questions | `../architecture/OPEN_DECISIONS.md` |
+| In-game visual and technical-art ownership | `../art/README.md` |
+| Accepted public identity and claims | `../brand/BRAND_FOUNDATION.md` |
+| Marketing ownership and workflow | `../marketing/MARKETING_DEPARTMENT.md` |
+
+The accepted physical-world conceptual chain is documented in the focused notes
+under `../world-generation/`. Those documents define domain intent and
+constraints; their unresolved algorithms, numerical methods, taxonomies, and
+storage choices are not accepted implementation decisions.
 
 ## Implemented foundation
 
 - Rust `1.97.1`, rustfmt, and Clippy are pinned in `rust-toolchain.toml`.
-- Bevy `0.19.1` is the only direct external dependency and is limited to its 2D
-  feature set for the current map prototype.
-- `crates/world_core` establishes a renderer-independent library boundary.
+- Bevy `0.19.1` is the only direct external dependency and is currently limited
+  to the required 2D feature set.
+- `crates/world_core` is a renderer-independent Rust library boundary.
 - `crates/client` opens the prototype window with a 2D map camera.
 - Windows CI checks formatting, Clippy warnings, workspace tests, documentation
-  tests, and the committed dependency lockfile. A core-only Linux job protects
-  the renderer-independent portability boundary without building the client.
+  tests, and the committed lockfile.
+- A core-only Linux CI job protects the renderer-independent portability
+  boundary without building the client.
+- Project-governance validation checks the control-plane structure, Markdown
+  links, and decision-record conventions.
 
 No world-generation algorithm, coordinate system, domain size, sampling scale,
-spatial index, persistence format, or final player-facing UI approach beyond the
-accepted map-first boundary was selected by this bootstrap. The current window
-size, theme, background color, and presentation settings are provisional.
+spatial index, persistence format, or final player-facing UI implementation has
+been selected by the bootstrap. The current window presentation is provisional.
 
-The accepted physical-world conceptual chain is currently documented in
-`../world-generation/EARTH_LIKE_PHYSICAL_FRAMEWORK.md`,
-`../world-generation/GEOLOGICAL_PREHISTORY.md`,
-`../world-generation/GEOLOGICAL_MATERIAL_COMPOSITION.md`,
-`../world-generation/GEOLOGICAL_MATERIAL_STATE.md`,
-`../world-generation/SPARSE_3D_GEOLOGICAL_WORLD.md`,
-`../world-generation/GEOLOGICAL_GEOMETRY_OPERATORS.md`,
-`../world-generation/CANONICAL_GEOLOGICAL_STATE_AND_REFINEMENT.md`,
-`../world-generation/ADAPTIVE_SPATIAL_PARTITIONING.md`,
-`../world-generation/DEPTH_PRESSURE_AND_THERMAL_STATE.md`,
-`../world-generation/BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md`,
-`../world-generation/TECTONIC_PLATES.md`, and
-`../world-generation/TECTONIC_STRUCTURES_AND_PROVINCES.md`. These define domain
-intent and illustrative Rust-facing vocabulary only; temporal representation,
-algorithms, taxonomies, and storage remain open.
+## Active focus
 
-## Important boundaries
+The next product work remains the scoped map prototype in
+`../architecture/PROTOTYPE_V0.1.md`. Its 500 m cells are provisional sampling
+units for prototype validation, not the ontology of physical or geological
+truth.
 
-- Do not start human civilization or economic simulation in the current phase.
-- Do not couple simulation data to Bevy or egui types.
-- Do not treat open questions as accepted decisions.
-- Do not let optional Web3 ideas shape foundational simulation design.
-- Do not extend the tectonic-plate note into downstream geology, landforms,
-  hydrology, soils, resources, political areas, or human systems.
-- Do not treat tectonic structures or geological provinces as final terrain, and
-  do not extend them into continents or later surface systems yet.
-- Do not extend geological prehistory into a final event taxonomy or any
-  geological, surface, resource, continent, political, or human algorithm.
-- Do not turn the Earth-like framework into a generic planet, atmosphere,
-  climate, hydrology, or ocean simulator.
-- Do not extend geological material composition into final mineral/rock
-  taxonomies, full thermodynamics, ore generation, resources, or later surface
-  and human systems.
-- Do not extend geological material state into a full rock cycle, final process
-  enum, phase-equilibrium solver, poromechanics, or surface/resource systems.
-- Do not turn sparse 3D geological truth into a commitment to uniform voxels,
-  final meshes, topology, coordinates, precision, storage, or refinement rules.
-- Do not design renderer internals, network protocols, databases, or downstream
-  subsurface gameplay from the authority and 3D-world decisions.
-- Do not turn the geological-operator vocabulary into a final enum, geometry
-  engine, deformation algorithm, event taxonomy, or volumetric-physics model.
-- Do not equate canonical geology with renderer data, eager maximum-resolution
-  storage, or replay of geological prehistory during normal queries.
-- Do not let refinement rewrite established truth, reroll on observation, or
-  become an implementation of storage, serialization, procedural noise,
-  meshing, networking, or downstream subsurface gameplay.
-- Do not treat any cell size as geological ontology, align geological identity
-  to chunk boundaries, or let spatial partition boundaries create physical
-  discontinuities that geology did not create.
-- Do not turn adaptive spatial partitioning into a chosen tree/index structure,
-  database, serialization format, Bevy chunk system, refinement algorithm, or
-  resolution-tuning exercise.
-- Do not equate absolute position with depth, derive pressure from depth alone,
-  collapse pore-fluid and lithostatic pressure, or make a fixed geothermal
-  gradient canonical world truth.
-- Do not extend thermal state into final heat solvers, uniform geological
-  timesteps, fluid-flow models, climate implementation, mineral transformations,
-  melting, resource formation, or downstream human systems.
-- Do not store temperature independently per geological body, let computational
-  boundaries or ordinary contacts create artificial thermal discontinuities,
-  copy temperature as though it were necessarily the conserved remapping
-  quantity, discard residual anomaly information promised to future canonical
-  queries, assume all anomalies combine linearly, or freeze an
-  evaluation/convergence workflow as implementation.
-- Do not generate canonical elevation as noise or a disconnected heightmap,
-  stop ordinary buoyancy at the Moho, make crust thickness a direct elevation
-  formula, compensate every column independently, or conflate the elevation
-  datum, buoyancy reference, and deep evaluation horizon.
-- Do not treat isostasy as an independent terrain generator, force actual
-  geometry into instantaneous equilibrium, double-count uplift already caused
-  by thickening or another represented process, or turn broad vertical response
-  into mantle convection, final flexure mechanics, terrain meshing, or later
-  surface-process algorithms.
-- Do not apply broad response only to a rendered or queried surface while
-  leaving canonical subsurface geometry unchanged, assume every response is a
-  uniform vertical translation, or choose a deformation-field representation,
-  constitutive law, mass-conservation algorithm, or solver prematurely.
-- Do not define canonical ground as the highest point containing any solid
-  fraction, force it into a single-valued height function, or collapse ground,
-  seafloor, ice, water, vegetation, structures, and rendered terrain into one
-  unresolved surface concept.
+Current work packets, including coordination work and their dependency order,
+must be read from `../operations/WORKSTREAMS.md` rather than copied here.
 
-## Recommended next actions
+## Non-negotiable boundaries
 
-1. Define versioned seed inputs and explicitly provisional
-   coordinate/domain/sampling IDs.
+- Do not start civilization, economics, politics, or other human simulation in
+  the current natural-world phase.
+- Do not couple world/simulation data to Bevy or egui types.
+- Do not treat proposals, illustrative Rust vocabulary, open questions, or
+  long-term direction as implemented or accepted decisions.
+- Do not let optional Web3 exploration shape the foundational simulation.
+- Do not reduce canonical physical truth to renderer meshes, heightmaps,
+  sampling cells, uniform voxels, or eager maximum-resolution storage.
+- Do not let computational or political boundaries create physical
+  discontinuities that the modeled world did not create.
+- Do not implement unresolved geometry, thermal, material, persistence,
+  networking, or refinement mechanisms merely because a conceptual note names
+  candidate approaches.
+- Preserve deterministic, versioned world identity and the dependency direction
+  from client to pure-Rust world core.
+- If work would settle an open choice, create or update a decision record with
+  context, alternatives, rationale, consequences, owner, and affected domains.
+
+Task-specific boundaries remain authoritative in the focused domain document and
+must be checked before implementation.
+
+## Next product actions
+
+1. Define versioned seed inputs and explicitly provisional coordinate, domain,
+   and sampling identifiers through an accepted specification or decision.
 2. Implement and test prototype coordinate-to-domain-to-sample mapping.
-3. Add smooth map panning and cursor-centered zooming.
-4. Build the seeded, non-canonical prototype landmass render.
-5. Measure the provisional sampling and spatial-domain choices without treating
-   them as geological ontology.
+3. Establish the first accepted world-generation visual and technical-art
+   contract.
+4. Add smooth map panning and cursor-centered zooming under Art visual review.
+5. Build the seeded, non-canonical prototype landmass render.
+6. Measure the provisional sampling and spatial-domain choices without promoting
+   them into geological ontology.
 
 ## Before continuing work
 
-Read the prototype specification and the relevant open decisions. If a task would
-resolve an open decision, record both the rationale and consequences instead of
-only changing code.
+Read the current workstream entry, the prototype specification, and relevant
+open questions. Perform the Git/worktree preflight in `../../AGENTS.md`, declare
+the write set, and own the task through integration, propagation, and cleanup.

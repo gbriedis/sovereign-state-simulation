@@ -1,11 +1,18 @@
-# Open Architecture Decisions
+# Open Architecture Question Inventory
 
-- **Status:** Unresolved
+- **Status:** Discovery inventory; not accepted architecture or committed work
+- **Accountable owner:** Systems Architecture
 - **Last reviewed:** 2026-08-22
 
-Items in this file are not accepted architecture. When one is resolved, record
-the decision and rationale in the architecture overview (or a dedicated decision
-record) and remove it from this list.
+This file preserves unresolved questions discovered during design. It is not the
+active work queue, a priority order, or permission to choose an implementation.
+Active choices appear in `../operations/WORKSTREAMS.md` with an owner,
+dependencies, review gate, and acceptance target.
+
+When a question becomes actionable, assign a work ID and create a decision record
+using `../decisions/ADR_TEMPLATE.md`. After acceptance, update the relevant
+architecture/domain document with current truth and remove or link the resolved
+question here. Preserve the decision's rationale and consequences in the ADR.
 
 ## Spatial model
 
