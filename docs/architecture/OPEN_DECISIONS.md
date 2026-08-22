@@ -132,6 +132,28 @@ record) and remove it from this list.
 - Local versus broader regional recomputation after major events
 - Numerical stability across long geological intervals
 
+### Broad elevation and isostatic response
+
+- Exact buoyancy reference column or asthenospheric state
+- Versioned Earth-like calibration of the reference state
+- Practical deep evaluation horizon
+- Density-integration method through locally varying lithosphere
+- Treatment of water loading
+- Treatment of atmosphere and ice loading where relevant
+- Local versus regional isostatic approximation
+- Effective lithospheric-strength representation
+- Flexural-response approximation
+- Spatial support kernel or operator
+- Adaptive resolution of broad vertical response
+- Relaxation timescale and model
+- Persistence of vertical disequilibrium
+- Interaction between active tectonic forcing and relaxation
+- Numerical treatment of repeated loading and unloading
+- Treatment of optional deep-mantle dynamic support
+- Prevention of uplift double-counting
+- Final status of uplift and subsidence in the primitive operator vocabulary
+- How broad solid-Earth geometry constrains later surface-process refinement
+
 ### Earth-like physical framework
 
 - Exact standard Earth reference values, precision, and units used by the

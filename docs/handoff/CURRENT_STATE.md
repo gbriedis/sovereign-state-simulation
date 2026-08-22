@@ -98,6 +98,20 @@
   to how strongly coupling affects canonical truth.
 - Compact provenance may retain important pressure-temperature peaks and
   episodes without preserving every timestep or obsolete numerical field.
+- Elevation is derived from the uppermost boundary of canonical 3D solid-Earth
+  geometry, not generated as an independent canonical heightmap. Sampled
+  elevation, rasters, and terrain meshes are query or presentation data.
+- Broad relief responds to density and thermal structure across both crust and
+  lithospheric mantle, relative to a versioned asthenospheric reference. Loads
+  and causally derived lithospheric strength produce a regional flexural target;
+  tectonic forcing, disequilibrium, and relaxation determine actual geometry.
+- Isostasy is a secondary response to changed geometry, density, temperature,
+  and loads—not a terrain operator. `Uplift / subside` remains a candidate but
+  may often be a response or composition; do not double-count represented
+  vertical causes.
+- Sea-level datum, buoyancy reference state, and deep computational evaluation
+  horizon are separate concepts. Full mantle convection is not required;
+  optional deep-mantle support remains a separate future coarse field.
 - Singleplayer and eventual multiplayer share one authority model.
 - The eventual multiplayer server generates and owns canonical world truth;
   clients receive relevant subsets and do not independently generate
@@ -120,6 +134,7 @@ The accepted physical-world conceptual chain is currently documented in
 `../world-generation/CANONICAL_GEOLOGICAL_STATE_AND_REFINEMENT.md`,
 `../world-generation/ADAPTIVE_SPATIAL_PARTITIONING.md`,
 `../world-generation/DEPTH_PRESSURE_AND_THERMAL_STATE.md`,
+`../world-generation/BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md`,
 `../world-generation/TECTONIC_PLATES.md`, and
 `../world-generation/TECTONIC_STRUCTURES_AND_PROVINCES.md`. These define domain
 intent and illustrative Rust-facing vocabulary only; temporal representation,
@@ -173,6 +188,15 @@ algorithms, taxonomies, and storage remain open.
   quantity, discard residual anomaly information promised to future canonical
   queries, assume all anomalies combine linearly, or freeze an
   evaluation/convergence workflow as implementation.
+- Do not generate canonical elevation as noise or a disconnected heightmap,
+  stop ordinary buoyancy at the Moho, make crust thickness a direct elevation
+  formula, compensate every column independently, or conflate the elevation
+  datum, buoyancy reference, and deep evaluation horizon.
+- Do not treat isostasy as an independent terrain generator, force actual
+  geometry into instantaneous equilibrium, double-count uplift already caused
+  by thickening or another represented process, or turn broad vertical response
+  into mantle convection, final flexure mechanics, terrain meshing, or later
+  surface-process algorithms.
 
 ## Recommended next actions
 

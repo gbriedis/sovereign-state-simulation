@@ -37,6 +37,7 @@ other presentation data to be stored everywhere.
 For geology, it may eventually include enough information to represent:
 
 - currently existing geological bodies and their present queryable 3D geometry;
+- the present uppermost solid boundary that defines ground and seafloor;
 - contacts, bounding surfaces, faults, and present displacement relationships;
 - current material identity, composition, and state;
 - essential topology and spatial relationships;
@@ -99,10 +100,10 @@ DERIVED REPRESENTATION
 RENDERER / CLIENT
 ```
 
-Bevy meshes, GPU buffers, LOD meshes, sampled surface-geology rasters, 250/500 m
-map layers, cross-section render products, client chunk caches, and other
-renderer-ready or query products are non-canonical derived data. Deleting one
-must not alter world truth.
+Bevy meshes, GPU buffers, LOD meshes, heightmaps, sampled elevation or
+surface-geology rasters, 250/500 m map layers, cross-section render products,
+client chunk caches, and other renderer-ready or query products are
+non-canonical derived data. Deleting one must not alter world truth.
 
 ## Stored causes and active state
 
@@ -120,9 +121,9 @@ Canonical state is not necessarily static geometry:
 > **Present active physical state belongs to canonical truth when it is
 > necessary to determine future evolution.**
 
-Current thermal, magma-body, stress or strain, uplift or subsidence, fluid-
-pressure, or other process state may later qualify. This principle does not
-design those systems.
+Current thermal, magma-body, stress or strain, vertical disequilibrium or active
+displacement, fluid-pressure, or other process state may later qualify. This
+principle does not design those systems.
 
 For current geology, absolute position belongs to canonical geometry, while
 depth is contextual and lithostatic pressure is normally derived from gravity
@@ -141,6 +142,15 @@ Transient thermal detail may simplify only when all information promised to the
 finest future canonical query class remains recoverable. A small but meaningful
 signal may persist as constrained residual state or sufficient compact
 provenance even when explicit transient detail is discarded.
+
+Actual broad solid-Earth geometry is canonical, and its uppermost solid boundary
+defines the physical surface from which elevation is queried. Preferred vertical
+response, regional support constraints, or vertical disequilibrium may also
+belong to active canonical state when necessary to determine continuing geometry
+evolution. Their exact persisted-versus-derived split remains open. Refinement
+must preserve established broad geometry and regional mass or response
+constraints rather than regenerate elevation as independent local detail. See
+[Broad Elevation and Isostatic Response](BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md).
 
 ## Canonical unresolved detail
 

@@ -269,6 +269,16 @@ discontinuities, while future modeled interface physics may justify specialized
 behavior. Interpolation and conservation methods remain open. See
 [Depth, Pressure, and Thermal State](DEPTH_PRESSURE_AND_THERMAL_STATE.md).
 
+Broad vertical response is regional rather than a set of independent columns.
+A load, lithospheric buoyancy anomaly, or flexural response may cross multiple
+geological and computational domains. Coarse and fine representations must
+preserve established broad solid-Earth geometry, compatible total loads, and
+shared regional-response constraints. Local refinement must not create an
+elevation seam, silently change regional mass balance, or replace canonical 3D
+geometry with a local heightmap. The exact adaptive response representation and
+support kernel remain open; see
+[Broad Elevation and Isostatic Response](BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md).
+
 ## Preferred overall model
 
 ```text

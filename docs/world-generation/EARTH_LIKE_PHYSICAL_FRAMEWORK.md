@@ -35,9 +35,10 @@ The current geological-prehistory layer needs only a minimal Earth-like baseline
 - **Surface gravity** — provide the baseline acceleration needed by pressure,
   buoyancy, and mechanical reasoning. Whether later queries vary gravity with
   position or depth remains open.
-- **Broad mantle reference conditions** — only the reference thermal, density,
-  basal heat, and related conditions required by the lithosphere abstraction;
-  not mantle convection or a full mantle model.
+- **Broad mantle reference conditions** — only the versioned asthenospheric
+  reference thermal, density, basal heat, and related conditions required by
+  the lithosphere and broad-buoyancy abstractions; not mantle convection or a
+  full mantle model.
 - **Surface pressure baseline** — a reference datum if a later absolute-pressure
   query requires it.
 - **Basic water and volatile assumptions** — only physical reference behavior
@@ -61,6 +62,8 @@ Relevant generated state currently includes:
 - [thermal state](DEPTH_PRESSURE_AND_THERMAL_STATE.md);
 - volatile state where it matters to current geological reasoning;
 - plate motion;
+- solid-Earth geometry, loads, and any active vertical disequilibrium required
+  to continue broad adjustment;
 - accumulated geological history.
 
 The exact representation of these causes remains unresolved.
@@ -73,6 +76,7 @@ state, and history wherever practical. Examples include:
 - lithostatic pressure from geometry, gravity, and material overburden;
 - density behavior;
 - buoyancy;
+- preferred lithospheric vertical response and broad surface elevation;
 - melting conditions or tendency;
 - strength and rheological behavior;
 - effective lithosphere thickness;
@@ -82,6 +86,12 @@ state, and history wherever practical. Examples include:
 This does not require every consequence to be recalculated continuously.
 Whether derived values are computed on demand, cached, summarized, or persisted
 is an implementation decision.
+
+Broad elevation follows the accepted
+[Broad Elevation and Isostatic Response](BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md)
+model. The elevation datum, asthenospheric buoyancy reference, and practical
+deep evaluation horizon have different purposes and must remain distinct. The
+deep horizon is not an additional physical planetary boundary.
 
 ## Scope boundary
 

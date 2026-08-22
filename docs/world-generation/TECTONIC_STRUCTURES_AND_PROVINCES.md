@@ -34,7 +34,8 @@ planet
 → boundary-relative motion
 → tectonic interaction
 → tectonic structures / geological provinces
-→ rock history + broad elevation tendencies
+→ inherited geometry / material / thermal state
+→ broad buoyancy and vertical-response tendencies
 → later surface processes
 → present-day terrain
 ```
@@ -45,9 +46,10 @@ timestep, event algorithm, or other temporal representation.
 
 Tectonic episodes may eventually apply compositions of the reusable operations
 described in [Geological Geometry Operators](GEOLOGICAL_GEOMETRY_OPERATORS.md).
-For example, rifting can involve extension, faulting, subsidence, and possible
-intrusion, while collision can involve compression, folding, faulting, and
-uplift. These are causal compositions, not final algorithms or event categories.
+For example, rifting can involve extension, faulting, changed loads, possible
+intrusion, and secondary subsidence response, while collision can involve
+compression, folding, faulting, thickening, and secondary uplift response.
+These are causal compositions, not final algorithms or event categories.
 
 ## Boundary-relative motion
 
@@ -95,6 +97,11 @@ Provinces may preserve evidence of active boundaries, past boundaries, stable
 interiors, or several overprinting episodes. Their history may later influence
 rock character and broad elevation tendencies while remaining distinct from the
 terrain ultimately visible at the surface.
+
+Those tendencies are not fixed elevation bonuses attached to structure or
+province labels. Tectonic history changes thickness, geometry, density, thermal
+state, and loads; broad elevation responds through the causal model documented
+in [Broad Elevation and Isostatic Response](BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md).
 
 Cratons are examples of stable lithospheric and geological provinces. Shields
 are the exposed regions of their ancient crystalline interiors. They belong to

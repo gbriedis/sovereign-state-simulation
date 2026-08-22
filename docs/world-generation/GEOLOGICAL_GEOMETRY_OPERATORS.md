@@ -30,14 +30,16 @@ For example:
 continental rifting episode
 → extension
 → faulting / displacement
-→ subsidence
+→ changed geometry / loads
+→ possible secondary subsidence response
 → possible intrusion
 
 continental collision
 → shortening / compression
 → folding / warping
 → faulting / thrusting
-→ uplift
+→ thickening and other changed buoyancy causes
+→ possible secondary uplift response
 ```
 
 These examples do not establish a final geological-event taxonomy or exact
@@ -66,11 +68,12 @@ API, or claim that every item is a primitive.
 - **Fold / warp** continuously deforms existing surfaces and bodies without
   necessarily creating a discontinuity.
 - **Extend / rift** stretches or thins a region and may compose with faulting
-  and subsidence.
+  and a secondary subsidence response.
 - **Compress / shorten** shortens, thickens, and deforms a region and may
-  compose with folding, faulting, and uplift.
+  compose with folding, faulting, and a secondary uplift response.
 - **Uplift / subside** changes regional vertical position or shape and may
-  create or remove accommodation space.
+  create or remove accommodation space. It remains a candidate, but may often
+  be a response or composed outcome rather than a fundamental primitive.
 
 ### Break and offset material
 
@@ -119,19 +122,30 @@ rather than introduce unrelated one-off geometry rules.
 rifting
 = extension
 + faulting
-+ subsidence
++ changed geometry / load state
 + optional intrusion / magmatism
++ secondary buoyancy / flexural response
 
 collision
 = compression
 + folding
 + faulting
-+ uplift
++ thickening / changed density structure
++ secondary buoyancy / flexural response
 + later material or process consequences
 ```
 
 The operator sequence, parameterization, overlap, concurrency, and interaction
 with material-changing processes remain unresolved.
+
+Primary deformation must remain distinct from secondary vertical response. A
+fault may directly displace material; shortening may directly thicken it; the
+changed geometry, density, thermal state, and loads may then drive buoyancy and
+flexure. Do not add an arbitrary uplift response when its represented physical
+cause already produces the same displacement. `Uplift / subside` may remain
+useful for an independent direct forcing or as a composed operation, but its
+final primitive status is open. See
+[Broad Elevation and Isostatic Response](BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md).
 
 Operators also change physical causes inherited by later queries. Deposition
 and erosion alter material overburden and therefore pressure; intrusion may
