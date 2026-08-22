@@ -429,6 +429,7 @@ function Test-RequiredControlPlaneFiles {
         'docs/operations/WORKSTREAMS.md',
         'docs/operations/DEPENDENCIES.md',
         'docs/art/README.md',
+        '.github/workflows/ci.yml',
         'docs/decisions/README.md',
         'docs/decisions/ADR_TEMPLATE.md',
         'docs/decisions/ADR-0001-project-control-plane.md'
@@ -444,6 +445,41 @@ function Test-RequiredControlPlaneFiles {
 
     if ($script:Failures.Count -eq $missingBefore) {
         Write-Check -Kind PASS -Message "All $($requiredFiles.Count) required project-control files are present."
+    }
+}
+
+function Test-CiContract {
+    param([Parameter(Mandatory)][string] $Root)
+
+    Write-Check -Kind INFO -Message 'Checking impact-aware hosted CI contract...'
+    $failureCountBefore = $script:Failures.Count
+    $ciPath = Join-Path $Root '.github/workflows/ci.yml'
+    if (-not (Test-Path -LiteralPath $ciPath -PathType Leaf)) {
+        return
+    }
+
+    $ci = Get-Content -LiteralPath $ciPath -Raw
+    $requiredFragments = @(
+        'PROJECT-CI: RUST-IMPACT-GATE',
+        'PROJECT-CI: RUST-GATE',
+        'name: rust-gate',
+        'cargo fmt --all -- --check',
+        'cargo clippy --workspace --all-targets --locked -- -D warnings',
+        'cargo test --workspace --all-targets --locked',
+        'cargo test --workspace --doc --locked',
+        'cargo clippy -p sovereign-world --all-targets --locked -- -D warnings',
+        'cargo test -p sovereign-world --all-targets --locked',
+        'cargo test -p sovereign-world --doc --locked'
+    )
+
+    foreach ($fragment in $requiredFragments) {
+        if (-not $ci.Contains($fragment, [System.StringComparison]::Ordinal)) {
+            Add-Failure ".github/workflows/ci.yml is missing required CI contract fragment '$fragment'."
+        }
+    }
+
+    if ($script:Failures.Count -eq $failureCountBefore) {
+        Write-Check -Kind PASS -Message 'Hosted Rust CI remains impact-aware and retains every required command.'
     }
 }
 
@@ -964,6 +1000,7 @@ Write-Check -Kind INFO -Message "Repository root: $root"
 
 if ($Mode -in @('Validate', 'All')) {
     Test-RequiredControlPlaneFiles -Root $root
+    Test-CiContract -Root $root
     Test-ArtContractMarkers -Root $root
     Test-WorkstreamArtImpact -Root $root
     Test-MarkdownLinks -Root $root

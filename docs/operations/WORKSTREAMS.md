@@ -59,7 +59,8 @@ record is a Steward task; it is never silently treated as current.
 - **Branch / worktree:** `ops/project-control-plane` in the primary integration
   checkout.
 - **Write scope:** `docs/operations/`, `docs/decisions/`, repository agent
-  guidance, and governance automation, with one writer per file.
+  guidance, governance automation, and the required-check orchestration in
+  `.github/workflows/`, with one writer per file.
 - **Dependencies:** [ADR-0001](../decisions/ADR-0001-project-control-plane.md).
 - **Review gate:** Dev Review plus affected department leads for their Team APIs;
   Art & Technical Art must accept its standing contract and enforcement routes.
@@ -73,7 +74,10 @@ record is a Steward task; it is never silently treated as current.
   [decision system](../decisions/README.md). World Generation's initial domain
   review and the Systems Architecture, Art & Technical Art, Marketing, and
   independent control-plane reviews returned `Accept`; strict governance
-  validation passed.
+  validation passed. Hosted CI exposed a sequential cold-build timeout; Systems
+  Architecture accepted splitting lint and tests into parallel gates. The
+  required `rust-gate` now skips hosted compilation for documentation-only work
+  and waits for every Rust gate when code, Cargo, or toolchain paths change.
 - **Next action:** Project Steward completes review, runs repository validation,
   publishes the canonical result, briefs every department, and closes this
   packet.
