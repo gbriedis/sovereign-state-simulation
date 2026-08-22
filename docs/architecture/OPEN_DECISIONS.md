@@ -9,7 +9,9 @@ record) and remove it from this list.
 
 ## Spatial model
 
-- Final cell size and chunk dimensions
+- System-specific cell and sampling scales
+- Spatial-domain dimensions and whether they are independent of sampling
+  resolution
 - Coordinate system and world projection
 - Representation and simulation cadence at each level of detail
 
@@ -21,7 +23,31 @@ record) and remove it from this list.
   intrusion, and erosion of inherited geometry
 - Three-dimensional spatial indexing and cross-section or volume-query models
 - Coordinate system, precision, and depth representation for subsurface truth
-- Relationship between provisional 500 m surface cells and subsurface structure
+- Relationship between system-specific surface sampling grids and subsurface
+  structure
+
+### Adaptive spatial partitioning
+
+- Exact refinement-level hierarchy
+- Powers-of-two or another nesting scheme for refinement levels
+- Two-dimensional quadtree, three-dimensional octree, BVH, R-tree, or another
+  spatial-indexing approach
+- Relationship between surface and subsurface spatial hierarchies
+- Exact chunk and refinement-domain dimensions
+- Independence or coupling of chunk size and refinement resolution
+- Shared-feature boundary-contract representation
+- Continuity constraints across coarse and fine neighbors
+- Treatment of shared faults, contacts, and surfaces across refinement boundaries
+- Context or halo size and generation rules
+- Spatial indexing of very large geological entities
+- Ownership of local or partial entity representations
+- Loading and unloading of partial geological representations
+- Persistence granularity for spatial representations
+- Reconciliation of coarse and fine queries
+- Topology and relationship indexing across spatial partitions
+- Promotion rules when finer detail becomes canonical
+- Prevention of refinement thrashing
+- Performance trade-offs of adaptive resolution
 
 ### Canonical geological state and refinement
 

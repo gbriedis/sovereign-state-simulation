@@ -36,10 +36,16 @@ truth takes precedence over silently regenerating it with changed algorithms.
 
 ```text
 world seed
-└── physical world
-    └── continents and physical regions
-        └── chunks
-            └── cells
+└── canonical geological world
+    ├── continuous feature identities and topology
+    ├── resolved present state and constraints
+    └── compact provenance
+
+computational spatial hierarchy
+└── domains reference local representations of canonical features
+
+system-specific sampling grids
+└── cells query canonical physical truth
 
 political allocation
 └── country territories / settlement slots
@@ -51,10 +57,11 @@ drainage, rivers, climate, and biomes establish physical regions. Territories an
 country slots are fitted to that geography rather than forcing geography into
 arbitrary borders.
 
-Cells and chunks belong to the physical world, not to countries. Political
-territories reference physical space and may change without regenerating it. A
-river, watershed, geological formation, ecosystem, or hazard can cross any
-number of political boundaries and must not terminate at a territory edge.
+Spatial domains and sampling cells belong to world infrastructure, not to
+countries. Political territories reference physical space and may change
+without regenerating it. A river, watershed, geological formation, ecosystem,
+or hazard can cross any number of political boundaries and must not terminate
+at a territory edge.
 
 ## Canonical state and provenance
 
@@ -71,14 +78,22 @@ and disposable. The complete accepted distinction is documented in
 
 ## Spatial scale and levels of detail
 
-The initial measurement target is a **500 m × 500 m cell**. It is provisional,
-not a final decision. Finer resolution is acceptable only when it creates
-meaningful play and remains affordable.
+> **Resolution is a property of a representation, not of physical reality.**
 
-Detail is chunked, lazy, and multi-resolution:
+The prototype uses **500 m × 500 m sampling cells** to validate mapping and
+interaction. This is a provisional prototype scale, not a fundamental unit of
+world or geological truth.
 
-- The player's nation is generated and simulated at high detail.
-- Visible or actively inspected areas receive detail on demand.
+Geological features provide continuous physical identity. Spatial domains or
+chunks provide computational locality. Cells are system-specific samples or
+analysis units that query canonical truth. These three concepts need not align
+or share a resolution.
+
+Representations and derived detail are partitioned, lazy, and multi-resolution:
+
+- Physical and geological complexity can require finer canonical detail.
+- Simulation relevance can require finer detail even without direct inspection.
+- Observation and gameplay needs may trigger deterministic refinement.
 - Distant states remain coarse summaries sufficient for cross-border systems
   such as diplomacy, trade, demographics, and military strength.
 - Constrained unresolved detail may be materialized deterministically according
@@ -86,12 +101,19 @@ Detail is chunked, lazy, and multi-resolution:
 - Derived presentation data may be cached, unloaded, or regenerated without
   changing canonical truth.
 
-The architecture must not require every cell of every nation to exist at once.
+The architecture must not require every possible sampling cell across the world
+to exist at once.
 Nor does canonical world state require maximum-resolution geology to exist
 everywhere at once. Coarse summaries and deterministic refinement may represent
-the same world at different levels of attention. Child detail must remain
+the same world at different levels according to need. Child detail must remain
 compatible with parent constraints, subject to unresolved representation and
 persistence rules.
+
+Geological entities may cross many domains, and domains may contain partial
+representations of many entities. Shared canonical features constrain every
+intersecting coarse or fine representation. The accepted ownership and boundary
+laws are documented in
+[Adaptive Spatial Partitioning](../world-generation/ADAPTIVE_SPATIAL_PARTITIONING.md).
 
 ## Continents and country allocation
 

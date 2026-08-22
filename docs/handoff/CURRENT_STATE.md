@@ -21,7 +21,8 @@
 - World generation is seed-based and versioned for reproducibility.
 - Geography is generated before political territories.
 - Physical layers are generated causally rather than independently; political
-  territories reference physical space instead of owning its cells.
+  territories reference physical space instead of owning geological features or
+  sampling cells.
 - Tectonic plates are the earliest useful physical-world abstraction. They
   represent moving lithosphere and provide broad physical properties, crustal
   character, and boundary interactions without attempting mantle convection,
@@ -64,7 +65,12 @@
   to stable canonical state; observation does not physically create geology.
 - Renderer meshes, sampled map layers, LODs, client caches, and other query
   products are derived and disposable rather than canonical world truth.
-- Spatial detail is hierarchical, chunked, and proportional to attention.
+- Resolution belongs to representations, not physical reality. Geological
+  features retain continuous identity across computational domains, while cells
+  are system-specific samples that query rather than own canonical geology.
+- Different regions may hold different compatible canonical refinement levels.
+  Required detail follows geological complexity, simulation relevance, and
+  observation or gameplay needs—not attention alone.
 - Singleplayer and eventual multiplayer share one authority model.
 - The eventual multiplayer server generates and owns canonical world truth;
   clients receive relevant subsets and do not independently generate
@@ -74,8 +80,8 @@
 ## Current target
 
 Implement the scoped map prototype in
-`../architecture/PROTOTYPE_V0.1.md`. The 500 m cell size is a measurement target,
-not a final commitment.
+`../architecture/PROTOTYPE_V0.1.md`. Its 500 m cells are provisional prototype
+sampling units, not a final scale or the ontology of world truth.
 
 The accepted physical-world conceptual chain is currently documented in
 `../world-generation/EARTH_LIKE_PHYSICAL_FRAMEWORK.md`,
@@ -85,6 +91,7 @@ The accepted physical-world conceptual chain is currently documented in
 `../world-generation/SPARSE_3D_GEOLOGICAL_WORLD.md`,
 `../world-generation/GEOLOGICAL_GEOMETRY_OPERATORS.md`,
 `../world-generation/CANONICAL_GEOLOGICAL_STATE_AND_REFINEMENT.md`,
+`../world-generation/ADAPTIVE_SPATIAL_PARTITIONING.md`,
 `../world-generation/TECTONIC_PLATES.md`, and
 `../world-generation/TECTONIC_STRUCTURES_AND_PROVINCES.md`. These define domain
 intent and illustrative Rust-facing vocabulary only; temporal representation,
@@ -120,15 +127,22 @@ algorithms, taxonomies, and storage remain open.
 - Do not let refinement rewrite established truth, reroll on observation, or
   become an implementation of storage, serialization, procedural noise,
   meshing, networking, or downstream subsurface gameplay.
+- Do not treat any cell size as geological ontology, align geological identity
+  to chunk boundaries, or let spatial partition boundaries create physical
+  discontinuities that geology did not create.
+- Do not turn adaptive spatial partitioning into a chosen tree/index structure,
+  database, serialization format, Bevy chunk system, refinement algorithm, or
+  resolution-tuning exercise.
 
 ## Recommended next actions
 
 1. Create the Rust workspace with separate simulation/world and Bevy application
    crates or modules.
-2. Define versioned seed inputs and coordinate/chunk/cell identifiers.
-3. Implement and test coordinate-to-chunk-to-cell mapping.
+2. Define versioned seed inputs and prototype coordinate/domain/sampling IDs.
+3. Implement and test prototype coordinate-to-domain-to-sample mapping.
 4. Build the seeded landmass render and map camera controls.
-5. Measure the provisional cell and chunk choices before resolving them.
+5. Measure the provisional sampling and spatial-domain choices without treating
+   them as geological ontology.
 
 ## Before continuing work
 

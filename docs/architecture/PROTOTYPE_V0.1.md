@@ -10,7 +10,8 @@ Build a Bevy application that:
 1. Opens a map window and generates a procedurally shaped landmass from a seed.
 2. Renders the landmass clearly against water.
 3. Provides smooth mouse panning and cursor-centered zooming.
-4. Divides space into chunks and provisional 500 m cells.
+4. Divides space into chunks and provisional 500 m sampling cells that query
+   prototype world data rather than defining geological identity.
 5. On click, displays world coordinates and the selected chunk and cell IDs.
 
 ## Success criteria
@@ -27,4 +28,4 @@ Build a Bevy application that:
 - Multiplayer networking
 - Polished player-facing UI
 - Final terrain-generation algorithms
-- Final cell size or chunk dimensions
+- Final sampling resolution or spatial-domain dimensions

@@ -201,7 +201,7 @@ refinement cannot replace the entire region with limestone unless the earlier
 uncertainty explicitly allowed that outcome. Refinement narrows the solution
 space.
 
-## Hierarchy
+## Canonical refinement hierarchy
 
 Canonical constraints may form a hierarchy:
 
@@ -221,9 +221,14 @@ site-scale detail
 mine / borehole-scale detail
 ```
 
-Each child must remain compatible with its parent. This supports **detail
-follows attention** without choosing exact levels, partitions, or resolutions.
-The final refinement hierarchy remains open.
+Each child must remain compatible with its parent. Required detail follows
+physical complexity, simulation relevance, and observation or gameplay needs
+without choosing exact levels, partitions, or resolutions.
+
+This geological constraint hierarchy is distinct from the computational domains
+that index and materialize it. Their accepted relationship is documented in
+[Adaptive Spatial Partitioning](ADAPTIVE_SPATIAL_PARTITIONING.md). The final
+refinement hierarchy remains open.
 
 ## Persistence and generator evolution
 

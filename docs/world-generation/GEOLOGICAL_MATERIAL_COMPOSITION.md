@@ -88,9 +88,9 @@ equilibrium solver.
 
 ## Geological bodies and space
 
-Bulk composition does not necessarily belong directly to every terrain cell. A
+Bulk composition does not belong directly to every terrain-sampling cell. A
 geological body or formation may own or reference composition and formation
-history while many spatial cells reference that body.
+history while cells and other query products sample or reference that body.
 
 ```text
 geological body
@@ -108,6 +108,10 @@ body. The accepted spatial direction is documented in
 [Sparse 3D Geological World](SPARSE_3D_GEOLOGICAL_WORLD.md): bodies and contact
 surfaces contribute to three-dimensional geological truth beneath map queries,
 without fixing their geometry representation.
+
+The body retains its geological identity across computational domains; neither
+those domains nor their sampling cells divide it into unrelated entities. See
+[Adaptive Spatial Partitioning](ADAPTIVE_SPATIAL_PARTITIONING.md).
 
 ## Minimal Rust-facing vocabulary
 
