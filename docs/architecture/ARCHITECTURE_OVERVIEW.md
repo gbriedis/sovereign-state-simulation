@@ -101,9 +101,12 @@ thermal numerics remain open. See
 ## Broad elevation and physical surface
 
 Elevation is not an independent canonical heightmap. Canonical 3D solid-Earth
-geometry, including its uppermost boundary against water, ice, atmosphere, or
-another non-solid domain, defines the physical ground or seafloor. Elevation
-rasters and terrain meshes are derived queries and presentation products.
+geometry supplies a semantic ground-material boundary from which physical ground
+or seafloor is queried. It is not merely the highest point containing solid
+matter and need not be a single-valued height function. Water, ice, atmosphere,
+vegetation, structures, and other overlying domains remain conceptually
+distinct. Elevation rasters and terrain meshes are derived query and
+presentation products.
 
 Broad geometry responds causally to whole-lithosphere density and thermal
 structure, loads, regional strength, tectonic forcing, and time-dependent

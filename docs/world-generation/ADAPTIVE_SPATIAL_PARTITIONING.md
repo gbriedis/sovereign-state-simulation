@@ -271,12 +271,20 @@ behavior. Interpolation and conservation methods remain open. See
 
 Broad vertical response is regional rather than a set of independent columns.
 A load, lithospheric buoyancy anomaly, or flexural response may cross multiple
-geological and computational domains. Coarse and fine representations must
-preserve established broad solid-Earth geometry, compatible total loads, and
-shared regional-response constraints. Local refinement must not create an
-elevation seam, silently change regional mass balance, or replace canonical 3D
-geometry with a local heightmap. The exact adaptive response representation and
-support kernel remain open; see
+geological and computational domains.
+
+> **A regional deformation field may cross computational boundaries; domain
+> boundaries must not create geometric seams or inconsistent material
+> displacement.**
+
+Coarse and fine representations must share compatible displacement or
+deformation constraints while preserving canonical feature identity, total
+mass and load balance, topology, and thermal accounting. Partially resolved
+regions remain constrained by the same broad transformation. Local refinement
+must not create an elevation seam, silently change regional mass balance,
+remap one side of a contact differently from the other, or replace canonical 3D
+geometry with a local heightmap. The exact field representation, boundary
+interpolation, adaptive response, and support kernel remain open; see
 [Broad Elevation and Isostatic Response](BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md).
 
 ## Preferred overall model

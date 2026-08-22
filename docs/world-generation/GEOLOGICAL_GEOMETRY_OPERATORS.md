@@ -147,6 +147,21 @@ useful for an independent direct forcing or as a composed operation, but its
 final primitive status is open. See
 [Broad Elevation and Isostatic Response](BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md).
 
+Isostatic, flexural, and other broad vertical responses act on canonical 3D
+geology through a regional displacement or deformation mapping; they do not
+only adjust a derived surface elevation. The mapping must carry affected bodies,
+contacts, faults, continuity, topology, material state, mass or volume
+accounting, and provenance relationships consistently unless the modeled
+process justifies a change. Uniform translation, bending, distributed strain,
+compaction, thickening, thinning, and fault-related displacement may require
+different transformations. Their representation, equations, and final taxonomy
+remain open.
+
+Broad-response remapping must not accidentally create or destroy material,
+detach contacts, create overlaps, sever continuity, or erase fault relationships.
+Legitimate volume change must follow the modeled process rather than numerical
+side effects.
+
 Operators also change physical causes inherited by later queries. Deposition
 and erosion alter material overburden and therefore pressure; intrusion may
 introduce a transient thermal anomaly. These consequences follow from updated
@@ -164,6 +179,10 @@ Phase transformations may redistribute sensible and latent or internal phase
 energy, but do not create or destroy total energy. This is an event-driven
 architectural requirement, not a selected thermodynamic variable, conservation
 scheme, or commitment to continuous thermo-mechanical coupling.
+
+Broad vertical deformation follows this same thermal-remapping contract:
+material and conserved thermal content transform together before temperature is
+reconstructed and thermal relaxation continues.
 
 ## Representation independence
 

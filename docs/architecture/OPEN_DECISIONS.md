@@ -153,6 +153,20 @@ record) and remove it from this list.
 - Prevention of uplift double-counting
 - Final status of uplift and subsidence in the primitive operator vocabulary
 - How broad solid-Earth geometry constrains later surface-process refinement
+- Representation of regional displacement and deformation fields
+- Mass and volume preservation during flexure
+- Topology preservation during broad deformation
+- Mapping of fault and contact geometry
+- Treatment of compaction versus volume-preserving deformation
+- Remapping of material properties and thermal content
+- Coarse/fine deformation-boundary compatibility
+- Deformation of partially resolved regions
+- Interaction between broad vertical response and later local refinement
+- Exact definition of the canonical ground-material domain
+- Surface-query behavior for caves, overhangs, water, ice, regolith, and future
+  soil
+- Distinction between ground, seafloor, ice surface, water surface, and rendered
+  terrain
 
 ### Earth-like physical framework
 

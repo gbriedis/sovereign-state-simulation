@@ -37,7 +37,8 @@ other presentation data to be stored everywhere.
 For geology, it may eventually include enough information to represent:
 
 - currently existing geological bodies and their present queryable 3D geometry;
-- the present uppermost solid boundary that defines ground and seafloor;
+- the present semantic boundary of the ground-material domain needed to query
+  ground and seafloor;
 - contacts, bounding surfaces, faults, and present displacement relationships;
 - current material identity, composition, and state;
 - essential topology and spatial relationships;
@@ -143,13 +144,21 @@ finest future canonical query class remains recoverable. A small but meaningful
 signal may persist as constrained residual state or sufficient compact
 provenance even when explicit transient detail is discarded.
 
-Actual broad solid-Earth geometry is canonical, and its uppermost solid boundary
-defines the physical surface from which elevation is queried. Preferred vertical
-response, regional support constraints, or vertical disequilibrium may also
-belong to active canonical state when necessary to determine continuing geometry
-evolution. Their exact persisted-versus-derived split remains open. Refinement
-must preserve established broad geometry and regional mass or response
-constraints rather than regenerate elevation as independent local detail. See
+Actual broad solid-Earth geometry is canonical, and the semantic upper boundary
+of its ground-material domain supplies ground, seafloor, and elevation queries.
+It is not necessarily the highest spatial point with a nonzero solid fraction or
+a single-valued height function. Preferred vertical response, regional support
+constraints, or vertical disequilibrium may also belong to active canonical
+state when necessary to determine continuing geometry evolution. Their exact
+persisted-versus-derived split remains open.
+
+Broad vertical response transforms the affected canonical 3D state, not merely
+a derived surface. Relevant bodies, contacts, faults, topology, material and
+thermal state, mass or volume accounting, provenance relationships, and
+cross-domain geometry must remain consistent unless modeled physics justifies a
+change. Refinement must preserve those established relationships and regional
+response constraints rather than regenerate elevation as independent local
+detail. See
 [Broad Elevation and Isostatic Response](BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md).
 
 ## Canonical unresolved detail

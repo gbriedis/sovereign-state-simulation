@@ -21,11 +21,18 @@ query derived from that geometry, not the stored meaning of one coordinate.
 Datum and coordinate choices remain open; see
 [Depth, Pressure, and Thermal State](DEPTH_PRESSURE_AND_THERMAL_STATE.md).
 
-The uppermost boundary of canonical solid geological material against water,
-ice, atmosphere, or another overlying non-solid domain is the physical ground
-or seafloor surface. Elevation is queried from this boundary relative to the
-datum. Heightmaps, sampled elevation fields, and terrain meshes derive from it;
-they do not replace the canonical 3D geometry. See
+The physical ground or seafloor is queried from the upper boundary of the
+canonical solid-Earth or ground-material domain. This is a semantic domain
+boundary, not simply the highest point containing solid matter. It may later
+include coherent rock, unconsolidated sediment, regolith, or soil while keeping
+water, ice, atmosphere, vegetation, artificial structures, and suspended
+sediment conceptually separate. Final domain ownership remains open.
+
+Canonical 3D truth need not be a single-valued height function. Caves,
+overhangs, cliffs, voids, and multiple ground/void intersections may exist. A
+map elevation layer may derive one selected surface according to a future query
+policy. Heightmaps, sampled elevation fields, and terrain meshes do not replace
+canonical geometry. See
 [Broad Elevation and Isostatic Response](BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md).
 
 ## Geological surfaces and bodies
