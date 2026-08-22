@@ -158,9 +158,9 @@ geometry alone.
 > **Temperature is likely part of canonical present physical state because it
 > may not be uniquely reconstructible from present geometry alone.**
 
-> **Temperature belongs to a continuous physical field across geological space.
-> Geological bodies influence that field through their material properties;
-> they do not each own an isolated temperature value.**
+> **Temperature is a canonical/query thermodynamic state variable represented
+> through a spatial field. Geological bodies influence that field through their
+> material properties; they do not each own an isolated temperature value.**
 
 ```text
 geological geometry / material state
@@ -176,11 +176,16 @@ other future transport properties
 canonical temperature field T(x,y,z,t)
 ```
 
-A sandstone-to-granite contact may change conductivity or heat production
-without creating an artificial temperature discontinuity. This does not require
-per-cell or per-voxel storage. A regional field, sparse anomaly representation,
-body-influenced parameters, or another queryable continuous form may eventually
-represent the same physical field. The exact representation remains open.
+Computational boundaries and ordinary material contacts must not create
+artificial thermal discontinuities. Genuine modeled physics may later produce
+specialized interface behavior, including thermal contact resistance, phase
+fronts, fracture-controlled fluid transport, or an explicitly modeled
+interface discontinuity. This allowance does not define those systems.
+
+The field does not require per-cell or per-voxel storage. A regional field,
+sparse anomaly representation, body-influenced parameters, or another queryable
+form may eventually represent the same physical state. The exact representation
+remains open.
 
 > **Geothermal gradient is a derived query product of the thermal field, not the
 > fundamental state variable.**
@@ -253,25 +258,37 @@ strong fluid heat transport
 
 This note does not design thermo-fluid simulation.
 
-## Geometry changes transport thermal state
+## Geometry changes remap thermal content
 
-> **When geological material is displaced by a geometric event, its thermal
-> state must move consistently with the material before the changed
-> configuration thermally relaxes.**
+> **Temperature is a canonical/query thermodynamic state variable, but
+> conservative transport or remapping may need to operate on energy, enthalpy,
+> or another physically appropriate quantity.**
 
 ```text
-material + thermal state
-        ↓
-fault / uplift / folding / burial / exhumation / other geometry change
-        ↓
-material position changes
-+ associated thermal state is advected / mapped with affected material
-        ↓
+material moves
+↓
+conserved thermal content is remapped consistently
+↓
+temperature is reconstructed from thermal content + material state
+↓
 thermal relaxation in the new configuration
 ```
 
-This establishes event-driven state mapping, not a continuously coupled
-thermo-mechanical solver.
+Literal temperature values therefore need not be copied unchanged with displaced
+material. Materials with different density or heat capacity can store different
+thermal energy at the same temperature; phase changes may consume or release
+latent heat; and transformations may change the relationship between stored
+thermal energy and temperature. The conserved quantity, representation,
+reconstruction, and future latent-heat treatment remain unresolved.
+
+> **Thermal remapping and refinement must not introduce or remove thermal energy
+> except where a modeled physical source or sink justifies it.**
+
+Possible future sources and sinks include radiogenic heating, magmatic heat
+input, conductive flux through boundaries, advective fluid transport,
+phase-change latent heat, and surface or deep boundary flux. This establishes
+event-driven conservative remapping, not a numerical conservation scheme or a
+continuously coupled thermo-mechanical solver.
 
 ## Feedback and numerical evaluation
 
@@ -342,7 +359,9 @@ Thermal systems may advance over meaningful intervals or use analytical or
 approximate relaxation where appropriate. They need not solve the entire planet
 for every small timestep. Exact numerical methods remain unresolved.
 
-A transient anomaly may simplify as its present effect decays:
+A transient anomaly may simplify as its present effect decays, but current
+attention, rendering resolution, or active query scale cannot alone determine
+whether canonical information is disposable:
 
 ```text
 thermal event
@@ -353,19 +372,25 @@ cooling / diffusion
 ↓
 weak residual anomaly
 ↓
-residual effect falls below canonical significance at the relevant scale
-↓
-collapse into simpler background representation
+either:
+  collapse safely into background
+or
+  retain constrained residual information
 ```
 
-> **A transient thermal anomaly may collapse into a simpler background
-> representation once its remaining effect falls below the accuracy required by
-> canonical truth at the relevant scale.**
+> **A thermal anomaly may be simplified only when doing so preserves all
+> canonical information required by the finest future query class the world
+> promises to support.**
 
-Significance may depend on refinement and simulation relevance. A residual that
-is negligible for a coarse distant region may remain meaningful at a future
-geothermal-site query. Retain present state that still matters and compact
-provenance; thresholds and collapse rules remain open.
+A residual that is negligible for a coarse distant view may remain meaningful
+to a future local or historical query. If it is too small to justify explicit
+transient representation but cannot safely be reconstructed after collapse, it
+may survive as a constrained unresolved thermal component, compact residual
+parameters, or retained thermal provenance sufficient for later refinement.
+Information outside the promised canonical accuracy contract need not remain
+explicit, but information required by that contract must not be silently
+discarded. Accuracy classes, residual representation, provenance, and
+promotion/demotion rules remain open.
 
 ## Adaptive thermal detail
 
@@ -379,8 +404,9 @@ treatment.
 No universal thermal resolution applies to the planet. Coarse and fine thermal
 representations must remain compatible across their boundaries.
 
-> **Computational domain boundaries must not create artificial thermal
-> boundaries.**
+> **Computational boundaries and ordinary material contacts must not create
+> artificial thermal discontinuities; genuine modeled physics may produce
+> specialized interface behavior.**
 
 ```text
 coarse domain
@@ -391,8 +417,9 @@ fine domain
 ```
 
 The future contract may need compatible temperature, heat flux, transport-
-relevant material properties, and parent thermal constraints. Interpolation and
-flux-conservation methods remain open.
+relevant material properties, and parent thermal constraints. Remapping and
+refinement must conserve thermal energy except for justified modeled sources or
+sinks. Interpolation and conservation methods remain open.
 
 > **Different thermal resolutions may coexist, but they must describe one
 > compatible canonical thermal state.**

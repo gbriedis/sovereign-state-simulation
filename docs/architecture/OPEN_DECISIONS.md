@@ -105,6 +105,11 @@ record) and remove it from this list.
 - Transient heat-solver approximation
 - Event-driven and scale-appropriate thermal stepping
 - Thermal relaxation and anomaly-collapse criteria
+- Canonical thermal accuracy classes and the finest promised future query scale
+- Residual thermal-state representation and compact parameters
+- Thermal provenance required for later reconstruction or refinement
+- Promotion and demotion rules between explicit anomalies and constrained
+  residual thermal state
 - Adaptive spatial and temporal thermal resolution
 - Compatibility across coarse and fine thermal boundaries
 - Compact history representation for pressure-temperature-time paths
@@ -115,7 +120,13 @@ record) and remove it from this list.
 - Behavior when convergence is poor
 - Error and tolerance scaling with refinement level
 - Treatment of temperature-dependent conductivity and other nonlinear properties
-- Conservation requirements across adaptive thermal boundaries
+- Conservation requirements across adaptive thermal boundaries and
+  geometry-changing remapping
+- Conserved thermal quantity during geometric remapping
+- Energy or enthalpy representation
+- Conservation requirements during material transformation
+- Reconstruction of temperature after thermal remapping
+- Treatment of latent heat in future phase changes
 - Strategy for combining background state and overlapping thermal anomalies
 - Thermal-state mapping during geometric deformation
 - Local versus broader regional recomputation after major events

@@ -79,13 +79,18 @@
   may not be reconstructible from present geometry. Geothermal gradient is a
   derived query, and stable background fields are distinct from transient
   thermal anomalies and future specialized thermo-fluid models.
-- Temperature is one continuous field across geological bodies and adaptive
-  domains. Bodies supply thermal properties rather than owning isolated
-  temperatures, and coarse/fine representations must share compatible thermal
-  boundary constraints.
-- Geometry-changing events map associated thermal state with displaced material
-  before relaxation. Background and overlapping anomalies feed a combined
-  solution rather than requiring unconditional linear addition.
+- Temperature is canonical/query thermodynamic state represented through a
+  spatial field. Bodies supply thermal properties rather than owning isolated
+  temperatures. Ordinary contacts and computational boundaries must not create
+  artificial discontinuities, while modeled interface physics may later justify
+  specialized behavior.
+- Geometry-changing events conservatively remap physically appropriate thermal
+  content before reconstructing temperature and relaxing the new configuration;
+  literal temperature need not be copied unchanged. Remapping and refinement
+  cannot add or remove thermal energy without a modeled source or sink.
+- Thermal anomalies may collapse only if the finest promised future canonical
+  query remains supportable. Otherwise, small signals survive as constrained
+  residual state, compact parameters, or sufficient provenance.
 - Physical dependencies may contain feedback loops. Numerical evaluation may use
   one-pass staging, bounded iteration, or future specialized treatment according
   to how strongly coupling affects canonical truth.
@@ -160,9 +165,12 @@ algorithms, taxonomies, and storage remain open.
 - Do not extend thermal state into final heat solvers, uniform geological
   timesteps, fluid-flow models, climate implementation, mineral transformations,
   melting, resource formation, or downstream human systems.
-- Do not store temperature independently per geological body, let adaptive
-  domain boundaries create thermal discontinuities, assume all anomalies combine
-  linearly, or freeze an evaluation/convergence workflow as implementation.
+- Do not store temperature independently per geological body, let computational
+  boundaries or ordinary contacts create artificial thermal discontinuities,
+  copy temperature as though it were necessarily the conserved remapping
+  quantity, discard residual anomaly information promised to future canonical
+  queries, assume all anomalies combine linearly, or freeze an
+  evaluation/convergence workflow as implementation.
 
 ## Recommended next actions
 
