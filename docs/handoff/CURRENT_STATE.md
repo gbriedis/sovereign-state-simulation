@@ -71,6 +71,16 @@
 - Different regions may hold different compatible canonical refinement levels.
   Required detail follows geological complexity, simulation relevance, and
   observation or gameplay needs—not attention alone.
+- Canonical geometry uses absolute physical position relative to a planetary
+  datum; depth below local ground or another reference is derived context.
+- Lithostatic pressure normally derives from gravity and the actual material
+  column above a query point. It remains distinct from pore-fluid pressure.
+- Temperature is likely adaptive canonical present state because thermal history
+  may not be reconstructible from present geometry. Geothermal gradient is a
+  derived query, and stable background fields are distinct from transient
+  thermal anomalies and future specialized thermo-fluid models.
+- Compact provenance may retain important pressure-temperature peaks and
+  episodes without preserving every timestep or obsolete numerical field.
 - Singleplayer and eventual multiplayer share one authority model.
 - The eventual multiplayer server generates and owns canonical world truth;
   clients receive relevant subsets and do not independently generate
@@ -92,6 +102,7 @@ The accepted physical-world conceptual chain is currently documented in
 `../world-generation/GEOLOGICAL_GEOMETRY_OPERATORS.md`,
 `../world-generation/CANONICAL_GEOLOGICAL_STATE_AND_REFINEMENT.md`,
 `../world-generation/ADAPTIVE_SPATIAL_PARTITIONING.md`,
+`../world-generation/DEPTH_PRESSURE_AND_THERMAL_STATE.md`,
 `../world-generation/TECTONIC_PLATES.md`, and
 `../world-generation/TECTONIC_STRUCTURES_AND_PROVINCES.md`. These define domain
 intent and illustrative Rust-facing vocabulary only; temporal representation,
@@ -133,6 +144,12 @@ algorithms, taxonomies, and storage remain open.
 - Do not turn adaptive spatial partitioning into a chosen tree/index structure,
   database, serialization format, Bevy chunk system, refinement algorithm, or
   resolution-tuning exercise.
+- Do not equate absolute position with depth, derive pressure from depth alone,
+  collapse pore-fluid and lithostatic pressure, or make a fixed geothermal
+  gradient canonical world truth.
+- Do not extend thermal state into final heat solvers, uniform geological
+  timesteps, fluid-flow models, climate implementation, mineral transformations,
+  melting, resource formation, or downstream human systems.
 
 ## Recommended next actions
 

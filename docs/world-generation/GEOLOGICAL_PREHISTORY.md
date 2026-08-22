@@ -106,6 +106,13 @@ Concepts that may carry causal age include:
 
 The exact age model and the objects that store age remain unresolved.
 
+Pressure-temperature history is also causal. Burial, heating, uplift, erosion,
+cooling, and exhumation can create a path whose important peaks and episodes may
+matter after present pressure or temperature changes. Compact provenance may
+retain meaningful P–T conditions and timing without every timestep. The final
+history schema remains open; see
+[Depth, Pressure, and Thermal State](DEPTH_PRESSURE_AND_THERMAL_STATE.md).
+
 ## Minimal Rust-facing vocabulary
 
 The following types illustrate only the minimum temporal concepts. They are not

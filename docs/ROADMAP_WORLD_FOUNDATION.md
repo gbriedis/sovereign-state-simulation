@@ -83,6 +83,11 @@ separates continuous geological identity from computational domains and
 system-specific sampling cells. Different regions may use different compatible
 refinement levels without creating artificial geological boundaries.
 
+[Depth, Pressure, and Thermal State](world-generation/DEPTH_PRESSURE_AND_THERMAL_STATE.md)
+defines absolute position before contextual depth, derives lithostatic pressure
+from actual overburden, and treats temperature as adaptive history-bearing state
+rather than a universal geothermal-gradient formula.
+
 ## In scope
 
 - Land shape, regions, coastlines, and elevation

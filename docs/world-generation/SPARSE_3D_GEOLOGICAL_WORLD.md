@@ -15,6 +15,12 @@ does not need a uniform planet-sized voxel grid to preserve this distinction.
 The intended abstraction is sparse geological structure composed from surfaces
 and bounded bodies or volumes where geological history requires them.
 
+Canonical geometry uses absolute physical position or elevation relative to a
+planetary datum. Depth below local ground or another surface is a contextual
+query derived from that geometry, not the stored meaning of one coordinate.
+Datum and coordinate choices remain open; see
+[Depth, Pressure, and Thermal State](DEPTH_PRESSURE_AND_THERMAL_STATE.md).
+
 ## Geological surfaces and bodies
 
 Surfaces may represent ground, contacts between units, the top or bottom of a

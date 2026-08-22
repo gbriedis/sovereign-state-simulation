@@ -35,6 +35,13 @@ Material state required to determine ongoing evolution may belong to
 does not settle which phase, structural, thermal, or other quantities must be
 persisted rather than derived.
 
+Lithostatic pressure and pore-fluid pressure remain distinct. Lithostatic
+pressure normally follows gravity and material overburden; fluid within pores or
+fractures may carry separate pressure state. Phase, structural, porosity, and
+fluid state may also influence thermal behavior. These relationships are
+documented without a poromechanics or heat solver in
+[Depth, Pressure, and Thermal State](DEPTH_PRESSURE_AND_THERMAL_STATE.md).
+
 ## Phase fractions
 
 Solid, melt, and fluid may coexist in one geological material volume. This

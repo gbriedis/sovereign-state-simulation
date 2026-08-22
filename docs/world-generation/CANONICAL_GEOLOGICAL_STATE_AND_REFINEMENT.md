@@ -124,6 +124,18 @@ Current thermal, magma-body, stress or strain, uplift or subsidence, fluid-
 pressure, or other process state may later qualify. This principle does not
 design those systems.
 
+For current geology, absolute position belongs to canonical geometry, while
+depth is contextual and lithostatic pressure is normally derived from gravity
+and the actual overlying material column. Temperature is likely canonical
+present state because geological thermal history can leave information that
+present geometry alone cannot reconstruct. The exact pressure cache and thermal-
+field representation remain open; see
+[Depth, Pressure, and Thermal State](DEPTH_PRESSURE_AND_THERMAL_STATE.md).
+
+Transient thermal detail may simplify into a background representation once its
+residual no longer affects present truth. Compact provenance remains even when
+temporary numerical detail is discarded.
+
 ## Canonical unresolved detail
 
 > **Unresolved detail means “not yet explicitly materialized,” not “the universe

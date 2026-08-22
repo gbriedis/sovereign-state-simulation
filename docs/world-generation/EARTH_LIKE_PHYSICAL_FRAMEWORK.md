@@ -30,14 +30,16 @@ They should not be unrelated random values.
 The current geological-prehistory layer needs only a minimal Earth-like baseline:
 
 - **Planet radius and curvature** — establish the world's scale and curved
-  geometry for physical distance and depth relationships.
+  geometry for absolute position and contextual depth relationships. The exact
+  datum and coordinate representation remain open.
 - **Surface gravity** — provide the baseline acceleration needed by pressure,
-  buoyancy, and mechanical reasoning.
+  buoyancy, and mechanical reasoning. Whether later queries vary gravity with
+  position or depth remains open.
 - **Broad mantle reference conditions** — only the reference thermal, density,
-  and related conditions required by the lithosphere abstraction; not mantle
-  convection or a full mantle model.
-- **Surface pressure baseline** — a reference datum if later depth-pressure
-  derivation requires it.
+  basal heat, and related conditions required by the lithosphere abstraction;
+  not mantle convection or a full mantle model.
+- **Surface pressure baseline** — a reference datum if a later absolute-pressure
+  query requires it.
 - **Basic water and volatile assumptions** — only physical reference behavior
   needed by current geological reasoning, such as effects on density, melting,
   or material state; not a hydrological, atmospheric, or ocean model.
@@ -56,7 +58,7 @@ Relevant generated state currently includes:
 - lithosphere geometry;
 - [geological material composition](GEOLOGICAL_MATERIAL_COMPOSITION.md);
 - [multi-phase and structural material state](GEOLOGICAL_MATERIAL_STATE.md);
-- thermal state;
+- [thermal state](DEPTH_PRESSURE_AND_THERMAL_STATE.md);
 - volatile state where it matters to current geological reasoning;
 - plate motion;
 - accumulated geological history.
@@ -68,13 +70,14 @@ The exact representation of these causes remains unresolved.
 Consequences should be calculated or classified from fixed context, generated
 state, and history wherever practical. Examples include:
 
-- pressure with depth;
+- lithostatic pressure from geometry, gravity, and material overburden;
 - density behavior;
 - buoyancy;
 - melting conditions or tendency;
 - strength and rheological behavior;
 - effective lithosphere thickness;
-- continental-like or oceanic-like crust classification.
+- continental-like or oceanic-like crust classification;
+- contextual depth and local geothermal-gradient query products.
 
 This does not require every consequence to be recalculated continuously.
 Whether derived values are computed on demand, cached, summarized, or persisted

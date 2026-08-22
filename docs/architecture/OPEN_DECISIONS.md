@@ -89,6 +89,28 @@ record) and remove it from this list.
 - Terrain-generation algorithms
 - Exact river and drainage model
 
+### Position, pressure, and thermal state
+
+- Exact planetary datum and elevation reference
+- Absolute coordinate representation at depth
+- Lithostatic-pressure approximation and query strategy
+- Whether and where lithostatic pressure is cached or persisted
+- Treatment of gravity variation with depth and position
+- Pore-fluid pressure representation distinct from lithostatic pressure
+- Canonical thermal-field representation
+- Regional and basal heat-flow representation
+- Thermal-conductivity model derived from material state
+- Radiogenic-heat approximation from material chemistry
+- Thermal-anomaly representation
+- Transient heat-solver approximation
+- Event-driven and scale-appropriate thermal stepping
+- Thermal relaxation and anomaly-collapse criteria
+- Adaptive spatial and temporal thermal resolution
+- Compatibility across coarse and fine thermal boundaries
+- Compact history representation for pressure-temperature-time paths
+- Thermal quantities that must persist versus remain derived or cached
+- Future boundary coupling to climate and fluid heat transport
+
 ### Earth-like physical framework
 
 - Exact standard Earth reference values, precision, and units used by the

@@ -133,6 +133,13 @@ collision
 The operator sequence, parameterization, overlap, concurrency, and interaction
 with material-changing processes remain unresolved.
 
+Operators also change physical causes inherited by later queries. Deposition
+and erosion alter material overburden and therefore pressure; intrusion may
+introduce a transient thermal anomaly. These consequences follow from updated
+geometry, material, and history rather than becoming unrelated operator labels.
+Their accepted causal role is documented in
+[Depth, Pressure, and Thermal State](DEPTH_PRESSURE_AND_THERMAL_STATE.md).
+
 ## Representation independence
 
 The operator model does not select uniform voxels, triangle meshes, implicit
