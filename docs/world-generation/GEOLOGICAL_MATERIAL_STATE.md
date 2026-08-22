@@ -42,6 +42,10 @@ fluid state may also influence thermal behavior. These relationships are
 documented without a poromechanics or heat solver in
 [Depth, Pressure, and Thermal State](DEPTH_PRESSURE_AND_THERMAL_STATE.md).
 
+Material state influences spatial thermal properties, but canonical temperature
+belongs to a continuous field across bodies and contacts rather than to one
+independent value stored by each body.
+
 ## Phase fractions
 
 Solid, melt, and fluid may coexist in one geological material volume. This

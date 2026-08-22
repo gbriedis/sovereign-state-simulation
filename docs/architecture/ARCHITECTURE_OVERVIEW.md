@@ -84,9 +84,15 @@ another reference. Lithostatic pressure normally derives from gravity, geometry,
 and the actual material overburden rather than a universal depth formula.
 
 Temperature is likely canonical history-bearing state represented as a
-queryable field, while geothermal gradient is derived. Stable regions may use a
-coarse conductive background and significant thermal events may retain adaptive
-transient anomalies. Exact coordinates, pressure queries, fields, caches, and
+continuous queryable field across geological bodies and computational domains;
+bodies influence it through material properties rather than owning independent
+temperatures. Geothermal gradient is derived. Stable regions may use a coarse
+conductive background and significant events may retain adaptive transient
+state, with compatible thermal boundaries between resolutions.
+
+Physical dependencies may contain feedback loops, while numerical evaluation
+uses controlled staging or iteration whose fidelity scales with canonical
+significance. Exact coordinates, pressure queries, fields, caches, coupling, and
 thermal numerics remain open. See
 [Depth, Pressure, and Thermal State](../world-generation/DEPTH_PRESSURE_AND_THERMAL_STATE.md).
 
