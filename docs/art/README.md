@@ -170,12 +170,11 @@ Silence is never Art acceptance. If no issue or pull request exists, the work
 record must name the receiving task and retain its acknowledgement link or
 message identifier.
 
-## ART-001 foundation packet
+## ART-001 foundation
 
-`ART-001` will establish the first accepted Art and Technical Art foundation.
-It plans four separate canonical documents; their contents remain undecided
-until Art review and the relevant semantic or implementation consultations are
-complete:
+`ART-001` established the first accepted Art and Technical Art foundation through
+[PR #24](https://github.com/gbriedis/state-of-consequence/pull/24). Its four
+canonical documents are:
 
 1. `docs/art/ART_DIRECTION.md` — in-game art-direction goals, boundaries,
    accessibility principles, decision states, and visual acceptance language.
@@ -186,10 +185,13 @@ complete:
 4. `docs/art/ART_OPEN_DECISIONS.md` — Art discovery inventory whose questions
    become accepted only through the project decision process.
 
-The Project Steward adds and serializes `ART-001` in
-[Active Workstreams](../operations/WORKSTREAMS.md). Each foundation document
-must preserve unresolved product, world, architecture, and visual choices as
-open rather than filling them with plausible defaults.
+The Project Steward records `ART-001` as `Done` in
+[Active Workstreams](../operations/WORKSTREAMS.md). Its accepted foundation does
+not settle the visual choices catalogued as `ART-D001` through `ART-D013`; those
+remain open until separately scoped evidence and the required decision and
+review gates accept them. Future Art work must continue to preserve unresolved
+product, world, architecture, and visual choices as open rather than filling
+them with plausible defaults.
 
 ## Enforcement and temporary identity model
 
