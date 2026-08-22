@@ -1,6 +1,6 @@
 # Prototype v0.1
 
-- **Status:** In progress
+- **Status:** Planned
 - **Purpose:** Validate map interaction and the initial spatial model
 
 ## Required outcome

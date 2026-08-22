@@ -15,13 +15,10 @@ accumulated output becomes the initial physical state of the eventual playable
 civilization era. Geological time is coarse and meaningful rather than one tick
 per year, and its exact representation remains open.
 
-This prehistory inherits a Level 0
-[Earth-Like Planetary Contract](world-generation/EARTH_LIKE_PLANETARY_CONTRACT.md).
-Physical laws remain common while bounded Earth-like planetary causes may vary
-before geology begins. The
-[Earth-Like Physical Framework](world-generation/EARTH_LIKE_PHYSICAL_FRAMEWORK.md)
-defines the minimal part of that context currently consumed by geological
-reasoning.
+This prehistory runs within a fixed
+[Earth-Like Physical Framework](world-generation/EARTH_LIKE_PHYSICAL_FRAMEWORK.md).
+Fundamental planetary context is held constant while geology, physical state,
+and history vary between generated worlds.
 
 ## Causal generation model
 
@@ -32,8 +29,7 @@ layers should remain explainable through those dependencies.
 The current working causal direction begins with:
 
 ```text
-Earth-like planetary contract
-→ initial planetary / lithospheric state
+planet
 → lithospheric plates
 → plate motion
 → boundary-relative motion
