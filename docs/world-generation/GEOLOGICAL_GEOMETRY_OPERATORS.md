@@ -144,10 +144,12 @@ When an operator displaces geological material, physically appropriate thermal
 content must be remapped conservatively before temperature is reconstructed
 from that content and the changed material state, then allowed to relax in the
 new configuration. This need not mean copying temperature values unchanged.
-Remapping and refinement must not create or remove thermal energy without a
-modeled source or sink. This is an event-driven architectural requirement, not
-a selected thermodynamic variable, conservation scheme, or commitment to
-continuous thermo-mechanical coupling.
+Remapping and refinement must conserve total energy except for explicitly
+modeled sources, sinks, or transport across the chosen control-volume boundary.
+Phase transformations may redistribute sensible and latent or internal phase
+energy, but do not create or destroy total energy. This is an event-driven
+architectural requirement, not a selected thermodynamic variable, conservation
+scheme, or commitment to continuous thermo-mechanical coupling.
 
 ## Representation independence
 

@@ -120,11 +120,11 @@ record) and remove it from this list.
 - Behavior when convergence is poor
 - Error and tolerance scaling with refinement level
 - Treatment of temperature-dependent conductivity and other nonlinear properties
-- Conservation requirements across adaptive thermal boundaries and
-  geometry-changing remapping
+- Total-energy accounting across adaptive thermal boundaries,
+  geometry-changing remapping, and chosen control-volume boundaries
 - Conserved thermal quantity during geometric remapping
 - Energy or enthalpy representation
-- Conservation requirements during material transformation
+- Conservation and internal energy partition during material transformation
 - Reconstruction of temperature after thermal remapping
 - Treatment of latent heat in future phase changes
 - Strategy for combining background state and overlapping thermal anomalies

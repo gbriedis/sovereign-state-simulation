@@ -87,7 +87,9 @@
 - Geometry-changing events conservatively remap physically appropriate thermal
   content before reconstructing temperature and relaxing the new configuration;
   literal temperature need not be copied unchanged. Remapping and refinement
-  cannot add or remove thermal energy without a modeled source or sink.
+  conserve total energy except for modeled sources, sinks, or transport across
+  the chosen control-volume boundary. Phase transformations may redistribute
+  sensible and latent or internal energy but do not create or destroy it.
 - Thermal anomalies may collapse only if the finest promised future canonical
   query remains supportable. Otherwise, small signals survive as constrained
   residual state, compact parameters, or sufficient provenance.
