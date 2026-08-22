@@ -57,7 +57,7 @@ record is a Steward task; it is never silently treated as current.
   departments are informed.
 - **Base:** `main@127fa07`.
 - **Branch / worktree:** Integrated by
-  [PR #20](https://github.com/gbriedis/sovereign-state-simulation/pull/20);
+  [PR #20](https://github.com/gbriedis/state-of-consequence/pull/20);
   exact submitted head `fc35db3` was squash-merged as `9578f28`, and both task
   branches were retired after proof.
 - **Write scope:** `docs/operations/`, `docs/decisions/`, repository agent
@@ -80,7 +80,7 @@ record is a Steward task; it is never silently treated as current.
   Architecture accepted splitting lint and tests into parallel gates. The
   required `rust-gate` now skips hosted compilation for documentation-only work
   and waits for every Rust gate when code, Cargo, or toolchain paths change.
-  [PR #20](https://github.com/gbriedis/sovereign-state-simulation/pull/20)
+  [PR #20](https://github.com/gbriedis/state-of-consequence/pull/20)
   passed `project-governance` and `rust-gate`, auto-merged under protected-main
   rules, and triggered successful post-merge workflows. Eleven targeted
   department/lane handoffs were delivered.
