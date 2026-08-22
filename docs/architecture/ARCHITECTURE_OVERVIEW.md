@@ -27,15 +27,32 @@ renderer and interface do not define that truth; the simulation/world core does.
 This boundary keeps the simulation testable, portable, and suitable for a future
 authoritative server without requiring a renderer.
 
+## Earth-like planetary contract
+
+> **The simulation generates Earth histories, not planets.**
+
+Level 0 establishes an Earth-like planetary envelope before geological history
+begins. Physical laws and supported approximations remain common, while a
+world-creation profile may select bounded Earth-like causes such as planetary
+scale and gravity, stellar and orbital context, rotation and orientation, water
+inventory, volatile inventory, and atmospheric potential. Exact ranges and
+representation remain open.
+
+The contract supplies causes and boundary conditions, not outcomes. Continents,
+mountains, oceans, climate, resources, biomes, and civilization must arise only
+from their appropriate later histories. The accepted boundary is documented in
+[Earth-Like Planetary Contract](../world-generation/EARTH_LIKE_PLANETARY_CONTRACT.md).
+
 ## Deterministic world generation
 
-A seed is the root identity of a generated world. Compatible generator and
-ruleset versions must reproduce the same foundational world from the same seed
-and inputs. Once materially relevant detail becomes canonical, persisted world
-truth takes precedence over silently regenerating it with changed algorithms.
+A seed and selected Earth-like planetary contract form the root inputs of a
+generated world. Compatible generator and ruleset versions must reproduce the
+same foundational world from the same inputs. Once materially relevant detail
+becomes canonical, persisted world truth takes precedence over silently
+regenerating it with changed algorithms.
 
 ```text
-world seed
+world seed + Earth-like planetary contract
 └── canonical geological world
     ├── continuous feature identities and topology
     ├── resolved present state and constraints
