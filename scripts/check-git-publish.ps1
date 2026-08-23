@@ -207,7 +207,7 @@ $topology = if ($localCommit -eq $remoteCommit) {
     'diverged'
 }
 $publishReady = $topology -in @('already-published', 'fast-forward-push')
-$pushCommand = "git -c core.hooksPath=<verified-empty-hooks-path> -c push.followTags=false -c remote.$RemoteName.mirror=false -c remote.$RemoteName.push= -c push.default=nothing -c remote.pushDefault= -c branch.$LocalBranch.pushRemote= -c push.autoSetupRemote=false -c push.recurseSubmodules=no -c push.pushOption= -c push.gpgSign=false push --porcelain --no-verify --no-follow-tags --no-signed --recurse-submodules=no -- $RemoteName $PushRefspec"
+$pushCommand = "git -c core.hooksPath=<verified-empty-hooks-path> -c push.followTags=false -c remote.$RemoteName.mirror=false -c push.default=nothing -c remote.pushDefault= -c branch.$LocalBranch.pushRemote= -c push.autoSetupRemote=false -c push.recurseSubmodules=no -c push.pushOption= -c push.gpgSign=false push --porcelain --no-verify --no-follow-tags --no-signed --recurse-submodules=no -- $RemoteName $PushRefspec"
 
 Write-Output 'GIT_PUBLISH_PREFLIGHT'
 Write-Output "remote_name: $RemoteName"

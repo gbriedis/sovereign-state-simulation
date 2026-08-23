@@ -330,8 +330,16 @@ Immediately before a permitted push:
    path:
 
    ```text
-   git -c core.hooksPath=<verified-empty-hooks-path> -c push.followTags=false -c remote.<REMOTE_NAME>.mirror=false -c remote.<REMOTE_NAME>.push= -c push.default=nothing -c remote.pushDefault= -c branch.<LOCAL_BRANCH>.pushRemote= -c push.autoSetupRemote=false -c push.recurseSubmodules=no -c push.pushOption= -c push.gpgSign=false push --porcelain --no-verify --no-follow-tags --no-signed --recurse-submodules=no -- <REMOTE_NAME> refs/heads/<LOCAL_BRANCH>:refs/heads/<REMOTE_BRANCH>
+   git -c core.hooksPath=<verified-empty-hooks-path> -c push.followTags=false -c remote.<REMOTE_NAME>.mirror=false -c push.default=nothing -c remote.pushDefault= -c branch.<LOCAL_BRANCH>.pushRemote= -c push.autoSetupRemote=false -c push.recurseSubmodules=no -c push.pushOption= -c push.gpgSign=false push --porcelain --no-verify --no-follow-tags --no-signed --recurse-submodules=no -- <REMOTE_NAME> refs/heads/<LOCAL_BRANCH>:refs/heads/<REMOTE_BRANCH>
    ```
+
+   Do not set `remote.<REMOTE_NAME>.push` to an empty value: Git interprets that
+   value as an empty refspec and rejects the command. The exact command-line
+   refspec is the sole refspec Git uses for this invocation and takes precedence
+   over all configured `remote.<REMOTE_NAME>.push` values. The publication test
+   suite must execute this generated shape against an isolated bare remote with
+   multiple broad configured push refspecs and prove that only the assigned
+   destination changes.
 
 5. Do not retry with force or broaden the refspec if the remote rejects the
    update.

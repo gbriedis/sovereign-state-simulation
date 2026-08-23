@@ -2,6 +2,7 @@ $ErrorActionPreference = 'Stop'
 
 $publishChecker = Join-Path $PSScriptRoot 'check-git-publish.ps1'
 $temporaryRepository = Join-Path ([System.IO.Path]::GetTempPath()) ('codex-publish-test-' + [guid]::NewGuid().ToString('N'))
+$temporaryBareRemote = Join-Path ([System.IO.Path]::GetTempPath()) ('codex-publish-bare-' + [guid]::NewGuid().ToString('N'))
 $remoteUrl = 'https://example.invalid/state-of-consequence.git'
 $checksPassed = 0
 $utf8 = [System.Text.UTF8Encoding]::new($false)
@@ -32,6 +33,27 @@ function Initialize-IsolatedTestRepository {
         if ((Test-Path -LiteralPath (Join-Path $temporaryRepository '.git/info/attributes')) -or
             ((Test-Path -LiteralPath (Join-Path $temporaryRepository '.git/hooks')) -and @([System.IO.Directory]::EnumerateFileSystemEntries((Join-Path $temporaryRepository '.git/hooks'))).Count -ne 0)) {
             throw 'Publication test initialization inherited attributes or hooks.'
+        }
+    } finally {
+        if ($null -eq $previousTemplate) { Remove-Item Env:GIT_TEMPLATE_DIR -ErrorAction SilentlyContinue } else { $env:GIT_TEMPLATE_DIR = $previousTemplate }
+        Remove-Item -LiteralPath $template -Recurse -Force -ErrorAction SilentlyContinue
+    }
+}
+
+function Initialize-IsolatedBareRepository {
+    param([string]$Path)
+
+    $template = Join-Path ([System.IO.Path]::GetTempPath()) ('codex-empty-bare-template-' + [guid]::NewGuid().ToString('N'))
+    $previousTemplate = $env:GIT_TEMPLATE_DIR
+    try {
+        $null = New-Item -ItemType Directory -Path $template -Force
+        if (@([System.IO.Directory]::EnumerateFileSystemEntries($template)).Count -ne 0) { throw 'Bare publication test template is not empty.' }
+        Remove-Item Env:GIT_TEMPLATE_DIR -ErrorAction SilentlyContinue
+        $output = @(& git -c init.templateDir= init -q --bare "--template=$template" $Path 2>&1)
+        if ($LASTEXITCODE -ne 0) { throw "Could not initialize isolated bare publication remote.`n$($output -join "`n")" }
+        if ((Test-Path -LiteralPath (Join-Path $Path 'info/attributes')) -or
+            ((Test-Path -LiteralPath (Join-Path $Path 'hooks')) -and @([System.IO.Directory]::EnumerateFileSystemEntries((Join-Path $Path 'hooks'))).Count -ne 0)) {
+            throw 'Bare publication test initialization inherited attributes or hooks.'
         }
     } finally {
         if ($null -eq $previousTemplate) { Remove-Item Env:GIT_TEMPLATE_DIR -ErrorAction SilentlyContinue } else { $env:GIT_TEMPLATE_DIR = $previousTemplate }
@@ -167,10 +189,72 @@ try {
     $null = Invoke-TestGit -Arguments @('config', 'push.recurseSubmodules', 'on-demand')
     $null = Invoke-TestGit -Arguments @('config', '--add', 'push.pushOption', 'server-option')
     $configuredOutput = & pwsh -NoProfile -File $publishChecker -RepositoryRoot $temporaryRepository -RemoteName origin -ExpectedRemoteUrl $remoteUrl -LocalBranch main -RemoteBranch main -ExpectedLocalCommit $localCommit -ExpectedRemoteCommit $remoteDivergent -PushRefspec 'refs/heads/main:refs/heads/main' 2>&1 | Out-String
-    if ($LASTEXITCODE -ne 0 -or $configuredOutput -notmatch '(?m)^push_command_proposal: .*push\.followTags=false.*remote\.origin\.mirror=false.*remote\.origin\.push=.*push\.default=nothing.*push\.recurseSubmodules=no.*push\.pushOption=.*--no-follow-tags.*--recurse-submodules=no.*refs/heads/main:refs/heads/main\r?$') {
+    if ($LASTEXITCODE -ne 0 -or
+        $configuredOutput -notmatch '(?m)^push_command_proposal: .*push\.followTags=false.*remote\.origin\.mirror=false.*push\.default=nothing.*push\.recurseSubmodules=no.*push\.pushOption=.*--no-follow-tags.*--recurse-submodules=no.*refs/heads/main:refs/heads/main\r?$' -or
+        $configuredOutput -match '(?m)^push_command_proposal: .*remote\.origin\.push=') {
         throw "Configuration broadening was not command-scoped away.`n$configuredOutput"
     }
     $checksPassed++
+
+    Initialize-IsolatedBareRepository -Path $temporaryBareRemote
+    $emptyPushHooks = Join-Path $temporaryRepository '.git/publish-test-empty-hooks'
+    $null = New-Item -ItemType Directory -Path $emptyPushHooks -Force
+    if (@([System.IO.Directory]::EnumerateFileSystemEntries($emptyPushHooks)).Count -ne 0) { throw 'Execution-fixture hooks path is not empty.' }
+    $seedOutput = @(& git -C $temporaryBareRemote -c "core.hooksPath=$emptyPushHooks" -c fetch.writeCommitGraph=false fetch --no-tags --no-recurse-submodules --no-write-fetch-head -- $temporaryRepository $localCommit 2>&1)
+    if ($LASTEXITCODE -ne 0) { throw "Could not seed isolated bare publication remote.`n$($seedOutput -join "`n")" }
+    foreach ($destination in @('refs/heads/main', 'refs/heads/published/exact', 'refs/heads/side', 'refs/heads/unrelated-target')) {
+        $null = & git -C $temporaryBareRemote update-ref $destination $baseCommit
+        if ($LASTEXITCODE -ne 0) { throw "Could not initialize isolated destination '$destination'." }
+    }
+    $null = Invoke-TestGit -Arguments @('update-ref', 'refs/heads/side', $localCommit)
+    $null = Invoke-TestGit -Arguments @('tag', '-a', 'publish-fixture-tag', '-m', 'publication fixture', $localCommit)
+    $null = Invoke-TestGit -Arguments @('branch', '-m', 'release/exact')
+    $null = Invoke-TestGit -Arguments @('remote', 'set-url', 'origin', $temporaryBareRemote)
+    $null = Invoke-TestGit -Arguments @('remote', 'set-url', '--push', 'origin', $temporaryBareRemote)
+    $null = Invoke-TestGit -Arguments @('update-ref', 'refs/remotes/origin/published/exact', $baseCommit)
+    $null = Invoke-TestGit -Arguments @('config', '--add', 'remote.origin.push', 'refs/heads/release/exact:refs/heads/unrelated-target')
+    $null = Invoke-TestGit -Arguments @('config', '--add', 'remote.origin.push', 'refs/heads/*:refs/heads/*')
+    $null = Invoke-TestGit -Arguments @('config', '--add', 'remote.origin.push', 'refs/tags/*:refs/tags/*')
+    $null = Invoke-TestGit -Arguments @('config', 'push.default', 'matching')
+    $null = Invoke-TestGit -Arguments @('config', 'remote.pushDefault', 'other')
+    $null = Invoke-TestGit -Arguments @('config', 'branch.release/exact.pushRemote', 'other')
+    $null = Invoke-TestGit -Arguments @('config', 'push.autoSetupRemote', 'true')
+    $null = Invoke-TestGit -Arguments @('config', 'push.gpgSign', 'true')
+
+    $executionOutput = & pwsh -NoProfile -File $publishChecker -RepositoryRoot $temporaryRepository -RemoteName origin -ExpectedRemoteUrl $temporaryBareRemote -LocalBranch 'release/exact' -RemoteBranch 'published/exact' -ExpectedLocalCommit $localCommit -ExpectedRemoteCommit $baseCommit -PushRefspec 'refs/heads/release/exact:refs/heads/published/exact' 2>&1 | Out-String
+    $expectedExecutionProposal = 'git -c core.hooksPath=<verified-empty-hooks-path> -c push.followTags=false -c remote.origin.mirror=false -c push.default=nothing -c remote.pushDefault= -c branch.release/exact.pushRemote= -c push.autoSetupRemote=false -c push.recurseSubmodules=no -c push.pushOption= -c push.gpgSign=false push --porcelain --no-verify --no-follow-tags --no-signed --recurse-submodules=no -- origin refs/heads/release/exact:refs/heads/published/exact'
+    $proposalMatch = [regex]::Match($executionOutput, '(?m)^push_command_proposal: (.+?)\r?$')
+    if ($LASTEXITCODE -ne 0 -or -not $proposalMatch.Success -or $proposalMatch.Groups[1].Value -ne $expectedExecutionProposal -or
+        $executionOutput -notmatch '(?m)^publish_ready: yes\r?$') {
+        throw "Executable publication proposal is not exact or ready.`n$executionOutput"
+    }
+
+    $proposalTokens = @($proposalMatch.Groups[1].Value -split ' ')
+    if ($proposalTokens[0] -ne 'git') { throw 'Generated publication proposal does not begin with Git.' }
+    $pushArguments = @($proposalTokens[1..($proposalTokens.Count - 1)])
+    $hooksArgumentIndex = [Array]::IndexOf($pushArguments, 'core.hooksPath=<verified-empty-hooks-path>')
+    if ($hooksArgumentIndex -lt 0) { throw 'Generated publication proposal does not contain its hooks placeholder.' }
+    $pushArguments[$hooksArgumentIndex] = "core.hooksPath=$emptyPushHooks"
+    $pushExecution = @(& git -C $temporaryRepository @pushArguments 2>&1)
+    if ($LASTEXITCODE -ne 0) { throw "Generated exact publication command failed against isolated bare remote.`n$($pushExecution -join "`n")" }
+
+    $observedRemoteRefs = @(& git -C $temporaryBareRemote for-each-ref '--format=%(refname) %(objectname)' refs/heads refs/tags)
+    if ($LASTEXITCODE -ne 0) { throw 'Could not inspect isolated bare remote after generated push.' }
+    $expectedRemoteRefs = @(
+        "refs/heads/main $baseCommit",
+        "refs/heads/published/exact $localCommit",
+        "refs/heads/side $baseCommit",
+        "refs/heads/unrelated-target $baseCommit"
+    )
+    if ([string]::Join("`n", [string[]]$observedRemoteRefs) -ne [string]::Join("`n", [string[]]$expectedRemoteRefs)) {
+        throw "Generated push changed a destination outside the exact assigned refspec.`nObserved:`n$($observedRemoteRefs -join "`n")"
+    }
+    $checksPassed++
+
+    $null = Invoke-TestGit -Arguments @('branch', '-m', 'main')
+    $null = Invoke-TestGit -Arguments @('remote', 'set-url', 'origin', $remoteUrl)
+    $null = Invoke-TestGit -Arguments @('remote', 'set-url', '--push', 'origin', $remoteUrl)
+    $null = Invoke-TestGit -Arguments @('update-ref', 'refs/remotes/origin/main', $remoteDivergent)
 
     $null = Invoke-TestGit -Arguments @('config', 'remote.origin.receivepack', 'custom-receive')
     Invoke-PublishFixture -Name 'custom receive command is rejected' -ExpectedLocal $localCommit -ExpectedRemote $remoteDivergent -ExpectedTopology 'diverged' -ShouldPass $false
@@ -233,8 +317,9 @@ try {
     Invoke-PublishFixture -Name 'dirty worktree is rejected' -ExpectedLocal $localCommit -ExpectedRemote $remoteDivergent -ExpectedTopology 'diverged' -ShouldPass $false
 } finally {
     Remove-Item -LiteralPath $temporaryRepository -Recurse -Force -ErrorAction SilentlyContinue
+    Remove-Item -LiteralPath $temporaryBareRemote -Recurse -Force -ErrorAction SilentlyContinue
 }
 
-$expectedChecks = 60
+$expectedChecks = 61
 if ($checksPassed -ne $expectedChecks) { throw "Git publish preflight test count changed: expected $expectedChecks, got $checksPassed." }
 Write-Host "Git publish preflight tests passed: $checksPassed/$expectedChecks." -ForegroundColor Green
