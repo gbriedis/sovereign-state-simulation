@@ -5,7 +5,7 @@ status: accepted
 scope: Natural-world generation concepts and their authoritative owners
 authority: Owns world-generation concept IDs, concise truth statements, dependencies, and document routing
 coverage: partial
-last_reviewed: 2026-08-22
+last_reviewed: 2026-08-23
 ---
 
 # World-Generation Source of Truth
@@ -36,7 +36,7 @@ explore, propose, accept, revise, or retire ideas.
 
 | ID | Accepted truth | Detailed owner | Implementation |
 | --- | --- | --- | --- |
-| `WG-001` | Generated worlds use a fixed, versioned Earth-like physical framework rather than randomized planetary physics. | [Earth-Like Physical Framework](EARTH_LIKE_PHYSICAL_FRAMEWORK.md) | Unresolved |
+| `WG-001` | Compatible worlds share one versioned Earth-like physical ruleset and geological reference framework rather than randomized physical laws. | [Earth-Like Physical Framework](EARTH_LIKE_PHYSICAL_FRAMEWORK.md) | Unresolved |
 | `WG-002` | World generation creates a geological prehistory; the playable physical world is the accumulated result of that history. | [Geological Prehistory](GEOLOGICAL_PREHISTORY.md) | Unresolved |
 | `WG-003` | Geological material preserves compact bulk composition and separate trace inventory; minerals and named rocks are derived where practical. | [Geological Material Composition](GEOLOGICAL_MATERIAL_COMPOSITION.md) | Unresolved |
 | `WG-004` | Geological material is described through composition and history, coexisting solid/melt/fluid fractions, and structural state—not mutually exclusive rock, magma, sediment, and fluid types. | [Geological Material State](GEOLOGICAL_MATERIAL_STATE.md) | Unresolved |
@@ -50,8 +50,9 @@ explore, propose, accept, revise, or retire ideas.
 | `WG-012` | Boundary-relative motion produces tectonic interactions, persistent structures, and geological provinces—not final terrain. | [Tectonic Structures and Geological Provinces](TECTONIC_STRUCTURES_AND_PROVINCES.md) | Unresolved |
 | `WG-013` | Broad solid-Earth geometry responds to whole-lithosphere buoyancy, loads, regional strength, tectonic forcing, disequilibrium, and relaxation. | [Broad Elevation and Isostatic Response](BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md) | Unresolved |
 | `WG-014` | Ground, seafloor, and elevation are semantic queries over the transformed 3D ground-material domain; heightmaps and meshes are derived products. | [Broad Elevation and Isostatic Response](BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md) | Unresolved |
-| `WG-015` | Seeds and compatible generator/ruleset versions identify reproducible generation, while persisted canonical truth survives later algorithm changes. | [Architecture Overview](../architecture/ARCHITECTURE_OVERVIEW.md) | Unresolved |
+| `WG-015` | Seeds, selected Level 0 planetary contracts, and compatible generator/ruleset versions identify reproducible generation, while persisted canonical truth survives later algorithm changes. | [Architecture Overview](../architecture/ARCHITECTURE_OVERVIEW.md) | Unresolved |
 | `WG-016` | The authority owns canonical generation and refinement; clients receive only relevant subsets or derived views. | [Architecture Overview](../architecture/ARCHITECTURE_OVERVIEW.md) | Not started |
+| `WG-025` | Each world begins with a selected Level 0 planetary contract whose bounded causal parameters remain inside the supported Earth-like envelope and are inherited by later histories. | [Earth-Like Planetary Contract](EARTH_LIKE_PLANETARY_CONTRACT.md) | Unresolved |
 
 ## Recognized exploration topics
 
@@ -75,7 +76,7 @@ The accepted dependency model begins with initial physical causes before plates
 evolve. It is a causal map, not a required one-pass algorithm:
 
 ```text
-fixed Earth-like framework
+common Earth-like physical rules + selected bounded planetary contract
 → initial lithosphere geometry, composition, material state, and thermal state
 → tectonic plates and plate motion
 → boundary-relative motion and tectonic interaction
@@ -109,6 +110,7 @@ iteration, and approximation remain implementation decisions.
 | [Tectonic Structures and Geological Provinces](TECTONIC_STRUCTURES_AND_PROVINCES.md) | `WG-012` |
 | [Broad Elevation and Isostatic Response](BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md) | `WG-013`, `WG-014` |
 | [Architecture Overview](../architecture/ARCHITECTURE_OVERVIEW.md) | `WG-015`, `WG-016` |
+| [Earth-Like Planetary Contract](EARTH_LIKE_PLANETARY_CONTRACT.md) | `WG-025` |
 
 ## Phase boundary
 

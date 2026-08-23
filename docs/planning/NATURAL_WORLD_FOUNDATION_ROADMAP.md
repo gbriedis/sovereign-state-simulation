@@ -5,7 +5,7 @@ status: accepted
 scope: Phase intent and completion direction for the natural-world foundation
 authority: Owns phase intent, present non-goals, immediate milestone, and the evolving definition of complete
 implementation: exploration
-last_reviewed: 2026-08-22
+last_reviewed: 2026-08-23
 ---
 
 # Natural-World Foundation Roadmap
@@ -19,10 +19,20 @@ last_reviewed: 2026-08-22
 Create the coherent physical foundation that every later political, economic,
 social, and infrastructure system must respect.
 
+The phase begins with a selected Level 0
+[Earth-Like Planetary Contract](../world-generation/EARTH_LIKE_PLANETARY_CONTRACT.md)
+and the common [Earth-Like Physical Framework](../world-generation/EARTH_LIKE_PHYSICAL_FRAMEWORK.md).
+It generates the pre-human natural history inherited by the playable world; it
+does not simulate planetary accretion, stellar formation, or an early universe.
+
 The [World-Generation Source of Truth](../world-generation/README.md) owns the
 accepted natural-world concepts and dependency model. This roadmap owns only
 the phase boundary and completion target; it does not restate or override those
 technical decisions.
+
+The accepted dependency direction runs from selected planetary causes through
+geological history and then into later surface systems. The registry owns the
+exact causal model and the current set of accepted and recognized topics.
 
 ## Known exploration horizon
 

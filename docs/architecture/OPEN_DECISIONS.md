@@ -4,7 +4,7 @@ type: open-decision-register
 status: accepted
 scope: Unresolved architecture and world-generation implementation choices
 authority: Owns the inventory of unresolved technical choices; listed options are not accepted design
-last_reviewed: 2026-08-22
+last_reviewed: 2026-08-23
 ---
 
 # Open Architecture Decisions
@@ -278,6 +278,22 @@ authoritative specification, and remove the resolved questions from this file.
 - Performance implications of tracking multi-phase material state
 - Interaction between phase/structural state, geological-body ownership, and
   spatial resolution
+
+### ARCH-OPEN-019 — Earth-like planetary contract
+
+- Exact parameters, units, supported Earth-like ranges, and correlations
+- Which planetary-scale quantities remain fixed and which may vary by world
+- Versioned representation and serialization of the selected contract
+- Exact stellar profile and incoming-energy boundary representation
+- Whether stellar evolution or orbital cycles matter during generated prehistory
+- Supported orbit, rotation, axial-orientation, and seasonality causes
+- Water and volatile inventory representation and later conservation boundaries
+- Meaning and derivation of atmospheric potential before atmospheric evolution
+- Whether world-creation controls are exposed, who selects them, and how named
+  tendencies map to causes without guaranteeing consequences
+- Starting geological epoch or abstract initial-state boundary
+- Propagation of planetary-contract causes into a future climate model
+- Compatibility and migration policy when the contract schema changes
 
 ## ARCH-OPEN-015 — Territory allocation
 

@@ -48,6 +48,7 @@ history.
 | `ARCH-001` | [Architecture Overview](architecture/ARCHITECTURE_OVERVIEW.md) | Accepted software and authority boundaries |
 | `ARCH-OPEN` | [Open Architecture Decisions](architecture/OPEN_DECISIONS.md) | Unresolved technical choices |
 | `DECISION-INDEX` | [Decision Records](decisions/README.md) | Durable architecture and world-generation change records |
+| `ADR-0002` | [Adopt an Earth-like Planetary Contract](decisions/ADR-0002-earth-like-planetary-contract.md) | Accepted Level 0 product boundary for bounded Earth-like planetary causes |
 
 ## World generation
 

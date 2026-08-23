@@ -5,7 +5,7 @@ status: accepted
 scope: Software boundaries, world authority, persistence, and presentation-independent architecture
 authority: Owns accepted cross-cutting software and runtime architecture
 implementation: not-started
-last_reviewed: 2026-08-22
+last_reviewed: 2026-08-23
 ---
 
 # Architecture Overview
@@ -44,10 +44,27 @@ player views it through maps, sections, rasters, or meshes.
 Neither the world core nor the simulation core may depend on Bevy or egui types
 or lifecycle. They must remain testable without a renderer.
 
+## Earth-like planetary input boundary
+
+The selected Level 0 planetary contract supplies upstream causes and boundary
+conditions; it is not an outcome generator. Continents, mountains, oceans,
+climate, resources, biomes, and civilization must arise from their appropriate
+later histories. The [Earth-Like Planetary Contract](../world-generation/EARTH_LIKE_PLANETARY_CONTRACT.md)
+owns the exact conceptual boundary.
+
+The world core therefore consumes common physical rules plus the selected
+bounded Earth-like contract. It must not interpret the contract as permission
+to randomize physical laws or directly paint requested downstream outcomes.
+
 ## Deterministic generation and persistence
 
-A seed is the root identity of a generated world. The same seed, inputs, and
-compatible generator/ruleset version must reproduce the same foundational world.
+A seed and selected
+[Earth-like planetary contract](../world-generation/EARTH_LIKE_PLANETARY_CONTRACT.md)
+form the root inputs of a generated world. The same seed, contract, declared
+inputs, and compatible generator/ruleset version must reproduce the same
+foundational world. [ADR-0002](../decisions/ADR-0002-earth-like-planetary-contract.md)
+records why the contract may vary bounded causes without turning the project
+into a generic planet generator.
 
 Once materially relevant detail becomes canonical, persisted truth takes
 precedence over regeneration. A later algorithm version must not silently alter
@@ -55,7 +72,7 @@ resolved or interacted-with geology. Still-unresolved detail may use a compatibl
 new generator only when it preserves all established constraints.
 
 ```text
-seed + generator/ruleset version + declared inputs
+seed + selected planetary contract + generator/ruleset version + declared inputs
 → authoritative geological prehistory
 → canonical present world + constraints + compact provenance
 → persisted authority-owned state
@@ -133,7 +150,8 @@ geography. Capacity, allocation rules, and the final continent model remain open
 
 ## Consequences
 
-- Seed inputs and generator/ruleset versions must be explicit.
+- Seed inputs, selected planetary contracts, and generator/ruleset versions must
+  be explicit.
 - Coordinate, spatial-domain, and sampling-cell mappings must be testable.
 - Presentation code must query world/simulation APIs rather than own simulation
   truth.
