@@ -33,7 +33,7 @@ when it is recorded in the document that owns its subject.
 The [Document Index](INDEX.md) lists every active document and its role. The
 [Glossary](foundations/GLOSSARY.md) defines terms that must retain one meaning across files.
 Material knowledge changes follow the proportional
-[Knowledge Workflow](governance/workflows/KNOWLEDGE_DEVELOPMENT_WORKFLOW.md).
+[Knowledge Workflow](governance/workflows/KNOWLEDGE_WORKFLOW.md).
 
 ## Subject-folder taxonomy
 

@@ -32,7 +32,7 @@ history.
 | ID | Document | Owns |
 | --- | --- | --- |
 | `ROADMAP-001` | [Natural-World Foundation Roadmap](planning/NATURAL_WORLD_FOUNDATION_ROADMAP.md) | Current phase scope and definition of complete |
-| `PROTO-001` | [Map and Spatial Model Prototype](architecture/MAP_SPATIAL_PROTOTYPE.md) | First implementation milestone and success criteria |
+| `PROTO-001` | [Map and Spatial Model Prototype](architecture/MAP_AND_SPATIAL_MODEL_PROTOTYPE.md) | First implementation milestone and success criteria |
 
 ## Operational state
 
@@ -63,7 +63,7 @@ governs how agents add and revise concepts.
 | --- | --- | --- |
 | `DOCS-001` | [Documentation Standard](README.md) | Taxonomy, precedence, metadata, wording, and update rules |
 | `DOCS-INDEX` | This document | Active document inventory and routing |
-| `DOCS-WORKFLOW` | [Knowledge Workflow](governance/workflows/KNOWLEDGE_DEVELOPMENT_WORKFLOW.md) | Explore, Fast delivery, Governed delivery, bounded review, and resumption |
+| `DOCS-WORKFLOW` | [Knowledge Workflow](governance/workflows/KNOWLEDGE_WORKFLOW.md) | Explore, Fast delivery, Governed delivery, bounded review, and resumption |
 | `AGENT-OUTCOME-LEAD` | [Outcome Lead](governance/roles/OUTCOME_LEAD.md) | Outcome interpretation, proportional routing, qualified assignments, and completion verification |
 | `AGENT-DEVELOPER` | [Systems Knowledge Developer](governance/roles/SYSTEMS_KNOWLEDGE_DEVELOPER.md) | Bounded development and correction of durable knowledge |
 | `AGENT-REVIEWER` | [Systems Coherence Reviewer](governance/roles/SYSTEMS_COHERENCE_REVIEWER.md) | Independent review of the exact manifested candidate |

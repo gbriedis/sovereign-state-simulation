@@ -79,5 +79,5 @@ current boundary, not a claim that they can never enter the wider product.
 
 ## Immediate milestone
 
-Implement [PROTO-001: Map and Spatial Model Prototype](../architecture/MAP_SPATIAL_PROTOTYPE.md)
+Implement [PROTO-001: Map and Spatial Model Prototype](../architecture/MAP_AND_SPATIAL_MODEL_PROTOTYPE.md)
 without treating its provisional spatial dimensions as world ontology.

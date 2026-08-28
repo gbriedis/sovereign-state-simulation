@@ -22,12 +22,12 @@ last_reviewed: 2026-08-22
 ## Read before working
 
 1. [Documentation Standard](../README.md)
-2. [Knowledge Workflow](../governance/workflows/KNOWLEDGE_DEVELOPMENT_WORKFLOW.md)
+2. [Knowledge Workflow](../governance/workflows/KNOWLEDGE_WORKFLOW.md)
 3. [World-Generation Source of Truth](../world-generation/README.md)
 4. [World-Generation Authoring Protocol](../world-generation/AUTHORING_PROTOCOL.md)
 5. [Architecture Overview](../architecture/ARCHITECTURE_OVERVIEW.md)
 6. [Open Architecture Decisions](../architecture/OPEN_DECISIONS.md)
-7. [Map and Spatial Model Prototype](../architecture/MAP_SPATIAL_PROTOTYPE.md)
+7. [Map and Spatial Model Prototype](../architecture/MAP_AND_SPATIAL_MODEL_PROTOTYPE.md)
 
 Use the [Document Index](../INDEX.md) to locate product, brand, roadmap, and
 specialized world-generation authority. Do not treat this handoff as a substitute

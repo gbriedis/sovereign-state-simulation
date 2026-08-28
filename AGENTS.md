@@ -33,7 +33,7 @@ the intended result from the request and repository evidence, recommend missing
 checklist items, and choose the lightest mode that can reach the result safely.
 
 Read `docs/governance/roles/OUTCOME_LEAD.md` and
-`docs/governance/workflows/KNOWLEDGE_DEVELOPMENT_WORKFLOW.md` before material documentation
+`docs/governance/workflows/KNOWLEDGE_WORKFLOW.md` before material documentation
 work. Those files own routing, confirmation, delegation, review, and resumption.
 
 The three modes are:

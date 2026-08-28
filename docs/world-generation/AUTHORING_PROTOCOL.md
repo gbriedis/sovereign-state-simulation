@@ -56,7 +56,7 @@ also exist as an experiment without becoming accepted architecture.
 ## Before starting a world-generation task
 
 1. Read the [Documentation Standard](../README.md).
-2. Read the [Knowledge Development Workflow](../governance/workflows/KNOWLEDGE_DEVELOPMENT_WORKFLOW.md).
+2. Read the [Knowledge Workflow](../governance/workflows/KNOWLEDGE_WORKFLOW.md).
 3. Read the [World-Generation Source of Truth](README.md).
 4. Find the relevant `WG-*` concept and read its detailed owner.
 5. Read the related packet in
@@ -131,7 +131,7 @@ polished prose.
 
 The Systems Knowledge Developer submits the proposal to a separate Systems
 Coherence Reviewer. Acceptance requires the convergence loop and conditions in
-the [Knowledge Development Workflow](../governance/workflows/KNOWLEDGE_DEVELOPMENT_WORKFLOW.md).
+the [Knowledge Workflow](../governance/workflows/KNOWLEDGE_WORKFLOW.md).
 
 When accepted:
 

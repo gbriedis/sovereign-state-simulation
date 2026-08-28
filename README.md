@@ -21,7 +21,7 @@ natural world that later political, economic, and social systems must respect.
 | Understand the current development phase | [Natural-world foundation roadmap](docs/planning/NATURAL_WORLD_FOUNDATION_ROADMAP.md) |
 | Understand the technical structure | [Architecture overview](docs/architecture/ARCHITECTURE_OVERVIEW.md) |
 | Enter the world-generation knowledge system | [World-generation source of truth](docs/world-generation/README.md) |
-| Build the first proof of concept | [Map and spatial model prototype](docs/architecture/MAP_SPATIAL_PROTOTYPE.md) |
+| Build the first proof of concept | [Map and spatial model prototype](docs/architecture/MAP_AND_SPATIAL_MODEL_PROTOTYPE.md) |
 | See unresolved technical choices | [Open decisions](docs/architecture/OPEN_DECISIONS.md) |
 | Catch up before continuing work | [Current state](docs/operations/CURRENT_STATE.md) |
 
