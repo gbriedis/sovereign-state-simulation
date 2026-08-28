@@ -22,22 +22,6 @@ jobs:
         shell: pwsh
         run: ./scripts/test-change-manifest.ps1
 
-      - name: Validate executable Git policy isolation
-        shell: pwsh
-        run: ./scripts/test-git-executable-policy.ps1
-
-      - name: Validate Git hook preflight
-        shell: pwsh
-        run: ./scripts/test-git-hooks.ps1
-
-      - name: Validate Git publication preflight
-        shell: pwsh
-        run: ./scripts/test-git-publish.ps1
-
-      - name: Validate governed Git reconciliation
-        shell: pwsh
-        run: ./scripts/test-reconciliation-packet.ps1
-
       - name: Validate document taxonomy
         shell: pwsh
         run: ./scripts/test-docs-taxonomy.ps1

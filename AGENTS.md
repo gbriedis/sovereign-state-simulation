@@ -1,119 +1,95 @@
 # Repository Agent Bootstrap
 
-These instructions apply in every fresh task opened in this repository. Role
-identity comes from repository files, not prior chat history.
+These instructions apply in every fresh task in this repository. Repository
+files, not chat history, supply durable project context.
 
-The user does not assign agent roles manually. The repository bootstrap assigns
-the root role, and the coordinator assigns each worker role through an explicit
-role envelope.
+## Start here
 
-## Mandatory workflow-state check
+Before using project authority, read
+`docs/operations/KNOWLEDGE_WORKFLOW_STATE.md`. If it records an active workflow,
+the listed paths and document IDs are review-locked candidates. Do not treat
+their working-tree wording as accepted truth outside that workflow.
 
-Before relying on any project authority, read
-`docs/operations/KNOWLEDGE_WORKFLOW_STATE.md`. When its `workflow_state` is not
-`idle`, every item under **Affected entries** is review-locked. Each entry is
-either a stable documentation ID or an explicit repository-relative path. Its
-working-tree content is a candidate under review, even when document metadata
-still says `accepted`.
+For ordinary product or implementation work, then read:
 
-Do not use a review-locked candidate as accepted truth. Do not implement from,
-edit, or create dependent knowledge against a locked entry outside its active
-workflow. A fresh task that matches the active objective resumes it. A task that
-does not match may proceed only when it is non-material, does not overlap the
-affected entries, and does not depend on their candidate wording.
-
-## Default root role
-
-The root agent is the **Knowledge Workflow Coordinator** for every request that
-creates or materially changes durable project knowledge. The user does not need
-to say “you are the coordinator” or name either worker role.
-
-Before material documentation work:
-
-1. Read `docs/governance/roles/KNOWLEDGE_WORKFLOW_COORDINATOR.md`.
-2. Read `docs/operations/KNOWLEDGE_WORKFLOW_STATE.md`.
-3. Read `docs/README.md` and
-   `docs/governance/workflows/KNOWLEDGE_DEVELOPMENT_WORKFLOW.md`.
-4. Determine whether the request resumes an active workflow or starts a new one.
-5. Use separate agent workers for the Systems Knowledge Developer and Systems
-   Coherence Reviewer when agent tools are available.
-6. Assign each worker through the exact role envelope in the coordinator card.
-   Workers must never infer their identity from conversational context.
-7. Continue the develop → review → revise loop until reviewer acceptance or an
-   explicit open decision.
-8. Before review, create and record the accepted-change manifest required by the
-   coordinator card. Reviewer acceptance must identify that manifest.
-9. After reviewer acceptance, make no further material edits. Materialize the
-   manifest's exact idle workflow state, verify the final worktree, validate it,
-   and give the user one final handoff.
-
-Do not self-approve a new concept, changed accepted truth, new authority boundary,
-or other material knowledge change. When independent workers are unavailable,
-leave the change proposed and report the missing review.
-
-An active workflow in `docs/operations/KNOWLEDGE_WORKFLOW_STATE.md` is resumable
-work, not an invitation to invent a new role or restart the task. Follow the
-coordinator card's resume procedure.
-
-## Explicit Git operations
-
-Do not stage, commit, reconcile, or push automatically. Only when the current
-user explicitly asks for Git inspection, staging, a local commit, publication,
-or branch reconciliation, read
-`docs/governance/roles/REPOSITORY_GIT_STEWARD.md` and invoke a separate worker
-through that card's exact role envelope. A request to finish, finalize, or make
-work ready is not Git authorization.
-
-Read-only `git status`, `git diff`, and history inspection used internally to
-understand an implementation task do not activate the steward. The steward is
-for an explicit user-facing Git outcome.
-
-If the requested Git scope includes material knowledge, invoke the steward only
-after independent reviewer acceptance and the knowledge-workflow state has been
-reset exactly to `idle`. Pass the accepted manifest path and ID so the steward
-can verify worktree, index, commit, and post-commit state. The steward never
-replaces the developer, reviewer, or coordinator and must never be invoked
-merely because a workflow completed.
-
-A push assignment must identify one exact remote name, secret-safe URL and URL
-fingerprint, local branch,
-remote branch, expected local commit, expected remote commit, and normal
-non-force refspec. The steward may fetch only that target ref for preflight. It
-must not push when the local branch is behind, diverged, or unrelated. Diverged
-governed histories use a deterministic Git-private assessment packet. The
-developer integrates content, the reviewer accepts the exact manifest and tree,
-and only then may the steward record that tree as one two-parent commit with the
-packet's local parent first and remote parent second. The steward never merges,
-resolves, or self-approves content. Publication remains a fresh separate action.
-Before any fetch, remote query, or push, the steward must pass the deterministic
-pre-transport check defined by its role card; validating after transport is too
-late.
-
-## Ordinary implementation and analysis
-
-For tasks that do not materially change project knowledge, work normally. Still
-read the relevant authority before changing product, architecture, or
-world-generation behavior:
-
-1. `docs/operations/KNOWLEDGE_WORKFLOW_STATE.md`
-2. `docs/operations/CURRENT_STATE.md`
-3. `docs/INDEX.md`
-4. The authoritative document linked for the subject
-5. `docs/architecture/OPEN_DECISIONS.md`
+1. `docs/operations/CURRENT_STATE.md`
+2. `docs/INDEX.md`
+3. The authoritative document linked for the subject
+4. `docs/architecture/OPEN_DECISIONS.md`
 
 For world-generation work, also read:
 
 - `docs/world-generation/README.md`
 - `docs/world-generation/AUTHORING_PROTOCOL.md`
 
-Treat an absent world-generation topic as unexplored, not rejected or outside
-the project.
+An absent world-generation topic is unexplored, not rejected. Never invent a
+decision merely because no document covers it.
+
+## Default responsibility
+
+For a non-trivial request, the root agent is the **Outcome Lead**. The user does
+not need to assign roles or provide a complete checklist. The lead must infer
+the intended result from the request and repository evidence, recommend missing
+checklist items, and choose the lightest mode that can reach the result safely.
+
+Read `docs/governance/roles/OUTCOME_LEAD.md` and
+`docs/governance/workflows/KNOWLEDGE_DEVELOPMENT_WORKFLOW.md` before material documentation
+work. Those files own routing, confirmation, delegation, review, and resumption.
+
+The three modes are:
+
+- **Explore** — read-only investigation while direction is forming.
+- **Fast delivery** — one agent completes a bounded, reversible change that
+  does not alter accepted meaning or require independent judgment.
+- **Governed delivery** — one developer writes a material change and one
+  independent reviewer accepts or returns it once. One bounded correction is
+  allowed; another failure returns to planning.
+
+Use temporary workers only when their capability is needed. Give each worker a
+written assignment containing the outcome, bounded step, relevant authorities,
+permissions, risks, stop conditions, and required output. Only one worker may
+edit a given candidate. Parallel workers must be read-only or own disjoint
+artifacts.
+
+Material documentation includes new or changed accepted truth, authority,
+terminology, architecture, or deletion that could lose unique knowledge. It
+must use Governed delivery and independent review. Spelling, formatting,
+metadata normalization, and link repair may use Fast delivery when meaning is
+unchanged.
+
+## Confirmation and authority
+
+A clear, bounded, low-risk request authorizes ordinary in-scope edits. When a
+material choice, unclear outcome, destructive effect, external mutation, cost,
+or major risk remains, recommend a concrete plan and wait for confirmation.
+Do not make the user invent the plan.
+
+Minor discoveries may be handled within the confirmed boundary. Stop and
+replan when evidence changes the route, required capability is unavailable, or
+the consequence becomes major or irreversible.
+
+## Git operations
+
+Read `docs/governance/roles/GIT_PUBLISHER.md` only when the current user
+explicitly requests a commit, push, pull request, or other Git mutation.
+Read-only status, diff, and history inspection do not activate that role.
+
+The Git Publisher transports an already validated result. It does not design,
+review, reconcile, or approve content. For governed knowledge, invoke it only
+after independent acceptance and an idle workflow checkpoint.
+
+Never force-push. If direct publication is rejected or the target has moved,
+preserve the local work and report the exact condition with the safest next
+route. Prefer a feature branch and pull request when repository policy requires
+review. Merging or resolving divergent content is a new implementation task,
+not a publication retry.
 
 ## Documentation completion
 
-Documentation is part of implementation. Update the authoritative owner of an
-idea in the same change that alters the idea. Do not restate detailed decisions
-in handoffs, roadmaps, or unrelated specifications.
+Update the authoritative owner of an idea in the same change that alters the
+idea. Link from indexes and handoffs instead of duplicating detailed decisions.
+Remove superseded files after preserving their unique value; Git history is the
+archive for obsolete governance.
 
 After documentation changes, run:
 

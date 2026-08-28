@@ -22,7 +22,7 @@ last_reviewed: 2026-08-22
 ## Read before working
 
 1. [Documentation Standard](../README.md)
-2. [Knowledge Development Workflow](../governance/workflows/KNOWLEDGE_DEVELOPMENT_WORKFLOW.md)
+2. [Knowledge Workflow](../governance/workflows/KNOWLEDGE_DEVELOPMENT_WORKFLOW.md)
 3. [World-Generation Source of Truth](../world-generation/README.md)
 4. [World-Generation Authoring Protocol](../world-generation/AUTHORING_PROTOCOL.md)
 5. [Architecture Overview](../architecture/ARCHITECTURE_OVERVIEW.md)

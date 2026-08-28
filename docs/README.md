@@ -4,7 +4,7 @@ type: documentation-standard
 status: accepted
 scope: Repository documentation governance
 authority: Owns document types, subject-folder taxonomy, precedence, metadata, wording rules, and update workflow
-last_reviewed: 2026-08-22
+last_reviewed: 2026-08-26
 ---
 
 # Documentation Standard
@@ -32,8 +32,8 @@ when it is recorded in the document that owns its subject.
 
 The [Document Index](INDEX.md) lists every active document and its role. The
 [Glossary](foundations/GLOSSARY.md) defines terms that must retain one meaning across files.
-Material knowledge changes follow the two-role
-[Knowledge Development Workflow](governance/workflows/KNOWLEDGE_DEVELOPMENT_WORKFLOW.md).
+Material knowledge changes follow the proportional
+[Knowledge Workflow](governance/workflows/KNOWLEDGE_DEVELOPMENT_WORKFLOW.md).
 
 ## Subject-folder taxonomy
 
@@ -112,9 +112,11 @@ When changing an idea:
 3. Update affected roadmap or handoff links without copying the full decision.
 4. Move unresolved choices into the open-decision register.
 
-New concepts, changed accepted truth, new authority boundaries, and other
-material knowledge changes require separate Systems Knowledge Developer and
-Systems Coherence Reviewer roles. Editorial changes may use one worker.
+New concepts, changed accepted truth, new authority boundaries, and deletion
+that could lose unique knowledge use Governed delivery with separate Systems
+Knowledge Developer and Systems Coherence Reviewer workers. Read-only idea
+formation uses Explore. Clear, reversible editorial work that cannot change
+meaning may use Fast delivery.
 
 ## Document status
 
@@ -201,8 +203,7 @@ The check rejects missing or duplicate IDs, invalid statuses, missing metadata,
 broken relative links, obsolete terminology, an oversized current handoff, and
 an invalid or non-resumable knowledge-workflow checkpoint.
 
-After changing workflow-state rules or their validator, also run the mutation
-suite:
+After changing workflow-state rules or their validator, also run:
 
 ```powershell
 ./scripts/test-docs-workflow-validator.ps1
@@ -213,5 +214,4 @@ After changing taxonomy or accepted-change recording, also run:
 ```powershell
 ./scripts/test-docs-taxonomy.ps1
 ./scripts/test-change-manifest.ps1
-./scripts/test-git-hooks.ps1
 ```
