@@ -706,3 +706,4 @@ try {
 
 if ($checksPassed -ne $expectedChecks) { throw "Project Journal tests executed $checksPassed checks; expected $expectedChecks." }
 Write-Host "Project Journal tests passed: $checksPassed/$expectedChecks." -ForegroundColor Green
+exit 0

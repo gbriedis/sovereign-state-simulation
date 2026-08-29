@@ -140,3 +140,4 @@ Last completed workflow: `KW-20990101-001`.
 }
 
 Write-Host "Knowledge workflow validator tests passed: $checks/17." -ForegroundColor Green
+exit 0

@@ -157,3 +157,4 @@ try {
 }
 
 Write-Host "Accepted-change manifest tests passed: $checks/7." -ForegroundColor Green
+exit 0
