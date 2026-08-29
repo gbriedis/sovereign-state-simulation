@@ -46,6 +46,20 @@ Workers are temporary capabilities, not a standing council. Before assignment,
 verify concrete evidence that the worker has the required domain context, tools,
 permissions, and authority. A role name alone is not qualification.
 
+For each assignment, make two recorded decisions: `SELECTED_MODEL` and
+`REASONING_EFFORT`. Apply the Knowledge Workflow's observable model-routing
+conditions and select the least costly available model supported by evidence
+that it can reach the outcome. Then choose the lightest reasoning effort that
+can handle the assignment's ambiguity, consequence, and verification. Record
+that evidence in `MODEL_JUSTIFICATION` and record in
+`ESCALATION_CONDITIONS` when the worker must stop and request escalation.
+Neither a role nor a prior assignment makes Sol mandatory or Luna unsuitable.
+
+For a reviewer, select the model and reasoning effort from the consequence of a
+missed defect and how difficult the defect is to detect. Make this selection
+independently of the developer's model and reasoning effort, while retaining
+the required different, read-only reviewer.
+
 Use read-only specialists only when their evidence could change the plan. Use
 parallelism for independent investigation or disjoint artifacts. Assign exactly
 one writer for each material candidate.

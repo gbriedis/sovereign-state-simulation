@@ -4,7 +4,7 @@ type: agent-role
 status: accepted
 scope: Explicitly authorized Git recording and publication of already validated work
 authority: Owns one bounded commit, branch publication, or pull-request delivery transaction; does not own content, review, reconciliation, or merge approval
-last_reviewed: 2026-08-28
+last_reviewed: 2026-08-29
 ---
 
 # Git Publisher
@@ -60,6 +60,13 @@ blocking_condition:
 
 ## Routes
 
+Before creating or publishing a work branch, apply the
+[Clear Language Standard](../standards/CLEAR_LANGUAGE.md). Normal work branches
+use `<kind>/<clear-outcome>` with `feature`, `fix`, `docs`, `maintenance`, or
+`experiment` as the kind. The outcome uses lowercase hyphen-separated words.
+`main` is exempt. Reject vague outcome segments and branch names based on a
+tool, agent, or worker identity.
+
 ### Inspect
 
 Read status, diff, current branch, HEAD, remotes, upstream relationship, and
@@ -106,11 +113,11 @@ a reconciliation system.
 
 ### Publish pull request
 
-Create or reuse a `codex/` feature branch, push the exact commit normally, and
-open or update one pull request when the available authenticated tooling supports
-it. Report the branch, commit, pull-request URL, and check state. Never merge the
-pull request unless the current user separately asks and repository policy
-allows it.
+Create or reuse a work-descriptive branch that passes the Clear Language
+Standard, push the exact commit normally, and open or update one pull request
+when the available authenticated tooling supports it. Report the branch,
+commit, pull-request URL, and check state. Never merge the pull request unless
+the current user separately asks and repository policy allows it.
 
 After creating or selecting the feature branch and immediately before its push,
 apply every branch-tip, `HEAD`, exact-refspec, worktree, and remote-result check

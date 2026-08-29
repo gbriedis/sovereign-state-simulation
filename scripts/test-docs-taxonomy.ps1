@@ -2,7 +2,7 @@ $ErrorActionPreference = 'Stop'
 
 $checkerPath = Join-Path $PSScriptRoot 'check-docs.ps1'
 $checksPassed = 0
-$expectedChecks = 4
+$expectedChecks = 9
 
 function Invoke-DocumentationCheck {
     param([string[]]$Arguments)
@@ -17,6 +17,68 @@ function Invoke-DocumentationCheck {
 $baseline = Invoke-DocumentationCheck -Arguments @()
 if ($baseline.ExitCode -ne 0) {
     throw "The live documentation taxonomy did not pass before mutation probes.`n$($baseline.Output)"
+}
+$checksPassed++
+
+$routingAuthorities = @(
+    @{ Path = 'docs/governance/workflows/KNOWLEDGE_WORKFLOW.md'; Required = @(
+        'gpt-5.6-luna', 'gpt-5.6-terra', 'gpt-5.6-sol', 'Model selection and reasoning effort are separate decisions',
+        'SELECTED_MODEL:', 'REASONING_EFFORT:', 'MODEL_JUSTIFICATION:', 'ESCALATION_CONDITIONS:',
+        'least costly available model', 'independent of the developer''s selected model'
+    ) },
+    @{ Path = 'docs/governance/roles/OUTCOME_LEAD.md'; Required = @(
+        'SELECTED_MODEL', 'REASONING_EFFORT', 'MODEL_JUSTIFICATION', 'ESCALATION_CONDITIONS',
+        'least costly available model', 'independently of the developer''s model'
+    ) },
+    @{ Path = 'docs/governance/roles/SYSTEMS_KNOWLEDGE_DEVELOPER.md'; Required = @(
+        'selected_model:', 'reasoning_effort:', 'request escalation', 'Do not silently change the selected model'
+    ) },
+    @{ Path = 'docs/governance/roles/SYSTEMS_COHERENCE_REVIEWER.md'; Required = @(
+        'independently of the', 'developer''s model and reasoning effort', 'missed-defect', 'detection difficulty'
+    ) }
+)
+foreach ($authority in $routingAuthorities) {
+    $content = Get-Content -Raw -LiteralPath (Join-Path (Split-Path -Parent $PSScriptRoot) $authority.Path)
+    foreach ($requiredText in $authority.Required) {
+        if (-not $content.Contains($requiredText)) {
+            throw "Model-routing contract is missing '$requiredText' from $($authority.Path)."
+        }
+    }
+}
+$checksPassed++
+
+$newTypes = @(
+    @{ Type = 'clear-language-standard'; Path = 'docs/governance/standards/TAXONOMY_PROBE.md' },
+    @{ Type = 'project-journal'; Path = 'docs/project-journal/README.md' },
+    @{ Type = 'project-status-view'; Path = 'docs/project-journal/TAXONOMY_PROBE.md' },
+    @{ Type = 'historical-project-post'; Path = 'docs/project-journal/posts/TAXONOMY_PROBE.md' }
+)
+foreach ($probe in $newTypes) {
+    $result = Invoke-DocumentationCheck -Arguments @('-TaxonomyProbeType', $probe.Type, '-TaxonomyProbePath', $probe.Path)
+    if ($result.ExitCode -ne 0) { throw "The taxonomy rejected governed type '$($probe.Type)' in '$($probe.Path)'.`n$($result.Output)" }
+}
+$journalMisfiled = Invoke-DocumentationCheck -Arguments @(
+    '-TaxonomyProbeType', 'historical-project-post',
+    '-TaxonomyProbePath', 'docs/project-journal/HISTORY.md'
+)
+if ($journalMisfiled.ExitCode -eq 0 -or $journalMisfiled.Output -notmatch "misfiled for document type 'historical-project-post'") {
+    throw 'The taxonomy validator did not confine historical posts to the posts folder.'
+}
+$checksPassed++
+
+$validBranch = Invoke-DocumentationCheck -Arguments @('-BranchNameProbe', 'docs/project-journal-and-system-map')
+if ($validBranch.ExitCode -ne 0) { throw "The branch validator rejected a clear outcome branch.`n$($validBranch.Output)" }
+$checksPassed++
+
+$toolBranch = Invoke-DocumentationCheck -Arguments @('-BranchNameProbe', 'docs/codex-journal')
+if ($toolBranch.ExitCode -eq 0 -or $toolBranch.Output -notmatch "prohibited vague or performer segment 'codex'") {
+    throw 'The branch validator did not reject a tool-named outcome.'
+}
+$checksPassed++
+
+$vagueBranch = Invoke-DocumentationCheck -Arguments @('-BranchNameProbe', 'maintenance/misc-changes')
+if ($vagueBranch.ExitCode -eq 0 -or $vagueBranch.Output -notmatch "prohibited vague or performer segment") {
+    throw 'The branch validator did not reject vague outcome segments.'
 }
 $checksPassed++
 

@@ -4,7 +4,7 @@ type: document-index
 status: accepted
 scope: Active repository documents
 authority: Owns the inventory and routing of active project documentation
-last_reviewed: 2026-08-26
+last_reviewed: 2026-08-29
 ---
 
 # Document Index
@@ -41,6 +41,20 @@ history.
 | `HANDOFF-CURRENT` | [Current State](operations/CURRENT_STATE.md) | Current repository facts and immediate actions |
 | `HANDOFF-KNOWLEDGE-WORKFLOW` | [Knowledge Workflow State](operations/KNOWLEDGE_WORKFLOW_STATE.md) | Active workflow identity and resumable state |
 
+## Project Journal
+
+These files make the project easier to follow. They own no product or technical
+truth; current views are generated from the registry and linked authorities.
+The top-level `project-journal-site/` is the browser presentation of the same
+derivative data. It is not a document authority and must be refreshed in the
+same change whenever a listed Journal-impact field changes.
+
+| ID | Document | Owns |
+| --- | --- | --- |
+| `JOURNAL-HOME` | [Project Journal and System Map](project-journal/README.md) | Generated current human navigation and complete system overview |
+| `JOURNAL-WORLD-GENERATION` | [Current World-Generation Status](project-journal/WORLD_GENERATION_STATUS.md) | Generated current human view of world-generation knowledge, coverage, implementation, attention, and decisions |
+| `JOURNAL-POST-20260829-WORLD-GENERATION-FOUNDATION` | [World Generation Has a Foundation, Not Yet a Generator](project-journal/posts/2026-08-29-WORLD_GENERATION_FOUNDATION.md) | Historical snapshot at the stated date and baseline commit; no current authority |
+
 ## Architecture
 
 | ID | Document | Owns |
@@ -63,6 +77,7 @@ governs how agents add and revise concepts.
 | --- | --- | --- |
 | `DOCS-001` | [Documentation Standard](README.md) | Taxonomy, precedence, metadata, wording, and update rules |
 | `DOCS-INDEX` | This document | Active document inventory and routing |
+| `DOCS-CLEAR-LANGUAGE` | [Clear Language Standard](governance/standards/CLEAR_LANGUAGE.md) | Direct, stable naming for shared terms, documents, systems, and branches |
 | `DOCS-WORKFLOW` | [Knowledge Workflow](governance/workflows/KNOWLEDGE_WORKFLOW.md) | Explore, Fast delivery, Governed delivery, bounded review, and resumption |
 | `AGENT-OUTCOME-LEAD` | [Outcome Lead](governance/roles/OUTCOME_LEAD.md) | Outcome interpretation, proportional routing, qualified assignments, and completion verification |
 | `AGENT-DEVELOPER` | [Systems Knowledge Developer](governance/roles/SYSTEMS_KNOWLEDGE_DEVELOPER.md) | Bounded development and correction of durable knowledge |

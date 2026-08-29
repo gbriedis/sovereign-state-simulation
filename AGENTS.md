@@ -13,9 +13,10 @@ their working-tree wording as accepted truth outside that workflow.
 For ordinary product or implementation work, then read:
 
 1. `docs/operations/CURRENT_STATE.md`
-2. `docs/INDEX.md`
-3. The authoritative document linked for the subject
-4. `docs/architecture/OPEN_DECISIONS.md`
+2. `docs/project-journal/README.md` when a human-readable overview is useful
+3. `docs/INDEX.md`
+4. The authoritative document linked for the subject
+5. `docs/architecture/OPEN_DECISIONS.md`
 
 For world-generation work, also read:
 
@@ -24,6 +25,11 @@ For world-generation work, also read:
 
 An absent world-generation topic is unexplored, not rejected. Never invent a
 decision merely because no document covers it.
+
+Before creating or changing a shared name, filename, system label, branch, or
+routine navigation term, read
+`docs/governance/standards/CLEAR_LANGUAGE.md`. Names describe their subject or
+outcome, never the tool or worker performing the work.
 
 ## Default responsibility
 
@@ -50,6 +56,12 @@ written assignment containing the outcome, bounded step, relevant authorities,
 permissions, risks, stop conditions, and required output. Only one worker may
 edit a given candidate. Parallel workers must be read-only or own disjoint
 artifacts.
+
+Choose each worker's model and reasoning effort for its assignment, not its
+role. Select the least costly available model supported by evidence that it can
+reach the stated outcome; record the selection, its justification, and the
+conditions that require the worker to stop and request escalation. A worker
+must not silently substitute a stronger model or broaden its assignment.
 
 Material documentation includes new or changed accepted truth, authority,
 terminology, architecture, or deletion that could lose unique knowledge. It
@@ -84,6 +96,10 @@ route. Prefer a feature branch and pull request when repository policy requires
 review. Merging or resolving divergent content is a new implementation task,
 not a publication retry.
 
+Normal work branches use `<kind>/<clear-outcome>` as defined by the Clear
+Language Standard. Do not use `codex/`, an agent identity, or another performer
+name as the branch prefix. `main` is exempt.
+
 ## Documentation completion
 
 Update the authoritative owner of an idea in the same change that alters the
@@ -98,3 +114,20 @@ After documentation changes, run:
 ```
 
 The task is not complete while this check fails.
+
+The Project Journal Markdown and browser website are derivative generated
+views. A change has Journal impact when it changes the represented system
+inventory; a represented system's ID, name, purpose, kind, parent, authorities,
+document or concept coverage, knowledge state, coverage, implementation state,
+attention, relationships, or open decisions; the world-generation concept
+inventory or a concept's lifecycle state, truth, owner, coverage, or
+implementation; the open-decision inventory, title, or system association; the
+current review date, focus, or milestone; runtime artifact evidence; or a
+historical account.
+For Journal-impacting work, update the authoritative owner first, update
+`docs/project-journal/SYSTEMS.json` when navigation or aggregation changed,
+rebuild the generated Markdown, run the website sync through the Sites owner,
+and validate both outputs in the same change. If none of those fields changed,
+no Journal rewrite is required, but the completion handoff must state that
+conclusion. Never repair a generated page or website data by hand, and never
+treat the website as technical authority.

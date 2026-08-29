@@ -4,7 +4,7 @@ type: documentation-standard
 status: accepted
 scope: Repository documentation governance
 authority: Owns document types, subject-folder taxonomy, precedence, metadata, wording rules, and update workflow
-last_reviewed: 2026-08-26
+last_reviewed: 2026-08-29
 ---
 
 # Documentation Standard
@@ -19,16 +19,18 @@ when it is recorded in the document that owns its subject.
    any active review lock before relying on project authority.
 2. Read [Current State](operations/CURRENT_STATE.md) for the active milestone and
    immediate work.
-3. Read the relevant source-of-truth index:
+3. Use the generated [Project Journal](project-journal/README.md) when a concise
+   human-readable system overview is needed. It is navigation, not authority.
+4. Read the relevant source-of-truth index:
    [World Generation](world-generation/README.md) for natural-world work or
    [Architecture Overview](architecture/ARCHITECTURE_OVERVIEW.md) for software
    boundaries.
-4. Read the authoritative document linked for each concept the task changes.
-5. Read [Open Architecture Decisions](architecture/OPEN_DECISIONS.md) before
+5. Read the authoritative document linked for each concept the task changes.
+6. Read [Open Architecture Decisions](architecture/OPEN_DECISIONS.md) before
    choosing an unresolved design.
-6. Read [Project Vision](foundations/PROJECT_VISION.md) and
+7. Read [Project Vision](foundations/PROJECT_VISION.md) and
    [Design Principles](foundations/DESIGN_PRINCIPLES.md) before changing product behavior.
-7. Read [Brand Foundation](brand/BRAND_FOUNDATION.md) for public-facing work.
+8. Read [Brand Foundation](brand/BRAND_FOUNDATION.md) for public-facing work.
 
 The [Document Index](INDEX.md) lists every active document and its role. The
 [Glossary](foundations/GLOSSARY.md) defines terms that must retain one meaning across files.
@@ -48,11 +50,13 @@ documents by the subject they own:
 | `planning/` | `phase-roadmap` | Phase roadmaps and evolving completion targets |
 | `governance/workflows/` | `collaboration-protocol` | Durable documentation and collaboration procedures |
 | `governance/roles/` | `agent-role` | Exact agent identities, activation rules, and work contracts |
+| `governance/standards/` | `clear-language-standard` | Durable naming and shared-language rules |
 | `operations/` | `operational-handoff`, `workflow-state` | Replaceable current state and resumable workflow checkpoints |
 | `architecture/` | `architecture-overview`, `implementation-specification`, `open-decision-register` | Software boundaries, prototypes, and unresolved technical decisions |
 | `brand/` | `brand-standard` | Public identity and messaging |
 | `decisions/` | `decision-record-index`, `decision-record` | Durable accepted decision records |
 | `world-generation/` | `source-of-truth-index`, `authoring-protocol`, `world-generation-specification`, `world-generation-exploration` | Natural-world concept registry, protocols, and specifications |
+| `project-journal/` | `project-journal`, `project-status-view`, `historical-project-post` | Generated current human views and dated non-authoritative project history |
 
 Do not create a new top-level subject folder for a single file when an existing
 owner fits. Do not move a domain-specific protocol out of its domain merely
@@ -118,6 +122,53 @@ Knowledge Developer and Systems Coherence Reviewer workers. Read-only idea
 formation uses Explore. Clear, reversible editorial work that cannot change
 meaning may use Fast delivery.
 
+## Project Journal rule
+
+`project-journal/SYSTEMS.json` owns only human navigation: system grouping,
+attention, relationships, and exact coverage assignments. It does not own
+technical truth. The generated journal home and current status pages derive
+facts and counts from linked authorities and carry a semantic fingerprint over
+the complete represented projection. Freshness means exact semantic-fingerprint
+and generated-byte equality, not that a calendar age remains below a threshold.
+
+Historical posts record what was understood at a named date and baseline
+commit. They must visibly identify themselves as historical, link to current
+status, and never serve as current authority. Their account content and metadata
+are represented fingerprint inputs because the Journal publishes them.
+
+A change has **Journal impact** when it changes the represented system inventory;
+a represented system's ID, name, purpose, kind, parent, authorities, document or
+concept coverage, knowledge state, coverage, implementation state, attention,
+relationships, or open decisions; the world-generation concept inventory or a
+concept's lifecycle state, truth, owner, coverage, or implementation; the open-
+decision inventory, title, or system association; the current review date,
+focus, or milestone; runtime artifact evidence; or a historical account.
+Complete that change in this order:
+
+1. Update the authoritative owner.
+2. Update `project-journal/SYSTEMS.json` when human navigation or aggregation
+   changed.
+3. Rebuild the generated Markdown views.
+4. Have the Sites owner run the browser-site sync.
+5. Validate Markdown parity and website-data freshness in the same change.
+
+When none of the listed fields changed, no Journal rewrite is required. The
+developer handoff must record that conclusion and the reviewer must verify it.
+The browser site is a derivative reading view and cannot own technical truth.
+The Journal fingerprint hashes this semantic projection, not every source byte.
+An editorial or spelling-only source edit that changes none of these represented
+values does not require Journal regeneration.
+
+After any Journal-impacting change, rebuild current views with:
+
+```powershell
+./scripts/build-project-journal.ps1
+```
+
+Do not hand-edit generated current pages or browser-site data.
+`./scripts/check-docs.ps1` byte-checks the Markdown form and semantic
+fingerprint and runs the site's read-only freshness check when the site exists.
+
 ## Document status
 
 The `status` metadata field accepts only:
@@ -172,6 +223,8 @@ information. Metadata describes the document; it must not hide design decisions.
   illustrative. Illustrative material cannot silently create requirements.
 - State what owns a concept and what does not.
 - Prefer one defined term over clusters of near-synonyms.
+- Follow the [Clear Language Standard](governance/standards/CLEAR_LANGUAGE.md)
+  for shared names, filenames, system labels, branches, and routine navigation.
 - Use American English in technical documentation.
 
 ## Standard specification shape
@@ -201,7 +254,8 @@ Run the documentation check after documentation changes:
 
 The check rejects missing or duplicate IDs, invalid statuses, missing metadata,
 broken relative links, obsolete terminology, an oversized current handoff, and
-an invalid or non-resumable knowledge-workflow checkpoint.
+an invalid or non-resumable knowledge-workflow checkpoint. It also rejects an
+invalid or stale Project Journal and an invalid work-branch name.
 
 After changing workflow-state rules or their validator, also run:
 
@@ -214,4 +268,5 @@ After changing taxonomy or accepted-change recording, also run:
 ```powershell
 ./scripts/test-docs-taxonomy.ps1
 ./scripts/test-change-manifest.ps1
+./scripts/test-project-journal.ps1
 ```

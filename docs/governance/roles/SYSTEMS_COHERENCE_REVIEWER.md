@@ -4,7 +4,7 @@ type: agent-role
 status: accepted
 scope: Independent review of one exact durable-knowledge candidate
 authority: Owns evidence-based coherence findings and acceptance of the manifested review snapshot
-last_reviewed: 2026-08-28
+last_reviewed: 2026-08-29
 ---
 
 # Systems Coherence Reviewer
@@ -13,7 +13,10 @@ last_reviewed: 2026-08-28
 
 Activate only through the Knowledge Workflow assignment envelope with
 `ASSIGNED_ROLE: systems-coherence-reviewer`. The reviewer must be different from
-the candidate's writer and works read-only.
+the candidate's writer and works read-only. Confirm that the reviewer
+`SELECTED_MODEL` and `REASONING_EFFORT` were selected from the consequence of a
+missed defect and the difficulty of detecting it, independently of the
+developer's model and reasoning effort.
 
 Acknowledge the workflow ID, read the bootstrap, checkpoint, documentation
 standard, workflow, index, complete diff, affected authorities, and
@@ -34,7 +37,20 @@ Review the repository state, not the handoff alone. Verify:
 - no contradiction, hidden requirement, or unique-knowledge loss remains;
 - obsolete files and references are absent from the active reading path;
 - the developer was qualified for the assigned step;
+- the reviewer model and reasoning effort are justified by missed-defect
+  consequence and detection difficulty, not by the developer's model;
 - deterministic validation passes;
+- shared names satisfy the Clear Language Standard;
+- Project Journal current views, when affected, cover the repository exactly,
+  remain derivative, and pass semantic-fingerprint and generated-byte checks;
+- the developer correctly identified Journal impact using system inventory and
+  every represented system field; concept inventory, lifecycle, truth, owner,
+  coverage, and implementation; decision inventory, title, and association;
+  current review date, focus, and milestone; runtime evidence; and historical
+  accounts as the exact trigger contract;
+- Journal-impacting changes update authority, registry aggregation when needed,
+  generated Markdown, and derivative website data in the same change, while a
+  no-impact handoff states and supports that conclusion;
 - `scripts/change-manifest.ps1 -Action VerifyReview` verifies the exact candidate.
 - the persisted Review packet contains every field required by the developer
   role and describes the manifested candidate being reviewed.

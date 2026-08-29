@@ -1,7 +1,8 @@
 param(
     [string]$WorkflowStatePath,
     [string]$TaxonomyProbeType,
-    [string]$TaxonomyProbePath
+    [string]$TaxonomyProbePath,
+    [string]$BranchNameProbe
 )
 
 $ErrorActionPreference = 'Stop'
@@ -26,6 +27,7 @@ $locations = @{
     'glossary' = '^docs/foundations/[^/]+\.md$'
     'agent-role' = '^docs/governance/roles/[^/]+\.md$'
     'collaboration-protocol' = '^docs/governance/workflows/[^/]+\.md$'
+    'clear-language-standard' = '^docs/governance/standards/[^/]+\.md$'
     'operational-handoff' = '^docs/operations/[^/]+\.md$'
     'workflow-state' = '^docs/operations/[^/]+\.md$'
     'phase-roadmap' = '^docs/planning/[^/]+\.md$'
@@ -33,9 +35,25 @@ $locations = @{
     'source-of-truth-index' = '^docs/world-generation/[^/]+\.md$'
     'world-generation-specification' = '^docs/world-generation/[^/]+\.md$'
     'world-generation-exploration' = '^docs/world-generation/[^/]+\.md$'
+    'project-journal' = '^docs/project-journal/README\.md$'
+    'project-status-view' = '^docs/project-journal/[^/]+\.md$'
+    'historical-project-post' = '^docs/project-journal/posts/[^/]+\.md$'
 }
 
 function Add-Error([string]$Message) { $errors.Add($Message) }
+
+function Test-BranchName([string]$Name) {
+    if ([string]::IsNullOrWhiteSpace($Name) -or $Name -eq 'HEAD' -or $Name -eq 'main') { return }
+    if ($Name -notmatch '^(feature|fix|docs|maintenance|experiment)/[a-z0-9]+(?:-[a-z0-9]+)*$') {
+        Add-Error "Branch name '$Name' must use <kind>/<clear-outcome> with an allowed kind and lowercase hyphen-separated outcome."
+        return
+    }
+    $outcome = $Name.Split('/', 2)[1]
+    $denied = @('misc','stuff','updates','changes','temp','old','new','codex','agent','worker','chatgpt','openai','copilot','claude')
+    foreach ($segment in ($outcome -split '-')) {
+        if ($segment -in $denied) { Add-Error "Branch name '$Name' uses prohibited vague or performer segment '$segment'." }
+    }
+}
 
 function Get-FrontMatter([string]$Text, [string]$RelativePath) {
     $match = [regex]::Match($Text, '(?s)\A---\r?\n(?<body>.*?)\r?\n---\r?\n')
@@ -119,7 +137,7 @@ $allowedRootFiles = @('README.md', 'INDEX.md')
 foreach ($file in (Get-ChildItem -LiteralPath $docsRoot -File -Filter '*.md')) {
     if ($file.Name -notin $allowedRootFiles) { Add-Error "docs/$($file.Name) is outside the subject-folder taxonomy." }
 }
-$allowedFolders = @('architecture', 'brand', 'decisions', 'foundations', 'governance', 'operations', 'planning', 'world-generation')
+$allowedFolders = @('architecture', 'brand', 'decisions', 'foundations', 'governance', 'operations', 'planning', 'project-journal', 'world-generation')
 foreach ($folder in (Get-ChildItem -LiteralPath $docsRoot -Directory)) {
     if ($folder.Name -notin $allowedFolders) { Add-Error "docs/$($folder.Name)/ is outside the subject-folder taxonomy." }
 }
@@ -179,6 +197,13 @@ foreach ($folder in @('docs/architecture', 'docs/world-generation')) {
     }
 }
 
+if ($BranchNameProbe) {
+    Test-BranchName $BranchNameProbe
+} else {
+    $branch = (& git -C $root symbolic-ref --short -q HEAD 2>$null | Out-String).Trim()
+    if ($LASTEXITCODE -eq 0 -and $branch) { Test-BranchName $branch }
+}
+
 $worldIndex = Get-Content -Raw -LiteralPath (Join-Path $docsRoot 'world-generation/README.md')
 $registered = [Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
 foreach ($match in [regex]::Matches($worldIndex, '(?m)^\| `(?<id>WG-\d{3})` \|')) {
@@ -191,6 +216,22 @@ foreach ($file in (Get-ChildItem -LiteralPath (Join-Path $docsRoot 'world-genera
 }
 
 if ((Get-Content -LiteralPath (Join-Path $docsRoot 'operations/CURRENT_STATE.md')).Count -gt 100) { Add-Error 'CURRENT_STATE.md exceeds 100 lines.' }
+
+$journalCheck = & pwsh -NoProfile -File (Join-Path $root 'scripts/build-project-journal.ps1') -Check -RootPath $root 2>&1 | Out-String
+if ($LASTEXITCODE -ne 0) { Add-Error "Project Journal check failed: $($journalCheck.Trim())" }
+
+$journalSite = Join-Path $root 'project-journal-site'
+if (Test-Path -LiteralPath $journalSite -PathType Container) {
+    $siteCheckScript = Join-Path $journalSite 'scripts/sync-journal.mjs'
+    if (-not (Test-Path -LiteralPath $siteCheckScript -PathType Leaf)) {
+        Add-Error 'Project Journal website exists but its sync check is missing.'
+    } elseif ($null -eq (Get-Command node -ErrorAction SilentlyContinue)) {
+        Add-Error 'Project Journal website freshness requires Node.js.'
+    } else {
+        $siteCheck = & node $siteCheckScript --check 2>&1 | Out-String
+        if ($LASTEXITCODE -ne 0) { Add-Error "Project Journal website check failed: $($siteCheck.Trim())" }
+    }
+}
 
 if ($null -ne $activeStateFront) {
     $state = $activeStateFront.workflow_state

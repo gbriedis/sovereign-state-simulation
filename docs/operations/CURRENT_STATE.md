@@ -4,30 +4,33 @@ type: operational-handoff
 status: accepted
 scope: Current repository state, immediate milestone, blockers, and next actions
 authority: Owns current operational facts only; it does not own product or technical decisions
-last_reviewed: 2026-08-22
+last_reviewed: 2026-08-29
 ---
 
 # Current State
 
-- **Snapshot date:** 2026-08-22
+- **Snapshot date:** 2026-08-29
 - **Active phase:** Natural-world foundation (`0.0.1`–`0.1.0`)
 - **Immediate milestone:** `PROTO-001` — map and spatial model prototype
 - **Implementation state:** No game/runtime source code or completed simulation
   implementation is present in this workspace
-- **Documentation state:** Governance and source-of-truth structure established;
-  world-generation implementation choices remain open
+- **Documentation state:** Governance, source-of-truth routing, and a generated
+  Project Journal and System Map are established; a top-level derivative browser
+  view is available; world-generation implementation choices remain open
 - **Exploration state:** Early and intentionally incomplete; accepted concepts
   cover only the physical topics explored so far
 
 ## Read before working
 
 1. [Documentation Standard](../README.md)
-2. [Knowledge Workflow](../governance/workflows/KNOWLEDGE_WORKFLOW.md)
-3. [World-Generation Source of Truth](../world-generation/README.md)
-4. [World-Generation Authoring Protocol](../world-generation/AUTHORING_PROTOCOL.md)
-5. [Architecture Overview](../architecture/ARCHITECTURE_OVERVIEW.md)
-6. [Open Architecture Decisions](../architecture/OPEN_DECISIONS.md)
-7. [Map and Spatial Model Prototype](../architecture/MAP_AND_SPATIAL_MODEL_PROTOTYPE.md)
+2. [Project Journal and System Map](../project-journal/README.md)
+3. [Browser Project Journal](../../project-journal-site/)
+4. [Knowledge Workflow](../governance/workflows/KNOWLEDGE_WORKFLOW.md)
+5. [World-Generation Source of Truth](../world-generation/README.md)
+6. [World-Generation Authoring Protocol](../world-generation/AUTHORING_PROTOCOL.md)
+7. [Architecture Overview](../architecture/ARCHITECTURE_OVERVIEW.md)
+8. [Open Architecture Decisions](../architecture/OPEN_DECISIONS.md)
+9. [Map and Spatial Model Prototype](../architecture/MAP_AND_SPATIAL_MODEL_PROTOTYPE.md)
 
 Use the [Document Index](../INDEX.md) to locate product, brand, roadmap, and
 specialized world-generation authority. Do not treat this handoff as a substitute

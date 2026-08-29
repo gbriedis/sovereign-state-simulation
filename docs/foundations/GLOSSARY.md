@@ -4,7 +4,7 @@ type: glossary
 status: accepted
 scope: Terms shared across project documentation
 authority: Owns the canonical meaning and preferred usage of shared terms
-last_reviewed: 2026-08-22
+last_reviewed: 2026-08-29
 ---
 
 # Glossary
@@ -39,6 +39,8 @@ synonym only when it does not change the underlying meaning.
 | **review lock** | The temporary restriction that prevents other tasks from consuming or changing an affected entry before independent review finishes. | Applies while the knowledge-workflow checkpoint is active; it is not a permanent ownership lock. |
 | **natural-world foundation** | The active `0.0.1`–`0.1.0` development phase that creates the pre-human physical world. | Use this exact phase name. |
 | **map and spatial model prototype** | Milestone `PROTO-001`, which validates navigation and provisional spatial mapping. | Do not call it `v0.1`; that resembles release `0.1.0`. |
+| **Project Journal** | The generated human-readable entry point for current project navigation and dated historical posts. | It links to authority and owns no product or technical truth. |
+| **Project System Map** | The system hierarchy and dependency view embedded in the Project Journal. | Keep knowledge, coverage, implementation, and attention as separate states. |
 
 ## Writing convention
 

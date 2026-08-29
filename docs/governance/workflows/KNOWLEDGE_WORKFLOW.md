@@ -4,7 +4,7 @@ type: collaboration-protocol
 status: accepted
 scope: Proportional exploration, delivery, review, and resumption of durable project knowledge
 authority: Owns workflow modes, routing, confirmation, worker separation, convergence, and completion for documentation changes
-last_reviewed: 2026-08-28
+last_reviewed: 2026-08-29
 ---
 
 # Knowledge Workflow
@@ -106,6 +106,39 @@ A role name is not proof of capability. Before assigning work, the lead checks
 that the worker has the needed domain context, tools, permissions, and a route
 that can reach the outcome.
 
+### Model and reasoning selection
+
+Model selection and reasoning effort are separate decisions. For every worker,
+the Outcome Lead selects the least costly available model with evidence that it
+can reach the assigned outcome, then selects only as much reasoning effort as
+the assignment's ambiguity, consequence, and verification difficulty require.
+Do not use a role name, a previous worker choice, or defensive habit as model
+evidence. Do not record model prices; availability and cost can change.
+
+Use these observable routing conditions for the available model family:
+
+- `gpt-5.6-luna` fits tightly bounded, low-ambiguity work with established
+  authorities, straightforward validation, and low consequence if a defect is
+  missed.
+- `gpt-5.6-terra` fits bounded work that needs balanced judgment across known
+  authorities, nontrivial validation, or moderate consequence if a defect is
+  missed.
+- `gpt-5.6-sol` fits work with high ambiguity, difficult cross-authority
+  reconciliation, complex reasoning or verification, or high consequence if a
+  defect is missed.
+
+Choose reasoning effort independently: use the lightest available effort that
+can perform the necessary analysis and checks. Increase effort for ambiguity,
+interacting constraints, or difficult verification; do not increase the model
+solely to obtain more reasoning. If the task evidence changes, the worker stops
+and requests escalation rather than silently changing its model, reasoning
+effort, scope, or safety boundary.
+
+For review, select the reviewer model and reasoning effort from the consequence
+of a missed defect and the difficulty of detecting it. The review selection is
+independent of the developer's selected model and reasoning effort; reviewer
+independence also still requires a different worker and read-only review.
+
 Each assignment must state:
 
 ```text
@@ -116,10 +149,19 @@ DEFINITION_OF_DONE:
 ASSIGNED_STEP:
 AUTHORITIES:
 AUTHORIZED_CHANGES:
+SELECTED_MODEL:
+REASONING_EFFORT:
+MODEL_JUSTIFICATION:
+ESCALATION_CONDITIONS:
 RISKS_AND_MITIGATIONS:
 STOP_CONDITIONS:
 REQUIRED_OUTPUT:
 ```
+
+`MODEL_JUSTIFICATION` cites the observable routing conditions and evidence for
+the chosen model. `ESCALATION_CONDITIONS` state the evidence that makes the
+chosen capability inadequate and requires the worker to stop and request a new
+assignment. The lead does not pre-authorize a silent model change.
 
 Workers acknowledge that envelope before acting. Use the Systems Knowledge
 Developer for material writing and the Systems Coherence Reviewer for independent
@@ -129,6 +171,11 @@ permanent role merely because a task needs advice once.
 Only one worker edits the candidate. Parallel work is appropriate for
 independent read-only investigation or disjoint implementation artifacts, not
 for competing edits to the same truth.
+
+Assignments and durable artifacts follow the
+[Clear Language Standard](../standards/CLEAR_LANGUAGE.md). A role or tool name
+may identify responsibility inside an assignment, but it must not replace a
+plain statement of the intended outcome.
 
 ## Review boundary
 
@@ -186,6 +233,26 @@ when the checkpoint returns to idle.
 After acceptance, make no material candidate edits. The lead verifies the
 manifest, writes the manifest's expected idle checkpoint, reruns documentation
 validation, and confirms every definition-of-done item.
+
+Journal impact exists when a change alters the represented system inventory; a
+represented system's ID, name, purpose, kind, parent, authorities, document or
+concept coverage, knowledge state, coverage, implementation state, attention,
+relationships, or open decisions; the world-generation concept inventory or a
+concept's lifecycle state, truth, owner, coverage, or implementation; the open-
+decision inventory, title, or system association; the current review date,
+focus, or milestone; runtime artifact evidence; or a historical account.
+For Journal-impacting work, the developer updates the authoritative owner first,
+then the registry when navigation or aggregation changed, and rebuilds generated
+Markdown. The Sites owner then syncs generated website data. Before review, the
+developer proves Markdown byte parity and website-data freshness. When no
+Journal impact exists, the developer handoff states that conclusion and the
+reviewer verifies it. The website remains derivative and owns no technical
+truth.
+
+The reviewer and lead require `scripts/build-project-journal.ps1 -Check` and the
+site's read-only sync check. The fingerprint hashes the represented semantic
+projection, so unrelated spelling-only source edits do not require regeneration.
+It proves reconsideration of represented values, not semantic truth.
 
 Acceptance authorizes no Git or external mutation. If the current user requested
 Git delivery, invoke the Git Publisher only after the workflow is idle. Report
