@@ -1,8 +1,16 @@
-# Geological Prehistory
+---
+id: WG-002
+type: world-generation-specification
+status: accepted
+scope: Geological history generated before the playable era
+authority: Owns the temporal relationship between geological prehistory, canonical present state, and play
+implementation: unresolved
+concept_state: accepted
+coverage: partial
+last_reviewed: 2026-08-22
+---
 
-- **Status:** Accepted temporal direction; representation unresolved
-- **Scope:** Physical-world generation before the playable era
-- **Last reviewed:** 2026-08-22
+# Geological Prehistory
 
 ## Core decision
 
@@ -35,8 +43,8 @@ advances through meaningful events, epochs, suitably coarse intervals, or some
 combination of these.
 
 The exact time representation, total duration, year numbering, and date of the
-playable era remain unresolved. Any candidate duration is illustrative until a
-decision is recorded.
+playable era remain unresolved. Any duration mentioned before a decision is
+illustrative.
 
 > **History generates the world; current state becomes authoritative.**
 

@@ -1,8 +1,16 @@
-# Geological Geometry Operators
+---
+id: WG-006
+type: world-generation-specification
+status: accepted
+scope: Event-driven modification of inherited three-dimensional geological state
+authority: Owns the separation of geological events from composable geometry operators
+implementation: unresolved
+concept_state: accepted
+coverage: partial
+last_reviewed: 2026-08-22
+---
 
-- **Status:** Accepted conceptual model; mathematics and implementation unresolved
-- **Scope:** Event-driven modification of inherited 3D geological state
-- **Last reviewed:** 2026-08-22
+# Geological Geometry Operators
 
 ## Core principle
 
@@ -45,7 +53,7 @@ continental collision
 These examples do not establish a final geological-event taxonomy or exact
 composition rules.
 
-## Candidate operator families
+## Illustrative operator families
 
 This is an accepted conceptual vocabulary, not a final enum, implementation
 API, or claim that every item is a primitive.
@@ -72,8 +80,8 @@ API, or claim that every item is a primitive.
 - **Compress / shorten** shortens, thickens, and deforms a region and may
   compose with folding, faulting, and a secondary uplift response.
 - **Uplift / subside** changes regional vertical position or shape and may
-  create or remove accommodation space. It remains a candidate, but may often
-  be a response or composed outcome rather than a fundamental primitive.
+  create or remove accommodation space. Whether it is a primitive operator
+  remains open; it may instead be a response or composed outcome.
 
 ### Break and offset material
 
@@ -194,7 +202,7 @@ The operator model does not select uniform voxels, triangle meshes, implicit
 scalar fields, boundary representations, displacement grids, finite-element
 mechanics, or a particular geometry library.
 
-Candidate implementation strategies may include implicit geological modelling,
+Unresolved implementation options include implicit geological modeling,
 explicit surfaces or boundary representations, displacement or deformation
 fields, and hybrid approaches. These are open decisions, not accepted
 architecture.
@@ -213,7 +221,7 @@ the intended abstraction boundary for geological world generation.
 This note does not define:
 
 - final mathematical deformation algorithms or a geometry engine;
-- implicit-modelling, mesh, voxel, or finite-element implementation;
+- implicit-modeling, mesh, voxel, or finite-element implementation;
 - a final geological-event taxonomy or final operator API;
 - erosion rates, sediment transport, or magma flow;
 - hydrology, climate, soils, resources, continents, political systems, or human

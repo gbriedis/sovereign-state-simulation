@@ -1,22 +1,33 @@
+---
+id: ADR-0002
+type: decision-record
+status: accepted
+scope: Level 0 world-generation meaning and downstream boundary conditions
+authority: Owns the accepted decision to use bounded Earth-like planetary contracts rather than one exact baseline or arbitrary planets
+implementation: not-started
+related: WG-001, WG-025
+last_reviewed: 2026-08-23
+---
+
 # ADR-0002: Adopt an Earth-like planetary contract
 
-- **Status:** Accepted
-- **Date:** 2026-08-22
 - **Decision owner:** Product Owner
-- **DRI:** WG-002 specification DRI
-- **Scope:** Level 0 world-generation meaning and downstream boundary conditions
+- **Decision date:** 2026-08-22
+- **DRI:** `WG-025` specification DRI
 - **Art / Technical Art impact:** Consulted
 - **Consulted:** World Generation; Systems Architecture; Art & Technical Art
 - **Informed:** Project Steward; Bevy Client; Marketing
 - **Supersedes:** None
-- **Related work:** `WG-002`
 
 ## Context
 
 The Product Owner accepted the Level 0 Earth-like planetary-contract direction
-in the WG-002 brief on 2026-08-22. This record preserves that product boundary;
-World Generation owns its physical and semantic interpretation but does not own
-the decision to expand world-creation variation beyond one fixed baseline.
+in the upstream `WG-002` brief on 2026-08-22. During governed integration, the
+durable concept received `WG-025` because this registry already assigns
+`WG-002` to Geological Prehistory. This record preserves the accepted product
+boundary; World Generation owns its physical and semantic interpretation but
+does not own the decision to expand world-creation variation beyond one fixed
+baseline.
 
 The existing Earth-like physical framework fixed the minimal context needed by
 geological prehistory but did not distinguish invariant physical rules from
@@ -44,12 +55,12 @@ which parameters remain permanently fixed are unresolved.
 
 | Team or lane | Route | Required action or consequence |
 | --- | --- | --- |
-| Product Owner | Action required | Accepted the Level 0 product boundary in the WG-002 brief on 2026-08-22. |
-| World Generation | Action required | Own causal meaning, limits, and later domain specifications. |
+| Product Owner | Action required | Accepted the Level 0 product boundary in the upstream brief on 2026-08-22. |
+| World Generation | Action required | Own causal meaning, limits, and later domain specifications in `WG-025`. |
 | Systems Architecture | Consulted | Confirm the contract remains an upstream input rather than an outcome generator. |
 | World Core | Action required | Acknowledge that a later versioned input contract is implementable without deriving outcomes directly; implementation remains separately scoped. |
 | Art & Technical Art | Consulted | Keep visual encoding derived from canonical causes and history; presentation cannot become world truth. |
-| Project Steward | Informed | Record WG-002 status and route acknowledgements. |
+| Project Steward | Informed | Record `WG-025` status and route acknowledgements. |
 | Bevy Client and Marketing | Informed | Do not present unresolved profiles as implemented behavior or demonstrated claims. |
 
 ## Alternatives considered
@@ -90,15 +101,15 @@ The canonical meaning is defined in
 The architecture overview, world-foundation roadmap, and Earth-like physical
 framework link the new Level 0 boundary to accepted geological architecture.
 Open questions remain in
-[Open Architecture Question Inventory](../architecture/OPEN_DECISIONS.md).
+[Open Architecture Decisions](../architecture/OPEN_DECISIONS.md).
 
-No implementation is adopted by this decision. A later packet must define a
+No implementation is adopted by this decision. A later decision must define a
 versioned data contract and acceptance tests before World Core consumes it.
 
 ## Reversal or supersession
 
-This is documentation-only and can be reversed before implementation by
+This documentation-only decision can be reversed before implementation by
 superseding this record and restoring the fixed-baseline contract. Evidence
 that bounded planetary variance cannot remain coherent, testable, or affordable
 would trigger reconsideration. Any move toward generic planet generation or a
-permanently fixed single baseline requires a superseding ADR.
+permanently fixed single baseline requires a superseding decision record.

@@ -1,13 +1,22 @@
+---
+id: ARCH-OPEN
+type: open-decision-register
+status: accepted
+scope: Unresolved architecture and world-generation implementation choices
+authority: Owns the inventory of unresolved technical choices; listed options are not accepted design
+last_reviewed: 2026-08-23
+---
+
 # Open Architecture Decisions
 
-- **Status:** Unresolved
-- **Last reviewed:** 2026-08-22
-
-Items in this file are not accepted architecture. When one is resolved, record
-the decision and rationale in the architecture overview (or a dedicated decision
-record) and remove it from this list.
+Items in this file are not accepted architecture. Each decision packet has a
+stable `ARCH-OPEN-*` identifier. When a packet is resolved, create an accepted
+record in [Decision Records](../decisions/README.md), update the affected
+authoritative specification, and remove the resolved questions from this file.
 
 ## Spatial model
+
+### ARCH-OPEN-001 — Spatial foundations
 
 - System-specific cell and sampling scales
 - Spatial-domain dimensions and whether they are independent of sampling
@@ -15,7 +24,7 @@ record) and remove it from this list.
 - Coordinate system and world projection
 - Representation and simulation cadence at each level of detail
 
-### Sparse 3D geological representation
+### ARCH-OPEN-002 — Sparse 3D geological representation
 
 - Exact representation of geological surfaces, bounded bodies, and volumes
 - Topology and contact relationships between bodies, surfaces, and faults
@@ -26,7 +35,7 @@ record) and remove it from this list.
 - Relationship between system-specific surface sampling grids and subsurface
   structure
 
-### Adaptive spatial partitioning
+### ARCH-OPEN-003 — Adaptive spatial partitioning
 
 - Exact refinement-level hierarchy
 - Powers-of-two or another nesting scheme for refinement levels
@@ -49,7 +58,7 @@ record) and remove it from this list.
 - Prevention of refinement thrashing
 - Performance trade-offs of adaptive resolution
 
-### Canonical geological state and refinement
+### ARCH-OPEN-004 — Canonical geological state and refinement
 
 - Exact canonical geological-state schema
 - Which canonical state is generated eagerly, lazily, or through a hybrid
@@ -66,7 +75,7 @@ record) and remove it from this list.
 - Cache invalidation for non-canonical derived and materialized data
 - Coexistence and querying of coarse and fine canonical representations
 
-### Geological geometry operators
+### ARCH-OPEN-005 — Geological geometry operators
 
 - Final primitive operator set
 - Which candidate operators are true primitives and which are compositions
@@ -86,10 +95,12 @@ record) and remove it from this list.
 
 ## Natural-world generation
 
+### ARCH-OPEN-006 — Surface systems
+
 - Terrain-generation algorithms
 - Exact river and drainage model
 
-### Position, pressure, and thermal state
+### ARCH-OPEN-007 — Position, pressure, and thermal state
 
 - Exact planetary datum and elevation reference
 - Absolute coordinate representation at depth
@@ -136,7 +147,7 @@ record) and remove it from this list.
 - Local versus broader regional recomputation after major events
 - Numerical stability across long geological intervals
 
-### Broad elevation and isostatic response
+### ARCH-OPEN-008 — Broad elevation and isostatic response
 
 - Exact buoyancy reference column or asthenospheric state
 - Versioned Earth-like calibration of the reference state
@@ -173,7 +184,7 @@ record) and remove it from this list.
 - Distinction between ground, seafloor, ice surface, water surface, and rendered
   terrain
 
-### Earth-like physical framework
+### ARCH-OPEN-009 — Earth-like physical framework
 
 - Exact standard Earth reference values, precision, and units used by the
   versioned ruleset
@@ -185,24 +196,7 @@ record) and remove it from this list.
 - Which derived values are calculated on demand, cached, summarized, or persisted
 - Criteria for deriving continental-like and oceanic-like crust classifications
 
-### Earth-like planetary contract
-
-- Exact supported Earth-like parameter ranges and correlations
-- Stellar profile or type abstraction needed for incoming-energy queries
-- Supported orbital variation and whether orbital cycles participate in
-  geological prehistory
-- Supported rotation-rate and axial-tilt variation
-- Total water-inventory range and representation
-- Volatile-inventory representation
-- Starting atmospheric-potential abstraction
-- Planetary parameters that remain permanently fixed rather than profile-driven
-- Server profile selection, voting, or other future customization model
-- Versioning and serialization of the selected planetary profile
-- Starting geological epoch and its compatible initial state
-- Whether slow stellar evolution participates in geological prehistory
-- Propagation of planetary-contract causes into a future climate model
-
-### Tectonic plate layer
+### ARCH-OPEN-010 — Tectonic plate layer
 
 - Plate-count and plate-size distributions
 - Planar, spherical, or projected representation of plate geometry
@@ -218,7 +212,7 @@ record) and remove it from this list.
 - Calibration and validation criteria for deciding whether the abstraction is
   sufficiently coherent for later geology
 
-### Tectonic structures and geological provinces
+### ARCH-OPEN-011 — Tectonic structures and geological provinces
 
 - Final taxonomy of tectonic structures and provinces
 - Rules that derive collision, subduction, divergence, transform-dominated, and
@@ -236,7 +230,7 @@ record) and remove it from this list.
 - Elevation, erosion, sedimentation, weathering, glaciation, volcanism, and
   rock-generation algorithms
 
-### Geological prehistory
+### ARCH-OPEN-012 — Geological prehistory
 
 - Fixed-timestep, event-driven, or hybrid temporal representation
 - Whether and how timestep size varies across geological time and processes
@@ -252,7 +246,7 @@ record) and remove it from this list.
   playable-era date
 - Storage and query model for compact regional and geological-body histories
 
-### Geological material composition
+### ARCH-OPEN-013 — Geological material composition
 
 - Exact major-component basis
 - Oxide fractions, elemental fractions, or another bulk representation
@@ -270,7 +264,7 @@ record) and remove it from this list.
   interpolation strategy
 - Performance implications of composition and history tracking
 
-### Geological material state
+### ARCH-OPEN-014 — Geological material state
 
 - Exact representation of solid, melt, and fluid phase fractions
 - Conservation and normalization rules
@@ -285,13 +279,29 @@ record) and remove it from this list.
 - Interaction between phase/structural state, geological-body ownership, and
   spatial resolution
 
-## Territory allocation
+### ARCH-OPEN-019 — Earth-like planetary contract
+
+- Exact parameters, units, supported Earth-like ranges, and correlations
+- Which planetary-scale quantities remain fixed and which may vary by world
+- Versioned representation and serialization of the selected contract
+- Exact stellar profile and incoming-energy boundary representation
+- Whether stellar evolution or orbital cycles matter during generated prehistory
+- Supported orbit, rotation, axial-orientation, and seasonality causes
+- Water and volatile inventory representation and later conservation boundaries
+- Meaning and derivation of atmospheric potential before atmospheric evolution
+- Whether world-creation controls are exposed, who selects them, and how named
+  tendencies map to causes without guaranteeing consequences
+- Starting geological epoch or abstract initial-state boundary
+- Propagation of planetary-contract causes into a future climate model
+- Compatibility and migration policy when the contract schema changes
+
+## ARCH-OPEN-015 — Territory allocation
 
 - Territory-slot count and capacity
 - Placement constraints
 - Expansion rules
 
-## Persistence and compatibility
+## ARCH-OPEN-016 — Persistence and compatibility
 
 - Persistence format
 - Save-compatibility policy
@@ -306,7 +316,7 @@ record) and remove it from this list.
 - Acceptable world-creation duration
 - Server memory and storage budgets for hierarchical geological detail
 
-## Networking
+## ARCH-OPEN-017 — Networking
 
 - Protocol and state-diff representation
 - Synchronization cadence
@@ -318,6 +328,6 @@ record) and remove it from this list.
 - Whether any canonical detail is deterministically materialized on demand by
   the authority
 
-## Player interface
+## ARCH-OPEN-018 — Player interface
 
 - Final player-facing UI approach beyond the accepted map-first principle

@@ -1,8 +1,16 @@
-# Geological Material State
+---
+id: WG-004
+type: world-generation-specification
+status: accepted
+scope: Multi-phase and structural geological material state
+authority: Owns phase-fraction and structural-state concepts for geological material
+implementation: unresolved
+concept_state: accepted
+coverage: partial
+last_reviewed: 2026-08-22
+---
 
-- **Status:** Accepted material-state architecture; representation unresolved
-- **Scope:** Multi-phase geological material during generated prehistory
-- **Last reviewed:** 2026-08-22
+# Geological Material State
 
 ## Core decision
 

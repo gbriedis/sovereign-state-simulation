@@ -1,0 +1,56 @@
+name: Documentation validation
+
+on:
+  pull_request:
+  push:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-documentation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: project-journal-site/package-lock.json
+
+      - name: Validate documentation system
+        shell: pwsh
+        run: ./scripts/test-docs-workflow-validator.ps1
+
+      - name: Validate accepted-change manifests
+        shell: pwsh
+        run: ./scripts/test-change-manifest.ps1
+
+      - name: Validate document taxonomy
+        shell: pwsh
+        run: ./scripts/test-docs-taxonomy.ps1
+
+      - name: Validate Project Journal behavior
+        shell: pwsh
+        run: ./scripts/test-project-journal.ps1
+
+      - name: Validate documentation content
+        shell: pwsh
+        run: ./scripts/check-docs.ps1
+
+      - name: Install Project Journal website dependencies
+        working-directory: project-journal-site
+        run: npm ci
+
+      - name: Validate Project Journal website freshness
+        working-directory: project-journal-site
+        run: npm run check:journal
+
+      - name: Build Project Journal website
+        working-directory: project-journal-site
+        run: npm run build

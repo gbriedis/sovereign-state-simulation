@@ -1,6 +1,14 @@
+---
+id: BRAND-001
+type: brand-standard
+status: accepted
+scope: Public identity, positioning, voice, messaging, and visual direction
+authority: Owns approved public naming and brand expression
+last_reviewed: 2026-08-22
+---
+
 # State of Consequence — Brand Foundation
 
-- **Status:** Accepted direction
 - **Adopted:** 2026-08-22
 - **Public name:** *State of Consequence*
 - **Category:** A living nation simulation

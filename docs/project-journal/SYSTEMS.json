@@ -1,0 +1,624 @@
+{
+  "schemaVersion": 1,
+  "journalTitle": "Project Journal",
+  "currentView": {
+    "reviewedOn": "2026-08-29",
+    "rootSummary": "README.md",
+    "focus": {
+      "label": "Natural-world foundation and the map and spatial model prototype",
+      "evidence": [
+        { "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "**Active phase:** Natural-world foundation (`0.0.1`–`0.1.0`)" },
+        { "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "**Immediate milestone:** `PROTO-001` — map and spatial model prototype" }
+      ]
+    },
+    "milestone": {
+      "id": "PROTO-001",
+      "name": "map and spatial model prototype",
+      "evidence": [
+        { "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "**Immediate milestone:** `PROTO-001` — map and spatial model prototype" },
+        { "source": "PROTO-001", "field": "front.implementation", "equals": "not-started" }
+      ]
+    }
+  },
+  "builder": "scripts/build-project-journal.ps1",
+  "generatedFiles": {
+    "home": "docs/project-journal/README.md",
+    "worldGenerationStatus": "docs/project-journal/WORLD_GENERATION_STATUS.md"
+  },
+  "website": {
+    "directory": "project-journal-site",
+    "dataFile": "project-journal-site/app/generated-journal.ts",
+    "syncScript": "project-journal-site/scripts/sync-journal.mjs",
+    "authority": "derivative-only"
+  },
+  "historicalPosts": [
+    "docs/project-journal/posts/2026-08-29-WORLD_GENERATION_FOUNDATION.md"
+  ],
+  "statusProfiles": {
+    "product-current": { "knowledge": "accepted", "coverage": "partial", "implementation": "not-started", "attention": "supporting" },
+    "product-later": { "knowledge": "accepted", "coverage": "partial", "implementation": "not-started", "attention": "later" },
+    "natural-world-current": { "knowledge": "partially-accepted", "coverage": "partial", "implementation": "exploration", "attention": "now" },
+    "world-generation-current": { "knowledge": "partially-accepted", "coverage": "partial", "implementation": "unresolved", "attention": "now" },
+    "world-generation-accepted": { "knowledge": "accepted", "coverage": "partial", "implementation": "unresolved", "attention": "supporting" },
+    "surface-recognized": { "knowledge": "recognized", "coverage": "exploratory", "implementation": "not-investigated", "attention": "unassigned" },
+    "surface-exploring": { "knowledge": "exploring", "coverage": "exploratory", "implementation": "not-investigated", "attention": "unassigned" },
+    "surface-proposed": { "knowledge": "proposed", "coverage": "exploratory", "implementation": "not-investigated", "attention": "unassigned" },
+    "surface-partially-accepted": { "knowledge": "partially-accepted", "coverage": "partial", "implementation": "unresolved", "attention": "unassigned" },
+    "prototype-current": { "knowledge": "accepted", "coverage": "complete-at-scope", "implementation": "not-started", "attention": "now" },
+    "support-operational": { "knowledge": "operational", "coverage": "complete-at-scope", "implementation": "operational", "attention": "supporting" }
+  },
+  "systemEvidence": {
+    "state-of-consequence": {
+      "profile": "product-current",
+      "knowledge": [{ "source": "VISION-001", "field": "front.status", "equals": "accepted" }],
+      "coverage": [{ "source": "SYSTEMS.json", "field": "profile.coverage", "equals": "partial" }],
+      "implementation": [{ "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "No game/runtime source code or completed simulation" }],
+      "attention": [{ "source": "SYSTEMS.json", "field": "profile.attention", "equals": "supporting" }]
+    },
+    "living-nation-simulation": {
+      "profile": "product-later",
+      "knowledge": [{ "source": "VISION-001", "field": "front.status", "equals": "accepted" }],
+      "coverage": [{ "source": "SYSTEMS.json", "field": "profile.coverage", "equals": "partial" }],
+      "implementation": [{ "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "No game/runtime source code or completed simulation" }],
+      "attention": [{ "source": "ROADMAP-001", "field": "body.contains", "equals": "Human civilization, settlements, politics, and economies" }]
+    },
+    "player-map-experience": {
+      "profile": "product-current",
+      "knowledge": [{ "source": "PRINCIPLES-001", "field": "front.status", "equals": "accepted" }],
+      "coverage": [{ "source": "SYSTEMS.json", "field": "profile.coverage", "equals": "partial" }],
+      "implementation": [{ "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "No game/runtime source code or completed simulation" }],
+      "attention": [{ "source": "SYSTEMS.json", "field": "profile.attention", "equals": "supporting" }]
+    },
+    "persistent-multiplayer": {
+      "profile": "product-later",
+      "knowledge": [{ "source": "VISION-001", "field": "front.status", "equals": "accepted" }],
+      "coverage": [{ "source": "SYSTEMS.json", "field": "profile.coverage", "equals": "partial" }],
+      "implementation": [{ "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "No game/runtime source code or completed simulation" }],
+      "attention": [{ "source": "ROADMAP-001", "field": "body.contains", "equals": "Final multiplayer architecture" }]
+    },
+    "optional-web3-layer": {
+      "profile": "product-later",
+      "knowledge": [{ "source": "VISION-001", "field": "front.status", "equals": "accepted" }],
+      "coverage": [{ "source": "SYSTEMS.json", "field": "profile.coverage", "equals": "partial" }],
+      "implementation": [{ "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "No game/runtime source code or completed simulation" }],
+      "attention": [{ "source": "ROADMAP-001", "field": "body.contains", "equals": "Web3 mechanics" }]
+    },
+    "natural-world-foundation": {
+      "profile": "natural-world-current",
+      "knowledge": [{ "source": "WG-INDEX", "field": "concepts.knowledge", "scope": "descendants", "equals": "partially-accepted" }],
+      "coverage": [{ "source": "WG-INDEX", "field": "concepts.coverage", "scope": "descendants", "equals": "partial" }],
+      "implementation": [{ "source": "ROADMAP-001", "field": "front.implementation", "equals": "exploration" }],
+      "attention": [{ "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "**Active phase:** Natural-world foundation (`0.0.1`–`0.1.0`)" }]
+    },
+    "world-generation": {
+      "profile": "world-generation-current",
+      "knowledge": [{ "source": "WG-INDEX", "field": "concepts.knowledge", "scope": "descendants", "equals": "partially-accepted" }],
+      "coverage": [{ "source": "WG-INDEX", "field": "concepts.coverage", "scope": "descendants", "equals": "partial" }],
+      "implementation": [{ "source": "WG-INDEX", "field": "concepts.implementation", "scope": "descendants", "equals": "unresolved" }],
+      "attention": [{ "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "**Active phase:** Natural-world foundation (`0.0.1`–`0.1.0`)" }]
+    },
+    "planetary-foundation": {
+      "profile": "world-generation-accepted",
+      "knowledge": [{ "source": "WG-INDEX", "field": "concepts.knowledge", "scope": "self", "equals": "accepted" }],
+      "coverage": [{ "source": "WG-INDEX", "field": "concepts.coverage", "scope": "self", "equals": "partial" }],
+      "implementation": [{ "source": "WG-INDEX", "field": "concepts.implementation", "scope": "self", "equals": "unresolved" }],
+      "attention": [{ "source": "SYSTEMS.json", "field": "profile.attention", "equals": "supporting" }]
+    },
+    "geological-history-and-material": {
+      "profile": "world-generation-accepted",
+      "knowledge": [{ "source": "WG-INDEX", "field": "concepts.knowledge", "scope": "self", "equals": "accepted" }],
+      "coverage": [{ "source": "WG-INDEX", "field": "concepts.coverage", "scope": "self", "equals": "partial" }],
+      "implementation": [{ "source": "WG-INDEX", "field": "concepts.implementation", "scope": "self", "equals": "unresolved" }],
+      "attention": [{ "source": "SYSTEMS.json", "field": "profile.attention", "equals": "supporting" }]
+    },
+    "canonical-geological-world": {
+      "profile": "world-generation-accepted",
+      "knowledge": [{ "source": "WG-INDEX", "field": "concepts.knowledge", "scope": "self", "equals": "accepted" }],
+      "coverage": [{ "source": "WG-INDEX", "field": "concepts.coverage", "scope": "self", "equals": "partial" }],
+      "implementation": [{ "source": "WG-INDEX", "field": "concepts.implementation", "scope": "self", "equals": "unresolved" }],
+      "attention": [{ "source": "SYSTEMS.json", "field": "profile.attention", "equals": "supporting" }]
+    },
+    "tectonic-evolution": {
+      "profile": "world-generation-accepted",
+      "knowledge": [{ "source": "WG-INDEX", "field": "concepts.knowledge", "scope": "self", "equals": "accepted" }],
+      "coverage": [{ "source": "WG-INDEX", "field": "concepts.coverage", "scope": "self", "equals": "partial" }],
+      "implementation": [{ "source": "WG-INDEX", "field": "concepts.implementation", "scope": "self", "equals": "unresolved" }],
+      "attention": [{ "source": "SYSTEMS.json", "field": "profile.attention", "equals": "supporting" }]
+    },
+    "broad-solid-earth-geometry": {
+      "profile": "world-generation-accepted",
+      "knowledge": [{ "source": "WG-INDEX", "field": "concepts.knowledge", "scope": "self", "equals": "accepted" }],
+      "coverage": [{ "source": "WG-INDEX", "field": "concepts.coverage", "scope": "self", "equals": "partial" }],
+      "implementation": [{ "source": "WG-INDEX", "field": "concepts.implementation", "scope": "self", "equals": "unresolved" }],
+      "attention": [{ "source": "SYSTEMS.json", "field": "profile.attention", "equals": "supporting" }]
+    },
+    "surface-natural-systems": {
+      "profile": "surface-recognized",
+      "knowledge": [{ "source": "WG-INDEX", "field": "concepts.knowledge", "scope": "self", "equals": "recognized" }],
+      "coverage": [{ "source": "WG-INDEX", "field": "concepts.coverage", "scope": "self", "equals": "exploratory" }],
+      "implementation": [{ "source": "WG-INDEX", "field": "concepts.implementation", "scope": "self", "equals": "not-investigated" }],
+      "attention": [{ "source": "SYSTEMS.json", "field": "profile.attention", "equals": "unassigned" }]
+    },
+    "map-and-spatial-model-prototype": {
+      "profile": "prototype-current",
+      "knowledge": [{ "source": "PROTO-001", "field": "front.status", "equals": "accepted" }],
+      "coverage": [{ "source": "SYSTEMS.json", "field": "profile.coverage", "equals": "complete-at-scope" }],
+      "implementation": [{ "source": "PROTO-001", "field": "front.implementation", "equals": "not-started" }],
+      "attention": [{ "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "**Immediate milestone:** `PROTO-001` — map and spatial model prototype" }]
+    },
+    "runtime-architecture": {
+      "profile": "product-current",
+      "knowledge": [{ "source": "ARCH-001", "field": "front.status", "equals": "accepted" }],
+      "coverage": [{ "source": "SYSTEMS.json", "field": "profile.coverage", "equals": "partial" }],
+      "implementation": [{ "source": "ARCH-001", "field": "front.implementation", "equals": "not-started" }],
+      "attention": [{ "source": "SYSTEMS.json", "field": "profile.attention", "equals": "supporting" }]
+    },
+    "documentation-governance": {
+      "profile": "support-operational",
+      "knowledge": [{ "source": "DOCS-001", "field": "front.status", "equals": "accepted" }],
+      "coverage": [{ "source": "SYSTEMS.json", "field": "profile.coverage", "equals": "complete-at-scope" }],
+      "implementation": [{ "source": "DOCS-001", "field": "body.contains", "equals": "./scripts/check-docs.ps1" }],
+      "attention": [{ "source": "SYSTEMS.json", "field": "profile.attention", "equals": "supporting" }]
+    },
+    "project-journal": {
+      "profile": "support-operational",
+      "knowledge": [{ "source": "DOCS-001", "field": "front.status", "equals": "accepted" }],
+      "coverage": [{ "source": "SYSTEMS.json", "field": "profile.coverage", "equals": "complete-at-scope" }],
+      "implementation": [
+        { "source": "scripts/build-project-journal.ps1", "field": "path.exists", "equals": "true" },
+        { "source": "project-journal-site/scripts/sync-journal.mjs", "field": "path.exists", "equals": "true" }
+      ],
+      "attention": [{ "source": "SYSTEMS.json", "field": "profile.attention", "equals": "supporting" }]
+    },
+    "knowledge-delivery": {
+      "profile": "support-operational",
+      "knowledge": [{ "source": "DOCS-WORKFLOW", "field": "front.status", "equals": "accepted" }],
+      "coverage": [{ "source": "SYSTEMS.json", "field": "profile.coverage", "equals": "complete-at-scope" }],
+      "implementation": [{ "source": "DOCS-WORKFLOW", "field": "body.contains", "equals": "Governed delivery" }],
+      "attention": [{ "source": "SYSTEMS.json", "field": "profile.attention", "equals": "supporting" }]
+    },
+    "project-operations": {
+      "profile": "support-operational",
+      "knowledge": [{ "source": "HANDOFF-CURRENT", "field": "front.status", "equals": "accepted" }],
+      "coverage": [{ "source": "SYSTEMS.json", "field": "profile.coverage", "equals": "complete-at-scope" }],
+      "implementation": [{ "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "**Snapshot date:**" }],
+      "attention": [{ "source": "SYSTEMS.json", "field": "profile.attention", "equals": "supporting" }]
+    },
+    "decision-governance": {
+      "profile": "support-operational",
+      "knowledge": [{ "source": "DECISION-INDEX", "field": "front.status", "equals": "accepted" }],
+      "coverage": [{ "source": "SYSTEMS.json", "field": "profile.coverage", "equals": "complete-at-scope" }],
+      "implementation": [{ "source": "ARCH-OPEN", "field": "front.status", "equals": "accepted" }],
+      "attention": [{ "source": "SYSTEMS.json", "field": "profile.attention", "equals": "supporting" }]
+    },
+    "git-publication": {
+      "profile": "support-operational",
+      "knowledge": [{ "source": "AGENT-GIT-PUBLISHER", "field": "front.status", "equals": "accepted" }],
+      "coverage": [{ "source": "SYSTEMS.json", "field": "profile.coverage", "equals": "complete-at-scope" }],
+      "implementation": [{ "source": "AGENT-GIT-PUBLISHER", "field": "body.contains", "equals": "### Push" }],
+      "attention": [{ "source": "SYSTEMS.json", "field": "profile.attention", "equals": "supporting" }]
+    }
+  },
+  "decisionAssociations": {
+    "ARCH-OPEN-001": { "system": "map-and-spatial-model-prototype", "evidence": ["PROTO-001", "WG-008"] },
+    "ARCH-OPEN-002": { "system": "canonical-geological-world", "evidence": ["WG-005"] },
+    "ARCH-OPEN-003": { "system": "canonical-geological-world", "evidence": ["WG-008"] },
+    "ARCH-OPEN-004": { "system": "canonical-geological-world", "evidence": ["WG-007"] },
+    "ARCH-OPEN-005": { "system": "geological-history-and-material", "evidence": ["WG-006"] },
+    "ARCH-OPEN-006": { "system": "surface-natural-systems", "evidence": ["WG-017", "WG-018"] },
+    "ARCH-OPEN-007": { "system": "canonical-geological-world", "evidence": ["WG-009", "WG-010"] },
+    "ARCH-OPEN-008": { "system": "broad-solid-earth-geometry", "evidence": ["WG-013", "WG-014"] },
+    "ARCH-OPEN-009": { "system": "planetary-foundation", "evidence": ["WG-001"] },
+    "ARCH-OPEN-010": { "system": "tectonic-evolution", "evidence": ["WG-011"] },
+    "ARCH-OPEN-011": { "system": "tectonic-evolution", "evidence": ["WG-012"] },
+    "ARCH-OPEN-012": { "system": "geological-history-and-material", "evidence": ["WG-002"] },
+    "ARCH-OPEN-013": { "system": "geological-history-and-material", "evidence": ["WG-003"] },
+    "ARCH-OPEN-014": { "system": "geological-history-and-material", "evidence": ["WG-004"] },
+    "ARCH-OPEN-015": { "system": "living-nation-simulation", "evidence": ["VISION-001", "ARCH-001"] },
+    "ARCH-OPEN-016": { "system": "runtime-architecture", "evidence": ["ARCH-001", "WG-015"] },
+    "ARCH-OPEN-017": { "system": "persistent-multiplayer", "evidence": ["VISION-001", "ARCH-001"] },
+    "ARCH-OPEN-018": { "system": "player-map-experience", "evidence": ["PRINCIPLES-001", "ARCH-001"] },
+    "ARCH-OPEN-019": { "system": "planetary-foundation", "evidence": ["WG-025"] }
+  },
+  "relationshipAssociations": [
+    {
+      "source": "map-and-spatial-model-prototype",
+      "type": "constrained-by",
+      "target": "canonical-geological-world",
+      "evidence": ["PROTO-001", "ARCH-001"]
+    }
+  ],
+  "sourceDocuments": [
+    { "id": "VISION-001", "path": "docs/foundations/PROJECT_VISION.md" },
+    { "id": "PRINCIPLES-001", "path": "docs/foundations/DESIGN_PRINCIPLES.md" },
+    { "id": "DOCS-GLOSSARY", "path": "docs/foundations/GLOSSARY.md" },
+    { "id": "BRAND-001", "path": "docs/brand/BRAND_FOUNDATION.md" },
+    { "id": "ROADMAP-001", "path": "docs/planning/NATURAL_WORLD_FOUNDATION_ROADMAP.md" },
+    { "id": "PROTO-001", "path": "docs/architecture/MAP_AND_SPATIAL_MODEL_PROTOTYPE.md" },
+    { "id": "ARCH-001", "path": "docs/architecture/ARCHITECTURE_OVERVIEW.md" },
+    { "id": "ARCH-OPEN", "path": "docs/architecture/OPEN_DECISIONS.md" },
+    { "id": "DECISION-INDEX", "path": "docs/decisions/README.md" },
+    { "id": "ADR-0002", "path": "docs/decisions/ADR-0002-earth-like-planetary-contract.md" },
+    { "id": "DOCS-001", "path": "docs/README.md" },
+    { "id": "DOCS-INDEX", "path": "docs/INDEX.md" },
+    { "id": "DOCS-CLEAR-LANGUAGE", "path": "docs/governance/standards/CLEAR_LANGUAGE.md" },
+    { "id": "DOCS-WORKFLOW", "path": "docs/governance/workflows/KNOWLEDGE_WORKFLOW.md" },
+    { "id": "AGENT-OUTCOME-LEAD", "path": "docs/governance/roles/OUTCOME_LEAD.md" },
+    { "id": "AGENT-DEVELOPER", "path": "docs/governance/roles/SYSTEMS_KNOWLEDGE_DEVELOPER.md" },
+    { "id": "AGENT-REVIEWER", "path": "docs/governance/roles/SYSTEMS_COHERENCE_REVIEWER.md" },
+    { "id": "AGENT-GIT-PUBLISHER", "path": "docs/governance/roles/GIT_PUBLISHER.md" },
+    { "id": "HANDOFF-CURRENT", "path": "docs/operations/CURRENT_STATE.md" },
+    { "id": "HANDOFF-KNOWLEDGE-WORKFLOW", "path": "docs/operations/KNOWLEDGE_WORKFLOW_STATE.md" },
+    { "id": "WG-INDEX", "path": "docs/world-generation/README.md" },
+    { "id": "WG-AUTHORING", "path": "docs/world-generation/AUTHORING_PROTOCOL.md" },
+    { "id": "WG-001", "path": "docs/world-generation/EARTH_LIKE_PHYSICAL_FRAMEWORK.md" },
+    { "id": "WG-002", "path": "docs/world-generation/GEOLOGICAL_PREHISTORY.md" },
+    { "id": "WG-003", "path": "docs/world-generation/GEOLOGICAL_MATERIAL_COMPOSITION.md" },
+    { "id": "WG-004", "path": "docs/world-generation/GEOLOGICAL_MATERIAL_STATE.md" },
+    { "id": "WG-005", "path": "docs/world-generation/SPARSE_3D_GEOLOGICAL_WORLD.md" },
+    { "id": "WG-006", "path": "docs/world-generation/GEOLOGICAL_GEOMETRY_OPERATORS.md" },
+    { "id": "WG-007", "path": "docs/world-generation/CANONICAL_GEOLOGICAL_STATE_AND_REFINEMENT.md" },
+    { "id": "WG-008", "path": "docs/world-generation/ADAPTIVE_SPATIAL_PARTITIONING.md" },
+    { "id": "WG-009", "path": "docs/world-generation/DEPTH_PRESSURE_AND_THERMAL_STATE.md" },
+    { "id": "WG-011", "path": "docs/world-generation/TECTONIC_PLATES.md" },
+    { "id": "WG-012", "path": "docs/world-generation/TECTONIC_STRUCTURES_AND_PROVINCES.md" },
+    { "id": "WG-013", "path": "docs/world-generation/BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md" },
+    { "id": "WG-025", "path": "docs/world-generation/EARTH_LIKE_PLANETARY_CONTRACT.md" }
+  ],
+  "systems": [
+    {
+      "id": "state-of-consequence",
+      "name": "State of Consequence",
+      "purpose": "Define the living nation simulation and the experience it must ultimately provide.",
+      "kind": "product",
+      "parent": null,
+      "knowledgeState": "accepted",
+      "coverage": "partial",
+      "implementationState": "not-started",
+      "attention": "supporting",
+      "authorities": ["VISION-001", "PRINCIPLES-001", "BRAND-001"],
+      "documents": ["VISION-001", "PRINCIPLES-001", "BRAND-001"],
+      "worldGenerationConcepts": [],
+      "openDecisions": [],
+      "relationships": []
+    },
+    {
+      "id": "living-nation-simulation",
+      "name": "Living nation simulation",
+      "purpose": "Let the player govern an autonomous nation through policy, institutions, infrastructure, resources, and long-term strategy.",
+      "kind": "product",
+      "parent": "state-of-consequence",
+      "knowledgeState": "accepted",
+      "coverage": "partial",
+      "implementationState": "not-started",
+      "attention": "later",
+      "authorities": ["VISION-001", "PRINCIPLES-001"],
+      "documents": [],
+      "worldGenerationConcepts": [],
+      "openDecisions": ["ARCH-OPEN-015"],
+      "relationships": [{ "type": "depends-on", "target": "natural-world-foundation" }]
+    },
+    {
+      "id": "player-map-experience",
+      "name": "Player map experience",
+      "purpose": "Make the map the primary place where players inspect the world and govern through contextual interactions.",
+      "kind": "product",
+      "parent": "state-of-consequence",
+      "knowledgeState": "accepted",
+      "coverage": "partial",
+      "implementationState": "not-started",
+      "attention": "supporting",
+      "authorities": ["PRINCIPLES-001", "ARCH-001"],
+      "documents": [],
+      "worldGenerationConcepts": [],
+      "openDecisions": ["ARCH-OPEN-018"],
+      "relationships": [
+        { "type": "uses", "target": "runtime-architecture" },
+        { "type": "supports", "target": "living-nation-simulation" }
+      ]
+    },
+    {
+      "id": "persistent-multiplayer",
+      "name": "Persistent multiplayer",
+      "purpose": "Connect sovereign nations without weakening the depth, autonomy, or physical grounding of each nation simulation.",
+      "kind": "product",
+      "parent": "state-of-consequence",
+      "knowledgeState": "accepted",
+      "coverage": "partial",
+      "implementationState": "not-started",
+      "attention": "later",
+      "authorities": ["VISION-001", "ARCH-001"],
+      "documents": [],
+      "worldGenerationConcepts": [],
+      "openDecisions": ["ARCH-OPEN-017"],
+      "relationships": [
+        { "type": "depends-on", "target": "living-nation-simulation" },
+        { "type": "uses", "target": "runtime-architecture" }
+      ]
+    },
+    {
+      "id": "optional-web3-layer",
+      "name": "Optional Web3 layer",
+      "purpose": "Preserve a possible future economic or ownership layer without allowing it to dictate the core simulation.",
+      "kind": "product",
+      "parent": "state-of-consequence",
+      "knowledgeState": "accepted",
+      "coverage": "partial",
+      "implementationState": "not-started",
+      "attention": "later",
+      "authorities": ["VISION-001", "BRAND-001"],
+      "documents": [],
+      "worldGenerationConcepts": [],
+      "openDecisions": [],
+      "relationships": [{ "type": "depends-on", "target": "living-nation-simulation" }]
+    },
+    {
+      "id": "natural-world-foundation",
+      "name": "Natural-world foundation",
+      "purpose": "Create the coherent pre-human physical world inherited by every later nation system.",
+      "kind": "product",
+      "parent": "state-of-consequence",
+      "knowledgeState": "partially-accepted",
+      "coverage": "partial",
+      "implementationState": "exploration",
+      "attention": "now",
+      "authorities": ["ROADMAP-001"],
+      "documents": ["ROADMAP-001"],
+      "worldGenerationConcepts": [],
+      "openDecisions": [],
+      "relationships": []
+    },
+    {
+      "id": "world-generation",
+      "name": "World generation",
+      "purpose": "Build a causal natural history whose accumulated result becomes the playable physical world.",
+      "kind": "product",
+      "parent": "natural-world-foundation",
+      "knowledgeState": "partially-accepted",
+      "coverage": "partial",
+      "implementationState": "unresolved",
+      "attention": "now",
+      "authorities": ["WG-INDEX", "WG-AUTHORING"],
+      "documents": ["WG-INDEX", "WG-AUTHORING"],
+      "worldGenerationConcepts": [],
+      "openDecisions": [],
+      "relationships": []
+    },
+    {
+      "id": "planetary-foundation",
+      "name": "Earth-like planetary foundation",
+      "purpose": "Supply common physical rules and bounded planetary causes before geological history begins.",
+      "kind": "product",
+      "parent": "world-generation",
+      "knowledgeState": "accepted",
+      "coverage": "partial",
+      "implementationState": "unresolved",
+      "attention": "supporting",
+      "authorities": ["WG-001", "WG-025", "ADR-0002"],
+      "documents": ["WG-001", "WG-025", "ADR-0002"],
+      "worldGenerationConcepts": ["WG-001", "WG-025"],
+      "openDecisions": ["ARCH-OPEN-009", "ARCH-OPEN-019"],
+      "relationships": []
+    },
+    {
+      "id": "geological-history-and-material",
+      "name": "Geological history and material",
+      "purpose": "Represent inherited geological events, material composition, material state, and geometry-changing operations.",
+      "kind": "product",
+      "parent": "world-generation",
+      "knowledgeState": "accepted",
+      "coverage": "partial",
+      "implementationState": "unresolved",
+      "attention": "supporting",
+      "authorities": ["WG-002", "WG-003", "WG-004", "WG-006"],
+      "documents": ["WG-002", "WG-003", "WG-004", "WG-006"],
+      "worldGenerationConcepts": ["WG-002", "WG-003", "WG-004", "WG-006"],
+      "openDecisions": ["ARCH-OPEN-005", "ARCH-OPEN-012", "ARCH-OPEN-013", "ARCH-OPEN-014"],
+      "relationships": [{ "type": "depends-on", "target": "planetary-foundation" }]
+    },
+    {
+      "id": "canonical-geological-world",
+      "name": "Canonical geological world",
+      "purpose": "Preserve sparse three-dimensional present truth, contextual physical state, deterministic refinement, and computational locality.",
+      "kind": "product",
+      "parent": "world-generation",
+      "knowledgeState": "accepted",
+      "coverage": "partial",
+      "implementationState": "unresolved",
+      "attention": "supporting",
+      "authorities": ["WG-005", "WG-007", "WG-008", "WG-009", "ARCH-001"],
+      "documents": ["WG-005", "WG-007", "WG-008", "WG-009"],
+      "worldGenerationConcepts": ["WG-005", "WG-007", "WG-008", "WG-009", "WG-010", "WG-015", "WG-016"],
+      "openDecisions": ["ARCH-OPEN-002", "ARCH-OPEN-003", "ARCH-OPEN-004", "ARCH-OPEN-007"],
+      "relationships": [{ "type": "depends-on", "target": "geological-history-and-material" }]
+    },
+    {
+      "id": "tectonic-evolution",
+      "name": "Tectonic evolution",
+      "purpose": "Turn plate motion and interactions into persistent tectonic structures and geological provinces.",
+      "kind": "product",
+      "parent": "world-generation",
+      "knowledgeState": "accepted",
+      "coverage": "partial",
+      "implementationState": "unresolved",
+      "attention": "supporting",
+      "authorities": ["WG-011", "WG-012"],
+      "documents": ["WG-011", "WG-012"],
+      "worldGenerationConcepts": ["WG-011", "WG-012"],
+      "openDecisions": ["ARCH-OPEN-010", "ARCH-OPEN-011"],
+      "relationships": [
+        { "type": "depends-on", "target": "planetary-foundation" },
+        { "type": "feeds", "target": "geological-history-and-material" }
+      ]
+    },
+    {
+      "id": "broad-solid-earth-geometry",
+      "name": "Broad solid-Earth geometry",
+      "purpose": "Derive broad physical geometry and semantic ground or seafloor queries from inherited geology, buoyancy, loads, and response.",
+      "kind": "product",
+      "parent": "world-generation",
+      "knowledgeState": "accepted",
+      "coverage": "partial",
+      "implementationState": "unresolved",
+      "attention": "supporting",
+      "authorities": ["WG-013"],
+      "documents": ["WG-013"],
+      "worldGenerationConcepts": ["WG-013", "WG-014"],
+      "openDecisions": ["ARCH-OPEN-008"],
+      "relationships": [
+        { "type": "depends-on", "target": "tectonic-evolution" },
+        { "type": "depends-on", "target": "canonical-geological-world" }
+      ]
+    },
+    {
+      "id": "surface-natural-systems",
+      "name": "Surface natural systems",
+      "purpose": "Explore how surface processes, water, climate, soils, ecosystems, resources, hazards, and engineering properties emerge from inherited physical causes.",
+      "kind": "product",
+      "parent": "world-generation",
+      "knowledgeState": "recognized",
+      "coverage": "exploratory",
+      "implementationState": "not-investigated",
+      "attention": "unassigned",
+      "authorities": ["WG-INDEX"],
+      "documents": [],
+      "worldGenerationConcepts": ["WG-017", "WG-018", "WG-019", "WG-020", "WG-021", "WG-022", "WG-023", "WG-024"],
+      "openDecisions": ["ARCH-OPEN-006"],
+      "relationships": [{ "type": "depends-on", "target": "broad-solid-earth-geometry" }]
+    },
+    {
+      "id": "map-and-spatial-model-prototype",
+      "name": "Map and spatial model prototype",
+      "purpose": "Prove map interaction and provisional coordinate-to-domain-to-cell mapping without making prototype measurements world truth.",
+      "kind": "product",
+      "parent": "natural-world-foundation",
+      "knowledgeState": "accepted",
+      "coverage": "complete-at-scope",
+      "implementationState": "not-started",
+      "attention": "now",
+      "authorities": ["PROTO-001"],
+      "documents": ["PROTO-001"],
+      "worldGenerationConcepts": [],
+      "openDecisions": ["ARCH-OPEN-001"],
+      "relationships": [
+        { "type": "constrained-by", "target": "canonical-geological-world", "evidence": ["PROTO-001", "ARCH-001"] },
+        { "type": "uses", "target": "runtime-architecture" }
+      ]
+    },
+    {
+      "id": "runtime-architecture",
+      "name": "Runtime architecture",
+      "purpose": "Separate authoritative world and simulation logic from presentation, persistence products, and future networking.",
+      "kind": "product",
+      "parent": "state-of-consequence",
+      "knowledgeState": "accepted",
+      "coverage": "partial",
+      "implementationState": "not-started",
+      "attention": "supporting",
+      "authorities": ["ARCH-001"],
+      "documents": ["ARCH-001"],
+      "worldGenerationConcepts": [],
+      "openDecisions": ["ARCH-OPEN-016"],
+      "relationships": []
+    },
+    {
+      "id": "documentation-governance",
+      "name": "Documentation governance",
+      "purpose": "Keep project truth findable, consistently named, uniquely owned, and correctly routed.",
+      "kind": "support",
+      "parent": null,
+      "knowledgeState": "operational",
+      "coverage": "complete-at-scope",
+      "implementationState": "operational",
+      "attention": "supporting",
+      "authorities": ["DOCS-001", "DOCS-INDEX", "DOCS-GLOSSARY", "DOCS-CLEAR-LANGUAGE"],
+      "documents": ["DOCS-001", "DOCS-INDEX", "DOCS-GLOSSARY", "DOCS-CLEAR-LANGUAGE"],
+      "worldGenerationConcepts": [],
+      "openDecisions": [],
+      "relationships": []
+    },
+    {
+      "id": "project-journal",
+      "name": "Project Journal and System Map",
+      "purpose": "Translate current repository authority into a readable project overview while keeping dated explanations as history.",
+      "kind": "support",
+      "parent": null,
+      "knowledgeState": "operational",
+      "coverage": "complete-at-scope",
+      "implementationState": "operational",
+      "attention": "supporting",
+      "authorities": ["DOCS-001"],
+      "documents": [],
+      "worldGenerationConcepts": [],
+      "openDecisions": [],
+      "relationships": [{ "type": "uses", "target": "documentation-governance" }]
+    },
+    {
+      "id": "knowledge-delivery",
+      "name": "Knowledge delivery",
+      "purpose": "Turn incomplete direction into bounded, reviewed, resumable documentation outcomes.",
+      "kind": "support",
+      "parent": null,
+      "knowledgeState": "operational",
+      "coverage": "complete-at-scope",
+      "implementationState": "operational",
+      "attention": "supporting",
+      "authorities": ["DOCS-WORKFLOW", "AGENT-OUTCOME-LEAD", "AGENT-DEVELOPER", "AGENT-REVIEWER"],
+      "documents": ["DOCS-WORKFLOW", "AGENT-OUTCOME-LEAD", "AGENT-DEVELOPER", "AGENT-REVIEWER", "HANDOFF-KNOWLEDGE-WORKFLOW"],
+      "worldGenerationConcepts": [],
+      "openDecisions": [],
+      "relationships": [{ "type": "supports", "target": "documentation-governance" }]
+    },
+    {
+      "id": "project-operations",
+      "name": "Project operations",
+      "purpose": "Report the current milestone, observed repository state, blockers, and immediate actions.",
+      "kind": "support",
+      "parent": null,
+      "knowledgeState": "operational",
+      "coverage": "complete-at-scope",
+      "implementationState": "operational",
+      "attention": "supporting",
+      "authorities": ["HANDOFF-CURRENT"],
+      "documents": ["HANDOFF-CURRENT"],
+      "worldGenerationConcepts": [],
+      "openDecisions": [],
+      "relationships": [{ "type": "uses", "target": "documentation-governance" }]
+    },
+    {
+      "id": "decision-governance",
+      "name": "Decision governance",
+      "purpose": "Keep unresolved choices separate from accepted decisions and preserve durable resolution records.",
+      "kind": "support",
+      "parent": null,
+      "knowledgeState": "operational",
+      "coverage": "complete-at-scope",
+      "implementationState": "operational",
+      "attention": "supporting",
+      "authorities": ["DECISION-INDEX", "ARCH-OPEN"],
+      "documents": ["DECISION-INDEX", "ARCH-OPEN"],
+      "worldGenerationConcepts": [],
+      "openDecisions": [],
+      "relationships": [{ "type": "supports", "target": "knowledge-delivery" }]
+    },
+    {
+      "id": "git-publication",
+      "name": "Git publication",
+      "purpose": "Record and publish an already validated result through an explicitly authorized Git transaction.",
+      "kind": "support",
+      "parent": null,
+      "knowledgeState": "operational",
+      "coverage": "complete-at-scope",
+      "implementationState": "operational",
+      "attention": "supporting",
+      "authorities": ["AGENT-GIT-PUBLISHER"],
+      "documents": ["AGENT-GIT-PUBLISHER"],
+      "worldGenerationConcepts": [],
+      "openDecisions": [],
+      "relationships": [
+        { "type": "depends-on", "target": "knowledge-delivery" },
+        { "type": "uses", "target": "documentation-governance" }
+      ]
+    }
+  ]
+}

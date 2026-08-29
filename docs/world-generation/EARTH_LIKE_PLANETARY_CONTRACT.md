@@ -1,10 +1,19 @@
+---
+id: WG-025
+type: world-generation-specification
+status: accepted
+scope: Level 0 Earth-like planetary boundary conditions inherited by generated history
+authority: Owns bounded per-world planetary causes, their semantic limits, and their relationship to downstream history
+implementation: unresolved
+concept_state: accepted
+coverage: partial
+related: ADR-0002, WG-001
+last_reviewed: 2026-08-23
+---
+
 # Earth-Like Planetary Contract
 
-- **Status:** Accepted architectural direction; parameter ranges and representation unresolved
-- **Scope:** Level 0 boundary conditions inherited by world history
-- **Last reviewed:** 2026-08-22
-
-## Core direction
+## Decision
 
 > **The simulation generates Earth histories, not planets.**
 
@@ -151,8 +160,8 @@ seasonality, or planetary-activity tendencies. Controls such as “more
 mountains,” “more iron,” “more forests,” “more rivers,” “more deserts,” or
 “better climate” would bypass the causal architecture.
 
-This note does not decide whether players vote on, customize, or even see these
-controls.
+This specification does not decide whether players vote on, customize, or even
+see these controls.
 
 ## Contract output and layered identity
 
@@ -205,8 +214,8 @@ implementation pipeline.
 
 ## Scope boundary
 
-This note does not define stellar evolution or formation, galaxies, cosmology,
-an orbital-dynamics engine, atmospheric evolution or circulation, a climate
-solver, oceans, hydrology, weather, weathering, erosion, biology, resources,
-continents, civilization, multiplayer voting, exact parameter ranges, or a
-serialization schema.
+This specification does not define stellar evolution or formation, galaxies,
+cosmology, an orbital-dynamics engine, atmospheric evolution or circulation, a
+climate solver, oceans, hydrology, weather, weathering, erosion, biology,
+resources, continents, civilization, multiplayer voting, exact parameter
+ranges, or a serialization schema.

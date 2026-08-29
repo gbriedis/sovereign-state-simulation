@@ -1,3 +1,12 @@
+---
+id: PRINCIPLES-001
+type: design-principles
+status: accepted
+scope: Governing product and technical design rules
+authority: Owns the principles used to evaluate product, simulation, and architecture choices
+last_reviewed: 2026-08-22
+---
+
 # Design Principles
 
 ## Reality-first systems

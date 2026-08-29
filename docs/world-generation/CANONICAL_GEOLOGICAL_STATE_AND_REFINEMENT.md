@@ -1,8 +1,16 @@
-# Canonical Geological State and Refinement
+---
+id: WG-007
+type: world-generation-specification
+status: accepted
+scope: Canonical present geological truth, provenance, and deterministic refinement
+authority: Owns the distinction between canonical state, provenance, constraints, refinement, and derived data
+implementation: unresolved
+concept_state: accepted
+coverage: partial
+last_reviewed: 2026-08-22
+---
 
-- **Status:** Accepted architectural model; schema and algorithms unresolved
-- **Scope:** Present geological truth, provenance, and hierarchical refinement
-- **Last reviewed:** 2026-08-22
+# Canonical Geological State and Refinement
 
 ## Core direction
 
@@ -128,9 +136,9 @@ principle does not design those systems.
 
 For current geology, absolute position belongs to canonical geometry, while
 depth is contextual and lithostatic pressure is normally derived from gravity
-and the actual overlying material column. Temperature is likely canonical
-present state because geological thermal history can leave information that
-present geometry alone cannot reconstruct. It is spatial query state across
+and the actual overlying material column. Temperature belongs to canonical
+present state when present geometry and retained provenance cannot reconstruct
+the thermal truth promised to future queries. It is spatial query state across
 bodies and adaptive computational domains; bodies supply material properties
 rather than owning isolated temperatures. Conservative remapping may operate on
 thermal content rather than literal temperature, and ordinary contacts must not

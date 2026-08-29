@@ -1,3 +1,12 @@
+---
+id: VISION-001
+type: product-vision
+status: accepted
+scope: Enduring player fantasy, player role, and long-term product direction
+authority: Owns what the game is and the experience it must ultimately provide
+last_reviewed: 2026-08-22
+---
+
 # Project Vision
 
 ## Core fantasy

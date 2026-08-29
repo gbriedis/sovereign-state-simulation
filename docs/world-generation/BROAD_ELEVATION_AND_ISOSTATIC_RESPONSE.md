@@ -1,8 +1,16 @@
-# Broad Elevation and Isostatic Response
+---
+id: WG-013
+type: world-generation-specification
+status: accepted
+scope: Lithospheric buoyancy, broad vertical response, and semantic ground-boundary queries
+authority: Owns the causal model for broad solid-Earth geometry, isostatic response, and derived elevation
+implementation: unresolved
+concept_state: accepted
+coverage: partial
+last_reviewed: 2026-08-22
+---
 
-- **Status:** Accepted conceptual model; mechanics and representation unresolved
-- **Scope:** Lithospheric buoyancy, broad vertical response, and the solid-Earth surface
-- **Last reviewed:** 2026-08-22
+# Broad Elevation and Isostatic Response
 
 ## Elevation follows 3D geology
 
@@ -164,8 +172,8 @@ buoyancy and flexural response
 ```
 
 Not every direct tectonic displacement routes through isostasy first.
-`Uplift / subside` remains a candidate operator, but may often be a response or
-composed outcome rather than a fundamental primitive. Possible causes include
+Whether `Uplift / subside` is a primitive operator remains open. It may instead
+be a response or composed outcome. Possible causes include
 thickening, thinning, thermal buoyancy, loading or unloading, fault
 displacement, and deep mantle support. Its final status remains open.
 
