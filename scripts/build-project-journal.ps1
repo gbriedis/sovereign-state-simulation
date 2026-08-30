@@ -271,7 +271,7 @@ $acceptedSection = [regex]::Match($worldIndexText, '(?ms)^## Accepted concepts\s
 $recognizedSection = [regex]::Match($worldIndexText, '(?ms)^## Recognized exploration topics\s+(?<body>.*?)(?=^## Dependency order)').Groups['body'].Value
 $worldConcepts = @{}
 $allowedConceptStates = @('recognized', 'exploring', 'proposed', 'accepted', 'superseded')
-foreach ($match in [regex]::Matches($acceptedSection, '(?m)^\| `(?<id>WG-\d{3})` \| (?<truth>.*?) \| \[(?<ownerLabel>.*?)\]\((?<ownerPath>.*?)\) \| (?<implementation>.*?) \|$')) {
+foreach ($match in [regex]::Matches($acceptedSection, '(?m)^\| `(?<id>WG-\d{3})` \| (?<truth>.*?) \| \[(?<ownerLabel>.*?)\]\((?<ownerPath>.*?)\) \| (?<implementation>.*?) \|\r?$')) {
     $ownerPath = [IO.Path]::GetFullPath((Join-Path (Split-Path -Parent $worldIndexPath) $match.Groups['ownerPath'].Value))
     $ownerRelative = Get-Relative $ownerPath
     if (-not $documentsByPath.ContainsKey($ownerRelative)) { Add-JournalError "Accepted concept '$($match.Groups['id'].Value)' has missing owner '$ownerRelative'."; $ownerId = 'missing' }
@@ -288,7 +288,7 @@ foreach ($match in [regex]::Matches($acceptedSection, '(?m)^\| `(?<id>WG-\d{3})`
         Coverage = $coverage; Implementation = $match.Groups['implementation'].Value.Trim().ToLowerInvariant().Replace(' ', '-')
     }
 }
-foreach ($match in [regex]::Matches($recognizedSection, '(?m)^\| `(?<id>WG-\d{3})` \| `(?<state>[^`]+)` \| (?<question>.*?) \| (?<owner>.*?) \|$')) {
+foreach ($match in [regex]::Matches($recognizedSection, '(?m)^\| `(?<id>WG-\d{3})` \| `(?<state>[^`]+)` \| (?<question>.*?) \| (?<owner>.*?) \|\r?$')) {
     $conceptId = $match.Groups['id'].Value
     $state = $match.Groups['state'].Value.Trim().ToLowerInvariant()
     $ownerCell = $match.Groups['owner'].Value.Trim()
@@ -481,7 +481,7 @@ else {
     $currentState = $documentsById['HANDOFF-CURRENT']
     if ($currentState.Front.last_reviewed -ne $reviewedOn -or -not $currentState.Text.Contains("**Snapshot date:** $reviewedOn")) { Add-JournalError 'HANDOFF-CURRENT review metadata disagrees with currentView.reviewedOn.' }
     $milestoneMatch = [regex]::Match($currentState.Text, '(?m)^-?\s*\*\*Immediate milestone:\*\* `(?<id>[^`]+)` — (?<name>.+)$')
-    $phaseMatch = [regex]::Match($currentState.Text, '(?m)^-?\s*\*\*Active phase:\*\* (?<phase>.+?)(?:\s+\(`[^`]+`–`[^`]+`\))?$')
+    $phaseMatch = [regex]::Match($currentState.Text, '(?m)^-?\s*\*\*Active phase:\*\* (?<phase>.+?)(?:[ \t]+\(`[^`]+`–`[^`]+`\))?\r?$')
     if (-not $milestoneMatch.Success) { Add-JournalError 'HANDOFF-CURRENT does not expose a parseable immediate milestone.' }
     elseif ($milestoneMatch.Groups['id'].Value -ne [string]$registry.currentView.milestone.id -or $milestoneMatch.Groups['name'].Value.Trim() -ne [string]$registry.currentView.milestone.name) { Add-JournalError 'Registry current milestone disagrees with HANDOFF-CURRENT.' }
     if (-not $phaseMatch.Success) { Add-JournalError 'HANDOFF-CURRENT does not expose a parseable active phase.' }
@@ -493,10 +493,12 @@ else {
 foreach ($assertion in @($registry.currentView.focus.evidence)) { Test-EvidenceAssertion $assertion $null $null 'Current focus' }
 foreach ($assertion in @($registry.currentView.milestone.evidence)) { Test-EvidenceAssertion $assertion $null $null 'Current milestone' }
 
+$runtimeBuildDirectory = [IO.Path]::GetFullPath((Join-Path $root 'target')) + [IO.Path]::DirectorySeparatorChar
 $runtimeFiles = @(
     Get-ChildItem -LiteralPath $root -Recurse -File -ErrorAction SilentlyContinue |
         Where-Object {
             $_.FullName -notmatch '[\\/]\.git[\\/]' -and
+            -not $_.FullName.StartsWith($runtimeBuildDirectory, [StringComparison]::OrdinalIgnoreCase) -and
             ($_.Name -eq 'Cargo.toml' -or $_.Extension -eq '.rs')
         }
 )
@@ -636,7 +638,7 @@ $null = $journalBuilder.AppendLine()
 foreach ($post in @($registry.historicalPosts)) {
     $postRecord = $documentsByPath[[string]$post]
     $titleMatch = [regex]::Match($postRecord.Text, '(?m)^# (?<title>.+)$')
-    $title = if ($titleMatch.Success) { $titleMatch.Groups['title'].Value } else { [IO.Path]::GetFileNameWithoutExtension([string]$post) }
+    $title = if ($titleMatch.Success) { $titleMatch.Groups['title'].Value.Trim() } else { [IO.Path]::GetFileNameWithoutExtension([string]$post) }
     $link = Get-MarkdownLink $homeDirectory ([string]$post) $title
     $null = $journalBuilder.AppendLine("- $link — snapshot $($postRecord.Front.snapshot_date)")
 }

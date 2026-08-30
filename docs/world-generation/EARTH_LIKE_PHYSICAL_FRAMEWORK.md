@@ -8,7 +8,7 @@ implementation: unresolved
 concept_state: accepted
 coverage: partial
 related: ADR-0002, WG-025
-last_reviewed: 2026-08-23
+last_reviewed: 2026-08-30
 ---
 
 # Earth-Like Physical Framework
@@ -41,12 +41,18 @@ abstraction supports it. They should not be unrelated random values.
 The current geological-prehistory layer consumes only this minimal Earth-like
 context:
 
-- **Planet radius and curvature** — establish the world's scale and curved
-  geometry for absolute position and contextual depth relationships. The exact
-  datum and coordinate representation remain open.
+- **Planetary scale and reference shape** — establish the world's curved scale
+  for physical position and contextual depth relationships. Canonical physical
+  positions use the
+  [accepted planet-fixed frame](../decisions/ARCH-DEC-001-planet-fixed-physical-reference-frame.md),
+  while derived geodetic queries use the stable
+  [Earth-like reference ellipsoid](../decisions/ARCH-DEC-002-earth-like-reference-ellipsoid.md).
+  Exact ellipsoid parameters, numeric encoding, precision, and conversion
+  behavior remain open.
 - **Surface gravity** — provide the baseline acceleration needed by pressure,
-  buoyancy, and mechanical reasoning. Whether later queries vary gravity with
-  position or depth remains open.
+  buoyancy, and mechanical reasoning. The reference ellipsoid does not define
+  detailed gravity truth; whether later queries vary gravity with position or
+  depth remains open.
 - **Broad mantle reference conditions** — only the versioned asthenospheric
   reference thermal, density, basal heat, and related conditions required by
   the lithosphere and broad-buoyancy abstractions; not mantle convection or a
@@ -59,10 +65,12 @@ context:
   hydrological, atmospheric, or ocean model.
 
 Some of these inputs may remain fixed or versioned ruleset baselines; others may
-receive bounded values from `WG-025`. Exact values, supported ranges,
-correlations, precision, and implementation types are unresolved. Standard Earth
-reference values may be used when needed, but must be identified as baselines or
-selected contract inputs rather than hidden assumptions.
+receive bounded values from `WG-025`. Whether reference-ellipsoid parameters are
+common or vary within the supported Earth-like envelope also remains open. Exact
+values, supported ranges, correlations, precision, and implementation types are
+unresolved. Standard Earth reference values may be used when needed, but must be
+identified as baselines or selected contract inputs rather than hidden
+assumptions.
 
 ## Generated physical state
 
@@ -104,9 +112,10 @@ is an implementation decision.
 
 Broad elevation follows the accepted
 [Broad Elevation and Isostatic Response](BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md)
-model. The elevation datum, asthenospheric buoyancy reference, and practical
-deep evaluation horizon have different purposes and must remain distinct. The
-deep horizon is not an additional physical planetary boundary.
+model. The reference ellipsoid, elevation or sea-level reference, asthenospheric
+buoyancy reference, and practical deep evaluation horizon have different
+purposes and must remain distinct. The deep horizon is not an additional
+physical planetary boundary.
 
 ## Scope boundary
 
@@ -117,5 +126,6 @@ Level 0 contract. This note does not define:
 - arbitrary planet types or non-Earth-like physics;
 - full atmospheric composition, solar irradiance, axial tilt, seasons, or
   climate constants;
+- a geoid or detailed gravity model;
 - hydrology, ocean circulation, soils, ecosystems, or resources;
 - continents, political territories, or human systems.

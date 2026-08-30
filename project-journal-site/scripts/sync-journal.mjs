@@ -13,7 +13,7 @@ const worldStatus = read('docs/project-journal/WORLD_GENERATION_STATUS.md');
 const openDecisions = read('docs/architecture/OPEN_DECISIONS.md');
 
 function findRustRuntimeEvidence(directory) {
-  const excluded = new Set(['.git', '.next', '.vinext', '.wrangler', 'dist', 'node_modules']);
+  const excluded = new Set(['.git', '.next', '.vinext', '.wrangler', 'dist', 'node_modules', 'target']);
   const evidence = [];
   for (const entry of readdirSync(directory, { withFileTypes: true })) {
     if (excluded.has(entry.name)) continue;

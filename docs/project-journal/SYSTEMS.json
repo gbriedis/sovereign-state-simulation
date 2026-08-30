@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "journalTitle": "Project Journal",
   "currentView": {
-    "reviewedOn": "2026-08-29",
+    "reviewedOn": "2026-08-30",
     "rootSummary": "README.md",
     "focus": {
       "label": "Natural-world foundation and the map and spatial model prototype",
@@ -36,6 +36,7 @@
   ],
   "statusProfiles": {
     "product-current": { "knowledge": "accepted", "coverage": "partial", "implementation": "not-started", "attention": "supporting" },
+    "product-partial": { "knowledge": "accepted", "coverage": "partial", "implementation": "partial", "attention": "supporting" },
     "product-later": { "knowledge": "accepted", "coverage": "partial", "implementation": "not-started", "attention": "later" },
     "natural-world-current": { "knowledge": "partially-accepted", "coverage": "partial", "implementation": "exploration", "attention": "now" },
     "world-generation-current": { "knowledge": "partially-accepted", "coverage": "partial", "implementation": "unresolved", "attention": "now" },
@@ -52,35 +53,35 @@
       "profile": "product-current",
       "knowledge": [{ "source": "VISION-001", "field": "front.status", "equals": "accepted" }],
       "coverage": [{ "source": "SYSTEMS.json", "field": "profile.coverage", "equals": "partial" }],
-      "implementation": [{ "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "No game/runtime source code or completed simulation" }],
+      "implementation": [{ "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "no spatial model, world core, simulation core, or game systems" }],
       "attention": [{ "source": "SYSTEMS.json", "field": "profile.attention", "equals": "supporting" }]
     },
     "living-nation-simulation": {
       "profile": "product-later",
       "knowledge": [{ "source": "VISION-001", "field": "front.status", "equals": "accepted" }],
       "coverage": [{ "source": "SYSTEMS.json", "field": "profile.coverage", "equals": "partial" }],
-      "implementation": [{ "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "No game/runtime source code or completed simulation" }],
+      "implementation": [{ "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "no spatial model, world core, simulation core, or game systems" }],
       "attention": [{ "source": "ROADMAP-001", "field": "body.contains", "equals": "Human civilization, settlements, politics, and economies" }]
     },
     "player-map-experience": {
       "profile": "product-current",
       "knowledge": [{ "source": "PRINCIPLES-001", "field": "front.status", "equals": "accepted" }],
       "coverage": [{ "source": "SYSTEMS.json", "field": "profile.coverage", "equals": "partial" }],
-      "implementation": [{ "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "No game/runtime source code or completed simulation" }],
+      "implementation": [{ "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "no spatial model, world core, simulation core, or game systems" }],
       "attention": [{ "source": "SYSTEMS.json", "field": "profile.attention", "equals": "supporting" }]
     },
     "persistent-multiplayer": {
       "profile": "product-later",
       "knowledge": [{ "source": "VISION-001", "field": "front.status", "equals": "accepted" }],
       "coverage": [{ "source": "SYSTEMS.json", "field": "profile.coverage", "equals": "partial" }],
-      "implementation": [{ "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "No game/runtime source code or completed simulation" }],
+      "implementation": [{ "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "no spatial model, world core, simulation core, or game systems" }],
       "attention": [{ "source": "ROADMAP-001", "field": "body.contains", "equals": "Final multiplayer architecture" }]
     },
     "optional-web3-layer": {
       "profile": "product-later",
       "knowledge": [{ "source": "VISION-001", "field": "front.status", "equals": "accepted" }],
       "coverage": [{ "source": "SYSTEMS.json", "field": "profile.coverage", "equals": "partial" }],
-      "implementation": [{ "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "No game/runtime source code or completed simulation" }],
+      "implementation": [{ "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "no spatial model, world core, simulation core, or game systems" }],
       "attention": [{ "source": "ROADMAP-001", "field": "body.contains", "equals": "Web3 mechanics" }]
     },
     "natural-world-foundation": {
@@ -147,10 +148,10 @@
       "attention": [{ "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "**Immediate milestone:** `PROTO-001` — map and spatial model prototype" }]
     },
     "runtime-architecture": {
-      "profile": "product-current",
+      "profile": "product-partial",
       "knowledge": [{ "source": "ARCH-001", "field": "front.status", "equals": "accepted" }],
       "coverage": [{ "source": "SYSTEMS.json", "field": "profile.coverage", "equals": "partial" }],
-      "implementation": [{ "source": "ARCH-001", "field": "front.implementation", "equals": "not-started" }],
+      "implementation": [{ "source": "ARCH-001", "field": "front.implementation", "equals": "partial" }],
       "attention": [{ "source": "SYSTEMS.json", "field": "profile.attention", "equals": "supporting" }]
     },
     "documentation-governance": {
@@ -200,25 +201,25 @@
     }
   },
   "decisionAssociations": {
-    "ARCH-OPEN-001": { "system": "map-and-spatial-model-prototype", "evidence": ["PROTO-001", "WG-008"] },
+    "ARCH-OPEN-001": { "system": "map-and-spatial-model-prototype", "evidence": ["PROTO-001", "ARCH-001", "ARCH-DEC-001", "ARCH-DEC-002", "WG-008"] },
     "ARCH-OPEN-002": { "system": "canonical-geological-world", "evidence": ["WG-005"] },
     "ARCH-OPEN-003": { "system": "canonical-geological-world", "evidence": ["WG-008"] },
     "ARCH-OPEN-004": { "system": "canonical-geological-world", "evidence": ["WG-007"] },
     "ARCH-OPEN-005": { "system": "geological-history-and-material", "evidence": ["WG-006"] },
     "ARCH-OPEN-006": { "system": "surface-natural-systems", "evidence": ["WG-017", "WG-018"] },
-    "ARCH-OPEN-007": { "system": "canonical-geological-world", "evidence": ["WG-009", "WG-010"] },
+    "ARCH-OPEN-007": { "system": "canonical-geological-world", "evidence": ["ARCH-DEC-001", "ARCH-DEC-002", "WG-009", "WG-010"] },
     "ARCH-OPEN-008": { "system": "broad-solid-earth-geometry", "evidence": ["WG-013", "WG-014"] },
-    "ARCH-OPEN-009": { "system": "planetary-foundation", "evidence": ["WG-001"] },
+    "ARCH-OPEN-009": { "system": "planetary-foundation", "evidence": ["ARCH-DEC-002", "WG-001"] },
     "ARCH-OPEN-010": { "system": "tectonic-evolution", "evidence": ["WG-011"] },
     "ARCH-OPEN-011": { "system": "tectonic-evolution", "evidence": ["WG-012"] },
     "ARCH-OPEN-012": { "system": "geological-history-and-material", "evidence": ["WG-002"] },
     "ARCH-OPEN-013": { "system": "geological-history-and-material", "evidence": ["WG-003"] },
     "ARCH-OPEN-014": { "system": "geological-history-and-material", "evidence": ["WG-004"] },
     "ARCH-OPEN-015": { "system": "living-nation-simulation", "evidence": ["VISION-001", "ARCH-001"] },
-    "ARCH-OPEN-016": { "system": "runtime-architecture", "evidence": ["ARCH-001", "WG-015"] },
+    "ARCH-OPEN-016": { "system": "runtime-architecture", "evidence": ["ARCH-001", "ARCH-DEC-002", "WG-015"] },
     "ARCH-OPEN-017": { "system": "persistent-multiplayer", "evidence": ["VISION-001", "ARCH-001"] },
-    "ARCH-OPEN-018": { "system": "player-map-experience", "evidence": ["PRINCIPLES-001", "ARCH-001"] },
-    "ARCH-OPEN-019": { "system": "planetary-foundation", "evidence": ["WG-025"] }
+    "ARCH-OPEN-018": { "system": "player-map-experience", "evidence": ["VISION-001", "PRINCIPLES-001", "ARCH-001", "PROTO-001"] },
+    "ARCH-OPEN-019": { "system": "planetary-foundation", "evidence": ["ARCH-DEC-002", "WG-025"] }
   },
   "relationshipAssociations": [
     {
@@ -238,6 +239,8 @@
     { "id": "ARCH-001", "path": "docs/architecture/ARCHITECTURE_OVERVIEW.md" },
     { "id": "ARCH-OPEN", "path": "docs/architecture/OPEN_DECISIONS.md" },
     { "id": "DECISION-INDEX", "path": "docs/decisions/README.md" },
+    { "id": "ARCH-DEC-001", "path": "docs/decisions/ARCH-DEC-001-planet-fixed-physical-reference-frame.md" },
+    { "id": "ARCH-DEC-002", "path": "docs/decisions/ARCH-DEC-002-earth-like-reference-ellipsoid.md" },
     { "id": "ADR-0002", "path": "docs/decisions/ADR-0002-earth-like-planetary-contract.md" },
     { "id": "DOCS-001", "path": "docs/README.md" },
     { "id": "DOCS-INDEX", "path": "docs/INDEX.md" },
@@ -269,7 +272,7 @@
     {
       "id": "state-of-consequence",
       "name": "State of Consequence",
-      "purpose": "Define the living nation simulation and the experience it must ultimately provide.",
+      "purpose": "Define a Christian-founded living nation simulation on one persistent Earth-like planet and the experience it must ultimately provide.",
       "kind": "product",
       "parent": null,
       "knowledgeState": "accepted",
@@ -285,7 +288,7 @@
     {
       "id": "living-nation-simulation",
       "name": "Living nation simulation",
-      "purpose": "Let the player govern an autonomous nation through policy, institutions, infrastructure, resources, and long-term strategy.",
+      "purpose": "Let the player govern an autonomous nation through policy, institutions, infrastructure goals, resources, relationships, and long-term strategy.",
       "kind": "product",
       "parent": "state-of-consequence",
       "knowledgeState": "accepted",
@@ -301,14 +304,14 @@
     {
       "id": "player-map-experience",
       "name": "Player map experience",
-      "purpose": "Make the map the primary place where players inspect the world and govern through contextual interactions.",
+      "purpose": "Let players govern from the nation view while navigating one continuous planet from continental to city scale with knowledge-limited foreign information.",
       "kind": "product",
       "parent": "state-of-consequence",
       "knowledgeState": "accepted",
       "coverage": "partial",
       "implementationState": "not-started",
       "attention": "supporting",
-      "authorities": ["PRINCIPLES-001", "ARCH-001"],
+      "authorities": ["VISION-001", "PRINCIPLES-001", "ARCH-001"],
       "documents": [],
       "worldGenerationConcepts": [],
       "openDecisions": ["ARCH-OPEN-018"],
@@ -320,7 +323,7 @@
     {
       "id": "persistent-multiplayer",
       "name": "Persistent multiplayer",
-      "purpose": "Connect sovereign nations without weakening the depth, autonomy, or physical grounding of each nation simulation.",
+      "purpose": "Connect changing sovereign nations on one persistent planet without weakening the depth, autonomy, or physical grounding of each nation simulation.",
       "kind": "product",
       "parent": "state-of-consequence",
       "knowledgeState": "accepted",
@@ -387,15 +390,15 @@
     {
       "id": "planetary-foundation",
       "name": "Earth-like planetary foundation",
-      "purpose": "Supply common physical rules and bounded planetary causes before geological history begins.",
+      "purpose": "Supply common physical rules, one stable Earth-like oblate reference ellipsoid per world, and bounded planetary causes before geological history begins.",
       "kind": "product",
       "parent": "world-generation",
       "knowledgeState": "accepted",
       "coverage": "partial",
       "implementationState": "unresolved",
       "attention": "supporting",
-      "authorities": ["WG-001", "WG-025", "ADR-0002"],
-      "documents": ["WG-001", "WG-025", "ADR-0002"],
+      "authorities": ["WG-001", "WG-025", "ARCH-DEC-002", "ADR-0002"],
+      "documents": ["WG-001", "WG-025", "ARCH-DEC-002", "ADR-0002"],
       "worldGenerationConcepts": ["WG-001", "WG-025"],
       "openDecisions": ["ARCH-OPEN-009", "ARCH-OPEN-019"],
       "relationships": []
@@ -489,7 +492,7 @@
     {
       "id": "map-and-spatial-model-prototype",
       "name": "Map and spatial model prototype",
-      "purpose": "Prove map interaction and provisional coordinate-to-domain-to-cell mapping without making prototype measurements world truth.",
+      "purpose": "Gather observable evidence about encoding, querying, presenting, and navigating the accepted planet-fixed physical frame from continental to city scale after a design-readiness gate.",
       "kind": "product",
       "parent": "natural-world-foundation",
       "knowledgeState": "accepted",
@@ -508,15 +511,15 @@
     {
       "id": "runtime-architecture",
       "name": "Runtime architecture",
-      "purpose": "Separate authoritative world and simulation logic from presentation, persistence products, and future networking.",
+      "purpose": "Keep curved planetary and simulation truth authoritative, persistent, and separate from derived presentation, player knowledge, and future networking.",
       "kind": "product",
       "parent": "state-of-consequence",
       "knowledgeState": "accepted",
       "coverage": "partial",
-      "implementationState": "not-started",
+      "implementationState": "partial",
       "attention": "supporting",
-      "authorities": ["ARCH-001"],
-      "documents": ["ARCH-001"],
+      "authorities": ["ARCH-001", "ARCH-DEC-001"],
+      "documents": ["ARCH-001", "ARCH-DEC-001"],
       "worldGenerationConcepts": [],
       "openDecisions": ["ARCH-OPEN-016"],
       "relationships": []

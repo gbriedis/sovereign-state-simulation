@@ -3,7 +3,7 @@ $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $PSScriptRoot
 $builder = Join-Path $PSScriptRoot 'build-project-journal.ps1'
 $checksPassed = 0
-$expectedChecks = 76
+$expectedChecks = 79
 $utf8 = [Text.UTF8Encoding]::new($false)
 
 function Invoke-Builder([string]$TestRoot) {
@@ -33,6 +33,8 @@ function New-TestRoot {
     $null = New-Item -ItemType Directory -Path $path
     Copy-Item -LiteralPath (Join-Path $root 'docs') -Destination $path -Recurse
     Copy-Item -LiteralPath (Join-Path $root 'README.md') -Destination (Join-Path $path 'README.md')
+    Copy-Item -LiteralPath (Join-Path $root 'Cargo.toml') -Destination (Join-Path $path 'Cargo.toml')
+    Copy-Item -LiteralPath (Join-Path $root 'src') -Destination (Join-Path $path 'src') -Recurse
     $null = New-Item -ItemType Directory -Path (Join-Path $path 'scripts')
     Copy-Item -LiteralPath $builder -Destination (Join-Path $path 'scripts/build-project-journal.ps1')
     Copy-Item -LiteralPath (Join-Path $root 'scripts/check-docs.ps1') -Destination (Join-Path $path 'scripts/check-docs.ps1')
@@ -234,6 +236,15 @@ Invoke-MutationCase 'recognized ownerless topic remains valid' {
     param($testRoot)
     $index = [IO.File]::ReadAllText((Join-Path $testRoot 'docs/world-generation/README.md'))
     if ($index -notmatch '\| `WG-017` \| `recognized` .* \| Not created \|') { throw 'Ownerless recognized-topic fixture is absent.' }
+} 'unused' -ExpectSuccess
+
+Invoke-MutationCase 'CRLF world index and current phase remain parseable' {
+    param($testRoot)
+    foreach ($relative in @('docs/world-generation/README.md', 'docs/operations/CURRENT_STATE.md')) {
+        $path = Join-Path $testRoot $relative
+        $text = [IO.File]::ReadAllText($path).Replace("`r`n", "`n").Replace("`n", "`r`n")
+        [IO.File]::WriteAllText($path, $text, $utf8)
+    }
 } 'unused' -ExpectSuccess
 
 Invoke-MutationCase 'shared concept owners remain valid' {
@@ -485,6 +496,19 @@ Invoke-MutationCase 'second historical post has independent metadata' {
     Set-Registry $testRoot $registry
 } 'unused' -ExpectSuccess -Rebuild
 
+Invoke-MutationCase 'CRLF historical post generates a clean title link' {
+    param($testRoot)
+    $postPath = Join-Path $testRoot 'docs/project-journal/posts/2026-08-29-WORLD_GENERATION_FOUNDATION.md'
+    $postText = [IO.File]::ReadAllText($postPath).Replace("`r`n", "`n").Replace("`n", "`r`n")
+    [IO.File]::WriteAllText($postPath, $postText, $utf8)
+    $generated = Invoke-Generator $testRoot
+    if ($generated.ExitCode -ne 0) { throw "CRLF historical-post fixture could not rebuild Markdown.`n$($generated.Output)" }
+    $generatedHomeText = [IO.File]::ReadAllText((Join-Path $testRoot 'docs/project-journal/README.md'))
+    $expectedLink = '- [World Generation Has a Foundation, Not Yet a Generator](posts/2026-08-29-WORLD_GENERATION_FOUNDATION.md) — snapshot 2026-08-29'
+    if (-not $generatedHomeText.Contains($expectedLink)) { throw 'CRLF historical-post fixture did not preserve a valid title link.' }
+    if ($generatedHomeText.Contains("`r")) { throw 'CRLF historical-post fixture emitted a bare carriage return in the generated home.' }
+} 'unused' -ExpectSuccess
+
 Invoke-SemanticStalenessCase 'system inventory impact' {
     param($testRoot)
     $registry = Get-Registry $testRoot
@@ -569,7 +593,7 @@ Invoke-SemanticStalenessCase 'system coverage-state impact' {
 Invoke-SemanticStalenessCase 'system implementation-state impact' {
     param($testRoot)
     $path = Join-Path $testRoot 'docs/architecture/ARCHITECTURE_OVERVIEW.md'
-    [IO.File]::WriteAllText($path, ([IO.File]::ReadAllText($path).Replace('implementation: not-started', 'implementation: not-investigated')), $utf8)
+    [IO.File]::WriteAllText($path, ([IO.File]::ReadAllText($path).Replace('implementation: partial', 'implementation: not-investigated')), $utf8)
     $registry = Get-Registry $testRoot
     $registry.statusProfiles | Add-Member -NotePropertyName 'runtime-investigating-test' -NotePropertyValue ([pscustomobject]@{knowledge='accepted';coverage='partial';implementation='not-investigated';attention='supporting'})
     $system = (@($registry.systems | Where-Object id -eq 'runtime-architecture'))[0]; $system.implementationState='not-investigated'
@@ -634,7 +658,7 @@ Invoke-SemanticStalenessCase 'concept coverage-value impact' {
 
 Invoke-SemanticStalenessCase 'concept implementation impact' {
     param($testRoot)
-    $path=Join-Path $testRoot 'docs/world-generation/README.md'; $text=[IO.File]::ReadAllText($path); $text=[regex]::Replace($text,'(?m)^(\| `WG-016` .*? \| )Not started( \|)$','$1Unresolved$2'); [IO.File]::WriteAllText($path,$text,$utf8)
+    $path=Join-Path $testRoot 'docs/world-generation/README.md'; $text=[IO.File]::ReadAllText($path); $text=[regex]::Replace($text,'(?m)^(\| `WG-016` .*? \| )Not started( \|)\r?$','$1Unresolved$2'); [IO.File]::WriteAllText($path,$text,$utf8)
 }
 
 Invoke-SemanticStalenessCase 'open-decision inventory impact' {
@@ -650,9 +674,9 @@ Invoke-SemanticStalenessCase 'open-decision title impact' {
 
 Invoke-SemanticStalenessCase 'current review-date impact' {
     param($testRoot)
-    $registry=Get-Registry $testRoot; $registry.currentView.reviewedOn='2026-08-30'; Set-Registry $testRoot $registry
-    $path=Join-Path $testRoot 'docs/operations/CURRENT_STATE.md'; [IO.File]::WriteAllText($path,([IO.File]::ReadAllText($path).Replace('last_reviewed: 2026-08-29','last_reviewed: 2026-08-30').Replace('**Snapshot date:** 2026-08-29','**Snapshot date:** 2026-08-30')),$utf8)
-    $path=Join-Path $testRoot 'README.md'; [IO.File]::WriteAllText($path,([IO.File]::ReadAllText($path).Replace('**Status reviewed:** 2026-08-29','**Status reviewed:** 2026-08-30')),$utf8)
+    $registry=Get-Registry $testRoot; $registry.currentView.reviewedOn='2026-08-31'; Set-Registry $testRoot $registry
+    $path=Join-Path $testRoot 'docs/operations/CURRENT_STATE.md'; [IO.File]::WriteAllText($path,([IO.File]::ReadAllText($path).Replace('last_reviewed: 2026-08-30','last_reviewed: 2026-08-31').Replace('**Snapshot date:** 2026-08-30','**Snapshot date:** 2026-08-31')),$utf8)
+    $path=Join-Path $testRoot 'README.md'; [IO.File]::WriteAllText($path,([IO.File]::ReadAllText($path).Replace('**Status reviewed:** 2026-08-30','**Status reviewed:** 2026-08-31')),$utf8)
 }
 
 Invoke-SemanticStalenessCase 'current focus impact' {
@@ -666,13 +690,20 @@ Invoke-SemanticStalenessCase 'current milestone impact' {
     param($testRoot)
     $old='**Immediate milestone:** `PROTO-001` — map and spatial model prototype'; $new='**Immediate milestone:** `ARCH-001` — architecture overview'
     $path=Join-Path $testRoot 'docs/operations/CURRENT_STATE.md'; [IO.File]::WriteAllText($path,([IO.File]::ReadAllText($path).Replace($old,$new)),$utf8)
-    $registry=Get-Registry $testRoot; $registry.currentView.milestone.id='ARCH-001'; $registry.currentView.milestone.name='architecture overview'; $registry.currentView.milestone.evidence[0].equals=$new; $registry.currentView.milestone.evidence[1].source='ARCH-001'; $registry.currentView.focus.label='Natural-world foundation and the architecture overview'; $registry.currentView.focus.evidence[1].equals=$new; $registry.systemEvidence.'map-and-spatial-model-prototype'.attention[0].equals=$new; Set-Registry $testRoot $registry
+    $registry=Get-Registry $testRoot; $registry.currentView.milestone.id='ARCH-001'; $registry.currentView.milestone.name='architecture overview'; $registry.currentView.milestone.evidence[0].equals=$new; $registry.currentView.milestone.evidence[1].source='ARCH-001'; $registry.currentView.milestone.evidence[1].equals='partial'; $registry.currentView.focus.label='Natural-world foundation and the architecture overview'; $registry.currentView.focus.evidence[1].equals=$new; $registry.systemEvidence.'map-and-spatial-model-prototype'.attention[0].equals=$new; Set-Registry $testRoot $registry
 }
 
 Invoke-SemanticStalenessCase 'runtime artifact impact' {
     param($testRoot)
-    [IO.File]::WriteAllText((Join-Path $testRoot 'Cargo.toml'),"[workspace]`nresolver = '2'`n",$utf8)
+    [IO.File]::WriteAllText((Join-Path $testRoot 'src/runtime_evidence_test.rs'),"// Temporary runtime-fingerprint fixture.`n",$utf8)
 }
+
+Invoke-MutationCase 'target build outputs are ignored as runtime evidence' {
+    param($testRoot)
+    $directory = Join-Path $testRoot 'target/debug/build/dependency/out'
+    $null = New-Item -ItemType Directory -Path $directory -Force
+    [IO.File]::WriteAllText((Join-Path $directory 'generated.rs'),"// Ignored Cargo build output.`n",$utf8)
+} 'unused' -ExpectSuccess
 
 Invoke-SemanticStalenessCase 'historical account impact' {
     param($testRoot)

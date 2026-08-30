@@ -4,8 +4,8 @@ type: project-journal
 status: accepted
 scope: Human-readable current project navigation and system overview
 authority: Derivative current view generated from SYSTEMS.json and linked authorities; owns no technical project truth
-dependency_fingerprint: 9a3b3a0d76e939a1bd0df92dd1a3d211f98895029eb5e2eb95fc75a33f4278b3
-last_reviewed: 2026-08-29
+dependency_fingerprint: 0500990f3f450b4e9d5ddba044220042df8c6e428ac5a9d58f39b20ba118bf29
+last_reviewed: 2026-08-30
 ---
 
 # Project Journal
@@ -14,13 +14,13 @@ last_reviewed: 2026-08-29
 
 **Current focus:** Natural-world foundation and the map and spatial model prototype
 
-**Semantic fingerprint:** `9a3b3a0d76e939a1bd0df92dd1a3d211f98895029eb5e2eb95fc75a33f4278b3`
+**Semantic fingerprint:** `0500990f3f450b4e9d5ddba044220042df8c6e428ac5a9d58f39b20ba118bf29`
 
 ## What needs attention now
 
 - **[Natural-world foundation](../planning/NATURAL_WORLD_FOUNDATION_ROADMAP.md):** Create the coherent pre-human physical world inherited by every later nation system.
 - **[World generation](../world-generation/README.md):** Build a causal natural history whose accumulated result becomes the playable physical world.
-- **[Map and spatial model prototype](../architecture/MAP_AND_SPATIAL_MODEL_PROTOTYPE.md):** Prove map interaction and provisional coordinate-to-domain-to-cell mapping without making prototype measurements world truth.
+- **[Map and spatial model prototype](../architecture/MAP_AND_SPATIAL_MODEL_PROTOTYPE.md):** Gather observable evidence about encoding, querying, presenting, and navigating the accepted planet-fixed physical frame from continental to city scale after a design-readiness gate.
 
 ## Project System Map
 
@@ -28,21 +28,21 @@ The four state columns answer different questions: what is known, how complete t
 
 | System | Kind | Knowledge | Coverage | Implementation | Attention | Evidence | Purpose |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [State of Consequence](../foundations/PROJECT_VISION.md) | product | accepted | partial | not-started | supporting | HANDOFF-CURRENT, SYSTEMS.json, VISION-001 | Define the living nation simulation and the experience it must ultimately provide. |
-| [Living nation simulation](../foundations/PROJECT_VISION.md) | product | accepted | partial | not-started | later | HANDOFF-CURRENT, ROADMAP-001, SYSTEMS.json, VISION-001 | Let the player govern an autonomous nation through policy, institutions, infrastructure, resources, and long-term strategy. |
-| [Player map experience](../foundations/DESIGN_PRINCIPLES.md) | product | accepted | partial | not-started | supporting | HANDOFF-CURRENT, PRINCIPLES-001, SYSTEMS.json | Make the map the primary place where players inspect the world and govern through contextual interactions. |
-| [Persistent multiplayer](../foundations/PROJECT_VISION.md) | product | accepted | partial | not-started | later | HANDOFF-CURRENT, ROADMAP-001, SYSTEMS.json, VISION-001 | Connect sovereign nations without weakening the depth, autonomy, or physical grounding of each nation simulation. |
+| [State of Consequence](../foundations/PROJECT_VISION.md) | product | accepted | partial | not-started | supporting | HANDOFF-CURRENT, SYSTEMS.json, VISION-001 | Define a Christian-founded living nation simulation on one persistent Earth-like planet and the experience it must ultimately provide. |
+| [Living nation simulation](../foundations/PROJECT_VISION.md) | product | accepted | partial | not-started | later | HANDOFF-CURRENT, ROADMAP-001, SYSTEMS.json, VISION-001 | Let the player govern an autonomous nation through policy, institutions, infrastructure goals, resources, relationships, and long-term strategy. |
+| [Player map experience](../foundations/PROJECT_VISION.md) | product | accepted | partial | not-started | supporting | HANDOFF-CURRENT, PRINCIPLES-001, SYSTEMS.json | Let players govern from the nation view while navigating one continuous planet from continental to city scale with knowledge-limited foreign information. |
+| [Persistent multiplayer](../foundations/PROJECT_VISION.md) | product | accepted | partial | not-started | later | HANDOFF-CURRENT, ROADMAP-001, SYSTEMS.json, VISION-001 | Connect changing sovereign nations on one persistent planet without weakening the depth, autonomy, or physical grounding of each nation simulation. |
 | [Optional Web3 layer](../foundations/PROJECT_VISION.md) | product | accepted | partial | not-started | later | HANDOFF-CURRENT, ROADMAP-001, SYSTEMS.json, VISION-001 | Preserve a possible future economic or ownership layer without allowing it to dictate the core simulation. |
 | [Natural-world foundation](../planning/NATURAL_WORLD_FOUNDATION_ROADMAP.md) | product | partially-accepted | partial | exploration | now | HANDOFF-CURRENT, ROADMAP-001, WG-INDEX | Create the coherent pre-human physical world inherited by every later nation system. |
 | [World generation](../world-generation/README.md) | product | partially-accepted | partial | unresolved | now | HANDOFF-CURRENT, WG-INDEX | Build a causal natural history whose accumulated result becomes the playable physical world. |
-| [Earth-like planetary foundation](../world-generation/EARTH_LIKE_PHYSICAL_FRAMEWORK.md) | product | accepted | partial | unresolved | supporting | SYSTEMS.json, WG-INDEX | Supply common physical rules and bounded planetary causes before geological history begins. |
+| [Earth-like planetary foundation](../world-generation/EARTH_LIKE_PHYSICAL_FRAMEWORK.md) | product | accepted | partial | unresolved | supporting | SYSTEMS.json, WG-INDEX | Supply common physical rules, one stable Earth-like oblate reference ellipsoid per world, and bounded planetary causes before geological history begins. |
 | [Geological history and material](../world-generation/GEOLOGICAL_PREHISTORY.md) | product | accepted | partial | unresolved | supporting | SYSTEMS.json, WG-INDEX | Represent inherited geological events, material composition, material state, and geometry-changing operations. |
 | [Canonical geological world](../world-generation/SPARSE_3D_GEOLOGICAL_WORLD.md) | product | accepted | partial | unresolved | supporting | SYSTEMS.json, WG-INDEX | Preserve sparse three-dimensional present truth, contextual physical state, deterministic refinement, and computational locality. |
 | [Tectonic evolution](../world-generation/TECTONIC_PLATES.md) | product | accepted | partial | unresolved | supporting | SYSTEMS.json, WG-INDEX | Turn plate motion and interactions into persistent tectonic structures and geological provinces. |
 | [Broad solid-Earth geometry](../world-generation/BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md) | product | accepted | partial | unresolved | supporting | SYSTEMS.json, WG-INDEX | Derive broad physical geometry and semantic ground or seafloor queries from inherited geology, buoyancy, loads, and response. |
 | [Surface natural systems](../world-generation/README.md) | product | recognized | exploratory | not-investigated | unassigned | SYSTEMS.json, WG-INDEX | Explore how surface processes, water, climate, soils, ecosystems, resources, hazards, and engineering properties emerge from inherited physical causes. |
-| [Map and spatial model prototype](../architecture/MAP_AND_SPATIAL_MODEL_PROTOTYPE.md) | product | accepted | complete-at-scope | not-started | now | HANDOFF-CURRENT, PROTO-001, SYSTEMS.json | Prove map interaction and provisional coordinate-to-domain-to-cell mapping without making prototype measurements world truth. |
-| [Runtime architecture](../architecture/ARCHITECTURE_OVERVIEW.md) | product | accepted | partial | not-started | supporting | ARCH-001, SYSTEMS.json | Separate authoritative world and simulation logic from presentation, persistence products, and future networking. |
+| [Map and spatial model prototype](../architecture/MAP_AND_SPATIAL_MODEL_PROTOTYPE.md) | product | accepted | complete-at-scope | not-started | now | HANDOFF-CURRENT, PROTO-001, SYSTEMS.json | Gather observable evidence about encoding, querying, presenting, and navigating the accepted planet-fixed physical frame from continental to city scale after a design-readiness gate. |
+| [Runtime architecture](../architecture/ARCHITECTURE_OVERVIEW.md) | product | accepted | partial | partial | supporting | ARCH-001, SYSTEMS.json | Keep curved planetary and simulation truth authoritative, persistent, and separate from derived presentation, player knowledge, and future networking. |
 | [Documentation governance](../README.md) | support | operational | complete-at-scope | operational | supporting | DOCS-001, SYSTEMS.json | Keep project truth findable, consistently named, uniquely owned, and correctly routed. |
 | [Project Journal and System Map](../README.md) | support | operational | complete-at-scope | operational | supporting | DOCS-001, project-journal-site/scripts/sync-journal.mjs, scripts/build-project-journal.ps1, SYSTEMS.json | Translate current repository authority into a readable project overview while keeping dated explanations as history. |
 | [Knowledge delivery](../governance/workflows/KNOWLEDGE_WORKFLOW.md) | support | operational | complete-at-scope | operational | supporting | DOCS-WORKFLOW, SYSTEMS.json | Turn incomplete direction into bounded, reviewed, resumable documentation outcomes. |

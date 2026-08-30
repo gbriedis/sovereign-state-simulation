@@ -4,7 +4,7 @@ type: decision-record-index
 status: accepted
 scope: Accepted architecture and world-generation change records
 authority: Owns the durable decision-record process and index
-last_reviewed: 2026-08-23
+last_reviewed: 2026-08-30
 ---
 
 # Decision Records
@@ -18,7 +18,7 @@ Create a decision record when resolving an `ARCH-OPEN-*` or future `WG-OPEN-*`
 packet, reversing accepted truth, or preserving rationale and consequences that
 do not belong in a specification.
 
-Use `ARCH-DEC-*` for software and cross-cutting implementation decisions. Use
+Use `ARCH-DEC-*` for software and cross-cutting architecture decisions. Use
 `WG-DEC-*` for changes to accepted world-generation truth.
 Existing imported records retain their stable IDs when integration would
 otherwise erase durable decision identity. `ADR-0002` is one such imported
@@ -72,4 +72,6 @@ placeholder relationship.
 
 | ID | Decision | Resolves |
 | --- | --- | --- |
+| [`ARCH-DEC-002`](ARCH-DEC-002-earth-like-reference-ellipsoid.md) | Adopt an Earth-like reference ellipsoid | Selects the stable oblate mathematical reference shape within `ARCH-OPEN-001`, `ARCH-OPEN-007`, `ARCH-OPEN-009`, and `ARCH-OPEN-019`; parameter and implementation questions remain open |
+| [`ARCH-DEC-001`](ARCH-DEC-001-planet-fixed-physical-reference-frame.md) | Adopt a planet-fixed physical reference frame | Selects the conceptual frame within `ARCH-OPEN-001` and `ARCH-OPEN-007`; both packets remain open for implementation choices |
 | [`ADR-0002`](ADR-0002-earth-like-planetary-contract.md) | Adopt an Earth-like planetary contract | Establishes `WG-025` and refines `WG-001` |

@@ -4,19 +4,22 @@ type: operational-handoff
 status: accepted
 scope: Current repository state, immediate milestone, blockers, and next actions
 authority: Owns current operational facts only; it does not own product or technical decisions
-last_reviewed: 2026-08-29
+last_reviewed: 2026-08-30
 ---
 
 # Current State
 
-- **Snapshot date:** 2026-08-29
+- **Snapshot date:** 2026-08-30
 - **Active phase:** Natural-world foundation (`0.0.1`–`0.1.0`)
 - **Immediate milestone:** `PROTO-001` — map and spatial model prototype
-- **Implementation state:** No game/runtime source code or completed simulation
-  implementation is present in this workspace
+- **Implementation state:** A Cargo workspace and minimal Bevy application shell
+  are present; no spatial model, world core, simulation core, or game systems
+  are implemented
 - **Documentation state:** Governance, source-of-truth routing, and a generated
   Project Journal and System Map are established; a top-level derivative browser
-  view is available; world-generation implementation choices remain open
+  view is available; the conceptual planet-fixed physical reference frame and
+  its stable Earth-like oblate reference ellipsoid are accepted while exact
+  parameters, conversions, and numeric and spatial implementation remain open
 - **Exploration state:** Early and intentionally incomplete; accepted concepts
   cover only the physical topics explored so far
 
@@ -38,20 +41,29 @@ for those documents.
 
 ## Immediate work
 
-1. Create a Rust workspace with presentation-independent world/simulation code
-   and a Bevy application boundary.
-2. Define versioned prototype seed inputs and provisional coordinate,
-   spatial-domain, and sampling-cell identifiers.
-3. Implement and test coordinate-to-domain-to-cell mapping.
-4. Build seeded landmass rendering and map camera controls.
-5. Measure the provisional spatial choices without promoting them to final
-   world-generation decisions.
+1. Complete the `PROTO-001` design-readiness packet before spatial code.
+2. Compare numeric encodings within the accepted planet-fixed frame and
+   alternatives for reference-ellipsoid parameter handling, geodetic
+   conversions, projection, pole, seam, globe/map, multiscale, spatial-domain,
+   index, and sampling without selecting implementation architecture.
+3. Define deterministic fixtures, observable success and failure conditions,
+   and the requirement-derived acceptance evidence for the prototype.
+4. Only after the readiness gate passes, extend the Bevy shell with the smallest
+   presentation harness and presentation-independent fixture needed by the
+   experiment.
+5. Use the prototype evidence in a later governed architecture decision; do not
+   treat an experiment as acceptance.
 
 ## Active blockers
 
-No external blocker is documented. Several implementation choices are unresolved
-and must be handled through the open-decision process before they become durable
-architecture.
+No external blocker is documented. Exact reference-ellipsoid parameters,
+geodetic conversions, numeric representation, derived presentation, and
+navigation choices remain unresolved and must be handled through the
+open-decision process before they become durable architecture.
+`VISION-001` also records the exact
+Product Owner clarification required before Web3 could supersede its accepted
+optional-later boundary; that clarification does not block the current natural-
+world milestone.
 
 ## Handoff maintenance
 

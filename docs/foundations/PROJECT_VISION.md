@@ -4,7 +4,7 @@ type: product-vision
 status: accepted
 scope: Enduring player fantasy, player role, and long-term product direction
 authority: Owns what the game is and the experience it must ultimately provide
-last_reviewed: 2026-08-22
+last_reviewed: 2026-08-30
 ---
 
 # Project Vision
@@ -16,6 +16,10 @@ political decisions, institutions, infrastructure, and long-term strategy.
 
 The nation is a living system, not a city-builder in which every person, company,
 or building obeys the player directly.
+
+The complete [Christian design foundation](DESIGN_PRINCIPLES.md#christian-design-foundation)
+governs how this fantasy is interpreted. This vision applies that foundation to
+the intended product experience rather than restating it.
 
 ## The player's role
 
@@ -63,6 +67,54 @@ For example, a country might move from exporting logs to engineered timber,
 machinery, and software; reduce energy-import dependence; and expand a small rail
 network into a national system. Those outcomes are the progression.
 
+## Persistent planetary experience
+
+Each multiplayer server has one persistent, procedurally generated Earth-like
+planet. Each player governs one nation on that shared planet rather than the
+planet as a whole. A rough planning expectation is approximately 150–300 player
+nations per server; this range is illustrative and is not a hard capacity or
+allocation limit.
+
+Nations may expand, contract, divide, cooperate, fight, and otherwise change
+through history. Borders and ownership may change without replacing the
+underlying world. The planet and its geography continue to exist independently
+of whether any player can inspect a place in detail.
+
+## Player view and knowledge
+
+The normal player view is the nation. The player should be able to zoom outward
+to at least continental context and inward to approximately city scale while
+retaining a clear sense of location. Building-level inspection is not presently
+required.
+
+Foreign regions remain geographically present and partially visible while the
+information available about them is limited by the player's knowledge.
+Diplomacy, embassies, alliances, trade, intelligence, and other relationships
+may provide meaningful additional information, including information about
+foreign capitals. Limited knowledge represents a ruler's informational limits;
+it must not imply that unobserved geography does not exist.
+
+The experience should present one continuous Earth-like planetary world whose
+physical measurements and constraints remain meaningful from continental to
+city scale. The architecture authority owns the distinction between curved
+planetary truth and any derived map presentation; exact navigation and
+presentation mechanics remain open.
+
+## Infrastructure as governing direction
+
+The playable world begins with inherited human geography. Settlements, paths,
+roads, crossings, ports, trade relationships, and established routes should
+reflect geography and prior history rather than begin as an empty construction
+surface. A starting date near the year 1600 is an illustrative possibility, not
+an accepted playable-era date.
+
+Players should guide infrastructure goals and corridors rather than paint every
+meter manually. A ruler might request a connection between a city and a port,
+then compare alternatives shaped by distance, slope, drainage, river crossings,
+soil, existing routes, settlements, labor, cost, and strategic value. Shortest
+distance must not automatically mean lowest cost or best route. The route
+selection algorithm, interface, and exact playable-era date remain unresolved.
+
 ## Long-term product direction
 
 The eventual game is a persistent sovereign-state MMO in which every player
@@ -72,3 +124,11 @@ grounding of each country.
 
 Web3 may later provide an optional economic or ownership layer. It is not the
 foundation of the simulation and is not required for the current phase.
+
+The description of the project as a "Web3 game" does not by itself supersede
+that accepted boundary. Supersession requires the Product Owner to answer this
+question explicitly: **Should `VISION-001` make Web3 a required part of the
+game's core product and current development path, rather than an optional later
+economic or ownership layer that does not govern the simulation?** Until that
+answer is explicitly yes and its product consequences are recorded, the
+optional-later boundary remains accepted.

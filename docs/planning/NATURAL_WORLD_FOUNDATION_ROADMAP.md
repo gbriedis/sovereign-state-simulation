@@ -5,7 +5,7 @@ status: accepted
 scope: Phase intent and completion direction for the natural-world foundation
 authority: Owns phase intent, present non-goals, immediate milestone, and the evolving definition of complete
 implementation: exploration
-last_reviewed: 2026-08-23
+last_reviewed: 2026-08-30
 ---
 
 # Natural-World Foundation Roadmap
@@ -79,5 +79,13 @@ current boundary, not a claim that they can never enter the wider product.
 
 ## Immediate milestone
 
-Implement [PROTO-001: Map and Spatial Model Prototype](../architecture/MAP_AND_SPATIAL_MODEL_PROTOTYPE.md)
-without treating its provisional spatial dimensions as world ontology.
+Complete the design-readiness outcome in
+[PROTO-001: Map and Spatial Model Prototype](../architecture/MAP_AND_SPATIAL_MODEL_PROTOTYPE.md),
+then run only the bounded experiment justified by that evidence plan. Spatial
+code must wait until the alternative comparison, observable tests, failure
+conditions, and unresolved decisions are explicit. The milestone gathers
+evidence about encoding, querying, presenting, and navigating the accepted
+planet-fixed physical frame and stable Earth-like reference ellipsoid across
+scales; it does not select exact ellipsoid parameters, geodetic conversions,
+numeric or spatial implementation, or treat any prototype scale as world
+ontology.

@@ -8,7 +8,7 @@ implementation: unresolved
 concept_state: accepted
 coverage: partial
 related: ADR-0002, WG-001
-last_reviewed: 2026-08-23
+last_reviewed: 2026-08-30
 ---
 
 # Earth-Like Planetary Contract
@@ -117,6 +117,12 @@ water behavior, erosion, climate, and life, but Level 0 does not generate those
 consequences. Supported variation remains bounded and Earth-like; exact ranges
 and whether some quantities remain fixed are open.
 
+Each generated world also inherits one stable
+[Earth-like reference ellipsoid](../decisions/ARCH-DEC-002-earth-like-reference-ellipsoid.md)
+for derived geodetic queries. Whether its exact parameters are common ruleset
+values or bounded per-world contract inputs remains open, but the definition
+used by one world must remain stable for that world's lifetime.
+
 ## Water and volatile inventories
 
 > **Water inventory is a cause, not a requested ocean-coverage percentage.**
@@ -169,6 +175,8 @@ Level 0 supplies only:
 
 - incoming stellar-energy boundary context;
 - bounded planetary physical parameters;
+- the stable reference-ellipsoid definition inherited by the world, whether
+  later supplied by the common ruleset or the selected contract;
 - water inventory;
 - volatile inventory and atmospheric potential;
 - the selected Earth-like variance profile.

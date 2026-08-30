@@ -4,7 +4,7 @@ type: document-index
 status: accepted
 scope: Active repository documents
 authority: Owns the inventory and routing of active project documentation
-last_reviewed: 2026-08-29
+last_reviewed: 2026-08-30
 ---
 
 # Document Index
@@ -17,8 +17,8 @@ history.
 
 | ID | Document | Owns |
 | --- | --- | --- |
-| `VISION-001` | [Project Vision](foundations/PROJECT_VISION.md) | Enduring player fantasy and product direction |
-| `PRINCIPLES-001` | [Design Principles](foundations/DESIGN_PRINCIPLES.md) | Governing product and technical principles |
+| `VISION-001` | [Project Vision](foundations/PROJECT_VISION.md) | Enduring player fantasy, persistent planetary experience, and product direction |
+| `PRINCIPLES-001` | [Design Principles](foundations/DESIGN_PRINCIPLES.md) | Christian design foundation and governing product and technical principles |
 | `DOCS-GLOSSARY` | [Glossary](foundations/GLOSSARY.md) | Canonical meaning of shared terms |
 
 ## Brand
@@ -32,7 +32,7 @@ history.
 | ID | Document | Owns |
 | --- | --- | --- |
 | `ROADMAP-001` | [Natural-World Foundation Roadmap](planning/NATURAL_WORLD_FOUNDATION_ROADMAP.md) | Current phase scope and definition of complete |
-| `PROTO-001` | [Map and Spatial Model Prototype](architecture/MAP_AND_SPATIAL_MODEL_PROTOTYPE.md) | First implementation milestone and success criteria |
+| `PROTO-001` | [Map and Spatial Model Prototype](architecture/MAP_AND_SPATIAL_MODEL_PROTOTYPE.md) | Spatial learning objective, design-readiness gate, experiment, and success or failure criteria |
 
 ## Operational state
 
@@ -59,9 +59,11 @@ same change whenever a listed Journal-impact field changes.
 
 | ID | Document | Owns |
 | --- | --- | --- |
-| `ARCH-001` | [Architecture Overview](architecture/ARCHITECTURE_OVERVIEW.md) | Accepted software and authority boundaries |
+| `ARCH-001` | [Architecture Overview](architecture/ARCHITECTURE_OVERVIEW.md) | Accepted software, planetary spatial, persistence, and authority boundaries |
 | `ARCH-OPEN` | [Open Architecture Decisions](architecture/OPEN_DECISIONS.md) | Unresolved technical choices |
 | `DECISION-INDEX` | [Decision Records](decisions/README.md) | Durable architecture and world-generation change records |
+| `ARCH-DEC-001` | [Adopt a Planet-Fixed Physical Reference Frame](decisions/ARCH-DEC-001-planet-fixed-physical-reference-frame.md) | Canonical physical reference frame and derived spatial-representation boundary |
+| `ARCH-DEC-002` | [Adopt an Earth-Like Reference Ellipsoid](decisions/ARCH-DEC-002-earth-like-reference-ellipsoid.md) | Stable oblate mathematical reference shape and its boundary from physical and gravity surfaces |
 | `ADR-0002` | [Adopt an Earth-like Planetary Contract](decisions/ADR-0002-earth-like-planetary-contract.md) | Accepted Level 0 product boundary for bounded Earth-like planetary causes |
 
 ## World generation

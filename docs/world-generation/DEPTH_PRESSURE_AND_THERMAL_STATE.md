@@ -7,30 +7,38 @@ authority: Owns position, depth, lithostatic pressure, pore-fluid pressure separ
 implementation: unresolved
 concept_state: accepted
 coverage: partial
-last_reviewed: 2026-08-22
+last_reviewed: 2026-08-30
 ---
 
 # Depth, Pressure, and Thermal State
 
 ## Position before depth
 
-> **Canonical geometry uses absolute physical position/elevation relative to a
-> planetary datum. Depth is a derived contextual measurement.**
+> **Canonical geometry uses physical position in the accepted planet-fixed
+> frame. Elevation and depth are derived contextual measurements.**
 
-An absolute coordinate such as `z = -2000 m` does not inherently mean
-`depth = 2000 m`, because the local surface varies. Useful measurements include:
+A canonical physical position does not inherently state its elevation above a
+chosen datum or its depth below a local surface. Useful queries include:
 
-- absolute elevation or radial position;
+- geodetic latitude, longitude, and reference height against the accepted
+  Earth-like oblate reference ellipsoid;
+- elevation against a declared datum or reference surface;
 - depth below the local ground surface;
 - depth below sea level or another chosen datum.
 
 ```text
-absolute elevation: +800 m
+elevation above declared datum: +800 m
 depth below local surface: 1200 m
 ```
 
-These describe different relationships. The final planetary coordinate system
-and datum definition remain unresolved.
+These describe different relationships. The complete conceptual frame choice is
+owned by [ARCH-DEC-001](../decisions/ARCH-DEC-001-planet-fixed-physical-reference-frame.md),
+and [ARCH-DEC-002](../decisions/ARCH-DEC-002-earth-like-reference-ellipsoid.md)
+owns the stable mathematical shape used by geodetic queries. That ellipsoid is
+not ground, seafloor, actual water, sea level, a gravity reference, a future
+geoid, or detailed gravity truth. Numeric encoding, precision, serialization,
+geodetic conversions, geoid representation, gravity behavior, and exact
+transformations to other derived queries remain unresolved.
 
 The local physical ground or seafloor is queried from the semantic upper
 boundary of the canonical ground-material domain, not from an independently
@@ -544,7 +552,7 @@ open.
 ## Preferred causal chain
 
 ```text
-ABSOLUTE POSITION / DATUM
+PLANET-FIXED PHYSICAL POSITION
         ↓
 present 3D geometry
 

@@ -4,10 +4,32 @@ type: design-principles
 status: accepted
 scope: Governing product and technical design rules
 authority: Owns the principles used to evaluate product, simulation, and architecture choices
-last_reviewed: 2026-08-22
+last_reviewed: 2026-08-30
 ---
 
 # Design Principles
+
+## Christian design foundation
+
+*State of Consequence* has a Christian design foundation. The game should seek
+to honor God by treating creation as an ordered reality with causes,
+relationships, limits, and consequences rather than as disconnected material
+for arbitrary mechanics. Creation exists independently of the player, and
+natural systems precede and constrain human systems.
+
+This foundation does not require infinite simulation detail, and Scripture must
+not be treated as a numerical physics manual. Abstraction is necessary, but it
+should preserve the relationships that matter to governing a nation. Systems
+should arise from meaningful causes wherever the intended experience depends on
+those causes.
+
+The player is a limited human ruler within creation, not an omniscient creator
+standing outside it. Governing should substantially concern cultivation,
+stewardship, peaceful development, cooperation, institutions, and living within
+natural limits. War belongs in the world, but it should not become the primary
+source of enjoyment or the standard answer to national development.
+
+The principles below apply this foundation to product and technical choices.
 
 ## Reality-first systems
 

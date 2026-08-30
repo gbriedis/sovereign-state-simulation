@@ -5,7 +5,7 @@ status: accepted
 scope: Natural-world generation concepts and their authoritative owners
 authority: Owns world-generation concept IDs, concise truth statements, dependencies, and document routing
 coverage: partial
-last_reviewed: 2026-08-23
+last_reviewed: 2026-08-30
 ---
 
 # World-Generation Source of Truth
@@ -36,7 +36,7 @@ explore, propose, accept, revise, or retire ideas.
 
 | ID | Accepted truth | Detailed owner | Implementation |
 | --- | --- | --- | --- |
-| `WG-001` | Compatible worlds share one versioned Earth-like physical ruleset and geological reference framework rather than randomized physical laws. | [Earth-Like Physical Framework](EARTH_LIKE_PHYSICAL_FRAMEWORK.md) | Unresolved |
+| `WG-001` | Compatible worlds share one versioned Earth-like physical ruleset and geological reference framework; canonical positions use the accepted planet-fixed frame, and derived geodetic queries use one stable Earth-like oblate reference ellipsoid per world. | [Earth-Like Physical Framework](EARTH_LIKE_PHYSICAL_FRAMEWORK.md) | Unresolved |
 | `WG-002` | World generation creates a geological prehistory; the playable physical world is the accumulated result of that history. | [Geological Prehistory](GEOLOGICAL_PREHISTORY.md) | Unresolved |
 | `WG-003` | Geological material preserves compact bulk composition and separate trace inventory; minerals and named rocks are derived where practical. | [Geological Material Composition](GEOLOGICAL_MATERIAL_COMPOSITION.md) | Unresolved |
 | `WG-004` | Geological material is described through composition and history, coexisting solid/melt/fluid fractions, and structural state—not mutually exclusive rock, magma, sediment, and fluid types. | [Geological Material State](GEOLOGICAL_MATERIAL_STATE.md) | Unresolved |
@@ -44,7 +44,7 @@ explore, propose, accept, revise, or retire ideas.
 | `WG-006` | Geological events modify inherited 3D state through composable geometry operators while preserving chronology and cross-cutting relationships. | [Geological Geometry Operators](GEOLOGICAL_GEOMETRY_OPERATORS.md) | Unresolved |
 | `WG-007` | Ordinary queries use canonical present state; compact provenance and constrained unresolved detail support explanation and deterministic refinement. | [Canonical Geological State and Refinement](CANONICAL_GEOLOGICAL_STATE_AND_REFINEMENT.md) | Unresolved |
 | `WG-008` | Geological identity, computational spatial domains, and system-specific sampling cells are separate concepts; partition boundaries must not create geological boundaries. | [Adaptive Spatial Partitioning](ADAPTIVE_SPATIAL_PARTITIONING.md) | Unresolved |
-| `WG-009` | Canonical geometry uses absolute position; depth is contextual, lithostatic pressure follows actual overburden, and pore-fluid pressure remains separate. | [Depth, Pressure, and Thermal State](DEPTH_PRESSURE_AND_THERMAL_STATE.md) | Unresolved |
+| `WG-009` | Canonical geometry uses planet-fixed physical position; latitude, longitude, height, elevation, and depth are derived queries, lithostatic pressure follows actual overburden, and pore-fluid pressure remains separate. | [Depth, Pressure, and Thermal State](DEPTH_PRESSURE_AND_THERMAL_STATE.md) | Unresolved |
 | `WG-010` | Temperature is canonical history-bearing spatial state when present geometry and compact provenance cannot recover the promised future query truth; geothermal gradient is derived. | [Depth, Pressure, and Thermal State](DEPTH_PRESSURE_AND_THERMAL_STATE.md) | Unresolved |
 | `WG-011` | Tectonic plates are the earliest useful evolving lithospheric abstraction; their properties and relative motion supply causes for later geology. | [Tectonic Plates](TECTONIC_PLATES.md) | Unresolved |
 | `WG-012` | Boundary-relative motion produces tectonic interactions, persistent structures, and geological provinces—not final terrain. | [Tectonic Structures and Geological Provinces](TECTONIC_STRUCTURES_AND_PROVINCES.md) | Unresolved |

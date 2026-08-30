@@ -7,7 +7,7 @@ authority: Owns the sparse three-dimensional geological truth model and its sepa
 implementation: unresolved
 concept_state: accepted
 coverage: partial
-last_reviewed: 2026-08-22
+last_reviewed: 2026-08-30
 ---
 
 # Sparse 3D Geological World
@@ -23,10 +23,15 @@ does not need a uniform planet-sized voxel grid to preserve this distinction.
 The intended abstraction is sparse geological structure composed from surfaces
 and bounded bodies or volumes where geological history requires them.
 
-Canonical geometry uses absolute physical position or elevation relative to a
-planetary datum. Depth below local ground or another surface is a contextual
-query derived from that geometry, not the stored meaning of one coordinate.
-Datum and coordinate choices remain open; see
+Canonical geometry uses physical position in the
+[accepted planet-fixed frame](../decisions/ARCH-DEC-001-planet-fixed-physical-reference-frame.md).
+Geodetic latitude, longitude, and reference height derive against the stable
+[Earth-like reference ellipsoid](../decisions/ARCH-DEC-002-earth-like-reference-ellipsoid.md).
+The ellipsoid is not physical ground or seafloor. Elevation and depth below
+local ground, sea level, or another explicit reference surface are contextual
+queries derived from canonical geometry, not the stored meaning of one
+coordinate. Numeric encoding, precision, and exact query transformations remain
+open; see
 [Depth, Pressure, and Thermal State](DEPTH_PRESSURE_AND_THERMAL_STATE.md).
 
 The physical ground or seafloor is queried from the upper boundary of the
@@ -120,7 +125,8 @@ input or constraint for controlled refinement.
 
 This note does not define:
 
-- final surface, volume, topology, coordinate, precision, or indexing models;
+- final surface, volume, topology, numeric encoding, precision, or indexing
+  models;
 - a voxel simulation, final meshes, renderer, network protocol, or database;
 - geological-event, erosion, sedimentation, or other process algorithms;
 - mining, drilling, tunnels, geothermal systems, or groundwater;

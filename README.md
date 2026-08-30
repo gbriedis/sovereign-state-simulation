@@ -23,7 +23,7 @@ natural world that later political, economic, and social systems must respect.
 | Understand the current development phase | [Natural-world foundation roadmap](docs/planning/NATURAL_WORLD_FOUNDATION_ROADMAP.md) |
 | Understand the technical structure | [Architecture overview](docs/architecture/ARCHITECTURE_OVERVIEW.md) |
 | Enter the world-generation knowledge system | [World-generation source of truth](docs/world-generation/README.md) |
-| Build the first proof of concept | [Map and spatial model prototype](docs/architecture/MAP_AND_SPATIAL_MODEL_PROTOTYPE.md) |
+| Prepare and test the first spatial proof | [Map and spatial model prototype](docs/architecture/MAP_AND_SPATIAL_MODEL_PROTOTYPE.md) |
 | See unresolved technical choices | [Open decisions](docs/architecture/OPEN_DECISIONS.md) |
 | Catch up before continuing work | [Current state](docs/operations/CURRENT_STATE.md) |
 
@@ -36,12 +36,12 @@ source of truth.
 - **Phase:** Natural-world foundation (`0.0.1`–`0.1.0`)
 - **Architecture boundaries:** Cross-cutting boundaries are accepted
 - **Implementation choices:** Unresolved where listed in Open Decisions
-- **Implementation:** Not started
+- **Implementation:** Minimal Bevy application shell present; spatial and simulation work not started
 - **Immediate target:** `PROTO-001` — map and spatial model prototype
-- **Runtime evidence:** No Rust source or Cargo workspace is present
+- **Runtime evidence:** Cargo workspace and Rust source initialize a Bevy window
 - **Project overview:** Generated and validated by the [Project Journal](docs/project-journal/README.md)
 - **Browser view:** The top-level [`project-journal-site/`](project-journal-site/) presents the same derivative Journal data and owns no technical truth
-- **Status reviewed:** 2026-08-29
+- **Status reviewed:** 2026-08-30
 
 ## Long-term direction
 

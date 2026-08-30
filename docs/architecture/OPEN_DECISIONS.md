@@ -4,7 +4,7 @@ type: open-decision-register
 status: accepted
 scope: Unresolved architecture and world-generation implementation choices
 authority: Owns the inventory of unresolved technical choices; listed options are not accepted design
-last_reviewed: 2026-08-23
+last_reviewed: 2026-08-30
 ---
 
 # Open Architecture Decisions
@@ -18,11 +18,29 @@ authoritative specification, and remove the resolved questions from this file.
 
 ### ARCH-OPEN-001 — Spatial foundations
 
-- System-specific cell and sampling scales
-- Spatial-domain dimensions and whether they are independent of sampling
-  resolution
-- Coordinate system and world projection
-- Representation and simulation cadence at each level of detail
+- Numeric encoding, precision, serialization, and stable identifier strategy for
+  positions in the accepted planet-fixed physical reference frame
+- Numeric types, precision, serialization, and version identifiers for the
+  accepted reference-ellipsoid parameters
+- How the agreed prime-meridian direction is established, identified, and
+  versioned for each generated planet
+- Exact conversion algorithms and error bounds from canonical physical position
+  to geodetic latitude, longitude, reference height, and other derived planetary
+  queries against the accepted ellipsoid
+- Derived flattened projection or projections and round-trip mapping to
+  authoritative planetary position
+- Globe, flattened map, or combined presentation at each player scale
+- Physical and navigational behavior at both poles
+- East-west continuity, projection seams, and transitions between views or
+  levels of detail
+- Representation and simulation cadence from continental to city scale
+- Spatial-domain hierarchy, dimensions, indexing approach, and relationship to
+  level of detail
+- System-specific sampling grids, cells, scales, and relationship to spatial
+  domains
+- Surface and subsurface position, refinement, and query relationships
+- Measurements, fixtures, acceptance bounds, and prototype evidence required to
+  resolve any of these choices
 
 ### ARCH-OPEN-002 — Sparse 3D geological representation
 
@@ -31,7 +49,8 @@ authoritative specification, and remove the resolved questions from this file.
 - Fault displacement and the cutting, overlap, nesting, truncation, burial,
   intrusion, and erosion of inherited geometry
 - Three-dimensional spatial indexing and cross-section or volume-query models
-- Coordinate system, precision, and depth representation for subsurface truth
+- Numeric encoding, precision, and derived depth-query representation for
+  subsurface truth in the accepted planet-fixed physical reference frame
 - Relationship between system-specific surface sampling grids and subsurface
   structure
 
@@ -102,11 +121,20 @@ authoritative specification, and remove the resolved questions from this file.
 
 ### ARCH-OPEN-007 — Position, pressure, and thermal state
 
-- Exact planetary datum and elevation reference
-- Absolute coordinate representation at depth
+- Numeric encoding, precision, and serialization of positions in the accepted
+  planet-fixed physical reference frame
+- Exact reference surfaces and policies for elevation, geodetic reference
+  height, geoid-related height, and depth queries
+- Transformation and query behavior among canonical physical position,
+  geodetic latitude/longitude/reference height, local positions, ground, sea
+  level, and other explicit references
+- Representation and derivation of a future geoid, including its relationship
+  to the accepted reference ellipsoid, sea level, elevation, and gravity
+- Detailed gravity representation, including variation with position or depth
+  and its relationship to mass distribution, the reference ellipsoid, a future
+  geoid, and pressure
 - Lithostatic-pressure approximation and query strategy
 - Whether and where lithostatic pressure is cached or persisted
-- Treatment of gravity variation with depth and position
 - Pore-fluid pressure representation distinct from lithostatic pressure
 - Canonical thermal-field representation
 - Regional and basal heat-flow representation
@@ -188,6 +216,9 @@ authoritative specification, and remove the resolved questions from this file.
 
 - Exact standard Earth reference values, precision, and units used by the
   versioned ruleset
+- Exact equatorial and polar radii or equivalent scale and flattening parameters
+  for the accepted Earth-like oblate reference ellipsoid, including supported
+  Earth-like ranges
 - Minimum mantle reference conditions required by the lithosphere abstraction
 - Whether a surface-pressure datum is required before later atmospheric work
 - Minimum water and volatile reference assumptions required by current geology
@@ -283,6 +314,9 @@ authoritative specification, and remove the resolved questions from this file.
 
 - Exact parameters, units, supported Earth-like ranges, and correlations
 - Which planetary-scale quantities remain fixed and which may vary by world
+- Whether reference-ellipsoid parameters are common to all supported worlds or
+  vary within a bounded Earth-like envelope, and how they correlate with radius,
+  mass, rotation, and other planetary-contract causes
 - Versioned representation and serialization of the selected contract
 - Exact stellar profile and incoming-energy boundary representation
 - Whether stellar evolution or orbital cycles matter during generated prehistory
@@ -297,18 +331,31 @@ authoritative specification, and remove the resolved questions from this file.
 
 ## ARCH-OPEN-015 — Territory allocation
 
-- Territory-slot count and capacity
+- Territory-slot count, server nation-capacity target, and allocation
 - Placement constraints
-- Expansion rules
+- Expansion, contraction, division, combination, and narrow transfer rules
+- Representation of mutable borders without making a spatial domain or sampling
+  grid the indivisible unit of territory
+- Relationship among sovereignty, claims, administrative jurisdiction,
+  resource rights, leases, military access, religious authority, and other
+  potentially overlapping relationships
 
 ## ARCH-OPEN-016 — Persistence and compatibility
 
 - Persistence format
 - Save-compatibility policy
+- Compatibility and migration rules for reference-ellipsoid definitions while
+  forbidding silent reinterpretation of an existing world's physical positions
+- Stable location identity across generator, ruleset, and spatial-representation
+  changes
 - Persistence model for canonical geological state and compact history
 - Generator-version compatibility for deterministic refinement
 - Migration rules for still-unresolved regions
 - Migration rules for already-resolved or interacted-with regions
+- Compatibility rules for established non-geological physical truth, including
+  mountains, rivers, and resources
+- Distinction between changes caused by modeled history and changes proposed by
+  a generator or representation upgrade
 - Whether old generator versions must remain executable
 - What canonical detail may be deterministically regenerated
 - Architecture of authoritative world-creation jobs
@@ -323,6 +370,10 @@ authoritative specification, and remove the resolved questions from this file.
 - Rollback model
 - Anti-cheat strategy
 - Streaming and serialization of relevant geological subsets or derived views
+- Selection and synchronization of world and simulation information according
+  to player relevance, visibility, and knowledge
+- Disclosure changes produced by diplomacy, embassies, alliances, trade,
+  intelligence, or other relationships
 - Client caching and invalidation of authority-provided world data
 - Boundary between canonical geometry/state and renderer-ready data
 - Whether any canonical detail is deterministically materialized on demand by
@@ -331,3 +382,10 @@ authoritative specification, and remove the resolved questions from this file.
 ## ARCH-OPEN-018 — Player interface
 
 - Final player-facing UI approach beyond the accepted map-first principle
+- Presentation of the globe, flattened map, and transitions selected through
+  `ARCH-OPEN-001`
+- Navigation and selection continuity from continental context to city scale
+- Presentation of unknown, stale, uncertain, or relationship-gated foreign
+  information without implying that hidden geography does not exist
+- Infrastructure goal, corridor, alternative-comparison, and commitment
+  interface

@@ -7,7 +7,7 @@ authority: Owns the causal model for broad solid-Earth geometry, isostatic respo
 implementation: unresolved
 concept_state: accepted
 coverage: partial
-last_reviewed: 2026-08-22
+last_reviewed: 2026-08-30
 ---
 
 # Broad Elevation and Isostatic Response
@@ -414,16 +414,27 @@ geological boundary, and its exact depth remains open.
 Three distinct reference concepts must not be conflated:
 
 ```text
-SEA-LEVEL / ELEVATION DATUM
+CANONICAL PHYSICAL REFERENCE FRAME
+≠
+EARTH-LIKE REFERENCE ELLIPSOID
+≠
+SEA-LEVEL / ELEVATION REFERENCE SURFACE
 ≠
 BUOYANCY REFERENCE COLUMN / STATE
 ≠
 DEEP COMPUTATIONAL EVALUATION HORIZON
 ```
 
-The elevation datum defines the coordinate reference. The buoyancy reference
-defines the physical comparison. The deep horizon defines where the ordinary
-approximation stops. One ambiguous `reference_depth` must not serve all three.
+The [canonical physical reference frame](../decisions/ARCH-DEC-001-planet-fixed-physical-reference-frame.md)
+defines physical position. The
+[Earth-like reference ellipsoid](../decisions/ARCH-DEC-002-earth-like-reference-ellipsoid.md)
+defines the stable mathematical shape for geodetic latitude, longitude, and
+reference height; it is not ground, seafloor, actual water, sea level, a gravity
+reference, a future geoid, or detailed gravity truth. An elevation reference
+surface defines a contextual elevation query. The buoyancy reference defines
+the physical comparison. The deep horizon defines where the ordinary
+approximation stops. One ambiguous `reference_depth` must not serve these
+distinct roles.
 
 ## Optional deeper support
 
