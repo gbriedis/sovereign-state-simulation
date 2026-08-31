@@ -4,7 +4,7 @@ type: open-decision-register
 status: accepted
 scope: Unresolved architecture and world-generation implementation choices
 authority: Owns the inventory of unresolved technical choices; listed options are not accepted design
-last_reviewed: 2026-08-30
+last_reviewed: 2026-08-31
 ---
 
 # Open Architecture Decisions

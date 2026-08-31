@@ -5,7 +5,7 @@ status: accepted
 scope: First evidence-gathering milestone for planetary representation and multiscale navigation
 authority: Owns the spatial learning objective, design-readiness gate, prototype evidence, success criteria, and exclusions
 implementation: partial
-last_reviewed: 2026-08-30
+last_reviewed: 2026-08-31
 ---
 
 # Map and Spatial Model Prototype

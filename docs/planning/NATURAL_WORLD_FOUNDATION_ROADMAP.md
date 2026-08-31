@@ -5,7 +5,7 @@ status: accepted
 scope: Phase intent and completion direction for the natural-world foundation
 authority: Owns phase intent, present non-goals, immediate milestone, and the evolving definition of complete
 implementation: exploration
-last_reviewed: 2026-08-30
+last_reviewed: 2026-08-31
 ---
 
 # Natural-World Foundation Roadmap
