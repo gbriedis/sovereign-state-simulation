@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "journalTitle": "Project Journal",
   "currentView": {
-    "reviewedOn": "2026-08-30",
+    "reviewedOn": "2026-08-31",
     "rootSummary": "README.md",
     "focus": {
       "label": "Natural-world foundation and the map and spatial model prototype",
@@ -16,7 +16,7 @@
       "name": "map and spatial model prototype",
       "evidence": [
         { "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "**Immediate milestone:** `PROTO-001` — map and spatial model prototype" },
-        { "source": "PROTO-001", "field": "front.implementation", "equals": "not-started" }
+        { "source": "PROTO-001", "field": "front.implementation", "equals": "partial" }
       ]
     }
   },
@@ -45,7 +45,7 @@
     "surface-exploring": { "knowledge": "exploring", "coverage": "exploratory", "implementation": "not-investigated", "attention": "unassigned" },
     "surface-proposed": { "knowledge": "proposed", "coverage": "exploratory", "implementation": "not-investigated", "attention": "unassigned" },
     "surface-partially-accepted": { "knowledge": "partially-accepted", "coverage": "partial", "implementation": "unresolved", "attention": "unassigned" },
-    "prototype-current": { "knowledge": "accepted", "coverage": "complete-at-scope", "implementation": "not-started", "attention": "now" },
+    "prototype-current": { "knowledge": "accepted", "coverage": "complete-at-scope", "implementation": "partial", "attention": "now" },
     "support-operational": { "knowledge": "operational", "coverage": "complete-at-scope", "implementation": "operational", "attention": "supporting" }
   },
   "systemEvidence": {
@@ -144,7 +144,7 @@
       "profile": "prototype-current",
       "knowledge": [{ "source": "PROTO-001", "field": "front.status", "equals": "accepted" }],
       "coverage": [{ "source": "SYSTEMS.json", "field": "profile.coverage", "equals": "complete-at-scope" }],
-      "implementation": [{ "source": "PROTO-001", "field": "front.implementation", "equals": "not-started" }],
+      "implementation": [{ "source": "PROTO-001", "field": "front.implementation", "equals": "partial" }],
       "attention": [{ "source": "HANDOFF-CURRENT", "field": "body.contains", "equals": "**Immediate milestone:** `PROTO-001` — map and spatial model prototype" }]
     },
     "runtime-architecture": {
@@ -492,12 +492,12 @@
     {
       "id": "map-and-spatial-model-prototype",
       "name": "Map and spatial model prototype",
-      "purpose": "Gather observable evidence about encoding, querying, presenting, and navigating the accepted planet-fixed physical frame from continental to city scale after a design-readiness gate.",
+      "purpose": "Gather observable evidence about encoding, querying, presenting, and navigating the accepted planet-fixed physical frame; provisional planetary-reference code exists only in an isolated uncommitted worktree and began before the design-readiness gate passed.",
       "kind": "product",
       "parent": "natural-world-foundation",
       "knowledgeState": "accepted",
       "coverage": "complete-at-scope",
-      "implementationState": "not-started",
+      "implementationState": "partial",
       "attention": "now",
       "authorities": ["PROTO-001"],
       "documents": ["PROTO-001"],

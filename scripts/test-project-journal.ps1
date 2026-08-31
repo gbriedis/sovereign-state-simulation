@@ -339,13 +339,13 @@ Invoke-MutationCase 'registry-side coverage mutation' {
 Invoke-MutationCase 'authority-side implementation evidence mutation' {
     param($testRoot)
     $path = Join-Path $testRoot 'docs/architecture/MAP_AND_SPATIAL_MODEL_PROTOTYPE.md'
-    [IO.File]::WriteAllText($path, ([IO.File]::ReadAllText($path).Replace('implementation: not-started', 'implementation: partial')), $utf8)
-} "implementation evidence .* expected 'not-started' but found 'partial'"
+    [IO.File]::WriteAllText($path, ([IO.File]::ReadAllText($path).Replace('implementation: partial', 'implementation: not-started')), $utf8)
+} "implementation evidence .* expected 'partial' but found 'not-started'"
 
 Invoke-MutationCase 'registry-side implementation mutation' {
     param($testRoot)
     $registry = Get-Registry $testRoot
-    (@($registry.systems | Where-Object id -eq 'map-and-spatial-model-prototype'))[0].implementationState = 'partial'
+    (@($registry.systems | Where-Object id -eq 'map-and-spatial-model-prototype'))[0].implementationState = 'not-started'
     Set-Registry $testRoot $registry
 } 'implementationState .* disagrees with profile'
 
@@ -379,12 +379,12 @@ Invoke-MutationCase 'registry current-milestone mutation' {
 Invoke-MutationCase 'governed review date is not hardcoded' {
     param($testRoot)
     $registry = Get-Registry $testRoot
-    $registry.currentView.reviewedOn = '2026-08-30'
+    $registry.currentView.reviewedOn = '2026-09-01'
     Set-Registry $testRoot $registry
     $current = Join-Path $testRoot 'docs/operations/CURRENT_STATE.md'
-    [IO.File]::WriteAllText($current, ([IO.File]::ReadAllText($current).Replace('last_reviewed: 2026-08-29', 'last_reviewed: 2026-08-30').Replace('**Snapshot date:** 2026-08-29', '**Snapshot date:** 2026-08-30')), $utf8)
+    [IO.File]::WriteAllText($current, ([IO.File]::ReadAllText($current).Replace('last_reviewed: 2026-08-31', 'last_reviewed: 2026-09-01').Replace('**Snapshot date:** 2026-08-31', '**Snapshot date:** 2026-09-01')), $utf8)
     $readme = Join-Path $testRoot 'README.md'
-    [IO.File]::WriteAllText($readme, ([IO.File]::ReadAllText($readme).Replace('**Status reviewed:** 2026-08-29', '**Status reviewed:** 2026-08-30')), $utf8)
+    [IO.File]::WriteAllText($readme, ([IO.File]::ReadAllText($readme).Replace('**Status reviewed:** 2026-08-31', '**Status reviewed:** 2026-09-01')), $utf8)
 } 'unused' -ExpectSuccess -Rebuild
 
 Invoke-MutationCase 'exploring lifecycle renders explicitly' {
@@ -674,9 +674,9 @@ Invoke-SemanticStalenessCase 'open-decision title impact' {
 
 Invoke-SemanticStalenessCase 'current review-date impact' {
     param($testRoot)
-    $registry=Get-Registry $testRoot; $registry.currentView.reviewedOn='2026-08-31'; Set-Registry $testRoot $registry
-    $path=Join-Path $testRoot 'docs/operations/CURRENT_STATE.md'; [IO.File]::WriteAllText($path,([IO.File]::ReadAllText($path).Replace('last_reviewed: 2026-08-30','last_reviewed: 2026-08-31').Replace('**Snapshot date:** 2026-08-30','**Snapshot date:** 2026-08-31')),$utf8)
-    $path=Join-Path $testRoot 'README.md'; [IO.File]::WriteAllText($path,([IO.File]::ReadAllText($path).Replace('**Status reviewed:** 2026-08-30','**Status reviewed:** 2026-08-31')),$utf8)
+    $registry=Get-Registry $testRoot; $registry.currentView.reviewedOn='2026-09-01'; Set-Registry $testRoot $registry
+    $path=Join-Path $testRoot 'docs/operations/CURRENT_STATE.md'; [IO.File]::WriteAllText($path,([IO.File]::ReadAllText($path).Replace('last_reviewed: 2026-08-31','last_reviewed: 2026-09-01').Replace('**Snapshot date:** 2026-08-31','**Snapshot date:** 2026-09-01')),$utf8)
+    $path=Join-Path $testRoot 'README.md'; [IO.File]::WriteAllText($path,([IO.File]::ReadAllText($path).Replace('**Status reviewed:** 2026-08-31','**Status reviewed:** 2026-09-01')),$utf8)
 }
 
 Invoke-SemanticStalenessCase 'current focus impact' {

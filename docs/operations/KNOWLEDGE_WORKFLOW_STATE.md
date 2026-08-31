@@ -11,13 +11,13 @@ objective: none
 current_owner: none
 correction_used: no
 manifest_id: none
-last_completed_workflow_id: KW-20260830-002
-updated: 2026-08-30
-last_reviewed: 2026-08-30
+last_completed_workflow_id: KW-20260831-001
+updated: 2026-08-31
+last_reviewed: 2026-08-31
 ---
 
 # Knowledge Workflow State
 
 No material knowledge workflow is active.
 
-Last completed workflow: KW-20260830-002.
+Last completed workflow: KW-20260831-001.

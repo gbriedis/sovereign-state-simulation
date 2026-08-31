@@ -18,15 +18,19 @@ authoritative specification, and remove the resolved questions from this file.
 
 ### ARCH-OPEN-001 — Spatial foundations
 
-- Numeric encoding, precision, serialization, and stable identifier strategy for
-  positions in the accepted planet-fixed physical reference frame
-- Numeric types, precision, serialization, and version identifiers for the
-  accepted reference-ellipsoid parameters
+- Numeric encoding, type, precision, serialization, versioning, and stable
+  identifier strategy for positions in the accepted planet-fixed physical
+  reference frame
+- Independent and derived reference-ellipsoid parameter representation; exact
+  parameters and supported ranges; common versus bounded per-world parameter
+  policy; and numeric types, precision, serialization, and version identifiers
 - How the agreed prime-meridian direction is established, identified, and
   versioned for each generated planet
-- Exact conversion algorithms and error bounds from canonical physical position
-  to geodetic latitude, longitude, reference height, and other derived planetary
-  queries against the accepted ellipsoid
+- Exact forward and inverse conversion algorithms; stopping and acceptance
+  tolerances; iteration limits; accuracy and error bounds; longitude
+  normalization; singular, ambiguous, and unsupported domains; and public error
+  behavior for canonical physical position and derived geodetic queries against
+  the accepted ellipsoid
 - Derived flattened projection or projections and round-trip mapping to
   authoritative planetary position
 - Globe, flattened map, or combined presentation at each player scale
@@ -41,6 +45,17 @@ authoritative specification, and remove the resolved questions from this file.
 - Surface and subsurface position, refinement, and query relationships
 - Measurements, fixtures, acceptance bounds, and prototype evidence required to
   resolve any of these choices
+
+Candidate evidence, not accepted architecture: `PROTO-001` records an isolated,
+uncommitted implementation observed on 2026-08-31. It uses `f64`; independent
+semi-major-axis and flattening inputs; an EPSG method 9602 forward relationship;
+a Bowring-initialized safeguarded Newton inverse with bisection fallback, an
+eight-`f64`-epsilon angular stopping threshold, and a 64-iteration limit; WGS 84
+test parameters; explicit supported-domain and error behavior; and test
+tolerances of `1e-12` radians, `1e-6` meters, and `0.002` meters for their named
+fixtures. These choices and values remain candidates until the retrospective
+readiness packet compares alternatives and a governed architecture decision
+explicitly retains, replaces, or removes them.
 
 ### ARCH-OPEN-002 — Sparse 3D geological representation
 

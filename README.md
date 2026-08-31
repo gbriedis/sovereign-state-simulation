@@ -36,12 +36,12 @@ source of truth.
 - **Phase:** Natural-world foundation (`0.0.1`–`0.1.0`)
 - **Architecture boundaries:** Cross-cutting boundaries are accepted
 - **Implementation choices:** Unresolved where listed in Open Decisions
-- **Implementation:** Minimal Bevy application shell present; spatial and simulation work not started
+- **Implementation:** The main worktree has a minimal Bevy application shell and no integrated planetary spatial-reference implementation; provisional spatial-reference code exists only in an isolated uncommitted worktree
 - **Immediate target:** `PROTO-001` — map and spatial model prototype
-- **Runtime evidence:** Cargo workspace and Rust source initialize a Bevy window
+- **Runtime evidence:** Main-worktree Cargo and Rust source initialize a Bevy window; the isolated implementation and its tests are evidence, not integrated architecture
 - **Project overview:** Generated and validated by the [Project Journal](docs/project-journal/README.md)
 - **Browser view:** The top-level [`project-journal-site/`](project-journal-site/) presents the same derivative Journal data and owns no technical truth
-- **Status reviewed:** 2026-08-30
+- **Status reviewed:** 2026-08-31
 
 ## Long-term direction
 

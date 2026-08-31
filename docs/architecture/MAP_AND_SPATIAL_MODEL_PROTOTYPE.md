@@ -4,7 +4,7 @@ type: implementation-specification
 status: accepted
 scope: First evidence-gathering milestone for planetary representation and multiscale navigation
 authority: Owns the spatial learning objective, design-readiness gate, prototype evidence, success criteria, and exclusions
-implementation: not-started
+implementation: partial
 last_reviewed: 2026-08-30
 ---
 
@@ -61,6 +61,70 @@ The readiness outcome is sufficient only when a reviewer can tell which
 observation would support or reject each alternative and which accepted
 requirement each observation protects. If the packet cannot discriminate among
 the alternatives, the next step is further design work, not spatial code.
+
+## Gate status and provisional implementation evidence
+
+The design-readiness gate did not pass before planetary spatial-reference code
+began. This sequence mismatch must not be rewritten as retrospective compliance.
+Integration and expansion of that code must remain frozen until the
+retrospective readiness work below is complete and a later governed architecture
+decision determines which, if any, implementation choices should be retained.
+
+Read-only inspection on 2026-08-31 found provisional evidence in the isolated
+worktree
+`C:/Users/legion/.codex/worktrees/cf36/state-of-consequence`, based at commit
+`8bfe4c63bfbe0f449d0f59e4ebcdf6dec1b1de83`. The evidence consists of seven
+uncommitted source and test changes:
+
+- `src/lib.rs`
+- `src/world/mod.rs`
+- `src/world/planetary_reference/mod.rs`
+- `src/world/planetary_reference/position.rs`
+- `src/world/planetary_reference/ellipsoid.rs`
+- `src/world/planetary_reference/conversion.rs`
+- `tests/planetary_reference.rs`
+
+The main worktree does not contain these planetary-reference changes. The
+isolated implementation currently uses `f64` Cartesian and geodetic values, accepts
+semi-major axis and flattening as independent ellipsoid inputs, implements the
+EPSG method 9602 forward relationship, and implements a Bowring-initialized
+safeguarded Newton inverse with bisection fallback, an eight-`f64`-epsilon
+angular stopping threshold, and a 64-iteration limit. Its public boundaries
+also define validation and error behavior for non-finite values, invalid
+ellipsoid inputs, out-of-range latitude, ambiguous deep normal coordinates, the
+planet center, non-finite calculation, and inverse non-convergence.
+
+Twelve public-contract tests were observed passing in that isolated worktree.
+They cover an EPSG 9602 WGS 84 fixture; representative forward and inverse round
+trips; exact and near-pole behavior; antimeridian normalization; negative
+ellipsoidal heights; independent ellipsoid-input validation; and explicit error
+behavior. Test tolerances include `1e-12` radians for representative angular
+round trips, `1e-6` meters for representative physical round trips, and `0.002`
+meters for the rounded EPSG fixture.
+
+These observations are evidence about one provisional implementation, not accepted architecture,
+not proof that the readiness gate passed, and not proof that the complete
+prototype succeeds. `f64`, independent parameter representation, WGS 84 test
+values, both conversion procedures, stopping and test tolerances, iteration
+limits, supported domains, longitude conventions, and error behavior remain
+unresolved in [ARCH-OPEN-001](OPEN_DECISIONS.md).
+
+Before integration or expansion, a retrospective readiness and evidence packet
+must:
+
+1. map every existing implementation choice and test to the original readiness
+   requirements and identify requirements that have no evidence;
+2. compare the implemented choices with credible alternatives without treating
+   the implementation as the default;
+3. distinguish test fixtures and provisional thresholds from
+   requirement-derived acceptance bounds;
+4. record singular, ambiguous, unsupported, and non-convergent domains plus the
+   behavior callers require at each boundary;
+5. identify which original multiscale navigation, presentation, player-
+   knowledge, identity, measurement, and performance observations remain
+   entirely untested; and
+6. give a later governed architecture decision enough evidence to retain,
+   replace, or remove each implemented choice explicitly.
 
 ## Prototype experiment
 

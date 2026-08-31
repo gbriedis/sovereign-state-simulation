@@ -79,13 +79,18 @@ current boundary, not a claim that they can never enter the wider product.
 
 ## Immediate milestone
 
-Complete the design-readiness outcome in
-[PROTO-001: Map and Spatial Model Prototype](../architecture/MAP_AND_SPATIAL_MODEL_PROTOTYPE.md),
-then run only the bounded experiment justified by that evidence plan. Spatial
-code must wait until the alternative comparison, observable tests, failure
-conditions, and unresolved decisions are explicit. The milestone gathers
-evidence about encoding, querying, presenting, and navigating the accepted
-planet-fixed physical frame and stable Earth-like reference ellipsoid across
-scales; it does not select exact ellipsoid parameters, geodetic conversions,
-numeric or spatial implementation, or treat any prototype scale as world
-ontology.
+Freeze integration and expansion of the isolated planetary-reference implementation
+recorded in
+[PROTO-001: Map and Spatial Model Prototype](../architecture/MAP_AND_SPATIAL_MODEL_PROTOTYPE.md).
+Because that code began before the design-readiness gate passed, first complete
+the retrospective readiness and evidence packet: compare its choices with
+alternatives, relate each observation to accepted requirements, distinguish
+provisional thresholds from requirement-derived bounds, and expose the original
+prototype questions that remain untested.
+
+After that packet is reviewable, use governed architecture to decide which, if
+any, implemented choices should be retained before integration or further spatial
+implementation. The isolated code and its passing tests are evidence, not
+milestone completion and not acceptance of exact ellipsoid parameters,
+geodetic conversions, numeric types, tolerances, error behavior, or any other
+spatial implementation.

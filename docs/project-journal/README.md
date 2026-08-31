@@ -4,8 +4,8 @@ type: project-journal
 status: accepted
 scope: Human-readable current project navigation and system overview
 authority: Derivative current view generated from SYSTEMS.json and linked authorities; owns no technical project truth
-dependency_fingerprint: 0500990f3f450b4e9d5ddba044220042df8c6e428ac5a9d58f39b20ba118bf29
-last_reviewed: 2026-08-30
+dependency_fingerprint: 7a51af690b33c471cd6c0181235471002110f3c7d665bd9c93ea4c9589d2a4d0
+last_reviewed: 2026-08-31
 ---
 
 # Project Journal
@@ -14,13 +14,13 @@ last_reviewed: 2026-08-30
 
 **Current focus:** Natural-world foundation and the map and spatial model prototype
 
-**Semantic fingerprint:** `0500990f3f450b4e9d5ddba044220042df8c6e428ac5a9d58f39b20ba118bf29`
+**Semantic fingerprint:** `7a51af690b33c471cd6c0181235471002110f3c7d665bd9c93ea4c9589d2a4d0`
 
 ## What needs attention now
 
 - **[Natural-world foundation](../planning/NATURAL_WORLD_FOUNDATION_ROADMAP.md):** Create the coherent pre-human physical world inherited by every later nation system.
 - **[World generation](../world-generation/README.md):** Build a causal natural history whose accumulated result becomes the playable physical world.
-- **[Map and spatial model prototype](../architecture/MAP_AND_SPATIAL_MODEL_PROTOTYPE.md):** Gather observable evidence about encoding, querying, presenting, and navigating the accepted planet-fixed physical frame from continental to city scale after a design-readiness gate.
+- **[Map and spatial model prototype](../architecture/MAP_AND_SPATIAL_MODEL_PROTOTYPE.md):** Gather observable evidence about encoding, querying, presenting, and navigating the accepted planet-fixed physical frame; provisional planetary-reference code exists only in an isolated uncommitted worktree and began before the design-readiness gate passed.
 
 ## Project System Map
 
@@ -41,7 +41,7 @@ The four state columns answer different questions: what is known, how complete t
 | [Tectonic evolution](../world-generation/TECTONIC_PLATES.md) | product | accepted | partial | unresolved | supporting | SYSTEMS.json, WG-INDEX | Turn plate motion and interactions into persistent tectonic structures and geological provinces. |
 | [Broad solid-Earth geometry](../world-generation/BROAD_ELEVATION_AND_ISOSTATIC_RESPONSE.md) | product | accepted | partial | unresolved | supporting | SYSTEMS.json, WG-INDEX | Derive broad physical geometry and semantic ground or seafloor queries from inherited geology, buoyancy, loads, and response. |
 | [Surface natural systems](../world-generation/README.md) | product | recognized | exploratory | not-investigated | unassigned | SYSTEMS.json, WG-INDEX | Explore how surface processes, water, climate, soils, ecosystems, resources, hazards, and engineering properties emerge from inherited physical causes. |
-| [Map and spatial model prototype](../architecture/MAP_AND_SPATIAL_MODEL_PROTOTYPE.md) | product | accepted | complete-at-scope | not-started | now | HANDOFF-CURRENT, PROTO-001, SYSTEMS.json | Gather observable evidence about encoding, querying, presenting, and navigating the accepted planet-fixed physical frame from continental to city scale after a design-readiness gate. |
+| [Map and spatial model prototype](../architecture/MAP_AND_SPATIAL_MODEL_PROTOTYPE.md) | product | accepted | complete-at-scope | partial | now | HANDOFF-CURRENT, PROTO-001, SYSTEMS.json | Gather observable evidence about encoding, querying, presenting, and navigating the accepted planet-fixed physical frame; provisional planetary-reference code exists only in an isolated uncommitted worktree and began before the design-readiness gate passed. |
 | [Runtime architecture](../architecture/ARCHITECTURE_OVERVIEW.md) | product | accepted | partial | partial | supporting | ARCH-001, SYSTEMS.json | Keep curved planetary and simulation truth authoritative, persistent, and separate from derived presentation, player knowledge, and future networking. |
 | [Documentation governance](../README.md) | support | operational | complete-at-scope | operational | supporting | DOCS-001, SYSTEMS.json | Keep project truth findable, consistently named, uniquely owned, and correctly routed. |
 | [Project Journal and System Map](../README.md) | support | operational | complete-at-scope | operational | supporting | DOCS-001, project-journal-site/scripts/sync-journal.mjs, scripts/build-project-journal.ps1, SYSTEMS.json | Translate current repository authority into a readable project overview while keeping dated explanations as history. |
